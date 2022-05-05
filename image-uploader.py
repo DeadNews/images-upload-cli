@@ -28,6 +28,7 @@ def parse_args() -> Namespace:
             "imageban",
             "imageshack",
             "imgbb",
+            "imgur",
         ),
         default="fastpic",
         help="Hosting for uploading images",
@@ -151,6 +152,22 @@ def imgbb_upload(img: bytes) -> str:
     return image_link
 
 
+def imgur_upload(img: bytes) -> str:
+    client_id = get_env_val("IMGUR_CLIENT_ID")
+
+    response = post(
+        url="https://api.imgur.com/3/image",
+        headers={"Authorization": f"Client-ID {client_id}"},
+        files={"image": img},
+    )
+    if not response.ok:
+        raise Exception(response.json())
+
+    image_link = response.json()["data"]["link"]
+
+    return image_link
+
+
 def human_size(size: float) -> str:
     """
     This function will convert bytes to MB... GB... etc
@@ -221,6 +238,7 @@ if __name__ == "__main__":
         "imageban": imageban_upload,
         "imageshack": imageshack_upload,
         "imgbb": imgbb_upload,
+        "imgur": imgur_upload,
     }
     upload_func = upload[args.server_name]
 
