@@ -248,7 +248,7 @@ if __name__ == "__main__":
         img_path = Path(f1)
         img = img_path.read_bytes()
 
-        if not args.generate_thumbnails:
+        if not args.thumbnail:
             link = f"[img]{upload_func(img)}[/img]" if args.bbcode else upload_func(img)
         else:
             thumbnail = make_thumbnail(img_path)
