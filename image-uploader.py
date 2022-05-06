@@ -195,7 +195,7 @@ def human_size(size: float) -> str:
     return f"{size:.1f} {x}"
 
 
-def make_thumbnail(img_path: Path, font: str = "SF-Pro-Text-Regular.otf") -> bytes:
+def make_thumbnail(img_path: Path) -> bytes:
     """
     Make this image into a captioned thumbnail
     """
@@ -217,16 +217,20 @@ def make_thumbnail(img_path: Path, font: str = "SF-Pro-Text-Regular.otf") -> byt
     fsize = img_path.stat().st_size
     fsize_str = human_size(fsize)
 
-    # draw text
-    text = f"{im.width}x{im.height} ({im.format}) [{fsize_str}]"
-    try:
-        fnt = ImageFont.truetype(font, size=14)
-    except OSError:
-        fnt = ImageFont.truetype("arial.ttf", size=14)
+    # get font
+    font = getenv("THUMB_FONT")
+    if font is None:
+        font = "arial.ttf"
+    fnt = ImageFont.truetype(font, size=14)
 
-    # get a drawing context
+    # draw text
     d = ImageDraw.Draw(pw_with_line)
-    d.text(xy=(pw.width / 5, pw.height), text=text, font=fnt, fill=(0, 0, 0))
+    d.text(
+        xy=(pw.width / 5, pw.height),
+        text=f"{im.width}x{im.height} ({im.format}) [{fsize_str}]",
+        font=fnt,
+        fill=(0, 0, 0),
+    )
 
     # save to buffer
     buffer = BytesIO()
