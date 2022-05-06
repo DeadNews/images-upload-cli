@@ -3,6 +3,7 @@ Upload images via API
 
 - fastpic
 - freeimage
+- geekpic
 - imageban
 - imageshack
 - imgbb

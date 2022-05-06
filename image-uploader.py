@@ -3,6 +3,7 @@
 Upload images via API
 """
 from argparse import ArgumentParser, Namespace, RawDescriptionHelpFormatter
+from base64 import b64encode
 from io import BytesIO
 from os import getenv, popen
 from pathlib import Path
@@ -25,6 +26,7 @@ def parse_args() -> Namespace:
         choices=(
             "fastpic",
             "freeimage",
+            "geekpic",
             "imageban",
             "imageshack",
             "imgbb",
@@ -95,6 +97,19 @@ def freeimage_upload(img: bytes) -> str:
         raise Exception(response.json())
 
     image_link = response.json()["image"]["url"]
+
+    return image_link
+
+
+def geekpic_upload(img: bytes) -> str:
+    response = post(
+        url="https://geekpic.net/client.php",
+        data={"image": b64encode(img)},
+    )
+    if not response.ok:
+        raise Exception(response.json())
+
+    image_link = response.json()["link"]
 
     return image_link
 
@@ -238,6 +253,7 @@ if __name__ == "__main__":
     upload = {
         "fastpic": fastpic_upload,
         "freeimage": freeimage_upload,
+        "geekpic": geekpic_upload,
         "imageban": imageban_upload,
         "imageshack": imageshack_upload,
         "imgbb": imgbb_upload,
