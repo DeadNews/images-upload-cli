@@ -221,6 +221,9 @@ def make_thumbnail(img_path: Path, font: str = "SF-Pro-Text-Regular.otf") -> byt
 
 
 def kdialog(text_to_print: str) -> None:
+    """
+    Kde notifications
+    """
     if Path("/bin/kdialog").is_file():
         popen(f"kdialog --passivepopup {text_to_print}")
 
