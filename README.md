@@ -1,9 +1,12 @@
 # image-uploader
 Upload images via API
 
+Works out of the box:
 - fastpic
-- freeimage
 - geekpic
+
+Key required:
+- freeimage
 - imageban
 - imageshack
 - imgbb
