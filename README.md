@@ -4,6 +4,7 @@ Upload images via API
 - Works out of the box:
   - fastpic
   - geekpic
+  - pixhost
 
 - Key required:
   - freeimage

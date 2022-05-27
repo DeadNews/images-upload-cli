@@ -31,6 +31,7 @@ def parse_args() -> Namespace:
             "imageshack",
             "imgbb",
             "imgur",
+            "pixhost",
         ),
         default="fastpic",
         help="Hosting for uploading images",
@@ -183,6 +184,20 @@ def imgur_upload(img: bytes) -> str:
     return image_link
 
 
+def pixhost_upload(img: bytes) -> str:
+    response = post(
+        url="https://api.pixhost.to/images",
+        data={"content_type": 0},
+        files={"img": img},
+    )
+    if not response.ok:
+        raise Exception(response.json())
+
+    image_link = response.json()["show_url"]
+
+    return image_link
+
+
 def human_size(size: float) -> str:
     """
     This function will convert bytes to MB... GB... etc
@@ -262,6 +277,7 @@ if __name__ == "__main__":
         "imageshack": imageshack_upload,
         "imgbb": imgbb_upload,
         "imgur": imgur_upload,
+        "pixhost": pixhost_upload,
     }
     upload_func = upload[args.server_name]
 
