@@ -2,7 +2,7 @@
 """
 Upload images via API
 """
-from argparse import ArgumentParser, Namespace, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, Namespace
 from base64 import b64encode
 from io import BytesIO
 from os import getenv, popen
@@ -16,9 +16,14 @@ from requests import post
 
 
 def parse_args() -> Namespace:
-    parser = ArgumentParser(description=__doc__, formatter_class=RawDescriptionHelpFormatter)
+    parser = ArgumentParser(description=__doc__)
 
-    parser.add_argument(dest="input_files", type=str, nargs="+", help="Path to the input files")
+    parser.add_argument(
+        dest="input_files",
+        type=str,
+        nargs="+",
+        help="Path to the input files",
+    )
     parser.add_argument(
         "-s",
         "--server_name",
@@ -249,7 +254,13 @@ def make_thumbnail(img_path: Path) -> bytes:
 
     # save to buffer
     buffer = BytesIO()
-    pw_with_line.save(buffer, format="JPEG", quality=95, optimize=True, progressive=True)
+    pw_with_line.save(
+        fp=buffer,
+        format="JPEG",
+        quality=95,
+        optimize=True,
+        progressive=True,
+    )
 
     return buffer.getvalue()
 
