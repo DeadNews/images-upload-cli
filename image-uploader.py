@@ -7,9 +7,9 @@ from base64 import b64encode
 from io import BytesIO
 from os import getenv
 from pathlib import Path
+from re import search
 from shutil import which
 from subprocess import Popen
-from xml.etree import ElementTree
 
 from dotenv import find_dotenv, load_dotenv
 from PIL import Image, ImageDraw, ImageFont
@@ -80,12 +80,11 @@ def fastpic_upload(img: bytes) -> str:
         },
         files={"file1": img},
     )
-    xml_tree = ElementTree.fromstring(response.text)
 
     image_link = (
         None
-        if (imagepath := xml_tree.find("imagepath")) is None
-        else (None if (il := imagepath.text) is None else il)
+        if (match := search(r"<imagepath>(.+?)</imagepath>", response.text)) is None
+        else match.group(1).strip()
     )
     if image_link is None:
         raise Exception(response.text)
