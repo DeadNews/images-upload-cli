@@ -5,8 +5,10 @@ Upload images via API
 from argparse import ArgumentParser, Namespace
 from base64 import b64encode
 from io import BytesIO
-from os import getenv, popen
+from os import getenv
 from pathlib import Path
+from shutil import which
+from subprocess import Popen
 from xml.etree import ElementTree
 
 from dotenv import find_dotenv, load_dotenv
@@ -269,8 +271,8 @@ def kdialog(text_to_print: str) -> None:
     """
     Kde notifications
     """
-    if Path("/bin/kdialog").is_file():
-        popen(f"kdialog --passivepopup {text_to_print}")
+    if kdialog := which("kdialog"):
+        Popen([kdialog, "--passivepopup", text_to_print])
 
 
 if __name__ == "__main__":
