@@ -10,11 +10,12 @@ from pathlib import Path
 from re import search
 from shutil import which
 from subprocess import Popen
+from urllib.parse import urlparse
 
 from dotenv import find_dotenv, load_dotenv
 from PIL import Image, ImageDraw, ImageFont
 from pyperclip import copy as copy_to_clipboard
-from requests import post
+from requests import get, post
 
 
 def parse_args() -> Namespace:
@@ -199,9 +200,17 @@ def pixhost_upload(img: bytes) -> str:
     if not response.ok:
         raise Exception(response.json())
 
-    image_link = response.json()["show_url"]
+    show_url = response.json()["show_url"]
 
-    return image_link
+    # get direct link
+    u = urlparse(show_url)
+    match = search(
+        rf"({u.scheme}://(.+?){u.netloc}/images/{u.path.removeprefix('/show/')})",
+        get(show_url).text,
+    )
+    image_link = None if match is None else match.group(0).strip()
+
+    return show_url if image_link is None else image_link
 
 
 def human_size(size: float) -> str:
@@ -256,7 +265,7 @@ def make_thumbnail(img_path: Path) -> bytes:
     # save to buffer
     buffer = BytesIO()
     pw_with_line.save(
-        fp=buffer,
+        buffer,
         format="JPEG",
         quality=95,
         optimize=True,
