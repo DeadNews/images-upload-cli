@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "image-uploader"
+version = "0.1.0"
+description = "Upload images via API"
+authors = ["DeadNews <uhjnnn@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/DeadNews/image-uploader"
+repository = "https://github.com/DeadNews/image-uploader"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pillow = "^9.1.1"
+pyperclip = "^1.8.2"
+python-dotenv = "^0.20.0"
+requests = "^2.25.1"
+
+[tool.poetry.dev-dependencies]
+bandit = "^1.7.4"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+flake8-bugbear = "^22.4.25"
+flake8-comprehensions = "^3.10.0"
+flake8-simplify = "^0.19.2"
+mypy = "^0.961"
+pep8-naming = "^0.13.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+line_length = 88
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+ignore = [
+    "E501", # Line too long
+    "F541", # f-string without any placeholders
+    "W503", # Line break occurred before a binary operator
+]
+
+[tool.mypy]
+disallow_untyped_defs = true
+follow_imports = "silent"
+ignore_missing_imports = true
+show_column_numbers = true
+sqlite_cache = true
+
+[tool.bandit]
+skips = [
+    "B404", # Importing subprocess
+    "B603", # Calling subprocess.Popen without shell=True
+    "B608", # Hardcoded sql expressions
+]
