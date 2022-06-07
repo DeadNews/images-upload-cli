@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Upload images via API
+Upload images via APIs
 """
 from argparse import ArgumentParser, Namespace
 from base64 import b64encode
