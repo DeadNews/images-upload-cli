@@ -1,12 +1,20 @@
 [tool.poetry]
-name = "image-uploader-cli"
+name = "py-image-uploader"
 version = "0.1.0"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/DeadNews/image-uploader-cli"
-repository = "https://github.com/DeadNews/image-uploader-cli"
+homepage = "https://github.com/DeadNews/py-image-uploader"
+repository = "https://github.com/DeadNews/py-image-uploader"
+keywords=["cli", "image", "uploader"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.scripts]
+py-image-uploader = "py_image_uploader:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"

@@ -283,7 +283,7 @@ def kdialog(text_to_print: str) -> None:
         Popen([kdialog, "--passivepopup", text_to_print])
 
 
-if __name__ == "__main__":
+def main() -> None:
     args = parse_args()
 
     # loading .env variables
@@ -321,3 +321,7 @@ if __name__ == "__main__":
     print(links_str)
     copy_to_clipboard(links_str)
     kdialog(links_str)
+
+
+if __name__ == "__main__":
+    main()
