@@ -11,20 +11,19 @@ from PIL import Image, ImageDraw, ImageFont
 def get_env_val(key: str) -> str:
     value = getenv(key)
     if value is None:
-        raise Exception(f"Please setup the .env variable {key}.")
+        raise ValueError(f"Please setup the .env variable {key}.")
     return value
 
 
-def human_size(size: float) -> str:
+def human_size(num: float, suffix: str = "B") -> str:
     """
-    This function will convert bytes to MB... GB... etc
+    This function will convert bytes to human readable units
     """
-    for x in ("bytes", "KB", "MB", "GB", "TB"):
-        if size < 1024.0:
-            break
-        size /= 1024.0
-
-    return f"{size:.1f} {x}"
+    for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
+        if abs(num) < 1024.0:
+            return f"{num:3.1f}{unit}{suffix}"
+        num /= 1024.0
+    return f"{num:.1f}Yi{suffix}"
 
 
 def make_thumbnail(img_path: Path, size: tuple[int, int] = (300, 300)) -> bytes:

@@ -35,7 +35,7 @@ def parse_args() -> Namespace:
             "imgur",
             "pixhost",
         ),
-        default="fastpic",
+        default="geekpic",
         help="Hosting for uploading images",
     )
 
