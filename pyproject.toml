@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 [tool.poetry.scripts]
-py-image-uploader = "py_image_uploader:main"
+py-image-uploader = "py_image_uploader.cli:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -30,6 +30,7 @@ flake8 = "^4.0.1"
 flake8-bugbear = "^22.4.25"
 flake8-comprehensions = "^3.10.0"
 flake8-simplify = "^0.19.2"
+isort = "^5.10.1"
 mypy = "^0.961"
 pep8-naming = "^0.13.0"
 
