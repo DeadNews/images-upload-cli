@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py-image-uploader"
-version = "0.1.22"
+version = "0.1.1"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
