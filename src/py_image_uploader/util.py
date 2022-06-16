@@ -21,9 +21,9 @@ def human_size(num: float, suffix: str = "B") -> str:
     """
     for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
         if abs(num) < 1024.0:
-            return f"{num:3.1f}{unit}{suffix}"
+            return f"{num:3.1f} {unit}{suffix}"
         num /= 1024.0
-    return f"{num:.1f}Yi{suffix}"
+    return f"{num:.1f} Yi{suffix}"
 
 
 def make_thumbnail(img_path: Path, size: tuple[int, int] = (300, 300)) -> bytes:

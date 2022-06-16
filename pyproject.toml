@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py-image-uploader"
-version = "0.1.0"
+version = "0.1.22"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
@@ -29,10 +29,13 @@ black = "^22.3.0"
 flake8 = "^4.0.1"
 flake8-bugbear = "^22.4.25"
 flake8-comprehensions = "^3.10.0"
+flake8-pytest-style = "^1.6.0"
 flake8-simplify = "^0.19.2"
 isort = "^5.10.1"
 mypy = "^0.961"
 pep8-naming = "^0.13.0"
+pytest = "^7.1.2"
+safety = "^1.10.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -47,6 +50,7 @@ profile = "black"
 
 [tool.flake8]
 max-line-length = 88
+max-complexity = 18
 ignore = [
     "E501", # Line too long
     "F541", # f-string without any placeholders
@@ -61,6 +65,7 @@ show_column_numbers = true
 sqlite_cache = true
 
 [tool.bandit]
+exclude_dirs = ["test"]
 skips = [
     "B404", # Importing subprocess
     "B603", # Calling subprocess.Popen without shell=True
