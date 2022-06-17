@@ -48,15 +48,6 @@ line-length = 88
 line_length = 88
 profile = "black"
 
-[tool.flake8]
-max-line-length = 88
-max-complexity = 18
-ignore = [
-    "E501", # Line too long
-    "F541", # f-string without any placeholders
-    "W503", # Line break occurred before a binary operator
-]
-
 [tool.mypy]
 disallow_untyped_defs = true
 follow_imports = "silent"
