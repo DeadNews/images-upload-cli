@@ -7,11 +7,8 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/DeadNews/py-image-uploader"
 repository = "https://github.com/DeadNews/py-image-uploader"
-keywords=["cli", "image", "uploader"]
-classifiers = [
-    "Environment :: Console",
-    "Operating System :: OS Independent",
-]
+keywords = ["cli", "image", "uploader"]
+classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 
 [tool.poetry.scripts]
 py-image-uploader = "py_image_uploader.cli:main"
@@ -55,10 +52,26 @@ ignore_missing_imports = true
 show_column_numbers = true
 sqlite_cache = true
 
+[tool.flake8]
+max-line-length = 88
+max-complexity = 18
+ignore = [
+    "E501", # Line too long
+    "F541", # f-string without any placeholders
+    "W503", # Line break occurred before a binary operator
+]
+per-file-ignores = [
+    '__init__.py:F401', # Imported but unused
+]
+
 [tool.bandit]
-exclude_dirs = ["test"]
+exclude_dirs = ["tests"]
 skips = [
     "B404", # Importing subprocess
     "B603", # Calling subprocess.Popen without shell=True
     "B608", # Hardcoded sql expressions
 ]
+
+[tool.pytest.ini_options]
+addopts = '--verbose'
+testpaths = ['tests']

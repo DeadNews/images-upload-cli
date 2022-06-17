@@ -1,21 +1,27 @@
 // Workspace settings override user settings.
 {
-    // pytest
-    "python.testing.pytestEnabled": true,
-    "python.testing.pytestArgs": [
-        "tests",
+    // black
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--config",
+        "pyproject.toml"
+    ],
+    // isort
+    "python.sortImports.args": [
+        "--settings-path",
+        "pyproject.toml"
     ],
     // mypy
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": [
         "--config-file",
-        "pyproject.toml",
+        "pyproject.toml"
     ],
     // flake8
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
         "--config",
-        ".flake8",
+        ".flake8"
     ],
     // bandit
     "python.linting.banditEnabled": true,
@@ -23,15 +29,10 @@
         "-c",
         "pyproject.toml"
     ],
-    // black
-    "python.formatting.provider": "black",
-    "python.formatting.blackArgs": [
-        "--config",
-        "pyproject.toml",
-    ],
-    // isort
-    "python.sortImports.args": [
-        "--settings-path",
-        "pyproject.toml",
-    ],
+    // pytest
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "-c",
+        "pyproject.toml"
+    ]
 }
