@@ -26,13 +26,16 @@ black = "^22.3.0"
 flake8 = "^4.0.1"
 flake8-bugbear = "^22.4.25"
 flake8-comprehensions = "^3.10.0"
+flake8-implicit-str-concat = "^0.3.0"
 flake8-pytest-style = "^1.6.0"
 flake8-simplify = "^0.19.2"
 isort = "^5.10.1"
 mypy = "^0.961"
 pep8-naming = "^0.13.0"
+pre-commit = "^2.19.0"
 pytest = "^7.1.2"
 safety = "^1.10.3"
+types-requests = "^2.27.30"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -50,7 +53,6 @@ disallow_untyped_defs = true
 follow_imports = "silent"
 ignore_missing_imports = true
 show_column_numbers = true
-sqlite_cache = true
 
 [tool.bandit]
 exclude_dirs = ["tests"]
@@ -61,5 +63,5 @@ skips = [
 ]
 
 [tool.pytest.ini_options]
-addopts = '--verbose'
-testpaths = ['tests']
+addopts = "--verbose"
+testpaths = ["tests"]
