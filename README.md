@@ -8,11 +8,13 @@
 ## Hostings
 
 - Works out of the box:
+
   - fastpic
   - geekpic
   - pixhost
 
 - Key required:
+
   - freeimage
   - imageban
   - imageshack
