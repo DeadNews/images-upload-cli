@@ -55,3 +55,23 @@ repos:
         args: [-c, pyproject.toml]
         additional_dependencies:
           - bandit[toml] # python_version < "3.11"
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.14
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-toc
+          - mdformat-gfm
+          - mdformat-black
+
+  - repo: local
+    hooks:
+      - id: poetry-check
+        name: poetry-check
+        description: run poetry check to validate config
+        entry: poetry check
+        language: python
+        language_version: python3
+        pass_filenames: false
+        files: ^pyproject.toml$
