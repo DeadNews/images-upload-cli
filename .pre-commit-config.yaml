@@ -36,17 +36,23 @@ repos:
         additional_dependencies:
           - types-requests
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 4.0.1
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.3.0
     hooks:
-      - id: flake8
-        additional_dependencies:
+      - id: yesqa
+        additional_dependencies: &flake8_deps
           - flake8-bugbear
           - flake8-comprehensions
           - flake8-implicit-str-concat
           - flake8-pytest-style
           - flake8-simplify
           - pep8-naming
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        additional_dependencies: *flake8_deps
 
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.4
