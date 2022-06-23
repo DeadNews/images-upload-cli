@@ -53,6 +53,7 @@ disallow_untyped_defs = true
 follow_imports = "silent"
 ignore_missing_imports = true
 show_column_numbers = true
+show_error_codes = true
 
 [tool.bandit]
 exclude_dirs = ["tests"]
