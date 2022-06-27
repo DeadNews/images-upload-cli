@@ -2,6 +2,8 @@
 """
 Upload images via APIs
 """
+from __future__ import annotations
+
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
 

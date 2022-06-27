@@ -14,7 +14,7 @@ classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 py-image-uploader = "py_image_uploader.cli:main"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 pillow = "^9.1.1"
 pyperclip = "^1.8.2"
 python-dotenv = "^0.20.0"
