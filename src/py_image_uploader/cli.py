@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
+from typing import Sequence
 
 from dotenv import find_dotenv, load_dotenv
 from pyperclip import copy as copy_to_clipboard
@@ -14,7 +15,7 @@ from .upload import get_upload_func
 from .util import kdialog, make_thumbnail
 
 
-def parse_args() -> Namespace:
+def parse_args(args: Sequence[str] | None = None) -> Namespace:
     parser = ArgumentParser(description=__doc__)
 
     parser.add_argument(
@@ -57,7 +58,7 @@ def parse_args() -> Namespace:
         help="Generate thumbnails",
     )
 
-    return parser.parse_args()
+    return parser.parse_args(args)
 
 
 def main() -> None:

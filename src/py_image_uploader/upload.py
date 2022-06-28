@@ -11,6 +11,10 @@ from requests import get, post
 from .util import get_env_val
 
 
+class InvalidParameterError(Exception):
+    pass
+
+
 def get_upload_func(server_name: str) -> Callable[[bytes], str]:
     """
     Get function by server name
@@ -27,7 +31,9 @@ def get_upload_func(server_name: str) -> Callable[[bytes], str]:
     }
 
     if server_name not in (keys := list(upload.keys())):
-        raise ValueError(f"Invalid parameter {server_name=}. Expected one of {keys}.")
+        raise InvalidParameterError(
+            f"Invalid parameter {server_name=}. Expected one of {keys}."
+        )
 
     return upload[server_name]
 
