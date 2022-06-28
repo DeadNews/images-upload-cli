@@ -32,6 +32,7 @@ flake8-simplify = "^0.19.2"
 isort = "^5.10.1"
 mypy = "^0.961"
 pep8-naming = "^0.13.0"
+poethepoet = "^0.14.0"
 pre-commit = "^2.19.0"
 pytest = "^7.1.2"
 safety = "^1.10.3"
@@ -64,5 +65,18 @@ skips = [
 ]
 
 [tool.pytest.ini_options]
-addopts = "--verbose"
-testpaths = ["tests"]
+addopts = '--verbose'
+testpaths = ['tests']
+
+[tool.poe.tasks]
+pre-commit = "pre-commit run --all-files"
+isort = "isort . --check-only --diff"
+black = "black . --check --diff"
+mypy = "mypy ."
+flake8 = "flake8 ."
+bandit = "bandit -c pyproject.toml -r ."
+safety = "safety check"
+
+[tool.poe.tasks.ci]
+help = "CI sequence"
+sequence = ["isort", "black", "mypy", "flake8", "bandit", "safety"]
