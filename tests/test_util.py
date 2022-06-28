@@ -15,7 +15,7 @@ from src.py_image_uploader.util import human_size
         (10**26 * 30, "2481.5 YiB"),
     ],
 )
-def test_human_size(test_arg: int, expected: str) -> None:
+def test_human_size(test_arg: int, expected: str):
     assert human_size(test_arg) == expected
 
     args_with_negative = test_arg * -1

@@ -56,6 +56,10 @@ ignore_missing_imports = true
 show_column_numbers = true
 show_error_codes = true
 
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+allow_untyped_defs = true
+
 [tool.bandit]
 exclude_dirs = ["tests"]
 skips = [
@@ -65,11 +69,10 @@ skips = [
 ]
 
 [tool.pytest.ini_options]
-addopts = '--verbose'
-testpaths = ['tests']
+addopts = "--verbose"
+testpaths = ["tests"]
 
 [tool.poe.tasks]
-pre-commit = "pre-commit run --all-files"
 isort = "isort . --check-only --diff"
 black = "black . --check --diff"
 mypy = "mypy ."
@@ -80,3 +83,7 @@ safety = "safety check"
 [tool.poe.tasks.ci]
 help = "CI sequence"
 sequence = ["isort", "black", "mypy", "flake8", "bandit", "safety"]
+
+[tool.poe.tasks.pc]
+help = "pre-commit"
+cmd = "pre-commit run --all-files"

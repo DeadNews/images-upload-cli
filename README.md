@@ -25,6 +25,7 @@
 
 ```sh
 pip install py-image-uploader
+py-image-uploader --help
 ```
 
 ## .env variables
