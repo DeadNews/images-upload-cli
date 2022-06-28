@@ -1,0 +1,89 @@
+name: python-app
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.10"
+  FORCE_COLOR: 1
+
+jobs:
+  code-quality:
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: poetry
+
+      - name: Install dependencies
+        run: |
+          poetry env use ${{ env.PYTHON_VERSION }}
+          poetry install
+
+      - name: Check code quality
+        run: poetry run poe ci
+
+  run-tests:
+    name: Run tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.10"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
+
+      - name: Install dependencies
+        run: |
+          poetry env use ${{ matrix.python-version }}
+          poetry install
+
+      - name: Run tests
+        run: poetry run pytest
+
+  build-release:
+    name: Build and release
+    if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [code-quality, run-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Build package
+        run: poetry build
+
+      - name: Publish package to PyPI
+        run: poetry publish --no-interaction
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
