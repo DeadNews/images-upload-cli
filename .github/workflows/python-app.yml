@@ -65,10 +65,29 @@ jobs:
       - name: Run tests
         run: poetry run pytest
 
+  codeql:
+    name: CodeQL analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v2
+
   build-release:
     name: Build and release
     if: github.event_name == 'release' && github.event.action == 'created'
-    needs: [code-quality, run-tests]
+    needs: [code-quality, run-tests, codeql]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
