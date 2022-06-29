@@ -11,6 +11,7 @@ from typing import Sequence
 from dotenv import find_dotenv, load_dotenv
 from pyperclip import copy as copy_to_clipboard
 
+from .__version__ import __version__
 from .upload import get_upload_func
 from .util import kdialog, make_thumbnail
 
@@ -18,6 +19,12 @@ from .util import kdialog, make_thumbnail
 def parse_args(args: Sequence[str] | None = None) -> Namespace:
     parser = ArgumentParser(description=__doc__)
 
+    parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
     parser.add_argument(
         dest="input_files",
         type=str,
