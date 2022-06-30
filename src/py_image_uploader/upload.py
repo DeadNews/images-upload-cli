@@ -15,6 +15,10 @@ class InvalidParameterError(Exception):
     pass
 
 
+class RequestError(Exception):
+    pass
+
+
 def get_upload_func(server_name: str) -> Callable[[bytes], str]:
     """
     Get function by server name
@@ -55,7 +59,7 @@ def fastpic_upload(img: bytes) -> str:
         else match.group(1).strip()
     )
     if image_link is None:
-        raise Exception(response.text)
+        raise RequestError(response.text)
 
     return image_link
 
@@ -69,7 +73,7 @@ def freeimage_upload(img: bytes) -> str:
         files={"source": img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     image_link = response.json()["image"]["url"]
 
@@ -82,7 +86,7 @@ def geekpic_upload(img: bytes) -> str:
         data={"image": b64encode(img)},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     image_link = response.json()["link"]
 
@@ -100,7 +104,7 @@ def imageban_upload(img: bytes) -> str:
         files={"image": img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     image_link = response.json()["data"]["link"]
 
@@ -119,7 +123,7 @@ def imageshack_upload(img: bytes) -> str:
         files={"fileupload": img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     image_link = response.json()["links"]["image_link"]
 
@@ -135,7 +139,7 @@ def imgbb_upload(img: bytes) -> str:
         files={"image": img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     image_link = response.json()["data"]["url"]
 
@@ -151,7 +155,7 @@ def imgur_upload(img: bytes) -> str:
         files={"image": img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     image_link = response.json()["data"]["link"]
 
@@ -165,7 +169,7 @@ def pixhost_upload(img: bytes) -> str:
         files={"img": img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise RequestError(response.json())
 
     show_url = response.json()["show_url"]
 
