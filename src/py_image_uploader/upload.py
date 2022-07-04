@@ -198,7 +198,7 @@ def uploadcare_upload(img: bytes) -> str:
         files={name: img},
     )
     if not response.ok:
-        raise Exception(response.json())
+        raise UploadError(response.json())
 
     image_link = "https://ucarecdn.com/" + response.json()[name] + "/" + name
 
