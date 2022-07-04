@@ -76,9 +76,7 @@ def freeimage_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = response.json()["image"]["url"]
-
-    return image_link
+    return response.json()["image"]["url"]
 
 
 def geekpic_upload(img: bytes) -> str:
@@ -89,9 +87,7 @@ def geekpic_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = response.json()["link"]
-
-    return image_link
+    return response.json()["link"]
 
 
 def imageban_upload(img: bytes) -> str:
@@ -107,9 +103,7 @@ def imageban_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = response.json()["data"]["link"]
-
-    return image_link
+    return response.json()["data"]["link"]
 
 
 def imageshack_upload(img: bytes) -> str:
@@ -126,9 +120,7 @@ def imageshack_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = response.json()["links"]["image_link"]
-
-    return image_link
+    return response.json()["links"]["image_link"]
 
 
 def imgbb_upload(img: bytes) -> str:
@@ -142,9 +134,7 @@ def imgbb_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = response.json()["data"]["url"]
-
-    return image_link
+    return response.json()["data"]["url"]
 
 
 def imgur_upload(img: bytes) -> str:
@@ -158,9 +148,7 @@ def imgur_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = response.json()["data"]["link"]
-
-    return image_link
+    return response.json()["data"]["link"]
 
 
 def pixhost_upload(img: bytes) -> str:
@@ -187,7 +175,7 @@ def pixhost_upload(img: bytes) -> str:
 
 def uploadcare_upload(img: bytes) -> str:
     key = get_env_val("UPLOADCARE_KEY")
-    name = "img." + get_img_ext(img)
+    name = f"img.{get_img_ext(img)}"
 
     response = post(
         url="https://upload.uploadcare.com/base/",
@@ -200,6 +188,4 @@ def uploadcare_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    image_link = "https://ucarecdn.com/" + response.json()[name] + "/" + name
-
-    return image_link
+    return f"https://ucarecdn.com/{response.json()[name]}/{name}"
