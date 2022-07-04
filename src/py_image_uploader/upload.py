@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 
 from requests import get, post
 
-from .util import get_env_val
+from .util import get_env_val, get_img_ext
 
 
 class InvalidParameterError(Exception):
@@ -32,6 +32,7 @@ def get_upload_func(server_name: str) -> Callable[[bytes], str]:
         "imgbb": imgbb_upload,
         "imgur": imgur_upload,
         "pixhost": pixhost_upload,
+        "uploadcare": uploadcare_upload,
     }
 
     if server_name not in (keys := list(upload.keys())):
@@ -182,3 +183,23 @@ def pixhost_upload(img: bytes) -> str:
     image_link = None if match is None else match.group(0).strip()
 
     return show_url if image_link is None else image_link
+
+
+def uploadcare_upload(img: bytes) -> str:
+    key = get_env_val("UPLOADCARE_KEY")
+    name = "img." + get_img_ext(img)
+
+    response = post(
+        url="https://upload.uploadcare.com/base/",
+        data={
+            "UPLOADCARE_PUB_KEY": key,
+            "UPLOADCARE_STORE": "1",
+        },
+        files={name: img},
+    )
+    if not response.ok:
+        raise Exception(response.json())
+
+    image_link = "https://ucarecdn.com/" + response.json()[name] + "/" + name
+
+    return image_link

@@ -44,6 +44,7 @@ def parse_args(args: Sequence[str] | None = None) -> Namespace:
             "imgbb",
             "imgur",
             "pixhost",
+            "uploadcare",
         ),
         default="geekpic",
         help="Hosting for uploading images",

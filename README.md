@@ -23,6 +23,7 @@
   - imageshack
   - imgbb
   - imgur
+  - uploadcare
 
 ## Installation
 

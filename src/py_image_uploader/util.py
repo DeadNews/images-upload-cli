@@ -28,6 +28,13 @@ def human_size(num: float, suffix: str = "B") -> str:
     return f"{num:.1f} Yi{suffix}"
 
 
+def get_img_ext(img: bytes) -> str:
+    """
+    Get image extension from bytes
+    """
+    return Image.open(BytesIO(img)).format.lower()
+
+
 def make_thumbnail(img_path: Path, size: tuple[int, int] = (300, 300)) -> bytes:
     """
     Make this image into a captioned thumbnail
