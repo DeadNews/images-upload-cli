@@ -19,7 +19,7 @@ def test_human_size(test_arg: int, expected: str):
     assert human_size(test_arg) == expected
 
     args_with_negative = test_arg * -1
-    assert human_size(args_with_negative) == "-" + expected
+    assert human_size(args_with_negative) == f"-{expected}"
 
 
 def test_get_img_ext():
