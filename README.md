@@ -34,4 +34,4 @@ py-image-uploader --help
 
 ## .env variables
 
-Don't forget to specify [env variables](.env.sample).
+Don't forget to specify [env variables](https://github.com/DeadNews/py-image-uploader/blob/main/README.md).
