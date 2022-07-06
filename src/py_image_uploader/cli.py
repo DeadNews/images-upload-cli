@@ -35,7 +35,7 @@ def parse_args(args: Sequence[str] | None = None) -> Namespace:
         "-s",
         "--server_name",
         type=str.lower,
-        choices=(
+        choices={
             "fastpic",
             "freeimage",
             "geekpic",
@@ -45,7 +45,7 @@ def parse_args(args: Sequence[str] | None = None) -> Namespace:
             "imgur",
             "pixhost",
             "uploadcare",
-        ),
+        },
         default="geekpic",
         help="Hosting for uploading images",
     )

@@ -35,7 +35,7 @@ def get_upload_func(server_name: str) -> Callable[[bytes], str]:
         "uploadcare": uploadcare_upload,
     }
 
-    if server_name not in (keys := list(upload.keys())):
+    if server_name not in (keys := set(upload.keys())):
         raise InvalidParameterError(
             f"Invalid parameter {server_name=}. Expected one of {keys}."
         )
