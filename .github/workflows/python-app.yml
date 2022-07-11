@@ -2,9 +2,9 @@ name: python-app
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
   release:
     types: [created]
 

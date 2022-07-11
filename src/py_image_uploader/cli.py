@@ -5,8 +5,8 @@ Upload images via APIs
 from __future__ import annotations
 
 from argparse import ArgumentParser, Namespace
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 from dotenv import find_dotenv, load_dotenv
 from pyperclip import copy as copy_to_clipboard
