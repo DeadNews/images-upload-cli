@@ -19,30 +19,6 @@ class UploadError(Exception):
     pass
 
 
-def get_upload_func(server_name: str) -> Callable[[bytes], str]:
-    """
-    Get function by server name
-    """
-    upload = {
-        "fastpic": fastpic_upload,
-        "freeimage": freeimage_upload,
-        "geekpic": geekpic_upload,
-        "imageban": imageban_upload,
-        "imageshack": imageshack_upload,
-        "imgbb": imgbb_upload,
-        "imgur": imgur_upload,
-        "pixhost": pixhost_upload,
-        "uploadcare": uploadcare_upload,
-    }
-
-    if server_name not in (keys := set(upload.keys())):
-        raise InvalidParameterError(
-            f"Invalid parameter {server_name=}. Expected one of {keys}."
-        )
-
-    return upload[server_name]
-
-
 def fastpic_upload(img: bytes) -> str:
     response = post(
         url="https://fastpic.org/upload?api=1",
@@ -189,3 +165,30 @@ def uploadcare_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return f"https://ucarecdn.com/{response.json()[name]}/{name}"
+
+
+def get_upload_func(server_name: str) -> Callable[[bytes], str]:
+    """
+    Get function by server name
+    """
+    if server_name not in HOSTINGS_LIST:
+        raise InvalidParameterError(
+            f"Invalid parameter {server_name=}. Expected one of {HOSTINGS_LIST}."
+        )
+
+    return HOSTINGS_DICT[server_name]
+
+
+HOSTINGS_DICT = {
+    "fastpic": fastpic_upload,
+    "freeimage": freeimage_upload,
+    "geekpic": geekpic_upload,
+    "imageban": imageban_upload,
+    "imageshack": imageshack_upload,
+    "imgbb": imgbb_upload,
+    "imgur": imgur_upload,
+    "pixhost": pixhost_upload,
+    "uploadcare": uploadcare_upload,
+}
+
+HOSTINGS_LIST = list(HOSTINGS_DICT.keys())
