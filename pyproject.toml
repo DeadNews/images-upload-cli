@@ -78,7 +78,7 @@ black = "black . --check --diff"
 mypy = "mypy ."
 flake8 = "flake8 ."
 bandit = "bandit -c pyproject.toml -r ."
-safety = "safety check"
+safety = "safety check --bare"
 
 [tool.poe.tasks.ci]
 help = "CI sequence"
