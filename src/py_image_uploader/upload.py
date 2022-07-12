@@ -11,10 +11,6 @@ from requests import get, post
 from .util import get_env_val, get_img_ext
 
 
-class InvalidParameterError(Exception):
-    pass
-
-
 class UploadError(Exception):
     pass
 
@@ -167,19 +163,7 @@ def uploadcare_upload(img: bytes) -> str:
     return f"https://ucarecdn.com/{response.json()[name]}/{name}"
 
 
-def get_upload_func(server_name: str) -> Callable[[bytes], str]:
-    """
-    Get function by server name
-    """
-    if server_name not in HOSTINGS_LIST:
-        raise InvalidParameterError(
-            f"Invalid parameter {server_name=}. Expected one of {HOSTINGS_LIST}."
-        )
-
-    return HOSTINGS_DICT[server_name]
-
-
-HOSTINGS_DICT = {
+UPLOAD: dict[str, Callable[[bytes], str]] = {
     "fastpic": fastpic_upload,
     "freeimage": freeimage_upload,
     "geekpic": geekpic_upload,
@@ -191,4 +175,4 @@ HOSTINGS_DICT = {
     "uploadcare": uploadcare_upload,
 }
 
-HOSTINGS_LIST = list(HOSTINGS_DICT.keys())
+HOSTINGS = tuple(UPLOAD.keys())

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 from io import BytesIO
 from os import getenv
-from pathlib import Path
 from shutil import which
 from subprocess import Popen
 
@@ -12,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 def get_env_val(key: str) -> str:
     value = getenv(key)
-    if value is None:
+    if not value:
         raise ValueError(f"Please setup the .env variable {key}.")
     return value
 
@@ -35,12 +34,12 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
-def make_thumbnail(img_path: Path, size: tuple[int, int] = (300, 300)) -> bytes:
+def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     """
     Make this image into a captioned thumbnail
     """
     # get a pw
-    im = Image.open(img_path)
+    im = Image.open(BytesIO(img))
     pw = im.copy().convert("RGB")
     pw.thumbnail(size=size, resample=Image.Resampling.LANCZOS)
 
@@ -54,12 +53,11 @@ def make_thumbnail(img_path: Path, size: tuple[int, int] = (300, 300)) -> bytes:
     pw_with_line.paste(pw, box=(0, 0))
 
     # get a file size info
-    fsize = img_path.stat().st_size
-    fsize_str = human_size(fsize)
+    fsize = human_size(len(img))
 
     # get font
-    font = getenv("THUMB_FONT")
-    if font is None:
+    font = getenv("CAPTION_FONT")
+    if not font:
         font = "arial.ttf"
     fnt = ImageFont.truetype(font, size=14)
 
@@ -67,7 +65,7 @@ def make_thumbnail(img_path: Path, size: tuple[int, int] = (300, 300)) -> bytes:
     d = ImageDraw.Draw(pw_with_line)
     d.text(
         xy=(pw.width / 5, pw.height),
-        text=f"{im.width}x{im.height} ({im.format}) [{fsize_str}]",
+        text=f"{im.width}x{im.height} ({im.format}) [{fsize}]",
         font=fnt,
         fill=(0, 0, 0),
     )

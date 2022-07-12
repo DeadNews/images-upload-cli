@@ -26,10 +26,10 @@ repos:
           - pep8-naming
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.37.0
+    rev: v2.37.1
     hooks:
       - id: pyupgrade
-        args: [--py310-plus]
+        args: [--py39-plus]
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.10.1

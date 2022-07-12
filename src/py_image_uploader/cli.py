@@ -7,16 +7,16 @@ from __future__ import annotations
 from pathlib import Path
 
 import click
-from dotenv import find_dotenv, load_dotenv
+from dotenv import load_dotenv
 from pyperclip import copy as copy_to_clipboard
 
-from .upload import HOSTINGS_LIST, get_upload_func
+from .upload import HOSTINGS, UPLOAD
 from .util import kdialog, make_thumbnail
 
 
 @click.command(context_settings={"show_default": True})
 @click.argument("images", nargs=-1, type=Path)
-@click.option("-h", "--hosting", type=click.Choice(HOSTINGS_LIST), default="geekpic")
+@click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="geekpic")
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags")
 @click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags")
 @click.version_option()
@@ -25,10 +25,11 @@ def main(images: list[Path], hosting: str, bbcode: bool, thumbnail: bool) -> Non
     Upload images via APIs
     """
     # loading .env variables
-    load_dotenv(dotenv_path=find_dotenv())
+    app_dir = click.get_app_dir("py-image-uploader")
+    load_dotenv(dotenv_path=Path(f"{app_dir}/.env"))
 
     # get upload func
-    upload_func = get_upload_func(server_name=hosting)
+    upload_func = UPLOAD[hosting]
 
     # image uploader
     links = []
@@ -38,8 +39,8 @@ def main(images: list[Path], hosting: str, bbcode: bool, thumbnail: bool) -> Non
         if not thumbnail:
             link = f"[img]{upload_func(img)}[/img]" if bbcode else upload_func(img)
         else:
-            thmb = make_thumbnail(img_path)
-            link = f"[url={upload_func(img)}][img]{upload_func(thmb)}[/img][/url]"
+            thumb = make_thumbnail(img)
+            link = f"[url={upload_func(img)}][img]{upload_func(thumb)}[/img][/url]"
 
         links.append(link)
 
@@ -51,4 +52,4 @@ def main(images: list[Path], hosting: str, bbcode: bool, thumbnail: bool) -> Non
 
 
 if __name__ == "__main__":
-    main(main)
+    main()

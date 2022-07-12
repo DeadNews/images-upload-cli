@@ -32,6 +32,38 @@ pip install py-image-uploader
 py-image-uploader --help
 ```
 
+## Usage
+
+```help
+Usage: py-image-uploader [OPTIONS] [IMAGES]...
+
+  Upload images via APIs
+
+Options:
+  -h, --hosting [fastpic|freeimage|geekpic|imageban|imageshack|imgbb|imgur|pixhost|uploadcare]
+                                  [default: geekpic]
+  -b, --bbcode                    Add bbcode tags
+  -t, --thumbnail                 Add thumbnails and bbcode tags
+  --version                       Show the version and exit.
+  --help                          Show this message and exit.
+```
+
 ## .env variables
 
-Don't forget to specify [env variables](https://github.com/DeadNews/py-image-uploader/blob/main/README.md).
+You can set these in environment variables, or by creating `.env` in the app_dir.
+
+```env
+CAPTION_FONT=
+
+FREEIMAGE_KEY=
+IMAGEBAN_TOKEN=
+IMAGESHACK_KEY=
+IMGBB_KEY=
+IMGUR_CLIENT_ID=
+UPLOADCARE_KEY=
+```
+
+app_dir:
+- Unix: `~/.config/py-image-uploader`
+- MacOS: `~/Library/Application Support/py-image-uploader`
+- Windows: `C:\Users\<user>\AppData\Roaming\py-image-uploader`
