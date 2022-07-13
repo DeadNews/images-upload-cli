@@ -12,18 +12,18 @@
 
 - Works out of the box:
 
-  - fastpic
-  - geekpic
-  - pixhost
+  - [fastpic](https://fastpic.org/)
+  - [geekpic](https://geekpic.net/)
+  - [pixhost](https://pixhost.to/)
 
 - Key required:
 
-  - freeimage
-  - imageban
-  - imageshack
-  - imgbb
-  - imgur
-  - uploadcare
+  - [freeimage](https://freeimage.host/)
+  - [imageban](https://imageban.ru/)
+  - [imageshack](https://imageshack.us/)
+  - [imgbb](https://imgbb.com/)
+  - [imgur](https://imgur.com/)
+  - [uploadcare](https://uploadcare.com/)
 
 ## Installation
 
@@ -39,7 +39,7 @@ pipx install py-image-uploader
 
 ## Usage
 
-```help
+```sh
 Usage: py-image-uploader [OPTIONS] [IMAGES]...
 
   Upload images via APIs. The result will be copied to the clipboard.
@@ -55,7 +55,7 @@ Options:
 
 ## Env variables
 
-```conf
+```ini
 CAPTION_FONT= # default arial.ttf
 
 FREEIMAGE_KEY=
