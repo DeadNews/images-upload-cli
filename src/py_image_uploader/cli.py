@@ -4,100 +4,49 @@ Upload images via APIs
 """
 from __future__ import annotations
 
-from argparse import ArgumentParser, Namespace
-from collections.abc import Sequence
 from pathlib import Path
 
-from dotenv import find_dotenv, load_dotenv
+import click
+from dotenv import load_dotenv
 from pyperclip import copy as copy_to_clipboard
 
-from .__version__ import __version__
-from .upload import get_upload_func
-from .util import kdialog, make_thumbnail
+from .upload import HOSTINGS, UPLOAD
+from .util import get_config_path, kdialog, make_thumbnail
 
 
-def parse_args(args: Sequence[str] | None = None) -> Namespace:
-    parser = ArgumentParser(description=__doc__)
-
-    parser.add_argument(
-        "-V",
-        "--version",
-        action="version",
-        version=f"%(prog)s {__version__}",
-    )
-    parser.add_argument(
-        dest="input_files",
-        type=str,
-        nargs="+",
-        help="Path to the input files",
-    )
-    parser.add_argument(
-        "-s",
-        "--server_name",
-        type=str.lower,
-        choices={
-            "fastpic",
-            "freeimage",
-            "geekpic",
-            "imageban",
-            "imageshack",
-            "imgbb",
-            "imgur",
-            "pixhost",
-            "uploadcare",
-        },
-        default="geekpic",
-        help="Hosting for uploading images",
-    )
-
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument(
-        "-b",
-        "--bbcode",
-        action="store_true",
-        default=False,
-        help="Add bbcode tags",
-    )
-    group.add_argument(
-        "-t",
-        "--thumbnail",
-        action="store_true",
-        default=False,
-        help="Generate thumbnails",
-    )
-
-    return parser.parse_args(args)
-
-
-def main() -> None:
+@click.command(context_settings={"show_default": True})
+@click.argument("images", nargs=-1, type=Path)
+@click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="geekpic")
+@click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags")
+@click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags")
+@click.version_option()
+def main(images: list[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
     """
-    Upload images via APIs
+    Upload images via APIs.
+    The result will be copied to the clipboard.
     """
-    args = parse_args()
-
     # loading .env variables
-    load_dotenv(dotenv_path=find_dotenv())
+    load_dotenv(dotenv_path=get_config_path())
 
     # get upload func
-    upload_func = get_upload_func(server_name=args.server_name)
+    upload_func = UPLOAD[hosting]
 
     # image uploader
     links = []
-    for f1 in args.input_files:
-        img_path = Path(f1)
+    for img_path in images:
         img = img_path.read_bytes()
 
-        if not args.thumbnail:
-            link = f"[img]{upload_func(img)}[/img]" if args.bbcode else upload_func(img)
+        if not thumbnail:
+            link = f"[img]{upload_func(img)}[/img]" if bbcode else upload_func(img)
         else:
-            thumbnail = make_thumbnail(img_path)
-            link = f"[url={upload_func(img)}][img]{upload_func(thumbnail)}[/img][/url]"
+            thumb = make_thumbnail(img)
+            link = f"[url={upload_func(img)}][img]{upload_func(thumb)}[/img][/url]"
 
         links.append(link)
 
     # out
     links_str = " ".join(links)
-    print(links_str)
+    click.echo(links_str)
     copy_to_clipboard(links_str)
     kdialog(links_str)
 

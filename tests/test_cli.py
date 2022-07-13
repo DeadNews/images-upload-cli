@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-from src.py_image_uploader.cli import parse_args
+from click.testing import CliRunner
+
+from src.py_image_uploader.cli import main
 
 
-def test_parse_args_help(capsys):
-    parse_args([("-h", "--help")])
-
-    _, err = capsys.readouterr()
-    assert err == ""
+def test_click():
+    runner = CliRunner()
+    assert runner.invoke(cli=main, args=["--help"]).exit_code == 0

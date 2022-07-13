@@ -11,36 +11,8 @@ from requests import get, post
 from .util import get_env_val, get_img_ext
 
 
-class InvalidParameterError(Exception):
-    pass
-
-
 class UploadError(Exception):
     pass
-
-
-def get_upload_func(server_name: str) -> Callable[[bytes], str]:
-    """
-    Get function by server name
-    """
-    upload = {
-        "fastpic": fastpic_upload,
-        "freeimage": freeimage_upload,
-        "geekpic": geekpic_upload,
-        "imageban": imageban_upload,
-        "imageshack": imageshack_upload,
-        "imgbb": imgbb_upload,
-        "imgur": imgur_upload,
-        "pixhost": pixhost_upload,
-        "uploadcare": uploadcare_upload,
-    }
-
-    if server_name not in (keys := set(upload.keys())):
-        raise InvalidParameterError(
-            f"Invalid parameter {server_name=}. Expected one of {keys}."
-        )
-
-    return upload[server_name]
 
 
 def fastpic_upload(img: bytes) -> str:
@@ -189,3 +161,18 @@ def uploadcare_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return f"https://ucarecdn.com/{response.json()[name]}/{name}"
+
+
+UPLOAD: dict[str, Callable[[bytes], str]] = {
+    "fastpic": fastpic_upload,
+    "freeimage": freeimage_upload,
+    "geekpic": geekpic_upload,
+    "imageban": imageban_upload,
+    "imageshack": imageshack_upload,
+    "imgbb": imgbb_upload,
+    "imgur": imgur_upload,
+    "pixhost": pixhost_upload,
+    "uploadcare": uploadcare_upload,
+}
+
+HOSTINGS = tuple(UPLOAD.keys())

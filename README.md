@@ -12,26 +12,62 @@
 
 - Works out of the box:
 
-  - fastpic
-  - geekpic
-  - pixhost
+  - [fastpic](https://fastpic.org/)
+  - [geekpic](https://geekpic.net/)
+  - [pixhost](https://pixhost.to/)
 
 - Key required:
 
-  - freeimage
-  - imageban
-  - imageshack
-  - imgbb
-  - imgur
-  - uploadcare
+  - [freeimage](https://freeimage.host/)
+  - [imageban](https://imageban.ru/)
+  - [imageshack](https://imageshack.us/)
+  - [imgbb](https://imgbb.com/)
+  - [imgur](https://imgur.com/)
+  - [uploadcare](https://uploadcare.com/)
 
 ## Installation
 
 ```sh
 pip install py-image-uploader
-py-image-uploader --help
 ```
 
-## .env variables
+or
 
-Don't forget to specify [env variables](https://github.com/DeadNews/py-image-uploader/blob/main/README.md).
+```sh
+pipx install py-image-uploader
+```
+
+## Usage
+
+```sh
+Usage: py-image-uploader [OPTIONS] [IMAGES]...
+
+  Upload images via APIs. The result will be copied to the clipboard.
+
+Options:
+  -h, --hosting [fastpic|freeimage|geekpic|imageban|imageshack|imgbb|imgur|pixhost|uploadcare]
+                                  [default: geekpic]
+  -b, --bbcode                    Add bbcode tags
+  -t, --thumbnail                 Add thumbnails and bbcode tags
+  --version                       Show the version and exit.
+  --help                          Show this message and exit.
+```
+
+## Env variables
+
+```ini
+CAPTION_FONT= # default arial.ttf
+
+FREEIMAGE_KEY=
+IMAGEBAN_TOKEN=
+IMAGESHACK_KEY=
+IMGBB_KEY=
+IMGUR_CLIENT_ID=
+UPLOADCARE_KEY=
+```
+
+You can set these in environment variables, or in `.env` file:
+
+- Unix: `~/.config/py-image-uploader/.env`
+- MacOS: `~/Library/Application Support/py-image-uploader/.env`
+- Windows: `C:\Users\<user>\AppData\Roaming\py-image-uploader\.env`
