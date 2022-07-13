@@ -64,6 +64,7 @@ UPLOADCARE_KEY=
 ```
 
 app_dir:
+
 - Unix: `~/.config/py-image-uploader`
 - MacOS: `~/Library/Application Support/py-image-uploader`
 - Windows: `C:\Users\<user>\AppData\Roaming\py-image-uploader`
