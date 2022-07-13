@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from pyperclip import copy as copy_to_clipboard
 
 from .upload import HOSTINGS, UPLOAD
-from .util import kdialog, make_thumbnail
+from .util import get_config_path, kdialog, make_thumbnail
 
 
 @click.command(context_settings={"show_default": True})
@@ -22,11 +22,11 @@ from .util import kdialog, make_thumbnail
 @click.version_option()
 def main(images: list[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
     """
-    Upload images via APIs
+    Upload images via APIs.
+    The result will be copied to the clipboard.
     """
     # loading .env variables
-    app_dir = click.get_app_dir("py-image-uploader")
-    load_dotenv(dotenv_path=Path(f"{app_dir}/.env"))
+    load_dotenv(dotenv_path=get_config_path())
 
     # get upload func
     upload_func = UPLOAD[hosting]

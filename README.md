@@ -29,7 +29,12 @@
 
 ```sh
 pip install py-image-uploader
-py-image-uploader --help
+```
+
+or
+
+```sh
+pipx install py-image-uploader
 ```
 
 ## Usage
@@ -37,7 +42,7 @@ py-image-uploader --help
 ```help
 Usage: py-image-uploader [OPTIONS] [IMAGES]...
 
-  Upload images via APIs
+  Upload images via APIs. The result will be copied to the clipboard.
 
 Options:
   -h, --hosting [fastpic|freeimage|geekpic|imageban|imageshack|imgbb|imgur|pixhost|uploadcare]
@@ -48,12 +53,10 @@ Options:
   --help                          Show this message and exit.
 ```
 
-## .env variables
+## Env variables
 
-You can set these in environment variables, or by creating `.env` in the app_dir.
-
-```env
-CAPTION_FONT=
+```conf
+CAPTION_FONT= # default arial.ttf
 
 FREEIMAGE_KEY=
 IMAGEBAN_TOKEN=
@@ -63,8 +66,8 @@ IMGUR_CLIENT_ID=
 UPLOADCARE_KEY=
 ```
 
-app_dir:
+You can set these in environment variables, or in `.env` file:
 
-- Unix: `~/.config/py-image-uploader`
-- MacOS: `~/Library/Application Support/py-image-uploader`
-- Windows: `C:\Users\<user>\AppData\Roaming\py-image-uploader`
+- Unix: `~/.config/py-image-uploader/.env`
+- MacOS: `~/Library/Application Support/py-image-uploader/.env`
+- Windows: `C:\Users\<user>\AppData\Roaming\py-image-uploader\.env`

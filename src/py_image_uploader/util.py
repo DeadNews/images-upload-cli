@@ -3,16 +3,27 @@ from __future__ import annotations
 
 from io import BytesIO
 from os import getenv
+from pathlib import Path
 from shutil import which
 from subprocess import Popen
 
+import click
 from PIL import Image, ImageDraw, ImageFont
+
+
+def get_config_path() -> Path:
+    """
+    Get app config path
+    """
+    return Path(f"{click.get_app_dir('py-image-uploader')}/.env")
 
 
 def get_env_val(key: str) -> str:
     value = getenv(key)
     if not value:
-        raise ValueError(f"Please setup the .env variable {key}.")
+        raise ValueError(
+            f"Please setup {key} in environment variables or in '{get_config_path()}'"
+        )
     return value
 
 
