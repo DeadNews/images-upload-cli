@@ -15,12 +15,14 @@ from .util import get_config_path, kdialog, make_thumbnail
 
 
 @click.command(context_settings={"show_default": True})
-@click.argument("images", nargs=-1, type=Path)
+@click.argument(
+    "images", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path)
+)
 @click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="geekpic")
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags")
 @click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags")
 @click.version_option()
-def main(images: list[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
+def main(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
     """
     Upload images via APIs.
     The result will be copied to the clipboard.
