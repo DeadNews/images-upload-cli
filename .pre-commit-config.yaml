@@ -64,7 +64,7 @@ repos:
           - bandit[toml] # python_version < "3.11"
 
   - repo: https://github.com/python-poetry/poetry
-    rev: 1.2.0b2
+    rev: 1.2.0b3
     hooks:
       - id: poetry-check
 
