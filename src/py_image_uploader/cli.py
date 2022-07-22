@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-"""
-Upload images via APIs
-"""
 from __future__ import annotations
 
 from pathlib import Path
