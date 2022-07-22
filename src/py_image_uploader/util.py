@@ -13,12 +13,15 @@ from PIL import Image, ImageDraw, ImageFont
 
 def get_config_path() -> Path:
     """
-    Get app config path
+    Get app config path.
     """
     return Path(f"{click.get_app_dir('py-image-uploader')}/.env")
 
 
 def get_env_val(key: str) -> str:
+    """
+    Get value from env.
+    """
     if value := getenv(key):
         return value
     else:
@@ -29,7 +32,7 @@ def get_env_val(key: str) -> str:
 
 def human_size(num: float, suffix: str = "B") -> str:
     """
-    This function will convert bytes to human readable units
+    This function will convert bytes to human readable units.
     """
     for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
         if abs(num) < 1024.0:
@@ -40,14 +43,14 @@ def human_size(num: float, suffix: str = "B") -> str:
 
 def get_img_ext(img: bytes) -> str:
     """
-    Get image extension from bytes
+    Get image extension from bytes.
     """
     return Image.open(BytesIO(img)).format.lower()
 
 
 def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     """
-    Make this image into a captioned thumbnail
+    Make this image into a captioned thumbnail.
     """
     # get a pw
     im = Image.open(BytesIO(img))
@@ -55,10 +58,9 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     pw.thumbnail(size=size, resample=Image.Resampling.LANCZOS)
 
     # make a blank image for the text
-    line_height = 16
     pw_with_line = Image.new(
         mode="RGB",
-        size=(pw.width, pw.height + line_height),
+        size=(pw.width, pw.height + 16),
         color=(255, 255, 255),
     )
     pw_with_line.paste(pw, box=(0, 0))
@@ -96,7 +98,7 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
 
 def kdialog(text_to_print: str) -> None:
     """
-    Kde notifications
+    Kde notifications.
     """
     if kdialog := which("kdialog"):
         Popen([kdialog, "--passivepopup", text_to_print])

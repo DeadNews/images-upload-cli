@@ -3,10 +3,9 @@
 > Upload images via APIs
 
 [![PyPI version](https://img.shields.io/pypi/v/py-image-uploader)](https://pypi.org/project/py-image-uploader)
-[![python-app](https://github.com/DeadNews/py-image-uploader/workflows/python-app/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions)
-[![python-codeql](https://github.com/DeadNews/py-image-uploader/workflows/python-codeql/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions)
+[![CI/CD](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-app.yml)
+[![CodeQL](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-codeql.yml/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-codeql.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/DeadNews/py-image-uploader/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/py-image-uploader/main)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DeadNews_py-image-uploader&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DeadNews_py-image-uploader)
 
 ## Hostings
 
