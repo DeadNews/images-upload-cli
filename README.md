@@ -4,8 +4,8 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/py-image-uploader)](https://pypi.org/project/py-image-uploader)
 [![CI/CD](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-app.yml)
-[![CodeQL](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-codeql.yml/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-codeql.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/DeadNews/py-image-uploader/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/py-image-uploader/main)
+[![codecov](https://codecov.io/gh/DeadNews/py-image-uploader/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/py-image-uploader)
 
 ## Hostings
 
