@@ -11,6 +11,10 @@ import click
 from PIL import Image, ImageDraw, ImageFont
 
 
+class GetenvError(Exception):
+    pass
+
+
 def get_config_path() -> Path:
     """
     Get app config path.
@@ -25,7 +29,7 @@ def get_env_val(key: str) -> str:
     if value := getenv(key):
         return value
     else:
-        raise ValueError(
+        raise GetenvError(
             f"Please setup {key} in environment variables or in '{get_config_path()}'"
         )
 
