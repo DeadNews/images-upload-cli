@@ -19,12 +19,12 @@ def get_config_path() -> Path:
 
 
 def get_env_val(key: str) -> str:
-    value = getenv(key)
-    if not value:
+    if value := getenv(key):
+        return value
+    else:
         raise ValueError(
             f"Please setup {key} in environment variables or in '{get_config_path()}'"
         )
-    return value
 
 
 def human_size(num: float, suffix: str = "B") -> str:
