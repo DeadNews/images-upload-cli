@@ -12,21 +12,21 @@
 - Works out of the box:
 
   - [fastpic](https://fastpic.org/)
+  - [file_coffee](https://file.coffee/)
   - [geekpic](https://geekpic.net/)
   - [pixeldrain](https://pixeldrain.com/)
   - [pixhost](https://pixhost.to/)
-  - [file_coffee](https://file.coffee/)
 
 - Key required:
 
   - [freeimage](https://freeimage.host/)
+  - [gyazo](https://gyazo.com/)
   - [imageban](https://imageban.ru/)
   - [imageshack](https://imageshack.us/)
   - [imgbb](https://imgbb.com/)
   - [imgur](https://imgur.com/)
   - [up2sha](https://up2sha.re/)
   - [uploadcare](https://uploadcare.com/)
-  - [gyazo](https://gyazo.com/)
 
 ## Installation
 
