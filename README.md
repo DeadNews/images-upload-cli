@@ -11,20 +11,25 @@
 
 - Works out of the box:
 
+  - [anonfiles](https://anonfiles.com/)
+  - [catbox](https://catbox.moe/)
   - [fastpic](https://fastpic.org/)
-  - [file_coffee](https://file.coffee/)
+  - [filecoffee](https://file.coffee/)
   - [geekpic](https://geekpic.net/)
+  - [pictshare](https://pictshare.net/)
   - [pixeldrain](https://pixeldrain.com/)
   - [pixhost](https://pixhost.to/)
 
 - Key required:
 
+  - [beeimg](https://beeimg.com/)
   - [freeimage](https://freeimage.host/)
   - [gyazo](https://gyazo.com/)
   - [imageban](https://imageban.ru/)
-  - [imageshack](https://imageshack.us/)
   - [imgbb](https://imgbb.com/)
+  - [imgchest](https://imgchest.com/)
   - [imgur](https://imgur.com/)
+  - [ptpimg](https://ptpimg.me/)
   - [up2sha](https://up2sha.re/)
   - [uploadcare](https://uploadcare.com/)
 
@@ -48,7 +53,7 @@ Usage: py-image-uploader [OPTIONS] [IMAGES]...
   Upload images via APIs. The result will be copied to the clipboard.
 
 Options:
-  -h, --hosting [fastpic|file_coffee|freeimage|geekpic|gyazo|imageban|imageshack|imgbb|imgur|pixhost|up2sha|uploadcare]
+  -h, --hosting [fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgur|pixhost|up2sha|uploadcare]
                                   [default: geekpic]
   -b, --bbcode                    Add bbcode tags
   -t, --thumbnail                 Add thumbnails and bbcode tags
@@ -61,12 +66,14 @@ Options:
 ```ini
 CAPTION_FONT= # default arial.ttf
 
+BEEIMG_KEY=
 FREEIMAGE_KEY=
 GYAZO_TOKEN=
 IMAGEBAN_TOKEN=
-IMAGESHACK_KEY=
 IMGBB_KEY=
+IMGCHEST_KEY=
 IMGUR_CLIENT_ID=
+PTPIMG_KEY=
 UP2SHA_KEY=
 UPLOADCARE_KEY=
 ```
