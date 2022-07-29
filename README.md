@@ -13,7 +13,9 @@
 
   - [fastpic](https://fastpic.org/)
   - [geekpic](https://geekpic.net/)
+  - [pixeldrain](https://pixeldrain.com/)
   - [pixhost](https://pixhost.to/)
+  - [file_coffee](https://file.coffee/)
 
 - Key required:
 
@@ -24,6 +26,7 @@
   - [imgur](https://imgur.com/)
   - [up2sha](https://up2sha.re/)
   - [uploadcare](https://uploadcare.com/)
+  - [gyazo](https://gyazo.com/)
 
 ## Installation
 
@@ -45,7 +48,7 @@ Usage: py-image-uploader [OPTIONS] [IMAGES]...
   Upload images via APIs. The result will be copied to the clipboard.
 
 Options:
-  -h, --hosting [fastpic|freeimage|geekpic|imageban|imageshack|imgbb|imgur|pixhost|up2sha|uploadcare]
+  -h, --hosting [fastpic|file_coffee|freeimage|geekpic|gyazo|imageban|imageshack|imgbb|imgur|pixhost|up2sha|uploadcare]
                                   [default: geekpic]
   -b, --bbcode                    Add bbcode tags
   -t, --thumbnail                 Add thumbnails and bbcode tags
