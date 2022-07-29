@@ -22,6 +22,7 @@
   - [imageshack](https://imageshack.us/)
   - [imgbb](https://imgbb.com/)
   - [imgur](https://imgur.com/)
+  - [up2sha](https://up2sha.re/)
   - [uploadcare](https://uploadcare.com/)
 
 ## Installation
@@ -44,7 +45,7 @@ Usage: py-image-uploader [OPTIONS] [IMAGES]...
   Upload images via APIs. The result will be copied to the clipboard.
 
 Options:
-  -h, --hosting [fastpic|freeimage|geekpic|imageban|imageshack|imgbb|imgur|pixhost|uploadcare]
+  -h, --hosting [fastpic|freeimage|geekpic|imageban|imageshack|imgbb|imgur|pixhost|up2sha|uploadcare]
                                   [default: geekpic]
   -b, --bbcode                    Add bbcode tags
   -t, --thumbnail                 Add thumbnails and bbcode tags

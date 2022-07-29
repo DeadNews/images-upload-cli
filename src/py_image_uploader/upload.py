@@ -145,6 +145,22 @@ def pixhost_upload(img: bytes) -> str:
     return show_url if image_link is None else image_link
 
 
+def up2sha_upload(img: bytes) -> str:
+    key = get_env_val("UP2SHA_KEY")
+    ext = get_img_ext(img)
+
+    response = post(
+        url="https://api.up2sha.re/files",
+        headers={"X-Api-Key": key},
+        data={"filename": f"img.{ext}"},
+        files={"file": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return f"{response.json()['public_url'].replace('file?f=', 'media/raw/')}.{ext}"
+
+
 def uploadcare_upload(img: bytes) -> str:
     key = get_env_val("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
@@ -172,6 +188,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "imgbb": imgbb_upload,
     "imgur": imgur_upload,
     "pixhost": pixhost_upload,
+    "up2sha": up2sha_upload,
     "uploadcare": uploadcare_upload,
 }
 
