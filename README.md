@@ -10,23 +10,23 @@
 ## Hostings
 
 | host                                  | key required | return example                                         |
-| :---                                  |    :---:     | :---                                                   |
-| [catbox](https://catbox.moe/)         | -            | https://files.catbox.moe/%7Bid%7D                      |
-| [fastpic](https://fastpic.org/)       | -            | https://i120.fastpic.org/big/2022/0730/d9/%7Bid%7D.png |
-| [filecoffee](https://file.coffee/)    | -            | https://file.coffee/u/%7Bid%7D.png                     |
-| [freeimage](https://freeimage.host/)  | -            | https://iili.io/%7Bid%7D.png                           |
-| [geekpic](https://geekpic.net/)       | -            | https://s01.geekpic.net/%7Bid%7D.png                   |
-| [gyazo](https://gyazo.com/)           | +            | tba                                                    |
-| [imageban](https://imageban.ru/)      | +            | https://i2.imageban.ru/out/2022/07/30/%7Bid%7D.png     |
-| [imgbb](https://imgbb.com/)           | +            | https://i.ibb.co/%7Bid%7D/image.png                    |
-| [imgchest](https://imgchest.com/)     | +            | https://cdn.imgchest.com/files/%7Bid%7D.png            |
-| [imgur](https://imgur.com/)           | +            | tba                                                    |
-| [pictshare](https://pictshare.net/)   | -            | https://pictshare.net/%7Bid%7D.png                     |
-| [pixeldrain](https://pixeldrain.com/) | -            | https://pixeldrain.com/api/file/%7Bid%7D               |
-| [pixhost](https://pixhost.to/)        | -            | https://img75.pixhost.to/images/69/%7Bid%7D_img.png    |
-| [ptpimg](https://ptpimg.me/)          | +            | https://ptpimg.me/%7Bid%7D.png                         |
-| [up2sha](https://up2sha.re/)          | +            | tba                                                    |
-| [uploadcare](https://uploadcare.com/) | +            | tba                                                    |
+| :------------------------------------ | :----------: | :----------------------------------------------------- |
+| [catbox](https://catbox.moe/)         |      -       | https://files.catbox.moe/%7Bid%7D                      |
+| [fastpic](https://fastpic.org/)       |      -       | https://i120.fastpic.org/big/2022/0730/d9/%7Bid%7D.png |
+| [filecoffee](https://file.coffee/)    |      -       | https://file.coffee/u/%7Bid%7D.png                     |
+| [freeimage](https://freeimage.host/)  |      -       | https://iili.io/%7Bid%7D.png                           |
+| [geekpic](https://geekpic.net/)       |      -       | https://s01.geekpic.net/%7Bid%7D.png                   |
+| [gyazo](https://gyazo.com/)           |      +       | tba                                                    |
+| [imageban](https://imageban.ru/)      |      +       | https://i2.imageban.ru/out/2022/07/30/%7Bid%7D.png     |
+| [imgbb](https://imgbb.com/)           |      +       | https://i.ibb.co/%7Bid%7D/image.png                    |
+| [imgchest](https://imgchest.com/)     |      +       | https://cdn.imgchest.com/files/%7Bid%7D.png            |
+| [imgur](https://imgur.com/)           |      +       | https://i.imgur.com/%7Bid%7D.png                       |
+| [pictshare](https://pictshare.net/)   |      -       | https://pictshare.net/%7Bid%7D.png                     |
+| [pixeldrain](https://pixeldrain.com/) |      -       | https://pixeldrain.com/api/file/%7Bid%7D               |
+| [pixhost](https://pixhost.to/)        |      -       | https://img75.pixhost.to/images/69/%7Bid%7D_img.png    |
+| [ptpimg](https://ptpimg.me/)          |      +       | https://ptpimg.me/%7Bid%7D.png                         |
+| [up2sha](https://up2sha.re/)          |      +       | https://up2sha.re/media/raw/%7Bid%7D.png               |
+| [uploadcare](https://uploadcare.com/) |      +       | https://ucarecdn.com/%7Bid%7D/img.png                  |
 
 ## Installation
 
