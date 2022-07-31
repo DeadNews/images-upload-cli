@@ -9,29 +9,24 @@
 
 ## Hostings
 
-- Works out of the box:
-
-  - [anonfiles](https://anonfiles.com/)
-  - [catbox](https://catbox.moe/)
-  - [fastpic](https://fastpic.org/)
-  - [filecoffee](https://file.coffee/)
-  - [geekpic](https://geekpic.net/)
-  - [pictshare](https://pictshare.net/)
-  - [pixeldrain](https://pixeldrain.com/)
-  - [pixhost](https://pixhost.to/)
-
-- Key required:
-
-  - [beeimg](https://beeimg.com/)
-  - [freeimage](https://freeimage.host/)
-  - [gyazo](https://gyazo.com/)
-  - [imageban](https://imageban.ru/)
-  - [imgbb](https://imgbb.com/)
-  - [imgchest](https://imgchest.com/)
-  - [imgur](https://imgur.com/)
-  - [ptpimg](https://ptpimg.me/)
-  - [up2sha](https://up2sha.re/)
-  - [uploadcare](https://uploadcare.com/)
+| host                                  | key required | return example                                         |
+| :---                                  |    :---:     | :---                                                   |
+| [catbox](https://catbox.moe/)         | -            | https://files.catbox.moe/%7Bid%7D                      |
+| [fastpic](https://fastpic.org/)       | -            | https://i120.fastpic.org/big/2022/0730/d9/%7Bid%7D.png |
+| [filecoffee](https://file.coffee/)    | -            | https://file.coffee/u/%7Bid%7D.png                     |
+| [freeimage](https://freeimage.host/)  | -            | https://iili.io/%7Bid%7D.png                           |
+| [geekpic](https://geekpic.net/)       | -            | https://s01.geekpic.net/%7Bid%7D.png                   |
+| [gyazo](https://gyazo.com/)           | +            | tba                                                    |
+| [imageban](https://imageban.ru/)      | +            | https://i2.imageban.ru/out/2022/07/30/%7Bid%7D.png     |
+| [imgbb](https://imgbb.com/)           | +            | https://i.ibb.co/%7Bid%7D/image.png                    |
+| [imgchest](https://imgchest.com/)     | +            | https://cdn.imgchest.com/files/%7Bid%7D.png            |
+| [imgur](https://imgur.com/)           | +            | tba                                                    |
+| [pictshare](https://pictshare.net/)   | -            | https://pictshare.net/%7Bid%7D.png                     |
+| [pixeldrain](https://pixeldrain.com/) | -            | https://pixeldrain.com/api/file/%7Bid%7D               |
+| [pixhost](https://pixhost.to/)        | -            | https://img75.pixhost.to/images/69/%7Bid%7D_img.png    |
+| [ptpimg](https://ptpimg.me/)          | +            | https://ptpimg.me/%7Bid%7D.png                         |
+| [up2sha](https://up2sha.re/)          | +            | tba                                                    |
+| [uploadcare](https://uploadcare.com/) | +            | tba                                                    |
 
 ## Installation
 
@@ -53,7 +48,7 @@ Usage: py-image-uploader [OPTIONS] [IMAGES]...
   Upload images via APIs. The result will be copied to the clipboard.
 
 Options:
-  -h, --hosting [fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgur|pixhost|up2sha|uploadcare]
+  -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|up2sha|uploadcare]
                                   [default: geekpic]
   -b, --bbcode                    Add bbcode tags
   -t, --thumbnail                 Add thumbnails and bbcode tags

@@ -15,56 +15,19 @@ class UploadError(Exception):
     pass
 
 
-def anonfiles_upload(img: bytes) -> str:
-    """
-    <<<
-    """
-    response = post(
-        url="https://api.anonfiles.com/upload",
-        files={"file": img},
-    )
-    if not response.ok:
-        raise UploadError(response.json())
-
-    return f"{response.json()}"
-
-
-def beeimg_upload(img: bytes) -> str:
-    """
-    <<<
-    """
-    key = get_env_val("BEEIMG_KEY")
-
-    response = post(
-        url="https://beeimg.com/api/upload/file/json/",
-        headers={"apikey": key},
-        files={"image": img},
-    )
-    if not response.ok:
-        raise UploadError(response.json())
-
-    return f"https:{response.json()['files']['url']}"
-
-
 def catbox_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://catbox.moe/user/api.php",
         data={"reqtype": "fileupload"},
         files={"fileToUpload": img},
     )
     if not response.ok:
-        raise UploadError(response.json())
+        raise UploadError(response.text)
 
-    return f"{response.json()}"
+    return f"{response.text}"
 
 
 def fastpic_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://fastpic.org/upload?api=1",
         data={
@@ -87,9 +50,6 @@ def fastpic_upload(img: bytes) -> str:
 
 
 def filecoffee_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://file.coffee/api/file/upload",
         files={"file": img},
@@ -101,9 +61,6 @@ def filecoffee_upload(img: bytes) -> str:
 
 
 def freeimage_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     key = get_env_val("FREEIMAGE_KEY")
 
     response = post(
@@ -118,9 +75,6 @@ def freeimage_upload(img: bytes) -> str:
 
 
 def geekpic_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://geekpic.net/client.php",
         data={"image": b64encode(img)},
@@ -132,9 +86,6 @@ def geekpic_upload(img: bytes) -> str:
 
 
 def gyazo_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     key = get_env_val("GYAZO_TOKEN")
 
     response = post(
@@ -148,9 +99,6 @@ def gyazo_upload(img: bytes) -> str:
 
 
 def imageban_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     token = get_env_val("IMAGEBAN_TOKEN")
 
     response = post(
@@ -165,9 +113,6 @@ def imageban_upload(img: bytes) -> str:
 
 
 def imgbb_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     key = get_env_val("IMGBB_KEY")
 
     response = post(
@@ -182,26 +127,21 @@ def imgbb_upload(img: bytes) -> str:
 
 
 def imgchest_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     key = get_env_val("IMGCHEST_KEY")
+    name = f"img.{get_img_ext(img)}"
 
     response = post(
         url="https://api.imgchest.com/v1/post",
-        headers={"Authorization": key},
-        files={"images[]": img},
+        headers={"Authorization": f"Bearer {key}"},
+        files={"images[]": (name, img)},
     )
     if not response.ok:
         raise UploadError(response.json())
 
-    return response.json()["data"]["id"]
+    return response.json()["data"]["images"][0]["link"].replace("comfiles", "com/files")
 
 
 def imgur_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     client_id = get_env_val("IMGUR_CLIENT_ID")
 
     response = post(
@@ -216,9 +156,6 @@ def imgur_upload(img: bytes) -> str:
 
 
 def pictshare_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://pictshare.net/api/upload.php",
         files={"file": img},
@@ -226,13 +163,10 @@ def pictshare_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    return f"{response.json()}"
+    return response.json()["url"]
 
 
 def pixeldrain_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://pixeldrain.com/api/file",
         files={"file": img},
@@ -243,27 +177,7 @@ def pixeldrain_upload(img: bytes) -> str:
     return f"https://pixeldrain.com/api/file/{response.json()['id']}"
 
 
-def ptpimg_upload(img: bytes) -> str:
-    """
-    <<<
-    """
-    key = get_env_val("PTPIMG_KEY")
-
-    response = post(
-        url="https://ptpimg.me/upload.php",
-        headers={"api_key": key},
-        files={"file-upload[0]": img},
-    )
-    if not response.ok:
-        raise UploadError(response.json())
-
-    return f"{response.json()}"
-
-
 def pixhost_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     response = post(
         url="https://api.pixhost.to/images",
         data={"content_type": 0},
@@ -285,10 +199,21 @@ def pixhost_upload(img: bytes) -> str:
     return show_url if image_link is None else image_link
 
 
+def ptpimg_upload(img: bytes) -> str:
+    key = get_env_val("PTPIMG_KEY")
+
+    response = post(
+        url="https://ptpimg.me/upload.php",
+        data={"api_key": key},
+        files={"file-upload[0]": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return f"https://ptpimg.me/{response.json()[0]['code']}.{response.json()[0]['ext']}"
+
+
 def up2sha_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     key = get_env_val("UP2SHA_KEY")
     ext = get_img_ext(img)
 
@@ -305,9 +230,6 @@ def up2sha_upload(img: bytes) -> str:
 
 
 def uploadcare_upload(img: bytes) -> str:
-    """
-    <<<
-    """
     key = get_env_val("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
 
@@ -326,8 +248,6 @@ def uploadcare_upload(img: bytes) -> str:
 
 
 UPLOAD: dict[str, Callable[[bytes], str]] = {
-    "anonfiles": anonfiles_upload,
-    "beeimg": beeimg_upload,
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
     "filecoffee": filecoffee_upload,
