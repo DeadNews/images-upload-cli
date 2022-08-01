@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from src.py_image_uploader.upload import UPLOAD, geekpic_upload
+from src.image_upload_cli.upload import UPLOAD, geekpic_upload
 
 
 def test_get_upload_func():

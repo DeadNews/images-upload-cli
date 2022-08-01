@@ -3,7 +3,7 @@ from os import environ
 
 import pytest
 
-from src.py_image_uploader.util import GetenvError, get_env_val, get_img_ext, human_size
+from src.image_upload_cli.util import GetenvError, get_env_val, get_img_ext, human_size
 
 
 @pytest.mark.parametrize(

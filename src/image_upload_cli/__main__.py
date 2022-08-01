@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Entry point for cli, enables execution with `python -m py_image_uploader`
+Entry point for cli, enables execution with `python -m image_upload_cli`
 """
 from .cli import cli
 

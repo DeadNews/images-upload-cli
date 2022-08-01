@@ -19,7 +19,7 @@ def get_config_path() -> Path:
     """
     Get app config path.
     """
-    return Path(f"{click.get_app_dir('py-image-uploader')}/.env")
+    return Path(f"{click.get_app_dir('image-upload-cli')}/.env")
 
 
 def get_env_val(key: str) -> str:

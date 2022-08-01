@@ -1,22 +1,22 @@
-# py-image-uploader
+# image-upload-cli
 
 > Upload images via APIs
 
-[![PyPI version](https://img.shields.io/pypi/v/py-image-uploader)](https://pypi.org/project/py-image-uploader)
-[![CI/CD](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/py-image-uploader/actions/workflows/python-app.yml)
-[![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/py-image-uploader/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/py-image-uploader/main)
-[![codecov](https://codecov.io/gh/DeadNews/py-image-uploader/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/py-image-uploader)
+[![PyPI version](https://img.shields.io/pypi/v/image-upload-cli)](https://pypi.org/project/image-upload-cli)
+[![CI/CD](https://github.com/DeadNews/image-upload-cli/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/image-upload-cli/actions/workflows/python-app.yml)
+[![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/image-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/image-upload-cli/main)
+[![codecov](https://codecov.io/gh/DeadNews/image-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/image-upload-cli)
 
 ## Hostings
 
 | host                                  | key required | return example                                       |
 | :------------------------------------ | :----------: | :--------------------------------------------------- |
-| [catbox](https://catbox.moe/)         |      **-**       | `https://files.catbox.moe/{id}`                      |
+| [catbox](https://catbox.moe/)         |      -       | `https://files.catbox.moe/{id}`                      |
 | [fastpic](https://fastpic.org/)       |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
 | [filecoffee](https://file.coffee/)    |      -       | `https://file.coffee/u/{id}.png`                     |
 | [freeimage](https://freeimage.host/)  |      -       | `https://iili.io/{id}.png`                           |
 | [geekpic](https://geekpic.net/)       |      -       | `https://s01.geekpic.net/{id}.png`                   |
-| [gyazo](https://gyazo.com/)           |      **+**     | `https://i.gyazo.com/{id}.png`                       |
+| [gyazo](https://gyazo.com/)           |      +       | `https://i.gyazo.com/{id}.png`                       |
 | [imageban](https://imageban.ru/)      |      +       | `https://i2.imageban.ru/out/2022/07/30/{id}.png`     |
 | [imgbb](https://imgbb.com/)           |      +       | `https://i.ibb.co/{id}/image.png`                    |
 | [imgchest](https://imgchest.com/)     |      +       | `https://cdn.imgchest.com/files/{id}.png`            |
@@ -31,19 +31,19 @@
 ## Installation
 
 ```sh
-pip install py-image-uploader
+pip install image-upload-cli
 ```
 
 or
 
 ```sh
-pipx install py-image-uploader
+pipx install image-upload-cli
 ```
 
 ## Usage
 
 ```sh
-Usage: py-image-uploader [OPTIONS] [IMAGES]...
+Usage: image-upload-cli [OPTIONS] [IMAGES]...
 
   Upload images via APIs. The result will be copied to the clipboard.
 
@@ -75,6 +75,6 @@ UPLOADCARE_KEY=
 
 You can set these in environment variables, or in `.env` file:
 
-- Unix: `~/.config/py-image-uploader/.env`
-- MacOS: `~/Library/Application Support/py-image-uploader/.env`
-- Windows: `C:\Users\<user>\AppData\Roaming\py-image-uploader\.env`
+- Unix: `~/.config/image-upload-cli/.env`
+- MacOS: `~/Library/Application Support/image-upload-cli/.env`
+- Windows: `C:\Users\<user>\AppData\Roaming\image-upload-cli\.env`

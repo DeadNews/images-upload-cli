@@ -221,8 +221,7 @@ def up2sha_upload(img: bytes) -> str:
     response = post(
         url="https://api.up2sha.re/files",
         headers={"X-Api-Key": key},
-        data={"filename": f"img.{ext}"},
-        files={"file": img},
+        files={"file": (f"img.{ext}", img)},
     )
     if not response.ok:
         raise UploadError(response.json())
