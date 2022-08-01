@@ -11,9 +11,9 @@ def test_click():
 
 def test_geekpic():
     runner = CliRunner()
-    assert runner.invoke(cli, ["tests/pixel.png", "-h", "geekpic"]).exit_code == 0
+    assert runner.invoke(cli, ["tests/pic.png", "-h", "geekpic"]).exit_code == 0
 
 
 def test_uploadcare():
     runner = CliRunner()
-    assert runner.invoke(cli, ["tests/pixel.png", "-h", "uploadcare"]).exit_code == 0
+    assert runner.invoke(cli, ["tests/pic.png", "-h", "uploadcare"]).exit_code == 0
