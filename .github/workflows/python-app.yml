@@ -72,6 +72,11 @@ jobs:
         env:
           UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
+      - name: Run tests2
+        run: pytest --cov-report=xml
+        env:
+          UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
+
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
         uses: codecov/codecov-action@v3
