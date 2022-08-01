@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from base64 import b64encode
 from collections.abc import Callable
+from os import getenv
 from re import search
 from urllib.parse import urlparse
 
@@ -142,7 +143,7 @@ def imgchest_upload(img: bytes) -> str:
 
 
 def imgur_upload(img: bytes) -> str:
-    client_id = get_env_val("IMGUR_CLIENT_ID")
+    client_id = getenv("IMGUR_CLIENT_ID", "dd32dd3c6aaa9a0")
 
     response = post(
         url="https://api.imgur.com/3/image",

@@ -2,7 +2,7 @@
 """
 Entry point for cli, enables execution with `python -m py_image_uploader`
 """
-from .cli import main
+from .cli import cli
 
 if __name__ == "__main__":
-    main()
+    cli()

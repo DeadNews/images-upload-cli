@@ -19,7 +19,7 @@ from .util import get_config_path, kdialog, make_thumbnail
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags")
 @click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags")
 @click.version_option()
-def main(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
+def cli(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
     """
     Upload images via APIs.
     The result will be copied to the clipboard.
@@ -30,7 +30,7 @@ def main(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> No
     # get upload func
     upload_func = UPLOAD[hosting]
 
-    # image uploader
+    # image upload
     links = []
     for img_path in images:
         img = img_path.read_bytes()
@@ -51,4 +51,4 @@ def main(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> No
 
 
 if __name__ == "__main__":
-    main()
+    cli()
