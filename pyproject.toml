@@ -24,7 +24,7 @@ requests = "^2.25.1"
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
 black = "^22.3.0"
-flake8 = "^4.0.1"
+flake8 = "^5.0.1"
 flake8-bugbear = "^22.4.25"
 flake8-comprehensions = "^3.10.0"
 flake8-implicit-str-concat = "^0.3.0"
