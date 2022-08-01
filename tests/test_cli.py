@@ -1,19 +1,24 @@
 #!/usr/bin/env python
+from shutil import which
+
+import pytest
 from click.testing import CliRunner
 
 from src.image_upload_cli.cli import cli
 
 
-def test_click():
+@pytest.mark.parametrize(
+    ("args"),
+    [
+        (["--help"]),
+        (["tests/pic.png", "-h", "geekpic"]),
+        (["tests/pic.png", "-h", "uploadcare"]),
+    ],
+)
+def test_cli(args: list[str]):
     runner = CliRunner()
-    assert runner.invoke(cli, ["--help"]).exit_code == 0
+    assert runner.invoke(cli=cli, args=args).exit_code == 0
 
 
-def test_geekpic():
-    runner = CliRunner()
-    assert runner.invoke(cli, ["tests/pic.png", "-h", "geekpic"]).exit_code == 0
-
-
-def test_uploadcare():
-    runner = CliRunner()
-    assert runner.invoke(cli, ["tests/pic.png", "-h", "uploadcare"]).exit_code == 0
+def test_xclip():
+    assert which("xclip") is not None
