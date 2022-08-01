@@ -39,7 +39,7 @@ jobs:
         run: poetry run poe ci
 
   run-tests:
-    environment: dfdfd
+    environment: CI
     name: Run tests
     strategy:
       fail-fast: false

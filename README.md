@@ -7,6 +7,18 @@
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/image-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/image-upload-cli/main)
 [![codecov](https://codecov.io/gh/DeadNews/image-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/image-upload-cli)
 
+## Installation
+
+```sh
+pip install image-upload-cli
+```
+
+or
+
+```sh
+pipx install image-upload-cli
+```
+
 ## Hostings
 
 | host                                  | key required | return example                                       |
@@ -27,18 +39,6 @@
 | [ptpimg](https://ptpimg.me/)          |      +       | `https://ptpimg.me/{id}.png`                         |
 | [up2sha](https://up2sha.re/)          |      +       | `https://up2sha.re/media/raw/{id}.png`               |
 | [uploadcare](https://uploadcare.com/) |      +       | `https://ucarecdn.com/{id}/img.png`                  |
-
-## Installation
-
-```sh
-pip install image-upload-cli
-```
-
-or
-
-```sh
-pipx install image-upload-cli
-```
 
 ## Usage
 
