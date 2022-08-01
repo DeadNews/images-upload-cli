@@ -60,7 +60,7 @@ jobs:
 
       - name: Install xclip
         if: matrix.os == 'ubuntu-latest'
-        run: apt install -y xclip
+        run: sudo apt-get install -y xclip
 
       - name: Install dependencies
         run: |
