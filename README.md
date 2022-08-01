@@ -45,13 +45,16 @@ pipx install image-upload-cli
 ```sh
 Usage: image-upload-cli [OPTIONS] [IMAGES]...
 
-  Upload images via APIs. The result will be copied to the clipboard.
+  Upload images via APIs.
 
 Options:
   -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|up2sha|uploadcare]
                                   [default: geekpic]
-  -b, --bbcode                    Add bbcode tags
-  -t, --thumbnail                 Add thumbnails and bbcode tags
+  -b, --bbcode                    Add bbcode tags.
+  -t, --thumbnail                 Add thumbnails and bbcode tags.
+  -c, --clipboard / -C, --no-clipboard
+                                  The result will be copied to the clipboard.
+                                  [default: c]
   --version                       Show the version and exit.
   --help                          Show this message and exit.
 ```

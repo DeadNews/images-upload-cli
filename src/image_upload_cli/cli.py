@@ -5,7 +5,7 @@ from pathlib import Path
 
 import click
 from dotenv import load_dotenv
-from pyperclip import copy as copy_to_clipboard
+from pyperclip import copy
 
 from .upload import HOSTINGS, UPLOAD
 from .util import get_config_path, kdialog, make_thumbnail
@@ -16,13 +16,25 @@ from .util import get_config_path, kdialog, make_thumbnail
     "images", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path)
 )
 @click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="geekpic")
-@click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags")
-@click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags")
+@click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")
+@click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags.")
+@click.option(
+    "-c/-C",
+    "--clipboard/--no-clipboard",
+    is_flag=True,
+    default=True,
+    help="The result will be copied to the clipboard.",
+)
 @click.version_option()
-def cli(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> None:
+def cli(
+    images: tuple[Path],
+    hosting: str,
+    bbcode: bool,
+    thumbnail: bool,
+    clipboard: bool,
+) -> None:
     """
     Upload images via APIs.
-    The result will be copied to the clipboard.
     """
     # loading .env variables
     load_dotenv(dotenv_path=get_config_path())
@@ -46,7 +58,8 @@ def cli(images: tuple[Path], hosting: str, bbcode: bool, thumbnail: bool) -> Non
     # out
     links_str = " ".join(links)
     click.echo(links_str)
-    copy_to_clipboard(links_str)
+    if clipboard:
+        copy(links_str)
     kdialog(links_str)
 
 
