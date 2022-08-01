@@ -39,6 +39,7 @@ jobs:
         run: poetry run poe ci
 
   run-tests:
+    environment: CI
     name: Run tests
     strategy:
       fail-fast: false
@@ -64,6 +65,8 @@ jobs:
 
       - name: Run tests
         run: poetry run pytest --cov-report=xml
+        env:
+          UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
