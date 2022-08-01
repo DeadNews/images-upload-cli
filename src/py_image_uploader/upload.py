@@ -90,7 +90,7 @@ def gyazo_upload(img: bytes) -> str:
 
     response = post(
         url=f"https://upload.gyazo.com/api/upload?access_token={key}",
-        files={"imagedata": ("img.png", img)},
+        files={"imagedata": img},
     )
     if not response.ok:
         raise UploadError(response.json())
