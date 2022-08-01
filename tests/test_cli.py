@@ -9,6 +9,11 @@ def test_click():
     assert runner.invoke(cli, ["--help"]).exit_code == 0
 
 
+def test_geekpic():
+    runner = CliRunner()
+    assert runner.invoke(cli, ["tests/pixel.png", "-h", "geekpic"]).exit_code == 0
+
+
 def test_uploadcare():
     runner = CliRunner()
     assert runner.invoke(cli, ["tests/pixel.png", "-h", "uploadcare"]).exit_code == 0
