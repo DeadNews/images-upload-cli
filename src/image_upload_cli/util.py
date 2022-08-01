@@ -9,7 +9,7 @@ from shutil import which
 from subprocess import Popen
 
 import click
-from PIL import Image, ImageDraw, ImageFont
+from PIL import FreeTypeFont, Image, ImageDraw, ImageFont
 
 
 class GetenvError(Exception):
@@ -53,12 +53,9 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
-def get_font() -> str | None:
+def get_font() -> FreeTypeFont | None:
     """
     Attempts to retrieve a reasonably-looking TTF font from the system.
-
-    We don't make much of an effort, but it's what we can reasonably do without
-    incorporating additional dependencies for this task.
     """
     if system == "Windows":
         font_names = ["Arial"]
@@ -66,6 +63,14 @@ def get_font() -> str | None:
         font_names = ["DejaVuSans-Bold", "DroidSans-Bold"]
     elif system == "Darwin":
         font_names = ["Helvetica", "Menlo"]
+    else:
+        font_names = [
+            "Arial",
+            "DejaVuSans-Bold",
+            "DroidSans-Bold",
+            "Helvetica",
+            "Menlo",
+        ]
 
     font = None
     for font_name in font_names:
@@ -100,10 +105,7 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
 
     # get font
     font = getenv("CAPTION_FONT")
-    if not font:
-        fnt = get_font()
-
-    fnt = ImageFont.truetype(font, size=14)
+    fnt = ImageFont.truetype(font, size=14) if font else get_font()
 
     # draw text
     d = ImageDraw.Draw(pw_with_line)
