@@ -9,7 +9,7 @@ from shutil import which
 from subprocess import Popen
 
 import click
-from PIL import FreeTypeFont, Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 
 class GetenvError(Exception):
@@ -53,7 +53,7 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
-def get_font() -> FreeTypeFont | None:
+def get_font() -> ImageFont.FreeTypeFont | None:
     """
     Attempts to retrieve a reasonably-looking TTF font from the system.
     """
