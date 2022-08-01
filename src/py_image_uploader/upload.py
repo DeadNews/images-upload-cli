@@ -90,7 +90,7 @@ def gyazo_upload(img: bytes) -> str:
 
     response = post(
         url=f"https://upload.gyazo.com/api/upload?access_token={key}",
-        files={"imagedata": img},
+        files={"imagedata": ("img.png", img)},
     )
     if not response.ok:
         raise UploadError(response.json())
@@ -239,12 +239,12 @@ def uploadcare_upload(img: bytes) -> str:
             "UPLOADCARE_PUB_KEY": key,
             "UPLOADCARE_STORE": "1",
         },
-        files={name: img},
+        files={"filename": (name, img)},
     )
     if not response.ok:
         raise UploadError(response.json())
 
-    return f"https://ucarecdn.com/{response.json()[name]}/{name}"
+    return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
 
 
 UPLOAD: dict[str, Callable[[bytes], str]] = {

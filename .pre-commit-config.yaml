@@ -50,7 +50,7 @@ repos:
           - types-requests
 
   - repo: https://github.com/pycqa/flake8
-    rev: 5.0.0
+    rev: 5.0.1
     hooks:
       - id: flake8
         additional_dependencies: *flake8_deps
