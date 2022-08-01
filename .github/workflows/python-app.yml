@@ -58,6 +58,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: poetry
 
+      - name: Install xclip
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt install -y xclip
+
       - name: Install dependencies
         run: |
           poetry env use ${{ matrix.python-version }}
