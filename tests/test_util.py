@@ -5,10 +5,12 @@ import pytest
 
 from src.image_upload_cli.util import GetenvError, get_env_val, get_img_ext, human_size
 
+from .img import img
+
 
 @pytest.mark.parametrize(
-    ("test_arg", "expected"),
-    [
+    argnames=("test_arg", "expected"),
+    argvalues=[
         (1, "1.0 B"),
         (300, "300.0 B"),
         (3000, "2.9 KiB"),
@@ -25,8 +27,6 @@ def test_human_size(test_arg: int, expected: str):
 
 
 def test_get_img_ext():
-    img = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\x01sRGB\x00\xae\xce\x1c\xe9\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00\tpHYs\x00\x00\x0e\xc3\x00\x00\x0e\xc3\x01\xc7o\xa8d\x00\x00\x00\rIDAT\x18Wc`dd\xfc\x0f\x00\x01\r\x01\x03\xcb\x11t\xdb\x00\x00\x00\x00IEND\xaeB`\x82"
-
     assert get_img_ext(img) == "png"
 
 

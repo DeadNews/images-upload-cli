@@ -49,12 +49,11 @@ Usage: image-upload-cli [OPTIONS] [IMAGES]...
 
 Options:
   -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|up2sha|uploadcare]
-                                  [default: geekpic]
+                                  [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add thumbnails and bbcode tags.
   -c, --clipboard / -C, --no-clipboard
-                                  The result will be copied to the clipboard.
-                                  [default: c]
+                                  Copy result to clipboard.  [default: c]
   --version                       Show the version and exit.
   --help                          Show this message and exit.
 ```

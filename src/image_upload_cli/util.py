@@ -4,6 +4,7 @@ from __future__ import annotations
 from io import BytesIO
 from os import getenv
 from pathlib import Path
+from platform import system
 from shutil import which
 from subprocess import Popen
 
@@ -52,6 +53,31 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
+def get_font() -> str | None:
+    """
+    Attempts to retrieve a reasonably-looking TTF font from the system.
+
+    We don't make much of an effort, but it's what we can reasonably do without
+    incorporating additional dependencies for this task.
+    """
+    if system == "Windows":
+        font_names = ["Arial"]
+    elif system == "Linux":
+        font_names = ["DejaVuSans-Bold", "DroidSans-Bold"]
+    elif system == "Darwin":
+        font_names = ["Helvetica", "Menlo"]
+
+    font = None
+    for font_name in font_names:
+        try:
+            font = ImageFont.truetype(font_name)
+            break
+        except IOError:
+            continue
+
+    return font
+
+
 def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     """
     Make this image into a captioned thumbnail.
@@ -75,7 +101,8 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     # get font
     font = getenv("CAPTION_FONT")
     if not font:
-        font = "arial.ttf"
+        fnt = get_font()
+
     fnt = ImageFont.truetype(font, size=14)
 
     # draw text
