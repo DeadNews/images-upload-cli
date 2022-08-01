@@ -50,6 +50,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install xclip
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get install -y xclip
+
       - name: Install poetry
         run: pipx install poetry
 
@@ -58,19 +62,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: poetry
 
-      - name: Install xclip
-        if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get install -y xclip
-
       - name: Install dependencies
         run: |
           poetry env use ${{ matrix.python-version }}
           poetry install
-
-      - name: Run tests2
-        run: pytest --cov-report=xml
-        env:
-          UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
       - name: Run tests
         run: poetry run pytest --cov-report=xml
