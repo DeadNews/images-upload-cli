@@ -1,8 +1,8 @@
 on:
   workflow_call:
-    # Permissions inherited from caller workflow
-    secrets:
-      PYTHON_VERSION:
+    inputs:
+      python-version:
+        type: string
         required: true
 
 jobs:
@@ -17,12 +17,12 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ secrets.PYTHON_VERSION }}
+          python-version: ${{ inputs.python-version }}
           cache: poetry
 
       - name: Install dependencies
         run: |
-          poetry env use ${{ secrets.PYTHON_VERSION }}
+          poetry env use ${{ inputs.python-version }}
           poetry install
 
       - name: Check code quality

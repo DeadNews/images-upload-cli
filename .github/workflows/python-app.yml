@@ -13,13 +13,12 @@ permissions:
 
 env:
   PYTHON_VERSION: "3.10"
-  FORCE_COLOR: 1
 
 jobs:
   code-quality:
     uses: ./.github/workflows/_python-poetry-ci.yml
-    secrets:
-      PYTHON_VERSION: ${{ secrets.PYTHON_VERSION }}
+    with:
+      python-version: ${{ secrets.PYTHON_VERSION }}
 
   run-tests:
     environment: CI
