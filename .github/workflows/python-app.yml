@@ -17,9 +17,25 @@ env:
 
 jobs:
   code-quality:
-    uses: ./.github/workflows/_python-poetry-ci.yml
-    with:
-      python-version: "${{ env.python-version }}"
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: poetry
+
+      - name: Install dependencies
+        run: |
+          poetry env use ${{ env.PYTHON_VERSION }}
+          poetry install
+      - name: Check code quality
+        run: poetry run poe ci
 
   run-tests:
     environment: CI
@@ -45,7 +61,6 @@ jobs:
         run: |
           poetry env use ${{ matrix.python-version }}
           poetry install
-
       - name: Run tests
         run: poetry run pytest --cov-report=xml
         env:
@@ -59,8 +74,8 @@ jobs:
           fail_ci_if_error: true
           verbose: true
 
-  build-release:
-    name: Build and release
+  publish_pypi:
+    name: Build and release to PyPI
     if: github.event_name == 'release' && github.event.action == 'created'
     needs: [code-quality, run-tests]
     runs-on: ubuntu-latest
@@ -80,4 +95,20 @@ jobs:
       - name: Publish package to PyPI
         run: poetry publish --no-interaction
         env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ env.PYPI_API_TOKEN }}
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
+
+  publish_aur_test:
+    name: Build and release to PyPI
+    # if: github.event_name == 'release' && github.event.action == 'created'
+    # needs: [code-quality, run-tests, publish_pypi]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install pip2pkgbuild
+        run: pip install pip2pkgbuild
+
+      - name: Build package
+        run: |
+          pip2pkgbuild image-upload-cli
+          ls -lh
