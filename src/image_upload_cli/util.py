@@ -62,6 +62,7 @@ def get_font() -> ImageFont.FreeTypeFont:
         "Menlo",
         "DejaVuSerif",
         "Arial",
+        "arial",
     ]
 
     for font_name in font_names:
