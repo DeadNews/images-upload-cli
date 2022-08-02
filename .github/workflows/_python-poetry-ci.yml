@@ -1,9 +1,9 @@
 on:
   workflow_call:
-  # Permissions inherited from caller workflow
-
-env:
-  PYTHON_VERSION: "3.10"
+    # Permissions inherited from caller workflow
+    secrets:
+      PYTHON_VERSION:
+        required: true
 
 jobs:
   code-quality:
