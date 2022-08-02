@@ -36,7 +36,11 @@ def test_cli_fast(args: list[str]):
         (["tests/test_files/pic.png", "-C", "-h", "pixeldrain"]),
         (["tests/test_files/pic.png", "-C", "-h", "pixhost"]),
         (["tests/test_files/pic.png", "-C", "-h", "ptpimg"]),
+        (["tests/test_files/pic.png", "-C", "-h", "screenshotting"]),
+        (["tests/test_files/pic.png", "-C", "-h", "telegraph"]),
+        (["tests/test_files/pic.png", "-C", "-h", "uguu"]),
         (["tests/test_files/pic.png", "-C", "-h", "up2sha"]),
+        (["tests/test_files/pic.png", "-C", "-h", "uplio"]),
     ],
 )
 def test_cli(args: list[str]):

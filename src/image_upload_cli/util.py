@@ -67,7 +67,7 @@ def get_font() -> ImageFont.FreeTypeFont:
     for font_name in font_names:
         try:
             return ImageFont.truetype(font_name, size=14)
-        except IOError:
+        except OSError:
             continue
 
     raise GetenvError(

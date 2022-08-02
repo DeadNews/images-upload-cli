@@ -214,6 +214,43 @@ def ptpimg_upload(img: bytes) -> str:
     return f"https://ptpimg.me/{response.json()[0]['code']}.{response.json()[0]['ext']}"
 
 
+def screenshotting_upload(img: bytes) -> str:
+    name = f"img.{get_img_ext(img)}"
+
+    response = post(
+        url="https://screenshotting.site/upload",
+        files={"img": (name, img)},
+    )
+    if not response.ok:
+        raise UploadError(response.text)
+
+    return response.json()["url"].replace("http://", "https://")
+
+
+def telegraph_upload(img: bytes) -> str:
+    response = post(
+        url="https://telegra.ph/upload",
+        files={"file": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return f"https://telegra.ph{response.json()[0]['src']}"
+
+
+def uguu_upload(img: bytes) -> str:
+    name = f"img.{get_img_ext(img)}"
+
+    response = post(
+        url="https://uguu.se/upload.php",
+        files={"files[]": (name, img)},
+    )
+    if not response.ok:
+        raise UploadError(response.text)
+
+    return response.json()["files"][0]["url"]
+
+
 def up2sha_upload(img: bytes) -> str:
     key = get_env_val("UP2SHA_KEY")
     ext = get_img_ext(img)
@@ -227,6 +264,22 @@ def up2sha_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return f"{response.json()['public_url'].replace('file?f=', 'media/raw/')}.{ext}"
+
+
+def uplio_upload(img: bytes) -> str:
+    key = get_env_val("UPLIO_KEY")
+    ext = get_img_ext(img)
+
+    response = post(
+        url="https://upl.io",
+        data={"key": key},
+        files={"file": (f"img.{ext}", img)},
+    )
+    if not response.ok:
+        raise UploadError(response.text)
+
+    host, uid = response.text.rsplit("/", 1)
+    return f"{host}/i/{uid}.{ext}"
 
 
 def uploadcare_upload(img: bytes) -> str:
@@ -262,7 +315,11 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "pixeldrain": pixeldrain_upload,
     "pixhost": pixhost_upload,
     "ptpimg": ptpimg_upload,
+    "screenshotting": screenshotting_upload,
+    "telegraph": telegraph_upload,
+    "uguu": uguu_upload,
     "up2sha": up2sha_upload,
+    "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,
 }
 

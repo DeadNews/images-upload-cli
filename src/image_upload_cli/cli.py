@@ -13,7 +13,10 @@ from .util import get_config_path, kdialog, make_thumbnail
 
 @click.command(context_settings={"show_default": True})
 @click.argument(
-    "images", nargs=-1, type=click.Path(exists=True, dir_okay=False, path_type=Path)
+    "images",
+    nargs=-1,
+    required=True,
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
 )
 @click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="imgur")
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")

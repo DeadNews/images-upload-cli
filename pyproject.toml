@@ -7,7 +7,14 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/DeadNews/image-upload-cli"
 repository = "https://github.com/DeadNews/image-upload-cli"
-keywords = ["cli", "image", "uploader"]
+keywords = [
+  "cli",
+  "gyazo",
+  "imgbb",
+  "imgur",
+  "upload-images",
+  "upload-pictures",
+]
 classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 
 [tool.poetry.scripts]
