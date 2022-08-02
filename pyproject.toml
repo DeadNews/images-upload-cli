@@ -74,6 +74,7 @@ skips = [
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src"
 testpaths = ["tests"]
+markers = ["slow"]
 
 [tool.coverage.report]
 exclude_lines = ["if __name__ == .__main__.:"]

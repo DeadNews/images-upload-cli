@@ -62,7 +62,7 @@ jobs:
           poetry env use ${{ matrix.python-version }}
           poetry install
       - name: Run tests
-        run: poetry run pytest --cov-report=xml
+        run: poetry run pytest --cov-report=xml -m "not slow"
         env:
           UPLOADCARE_KEY: ${{ env.UPLOADCARE_KEY }}
 
@@ -96,19 +96,3 @@ jobs:
         run: poetry publish --no-interaction
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
-
-  publish_aur_test:
-    name: Build and release to PyPI
-    # if: github.event_name == 'release' && github.event.action == 'created'
-    # needs: [code-quality, run-tests, publish_pypi]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install pip2pkgbuild
-        run: pip install pip2pkgbuild
-
-      - name: Build package
-        run: |
-          pip2pkgbuild image-upload-cli
-          ls -lh
