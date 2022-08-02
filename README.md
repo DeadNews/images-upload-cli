@@ -42,6 +42,7 @@ pipx install image-upload-cli
 | [uguu](https://uguu.se)                        |      -       | `https://a.uguu.se/{id}.png`                         |
 | [up2sha](https://up2sha.re/)                   |      +       | `https://up2sha.re/media/raw/{id}.png`               |
 | [uplio](https://upl.io/)                       |      +       | `https://upl.io/i/{id}.png`                          |
+| [uploadcare](https://uploadcare.com/)          |      +       | `https://ucarecdn.com/{id}/img.png`                  |
 
 ## Usage
 
@@ -75,6 +76,7 @@ IMGCHEST_KEY=
 IMGUR_CLIENT_ID=
 PTPIMG_KEY=
 UP2SHA_KEY=
+UPLIO_KEY=
 UPLOADCARE_KEY=
 ```
 
