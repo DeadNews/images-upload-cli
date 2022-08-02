@@ -19,7 +19,7 @@ jobs:
   code-quality:
     uses: ./.github/workflows/_python-poetry-ci.yml
     with:
-      python-version: "3.10"
+      python-version: "${{ env.python-version }}"
 
   run-tests:
     environment: CI
