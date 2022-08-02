@@ -64,7 +64,7 @@ jobs:
       - name: Run tests
         run: poetry run pytest --cov-report=xml -m "not slow"
         env:
-          UPLOADCARE_KEY: ${{ env.UPLOADCARE_KEY }}
+          UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
