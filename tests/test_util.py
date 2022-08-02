@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 from os import environ
+from pathlib import Path
 
 import pytest
 
 from src.image_upload_cli.util import GetenvError, get_env_val, get_img_ext, human_size
 
-from .img import img
+
+@pytest.fixture()
+def img() -> bytes:
+    return Path("tests/test_files/pic.png").read_bytes()
 
 
 @pytest.mark.parametrize(
@@ -26,7 +30,7 @@ def test_human_size(test_arg: int, expected: str):
     assert human_size(args_with_negative) == f"-{expected}"
 
 
-def test_get_img_ext():
+def test_get_img_ext(img):
     assert get_img_ext(img) == "png"
 
 

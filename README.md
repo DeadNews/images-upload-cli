@@ -61,7 +61,7 @@ Options:
 ## Env variables
 
 ```ini
-CAPTION_FONT= # default arial.ttf
+CAPTION_FONT= # The default font is system dependent.
 
 BEEIMG_KEY=
 FREEIMAGE_KEY=

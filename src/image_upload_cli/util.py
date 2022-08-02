@@ -4,7 +4,6 @@ from __future__ import annotations
 from io import BytesIO
 from os import getenv
 from pathlib import Path
-from platform import system
 from shutil import which
 from subprocess import Popen
 
@@ -31,7 +30,7 @@ def get_env_val(key: str) -> str:
         return value
     else:
         raise GetenvError(
-            f"Please setup {key} in environment variables or in '{get_config_path()}'"
+            f"Please setup {key} in environment variables or in '{get_config_path()}'."
         )
 
 
@@ -53,34 +52,28 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
-def get_font() -> ImageFont.FreeTypeFont | None:
+def get_font() -> ImageFont.FreeTypeFont:
     """
     Attempts to retrieve a reasonably-looking TTF font from the system.
     """
-    if system == "Windows":
-        font_names = ["Arial"]
-    elif system == "Linux":
-        font_names = ["DejaVuSans-Bold", "DroidSans-Bold"]
-    elif system == "Darwin":
-        font_names = ["Helvetica", "Menlo"]
-    else:
-        font_names = [
-            "Arial",
-            "DejaVuSans-Bold",
-            "DroidSans-Bold",
-            "Helvetica",
-            "Menlo",
-        ]
+    font_names = [
+        "Helvetica",
+        "NotoSerif-Regular",
+        "Menlo",
+        "DejaVuSerif",
+        "Arial",
+    ]
 
-    font = None
     for font_name in font_names:
         try:
-            font = ImageFont.truetype(font_name)
-            break
+            return ImageFont.truetype(font_name, size=14)
         except IOError:
             continue
 
-    return font
+    raise GetenvError(
+        f"None of the default fonts were found: {font_names}.\n"
+        f"Please setup CAPTION_FONT in environment variables or in '{get_config_path()}'."
+    )
 
 
 def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
@@ -104,15 +97,18 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     fsize = human_size(len(img))
 
     # get font
-    font = getenv("CAPTION_FONT")
-    fnt = ImageFont.truetype(font, size=14) if font else get_font()
+    font = (
+        ImageFont.truetype(font_name, size=14)
+        if (font_name := getenv("CAPTION_FONT"))
+        else get_font()
+    )
 
     # draw text
     d = ImageDraw.Draw(pw_with_line)
     d.text(
         xy=(pw.width / 5, pw.height),
         text=f"{im.width}x{im.height} ({im.format}) [{fsize}]",
-        font=fnt,
+        font=font,
         fill=(0, 0, 0),
     )
 
