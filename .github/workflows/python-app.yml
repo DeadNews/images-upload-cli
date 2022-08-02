@@ -18,7 +18,7 @@ jobs:
   code-quality:
     uses: ./.github/workflows/_python-poetry-ci.yml
     with:
-      python-version: ${{ secrets.PYTHON_VERSION }}
+      python-version: ${{ env.PYTHON_VERSION }}
 
   run-tests:
     environment: CI
@@ -48,7 +48,7 @@ jobs:
       - name: Run tests
         run: poetry run pytest --cov-report=xml
         env:
-          UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
+          UPLOADCARE_KEY: ${{ env.UPLOADCARE_KEY }}
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
@@ -79,4 +79,4 @@ jobs:
       - name: Publish package to PyPI
         run: poetry publish --no-interaction
         env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
+          POETRY_PYPI_TOKEN_PYPI: ${{ env.PYPI_API_TOKEN }}
