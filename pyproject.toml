@@ -76,7 +76,7 @@ addopts = "--verbose --cov=./src"
 testpaths = ["tests"]
 
 [tool.coverage.report]
-exclude_lines = ['if __name__ == .__main__.:']
+exclude_lines = ["if __name__ == .__main__.:"]
 
 [tool.poe.tasks]
 isort = "isort . --check-only --diff"

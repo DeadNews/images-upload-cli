@@ -1,0 +1,26 @@
+on:
+  workflow_call:
+  # Permissions inherited from caller workflow
+
+jobs:
+  code-quality:
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: poetry
+
+      - name: Install dependencies
+        run: |
+          poetry env use ${{ env.PYTHON_VERSION }}
+          poetry install
+
+      - name: Check code quality
+        run: poetry run poe ci
