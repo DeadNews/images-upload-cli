@@ -2,6 +2,9 @@ on:
   workflow_call:
   # Permissions inherited from caller workflow
 
+env:
+  PYTHON_VERSION: "3.10"
+
 jobs:
   code-quality:
     name: Check code quality
