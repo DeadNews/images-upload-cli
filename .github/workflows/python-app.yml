@@ -18,6 +18,8 @@ env:
 jobs:
   code-quality:
     uses: ./.github/workflows/_python-poetry-ci.yml
+    secrets:
+      PYTHON_VERSION: ${{ secrets.PYTHON_VERSION }}
 
   run-tests:
     environment: CI
