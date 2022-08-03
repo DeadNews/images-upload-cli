@@ -245,6 +245,17 @@ def smms_upload(img: bytes) -> str:
     )
 
 
+def sxcu_upload(img: bytes) -> str:
+    response = post(
+        url="https://sxcu.net/api/files/create",
+        files={"file": img},
+    )
+    if not response.ok:
+        raise UploadError(response.text)
+
+    return f"{response.json()['url']}.{get_img_ext(img)}"
+
+
 def telegraph_upload(img: bytes) -> str:
     response = post(
         url="https://telegra.ph/upload",
@@ -305,40 +316,6 @@ def uploadcare_upload(img: bytes) -> str:
     return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
 
 
-def sxcu_template(img: bytes, domain: str) -> str:
-    """
-    https://sxcu.net/domains
-    """
-    response = post(
-        url=f"https://{domain}/api/files/create",
-        files={"file": img},
-    )
-    if not response.ok:
-        raise UploadError(response.text)
-
-    return f"{response.json()['url']}.{get_img_ext(img)}"
-
-
-def sxcu_upload(img: bytes) -> str:
-    return sxcu_template(img, domain="sxcu.net")
-
-
-def whyamihere_upload(img: bytes) -> str:
-    return sxcu_template(img, domain="why-am-i-he.re")
-
-
-def reeeeee_upload(img: bytes) -> str:
-    return sxcu_template(img, domain="reeee.ee")
-
-
-def questionablelink_upload(img: bytes) -> str:
-    return sxcu_template(img, domain="questionable.link")
-
-
-def nothingtoseehere_upload(img: bytes) -> str:
-    return sxcu_template(img, domain="nothing-to-see-he.re")
-
-
 UPLOAD: dict[str, Callable[[bytes], str]] = {
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
@@ -350,13 +327,10 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "imgbb": imgbb_upload,
     "imgchest": imgchest_upload,
     "imgur": imgur_upload,
-    "nothingtoseehere": nothingtoseehere_upload,
     "pictshare": pictshare_upload,
     "pixeldrain": pixeldrain_upload,
     "pixhost": pixhost_upload,
     "ptpimg": ptpimg_upload,
-    "questionablelink": questionablelink_upload,
-    "reeeeee": reeeeee_upload,
     "screenshotting": screenshotting_upload,
     "smms": smms_upload,
     "sxcu": sxcu_upload,
@@ -364,8 +338,6 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "up2sha": up2sha_upload,
     "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,
-    "whyamihere": whyamihere_upload,
 }
-
 
 HOSTINGS = tuple(UPLOAD.keys())
