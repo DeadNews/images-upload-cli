@@ -105,8 +105,8 @@ jobs:
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
-          commit_username: ${{ secrets.AUR_USER }}
-          commit_email: ${{ secrets.AUR_EMAIL }}
+          commit_username: DeadNews
+          commit_email: uhjnnn@gmail.com
           ssh_private_key: ${{ secrets.AUR_TOKEN }}
           commit_message: Update AUR package
           updpkgsums: true
