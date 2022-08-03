@@ -104,9 +104,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: Update version
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+          sed -i 's|\(^pkgver=\).*$|\1"${VERSION}"|' ./PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
         uses: KSXGitHub/github-actions-deploy-aur@v2.4.1
@@ -116,5 +117,5 @@ jobs:
           commit_username: DeadNews
           commit_email: uhjnnn@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Update AUR package ${{ steps.get_version.outputs.VERSION }}
+          commit_message: Upstream release ${{github.ref}}
           updpkgsums: true

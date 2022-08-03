@@ -1,3 +1,4 @@
+# template
 pkgbase='python-images-upload-cli'
 pkgname=('python-images-upload-cli')
 _module='images-upload-cli'
