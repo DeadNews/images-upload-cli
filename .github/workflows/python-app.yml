@@ -111,5 +111,5 @@ jobs:
           commit_username: DeadNews
           commit_email: uhjnnn@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Upstream release (${{github.ref}})
+          commit_message: Update AUR package
           updpkgsums: true
