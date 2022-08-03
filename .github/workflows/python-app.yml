@@ -99,7 +99,7 @@ jobs:
   publish_aur:
     name: Release to AUR
     # if: "!github.event.release.prerelease"
-    # needs: [publish_pypi]
+    needs: [publish_pypi]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
