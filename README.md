@@ -19,31 +19,6 @@ or
 pipx install image-upload-cli
 ```
 
-## Hostings
-
-| host                                           | key required | return example                                       |
-| :--------------------------------------------- | :----------: | :--------------------------------------------------- |
-| [catbox](https://catbox.moe/)                  |      -       | `https://files.catbox.moe/{id}`                      |
-| [fastpic](https://fastpic.org/)                |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
-| [filecoffee](https://file.coffee/)             |      -       | `https://file.coffee/u/{id}.png`                     |
-| [freeimage](https://freeimage.host/)           |      -       | `https://iili.io/{id}.png`                           |
-| [geekpic](https://geekpic.net/)                |      -       | `https://s01.geekpic.net/{id}.png`                   |
-| [gyazo](https://gyazo.com/)                    |      +       | `https://i.gyazo.com/{id}.png`                       |
-| [imageban](https://imageban.ru/)               |      +       | `https://i2.imageban.ru/out/2022/07/30/{id}.png`     |
-| [imgbb](https://imgbb.com/)                    |      +       | `https://i.ibb.co/{id}/image.png`                    |
-| [imgchest](https://imgchest.com/)              |      +       | `https://cdn.imgchest.com/files/{id}.png`            |
-| [imgur](https://imgur.com/)                    |      -       | `https://i.imgur.com/{id}.png`                       |
-| [pictshare](https://pictshare.net/)            |      -       | `https://pictshare.net/{id}.png`                     |
-| [pixeldrain](https://pixeldrain.com/)          |      -       | `https://pixeldrain.com/api/file/{id}`               |
-| [pixhost](https://pixhost.to/)                 |      -       | `https://img75.pixhost.to/images/69/{id}_img.png`    |
-| [ptpimg](https://ptpimg.me/)                   |      +       | `https://ptpimg.me/{id}.png`                         |
-| [screenshotting](https://screenshotting.site/) |      -       | `https://screenshotting.site/i/{id}.png`             |
-| [telegraph](https://telegra.ph/)               |      -       | `https://telegra.ph/file/{id}.png`                   |
-| [uguu](https://uguu.se)                        |      -       | `https://a.uguu.se/{id}.png`                         |
-| [up2sha](https://up2sha.re/)                   |      +       | `https://up2sha.re/media/raw/{id}.png`               |
-| [uplio](https://upl.io/)                       |      +       | `https://upl.io/i/{id}.png`                          |
-| [uploadcare](https://uploadcare.com/)          |      +       | `https://ucarecdn.com/{id}/img.png`                  |
-
 ## Usage
 
 ```sh
@@ -62,6 +37,36 @@ Options:
   --help                          Show this message and exit.
 ```
 
+## Hostings
+
+| host                                              | key required | return example                                       |
+| :------------------------------------------------ | :----------: | :--------------------------------------------------- |
+| [catbox](https://catbox.moe/)                     |      -       | `https://files.catbox.moe/{id}`                      |
+| [fastpic](https://fastpic.org/)                   |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
+| [filecoffee](https://file.coffee/)                |      -       | `https://file.coffee/u/{id}.png`                     |
+| [freeimage](https://freeimage.host/)              |      -       | `https://iili.io/{id}.png`                           |
+| [geekpic](https://geekpic.net/)                   |      -       | `https://s01.geekpic.net/{id}.png`                   |
+| [gyazo](https://gyazo.com/)                       |      +       | `https://i.gyazo.com/{id}.png`                       |
+| [imageban](https://imageban.ru/)                  |      +       | `https://i2.imageban.ru/out/2022/07/30/{id}.png`     |
+| [imgbb](https://imgbb.com/)                       |      +       | `https://i.ibb.co/{id}/image.png`                    |
+| [imgchest](https://imgchest.com/)                 |      +       | `https://cdn.imgchest.com/files/{id}.png`            |
+| [imgur](https://imgur.com/)                       |      -       | `https://i.imgur.com/{id}.png`                       |
+| [nothingtoseehere](https://nothing-to-see-he.re/) |      -       | `https://nothing-to-see-he.re/{id}.png`              |
+| [pictshare](https://pictshare.net/)               |      -       | `https://pictshare.net/{id}.png`                     |
+| [pixeldrain](https://pixeldrain.com/)             |      -       | `https://pixeldrain.com/api/file/{id}`               |
+| [pixhost](https://pixhost.to/)                    |      -       | `https://img75.pixhost.to/images/69/{id}_img.png`    |
+| [ptpimg](https://ptpimg.me/)                      |      +       | `https://ptpimg.me/{id}.png`                         |
+| [questionablelink](https://questionable.link/)    |      -       | `https://questionable.link/{id}.png`                 |
+| [reeeeee](https://reeee.ee%22/)                   |      -       | `https://reeee.ee/{id}.png`                         |
+| [screenshotting](https://screenshotting.site/)    |      -       | `https://screenshotting.site/i/{id}.png`             |
+| [smms](https://sm.ms/)                            |      +       | `https://s2.loli.net/2022/07/30/{id}.png`            |
+| [sxcu](https://sxcu.net/)                         |      -       | `https://sxcu.net/{id}.png`                          |
+| [telegraph](https://telegra.ph/)                  |      -       | `https://telegra.ph/file/{id}.png`                   |
+| [up2sha](https://up2sha.re/)                      |      +       | `https://up2sha.re/media/raw/{id}.png`               |
+| [uplio](https://upl.io/)                          |      +       | `https://upl.io/i/{id}.png`                          |
+| [uploadcare](https://uploadcare.com/)             |      +       | `https://ucarecdn.com/{id}/img.png`                  |
+| [whyamihere](https://why-am-i-he.re/)             |      -       | `https://why-am-i-he.re/{id}.png`                    |
+
 ## Env variables
 
 ```ini
@@ -75,6 +80,7 @@ IMGBB_KEY=
 IMGCHEST_KEY=
 IMGUR_CLIENT_ID=
 PTPIMG_KEY=
+SMMS_KEY=
 UP2SHA_KEY=
 UPLIO_KEY=
 UPLOADCARE_KEY=

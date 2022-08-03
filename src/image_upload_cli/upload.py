@@ -227,6 +227,24 @@ def screenshotting_upload(img: bytes) -> str:
     return response.json()["url"].replace("http://", "https://")
 
 
+def smms_upload(img: bytes) -> str:
+    key = get_env_val("SMMS_KEY")
+
+    response = post(
+        url="https://sm.ms/api/v2/upload",
+        headers={"Authorization": key},
+        files={"smfile": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return (
+        response.json()["images"]
+        if response.json()["code"] == "image_repeated"
+        else response.json()["data"]["url"]
+    )
+
+
 def telegraph_upload(img: bytes) -> str:
     response = post(
         url="https://telegra.ph/upload",
@@ -236,19 +254,6 @@ def telegraph_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return f"https://telegra.ph{response.json()[0]['src']}"
-
-
-def uguu_upload(img: bytes) -> str:
-    name = f"img.{get_img_ext(img)}"
-
-    response = post(
-        url="https://uguu.se/upload.php",
-        files={"files[]": (name, img)},
-    )
-    if not response.ok:
-        raise UploadError(response.text)
-
-    return response.json()["files"][0]["url"]
 
 
 def up2sha_upload(img: bytes) -> str:
@@ -300,6 +305,40 @@ def uploadcare_upload(img: bytes) -> str:
     return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
 
 
+def sxcu_template(img: bytes, domain: str) -> str:
+    """
+    https://sxcu.net/domains
+    """
+    response = post(
+        url=f"https://{domain}/api/files/create",
+        files={"file": img},
+    )
+    if not response.ok:
+        raise UploadError(response.text)
+
+    return f"{response.json()['url']}.{get_img_ext(img)}"
+
+
+def sxcu_upload(img: bytes) -> str:
+    return sxcu_template(img, domain="sxcu.net")
+
+
+def whyamihere_upload(img: bytes) -> str:
+    return sxcu_template(img, domain="why-am-i-he.re")
+
+
+def reeeeee_upload(img: bytes) -> str:
+    return sxcu_template(img, domain="reeee.ee")
+
+
+def questionablelink_upload(img: bytes) -> str:
+    return sxcu_template(img, domain="questionable.link")
+
+
+def nothingtoseehere_upload(img: bytes) -> str:
+    return sxcu_template(img, domain="nothing-to-see-he.re")
+
+
 UPLOAD: dict[str, Callable[[bytes], str]] = {
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
@@ -317,10 +356,15 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "ptpimg": ptpimg_upload,
     "screenshotting": screenshotting_upload,
     "telegraph": telegraph_upload,
-    "uguu": uguu_upload,
     "up2sha": up2sha_upload,
     "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,
+    "smms": smms_upload,
+    "nothingtoseehere": nothingtoseehere_upload,
+    "questionablelink": questionablelink_upload,
+    "reeeeee": reeeeee_upload,
+    "whyamihere": whyamihere_upload,
+    "sxcu": sxcu_upload,
 }
 
 
