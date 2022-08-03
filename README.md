@@ -27,7 +27,7 @@ Usage: image-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|telegraph|up2sha|uplio|uploadcare|smms|nothingtoseehere|questionablelink|reeeeee|whyamihere|sxcu]
+  -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|nothingtoseehere|pictshare|pixeldrain|pixhost|ptpimg|questionablelink|reeeeee|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare|whyamihere]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add thumbnails and bbcode tags.
