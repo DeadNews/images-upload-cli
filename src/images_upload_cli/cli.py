@@ -20,7 +20,7 @@ from .util import get_config_path, kdialog, make_thumbnail
 )
 @click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="imgur")
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")
-@click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnails and bbcode tags.")
+@click.option("-t", "--thumbnail", is_flag=True, help="Add thumbnail and bbcode tags.")
 @click.option(
     "-c/-C",
     "--clipboard/--no-clipboard",

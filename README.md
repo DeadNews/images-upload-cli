@@ -61,7 +61,7 @@ Options:
   -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
-  -t, --thumbnail                 Add thumbnails and bbcode tags.
+  -t, --thumbnail                 Add thumbnail and bbcode tags.
   -c, --clipboard / -C, --no-clipboard
                                   Copy result to clipboard.  [default: c]
   --version                       Show the version and exit.
