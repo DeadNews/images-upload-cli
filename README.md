@@ -19,24 +19,6 @@ or
 pipx install image-upload-cli
 ```
 
-## Usage
-
-```sh
-Usage: image-upload-cli [OPTIONS] IMAGES...
-
-  Upload images via APIs.
-
-Options:
-  -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare]
-                                  [default: imgur]
-  -b, --bbcode                    Add bbcode tags.
-  -t, --thumbnail                 Add thumbnails and bbcode tags.
-  -c, --clipboard / -C, --no-clipboard
-                                  Copy result to clipboard.  [default: c]
-  --version                       Show the version and exit.
-  --help                          Show this message and exit.
-```
-
 ## Hostings
 
 | host                                           | key required | return example                                       |
@@ -62,6 +44,24 @@ Options:
 | [up2sha](https://up2sha.re/)                   |      +       | `https://up2sha.re/media/raw/{id}.png`               |
 | [uplio](https://upl.io/)                       |      +       | `https://upl.io/i/{id}.png`                          |
 | [uploadcare](https://uploadcare.com/)          |      +       | `https://ucarecdn.com/{id}/img.png`                  |
+
+## Usage
+
+```sh
+Usage: image-upload-cli [OPTIONS] IMAGES...
+
+  Upload images via APIs.
+
+Options:
+  -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare]
+                                  [default: imgur]
+  -b, --bbcode                    Add bbcode tags.
+  -t, --thumbnail                 Add thumbnails and bbcode tags.
+  -c, --clipboard / -C, --no-clipboard
+                                  Copy result to clipboard.  [default: c]
+  --version                       Show the version and exit.
+  --help                          Show this message and exit.
+```
 
 ## Env variables
 
