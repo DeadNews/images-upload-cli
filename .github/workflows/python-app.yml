@@ -95,3 +95,18 @@ jobs:
         run: poetry publish --no-interaction
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
+
+  publish_aur:
+    name: Release to AUR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy PKGBUILD to the Arch User Repository
+        uses: KSXGitHub/github-actions-deploy-aur@v2.4.1
+        with:
+          pkgname: python-images-upload-cli
+          pkgbuild: ./PKGBUILD
+          commit_username: ${{ secrets.AUR_USER }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_TOKEN }}
+          commit_message: Update AUR package
+          updpkgsums: true
