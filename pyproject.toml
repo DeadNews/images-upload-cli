@@ -1,24 +1,17 @@
 [tool.poetry]
-name = "image-upload-cli"
+name = "images-upload-cli"
 version = "0.3.0-alpha.0"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/DeadNews/image-upload-cli"
-repository = "https://github.com/DeadNews/image-upload-cli"
-keywords = [
-  "cli",
-  "gyazo",
-  "imgbb",
-  "imgur",
-  "upload-images",
-  "upload-pictures",
-]
+homepage = "https://github.com/DeadNews/images-upload-cli"
+repository = "https://github.com/DeadNews/images-upload-cli"
+keywords = ["cli", "gyazo", "imgur", "upload-images", "upload-pictures"]
 classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 
 [tool.poetry.scripts]
-image-upload-cli = "image_upload_cli.cli:cli"
+images-upload-cli = "images_upload_cli.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.9"

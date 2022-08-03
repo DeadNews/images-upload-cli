@@ -1,22 +1,22 @@
-# image-upload-cli
+# images-upload-cli
 
 > Upload images via APIs
 
-[![PyPI version](https://img.shields.io/pypi/v/image-upload-cli)](https://pypi.org/project/image-upload-cli)
-[![CI/CD](https://github.com/DeadNews/image-upload-cli/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/image-upload-cli/actions/workflows/python-app.yml)
-[![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/image-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/image-upload-cli/main)
-[![codecov](https://codecov.io/gh/DeadNews/image-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/image-upload-cli)
+[![PyPI version](https://img.shields.io/pypi/v/images-upload-cli)](https://pypi.org/project/images-upload-cli)
+[![CI/CD](https://github.com/DeadNews/images-upload-cli/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/images-upload-cli/actions/workflows/python-app.yml)
+[![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/images-upload-cli/main)
+[![codecov](https://codecov.io/gh/DeadNews/images-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/images-upload-cli)
 
 ## Installation
 
 ```sh
-pip install image-upload-cli
+pip install images-upload-cli
 ```
 
 or
 
 ```sh
-pipx install image-upload-cli
+pipx install images-upload-cli
 ```
 
 ## Hostings
@@ -48,7 +48,7 @@ pipx install image-upload-cli
 ## Usage
 
 ```sh
-Usage: image-upload-cli [OPTIONS] IMAGES...
+Usage: images-upload-cli [OPTIONS] IMAGES...
 
   Upload images via APIs.
 
@@ -84,6 +84,6 @@ UPLOADCARE_KEY=
 
 You can set these in environment variables, or in `.env` file:
 
-- Unix: `~/.config/image-upload-cli/.env`
-- MacOS: `~/Library/Application Support/image-upload-cli/.env`
-- Windows: `C:\Users\<user>\AppData\Roaming\image-upload-cli\.env`
+- Unix: `~/.config/images-upload-cli/.env`
+- MacOS: `~/Library/Application Support/images-upload-cli/.env`
+- Windows: `C:\Users\<user>\AppData\Roaming\images-upload-cli\.env`

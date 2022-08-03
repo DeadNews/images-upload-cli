@@ -2,7 +2,7 @@
 import pytest
 from click.testing import CliRunner
 
-from src.image_upload_cli.__main__ import cli
+from src.images_upload_cli.__main__ import cli
 
 
 @pytest.mark.parametrize(

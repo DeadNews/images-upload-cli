@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from src.image_upload_cli.util import GetenvError, get_env_val, get_img_ext, human_size
+from src.images_upload_cli.util import GetenvError, get_env_val, get_img_ext, human_size
 
 
 @pytest.fixture()
