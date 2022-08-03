@@ -3,20 +3,25 @@
 > Upload images via APIs
 
 [![PyPI version](https://img.shields.io/pypi/v/images-upload-cli)](https://pypi.org/project/images-upload-cli)
+[![AUR version](https://img.shields.io/aur/version/python-images-upload-cli)](https://aur.archlinux.org/packages/python-images-upload-cli)
 [![CI/CD](https://github.com/DeadNews/images-upload-cli/actions/workflows/python-app.yml/badge.svg)](https://github.com/DeadNews/images-upload-cli/actions/workflows/python-app.yml)
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/images-upload-cli/main)
 [![codecov](https://codecov.io/gh/DeadNews/images-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/images-upload-cli)
 
 ## Installation
 
+PyPI
+
 ```sh
 pip install images-upload-cli
+# or
+pipx install images-upload-cli
 ```
 
-or
+AUR
 
 ```sh
-pipx install images-upload-cli
+yay -S python-images-upload-cli
 ```
 
 ## Hostings

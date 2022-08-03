@@ -95,3 +95,27 @@ jobs:
         run: poetry publish --no-interaction
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
+
+  publish_aur:
+    name: Release to AUR
+    if: "!github.event.release.prerelease"
+    needs: [publish_pypi]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update version
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+          sed -i "s|\(^pkgver=\).*$|\1\"${VERSION}\"|" ./PKGBUILD
+
+      - name: Deploy PKGBUILD to the Arch User Repository
+        uses: KSXGitHub/github-actions-deploy-aur@v2.4.1
+        with:
+          pkgname: python-images-upload-cli
+          pkgbuild: ./PKGBUILD
+          commit_username: DeadNews
+          commit_email: uhjnnn@gmail.com
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Upstream release ${{github.ref}}
+          updpkgsums: true
