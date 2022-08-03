@@ -19,7 +19,7 @@ def get_config_path() -> Path:
     """
     Get app config path.
     """
-    return Path(f"{click.get_app_dir('py-image-uploader')}/.env")
+    return Path(f"{click.get_app_dir('images-upload-cli')}/.env")
 
 
 def get_env_val(key: str) -> str:
@@ -30,7 +30,7 @@ def get_env_val(key: str) -> str:
         return value
     else:
         raise GetenvError(
-            f"Please setup {key} in environment variables or in '{get_config_path()}'"
+            f"Please setup {key} in environment variables or in '{get_config_path()}'."
         )
 
 
@@ -50,6 +50,30 @@ def get_img_ext(img: bytes) -> str:
     Get image extension from bytes.
     """
     return Image.open(BytesIO(img)).format.lower()
+
+
+def get_font() -> ImageFont.FreeTypeFont:
+    """
+    Attempts to retrieve a reasonably-looking TTF font from the system.
+    """
+    font_names = [
+        "Helvetica",
+        "NotoSerif-Regular",
+        "Menlo",
+        "DejaVuSerif",
+        "arial",
+    ]
+
+    for font_name in font_names:
+        try:
+            return ImageFont.truetype(font_name, size=14)
+        except OSError:
+            continue
+
+    raise GetenvError(
+        f"None of the default fonts were found: {font_names}.\n"
+        f"Please setup CAPTION_FONT in environment variables or in '{get_config_path()}'."
+    )
 
 
 def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
@@ -73,17 +97,18 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     fsize = human_size(len(img))
 
     # get font
-    font = getenv("CAPTION_FONT")
-    if not font:
-        font = "arial.ttf"
-    fnt = ImageFont.truetype(font, size=14)
+    font = (
+        ImageFont.truetype(font_name, size=14)
+        if (font_name := getenv("CAPTION_FONT"))
+        else get_font()
+    )
 
     # draw text
     d = ImageDraw.Draw(pw_with_line)
     d.text(
         xy=(pw.width / 5, pw.height),
         text=f"{im.width}x{im.height} ({im.format}) [{fsize}]",
-        font=fnt,
+        font=font,
         fill=(0, 0, 0),
     )
 

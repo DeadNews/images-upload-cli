@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "py-image-uploader"
-version = "0.2.1"
+name = "images-upload-cli"
+version = "0.3.0-alpha.0"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/DeadNews/py-image-uploader"
-repository = "https://github.com/DeadNews/py-image-uploader"
-keywords = ["cli", "image", "uploader"]
+homepage = "https://github.com/DeadNews/images-upload-cli"
+repository = "https://github.com/DeadNews/images-upload-cli"
+keywords = ["cli", "gyazo", "imgur", "upload-images", "upload-pictures"]
 classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 
 [tool.poetry.scripts]
-py-image-uploader = "py_image_uploader.cli:main"
+images-upload-cli = "images_upload_cli.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -34,7 +34,7 @@ flake8-unused-arguments = "^0.0.10"
 isort = "^5.10.1"
 mypy = "^0.961"
 pep8-naming = "^0.13.0"
-poethepoet = "^0.14.0"
+poethepoet = "^0.16.0"
 pre-commit = "^2.19.0"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
@@ -74,6 +74,10 @@ skips = [
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src"
 testpaths = ["tests"]
+markers = ["slow"]
+
+[tool.coverage.report]
+exclude_lines = ["if __name__ == .__main__.:"]
 
 [tool.poe.tasks]
 isort = "isort . --check-only --diff"
