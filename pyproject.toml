@@ -46,10 +46,10 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 88
+line-length = 99
 
 [tool.isort]
-line_length = 88
+line_length = 99
 profile = "black"
 
 [tool.mypy]
@@ -74,7 +74,7 @@ skips = [
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src"
 testpaths = ["tests"]
-markers = ["slow"]
+markers = ["docker", "slow"]
 
 [tool.coverage.report]
 exclude_lines = ["if __name__ == .__main__.:"]
