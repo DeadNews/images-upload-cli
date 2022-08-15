@@ -9,7 +9,7 @@ from src.images_upload_cli.util import GetenvError, get_env_val, get_img_ext, hu
 
 @pytest.fixture()
 def img() -> bytes:
-    return Path("tests/test_files/pic.png").read_bytes()
+    return Path("tests/resources/pic.png").read_bytes()
 
 
 @pytest.mark.parametrize(
