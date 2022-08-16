@@ -22,7 +22,7 @@ repos:
           - flake8-comprehensions
           - flake8-implicit-str-concat
           - flake8-pie
-          - Flake8-pyproject
+          - flake8-pyproject
           - flake8-pytest-style
           - flake8-simplify
           - flake8-unused-arguments
