@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "images-upload-cli"
-version = "1.0.1"
+version = "1.0.2"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
@@ -14,7 +14,7 @@ classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 images-upload-cli = "images_upload_cli.cli:cli"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 click = "^8.0.2"
 pillow = "^9.1.1"
 pyperclip = "^1.8.2"
@@ -29,7 +29,7 @@ flake8-bugbear = "^22.4.25"
 flake8-comprehensions = "^3.10.0"
 flake8-implicit-str-concat = "^0.3.0"
 flake8-pie = "^0.16.0"
-Flake8-pyproject = "^1.1.0"
+flake8-pyproject = "^1.1.0"
 flake8-pytest-style = "^1.6.0"
 flake8-simplify = "^0.19.3"
 flake8-unused-arguments = "^0.0.11"
@@ -59,7 +59,6 @@ profile = "black"
 max-line-length = 99
 max-complexity = 18
 show-source = true
-statistics = true
 ignore = [
   "E501",   # Line too long.
   "PIE786", # Use precise exception handlers.
