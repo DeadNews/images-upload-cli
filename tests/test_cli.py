@@ -12,6 +12,7 @@ from src.images_upload_cli.__main__ import cli
     argvalues=[
         (["--help"]),
         (["tests/resources/pic.png", "-C", "-h", "uploadcare", "--thumbnail"]),
+        (["tests/resources/pic.png", "-C", "-h", "fastpic"]),
     ],
 )
 def test_cli_fast(args: list[str]):
