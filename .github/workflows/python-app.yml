@@ -119,4 +119,3 @@ jobs:
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{github.ref}}
           updpkgsums: true
-          test: true
