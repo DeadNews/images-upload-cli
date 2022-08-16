@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import annotations
+
 from src.images_upload_cli.upload import UPLOAD, imgur_upload
 
 
