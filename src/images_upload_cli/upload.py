@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 
 from requests import get, post
 
-from .util import get_env_val, get_img_ext
+from images_upload_cli.util import get_env_val, get_img_ext
 
 
 class UploadError(Exception):

@@ -26,11 +26,13 @@ bandit = "^1.7.4"
 black = "^22.3.0"
 flake8 = "^5.0.4"
 flake8-bugbear = "^22.4.25"
+flake8-builtins = "^1.5.3"
 flake8-comprehensions = "^3.10.0"
 flake8-implicit-str-concat = "^0.3.0"
 flake8-pie = "^0.16.0"
 flake8-pyproject = "^1.1.0"
 flake8-pytest-style = "^1.6.0"
+flake8-requirements = "^1.6.0"
 flake8-simplify = "^0.19.3"
 flake8-unused-arguments = "^0.0.11"
 flake8-use-pathlib = "^0.3.0"
@@ -64,6 +66,9 @@ ignore = [
   "PIE786", # Use precise exception handlers.
   "PIE803", # Use lazy % formatting in logging functions.
   "W503",   # Line break occurred before a binary operator.
+]
+per-file-ignores = [
+  "tests/*: I900", # Package is not listed as a requirement.
 ]
 
 [tool.mypy]
