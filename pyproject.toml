@@ -105,11 +105,5 @@ mypy = "mypy ."
 flake8 = "flake8 ."
 bandit = "bandit -c pyproject.toml -r ."
 safety = "safety check --bare"
-
-[tool.poe.tasks.ci]
-help = "CI sequence"
-sequence = ["isort", "black", "mypy", "flake8", "bandit", "safety"]
-
-[tool.poe.tasks.pc]
-help = "pre-commit"
-cmd = "pre-commit run --all-files"
+ci.sequence = ["isort", "black", "mypy", "flake8", "bandit", "safety"]
+pc = "pre-commit run --all-files"
