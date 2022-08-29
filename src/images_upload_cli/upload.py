@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from __future__ import annotations
 
-from base64 import b64encode
 from collections.abc import Callable
 from os import getenv
 from re import search
@@ -73,17 +72,6 @@ def freeimage_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return response.json()["image"]["url"]
-
-
-def geekpic_upload(img: bytes) -> str:
-    response = post(
-        url="https://geekpic.net/client.php",
-        data={"image": b64encode(img)},
-    )
-    if not response.ok:
-        raise UploadError(response.json())
-
-    return response.json()["link"]
 
 
 def gyazo_upload(img: bytes) -> str:
@@ -321,7 +309,6 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "fastpic": fastpic_upload,
     "filecoffee": filecoffee_upload,
     "freeimage": freeimage_upload,
-    "geekpic": geekpic_upload,
     "gyazo": gyazo_upload,
     "imageban": imageban_upload,
     "imgbb": imgbb_upload,

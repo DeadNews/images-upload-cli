@@ -32,7 +32,6 @@ yay -S python-images-upload-cli
 | [fastpic](https://fastpic.org/)                |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
 | [filecoffee](https://file.coffee/)             |      -       | `https://file.coffee/u/{id}.png`                     |
 | [freeimage](https://freeimage.host/)           |      -       | `https://iili.io/{id}.png`                           |
-| [geekpic](https://geekpic.net/)                |      -       | `https://s01.geekpic.net/{id}.png`                   |
 | [gyazo](https://gyazo.com/)                    |      +       | `https://i.gyazo.com/{id}.png`                       |
 | [imageban](https://imageban.ru/)               |      +       | `https://i2.imageban.ru/out/2022/07/30/{id}.png`     |
 | [imgbb](https://imgbb.com/)                    |      +       | `https://i.ibb.co/{id}/image.png`                    |
@@ -58,7 +57,7 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [catbox|fastpic|filecoffee|freeimage|geekpic|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare]
+  -h, --hosting [catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add caption thumbnail and bbcode tags.
