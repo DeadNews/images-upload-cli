@@ -20,11 +20,13 @@ repos:
       - id: yesqa
         additional_dependencies: &flake8_deps
           - flake8-bugbear
+          - flake8-builtins
           - flake8-comprehensions
           - flake8-implicit-str-concat
           - flake8-pie
           - flake8-pyproject
           - flake8-pytest-style
+          - flake8-requirements
           - flake8-simplify
           - flake8-unused-arguments
           - flake8-use-pathlib
@@ -35,6 +37,12 @@ repos:
     hooks:
       - id: pyupgrade
         args: [--py38-plus]
+
+  - repo: https://github.com/MarcoGorelli/absolufy-imports
+    rev: v0.3.1
+    hooks:
+      - id: absolufy-imports
+        exclude: ^tests/
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.10.1

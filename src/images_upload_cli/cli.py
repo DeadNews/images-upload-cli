@@ -7,8 +7,8 @@ import click
 from dotenv import load_dotenv
 from pyperclip import copy
 
-from .upload import HOSTINGS, UPLOAD
-from .util import get_config_path, kdialog, make_thumbnail
+from images_upload_cli.upload import HOSTINGS, UPLOAD
+from images_upload_cli.util import get_config_path, kdialog, make_thumbnail
 
 
 @click.command(context_settings={"show_default": True})
