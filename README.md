@@ -45,6 +45,7 @@ yay -S python-images-upload-cli
 | [smms](https://sm.ms/)                         |      +       | `https://s2.loli.net/2022/07/30/{id}.png`            |
 | [sxcu](https://sxcu.net/)                      |      -       | `https://sxcu.net/{id}.png`                          |
 | [telegraph](https://telegra.ph/)               |      -       | `https://telegra.ph/file/{id}.png`                   |
+| [thumbsnap](https://thumbsnap.com/)            |      +       | `https://thumbsnap.com/i/{id}.png`                   |
 | [up2sha](https://up2sha.re/)                   |      +       | `https://up2sha.re/media/raw/{id}.png`               |
 | [uplio](https://upl.io/)                       |      +       | `https://upl.io/i/{id}.png`                          |
 | [uploadcare](https://uploadcare.com/)          |      +       | `https://ucarecdn.com/{id}/img.png`                  |
@@ -57,7 +58,7 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|up2sha|uplio|uploadcare]
+  -h, --hosting [catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|thumbsnap|up2sha|uplio|uploadcare|test]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add caption thumbnail and bbcode tags.
@@ -72,7 +73,6 @@ Options:
 ```ini
 CAPTION_FONT= # The default font is system dependent.
 
-BEEIMG_KEY=
 FREEIMAGE_KEY=
 GYAZO_TOKEN=
 IMAGEBAN_TOKEN=
@@ -81,6 +81,7 @@ IMGCHEST_KEY=
 IMGUR_CLIENT_ID=
 PTPIMG_KEY=
 SMMS_KEY=
+THUMBSNAP_KEY=
 UP2SHA_KEY=
 UPLIO_KEY=
 UPLOADCARE_KEY=

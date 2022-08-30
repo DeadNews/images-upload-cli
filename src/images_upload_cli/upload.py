@@ -255,6 +255,20 @@ def telegraph_upload(img: bytes) -> str:
     return f"https://telegra.ph{response.json()[0]['src']}"
 
 
+def thumbsnap_upload(img: bytes) -> str:
+    key = get_env_val("THUMBSNAP_KEY")
+
+    response = post(
+        url="https://thumbsnap.com/api/upload",
+        data={"key": key},
+        files={"media": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return response.json()["data"]["media"]
+
+
 def up2sha_upload(img: bytes) -> str:
     key = get_env_val("UP2SHA_KEY")
     ext = get_img_ext(img)
@@ -322,6 +336,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "smms": smms_upload,
     "sxcu": sxcu_upload,
     "telegraph": telegraph_upload,
+    "thumbsnap": thumbsnap_upload,
     "up2sha": up2sha_upload,
     "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,
