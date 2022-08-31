@@ -21,7 +21,10 @@ pyperclip = "^1.8.2"
 python-dotenv = "^0.20.0"
 requests = "^2.25.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.19.0"
+
+[tool.poetry.group.ci.dependencies]
 bandit = "^1.7.4"
 black = "^22.3.0"
 flake8 = "^5.0.4"
@@ -40,11 +43,12 @@ isort = "^5.10.1"
 mypy = "^0.971"
 pep8-naming = "^0.13.0"
 poethepoet = "^0.16.0"
-pre-commit = "^2.19.0"
-pytest = "^7.1.2"
-pytest-cov = "^3.0.0"
 safety = "^2.0.0"
 types-requests = "^2.27.30"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
