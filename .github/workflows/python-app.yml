@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry env use ${{ env.PYTHON_VERSION }}
-          poetry install --only ci
+          poetry install --with ci
       - name: Check code quality
         run: poetry run poe ci
 
@@ -59,7 +59,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry env use ${{ matrix.python-version }}
-          poetry install --only test
+          poetry install --with test
 
       - name: Run tests
         run: poetry run pytest --cov-report=xml -m "not slow"
