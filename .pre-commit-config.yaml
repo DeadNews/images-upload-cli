@@ -79,6 +79,8 @@ repos:
     rev: 1.2.0rc1
     hooks:
       - id: poetry-check
+      - id: poetry-lock
+        args: [--check]
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.18.1
