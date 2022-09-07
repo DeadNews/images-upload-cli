@@ -50,7 +50,7 @@ repos:
       - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 22.6.0
+    rev: 22.8.0
     hooks:
       - id: black
 
@@ -83,7 +83,7 @@ repos:
         args: [--check]
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.18.1
+    rev: 0.18.2
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
