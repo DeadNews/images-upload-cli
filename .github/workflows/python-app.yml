@@ -13,7 +13,6 @@ permissions:
 
 env:
   PYTHON_VERSION: "3.10"
-  FORCE_COLOR: 1
 
 jobs:
   code-quality:
@@ -69,10 +68,7 @@ jobs:
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
         uses: codecov/codecov-action@v3
-        with:
-          env_vars: OS,PYTHON
-          fail_ci_if_error: true
-          verbose: true
+
 
   publish_pypi:
     name: Build and release to PyPI
