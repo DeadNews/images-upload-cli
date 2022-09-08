@@ -318,6 +318,21 @@ def uploadcare_upload(img: bytes) -> str:
     return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
 
 
+def vgy_upload(img: bytes) -> str:
+    key = get_env_val("VGY_KEY")
+    name = f"img.{get_img_ext(img)}"
+
+    response = post(
+        url="https://vgy.me/upload",
+        data={"userkey": key},
+        files={"file[]": (name, img)},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return response.json()["image"]
+
+
 UPLOAD: dict[str, Callable[[bytes], str]] = {
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
@@ -340,6 +355,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "up2sha": up2sha_upload,
     "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,
+    "vgy": vgy_upload,
 }
 
 HOSTINGS = tuple(UPLOAD.keys())

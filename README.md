@@ -49,6 +49,7 @@ yay -S python-images-upload-cli
 | [up2sha](https://up2sha.re/)                   |      +       | `https://up2sha.re/media/raw/{id}.png`               |
 | [uplio](https://upl.io/)                       |      +       | `https://upl.io/i/{id}.png`                          |
 | [uploadcare](https://uploadcare.com/)          |      +       | `https://ucarecdn.com/{id}/img.png`                  |
+| [vgy](https://vgy.me/)                         |      +       | `https://i.vgy.me/{id}.png`                          |
 
 ## Usage
 
@@ -58,7 +59,7 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|thumbsnap|up2sha|uplio|uploadcare|test]
+  -h, --hosting [catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|thumbsnap|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add caption thumbnail and bbcode tags.
@@ -85,6 +86,7 @@ THUMBSNAP_KEY=
 UP2SHA_KEY=
 UPLIO_KEY=
 UPLOADCARE_KEY=
+VGY_KEY=
 ```
 
 You can set these in environment variables, or in `.env` file:
