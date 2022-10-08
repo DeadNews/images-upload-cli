@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from os import getenv
-from re import search
+from re import DOTALL, search, sub
 from urllib.parse import urlparse
 
 from requests import get, post
@@ -99,6 +99,17 @@ def imageban_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return response.json()["data"]["link"]
+
+
+def imagebin_upload(img: bytes) -> str:
+    response = post(
+        url="https://imagebin.ca/upload.php",
+        files={"file": img},
+    )
+    if not response.ok:
+        raise UploadError(response.text)
+
+    return sub(r".*url:", "", response.text, flags=DOTALL)
 
 
 def imgbb_upload(img: bytes) -> str:
@@ -340,6 +351,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "freeimage": freeimage_upload,
     "gyazo": gyazo_upload,
     "imageban": imageban_upload,
+    "imagebin": imagebin_upload,
     "imgbb": imgbb_upload,
     "imgchest": imgchest_upload,
     "imgur": imgur_upload,
