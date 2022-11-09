@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
-    branches: [main, dev]
+    branches: [main]
   release:
     types: [created]
 
@@ -33,6 +33,7 @@ jobs:
         run: |
           poetry env use ${{ env.PYTHON_VERSION }}
           poetry install --only main,ci
+
       - name: Check code quality
         run: poetry run poe ci
 
@@ -107,7 +108,7 @@ jobs:
           sed -i "s|\(^pkgver=\).*$|\1\"${VERSION}\"|" ./PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
-        uses: KSXGitHub/github-actions-deploy-aur@v2.5.0
+        uses: KSXGitHub/github-actions-deploy-aur@v2
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
