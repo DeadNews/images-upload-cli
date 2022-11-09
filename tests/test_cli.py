@@ -4,8 +4,8 @@ from __future__ import annotations
 import pytest
 from click.testing import CliRunner
 
-from src.images_upload_cli.__main__ import cli
-from src.images_upload_cli.upload import HOSTINGS
+from images_upload_cli.__main__ import cli
+from images_upload_cli.upload import HOSTINGS
 
 
 @pytest.mark.parametrize(
