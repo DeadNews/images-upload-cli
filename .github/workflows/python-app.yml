@@ -33,6 +33,7 @@ jobs:
         run: |
           poetry env use ${{ env.PYTHON_VERSION }}
           poetry install --only main,ci
+
       - name: Check code quality
         run: poetry run poe ci
 
