@@ -18,7 +18,7 @@ python = "^3.8"
 click = "^8.0.2"
 pillow = "^9.1.1"
 pyperclip = "^1.8.2"
-python-dotenv = "^0.21"
+python-dotenv = ">=0.20,<1.0.0"
 requests = "^2.25.1"
 
 [tool.poetry.group.dev.dependencies]
