@@ -13,8 +13,8 @@ from images_upload_cli.upload import HOSTINGS
     argvalues=[
         pytest.param(["--help"], id="help"),
         pytest.param(
-            ["tests/resources/pic.png", "-C", "-h", "fastpic", "--thumbnail"],
-            id="fastpic,thumbnail",
+            ["tests/resources/pic.png", "-C", "-h", "uploadcare", "--thumbnail"],
+            id="uploadcare,thumbnail",
         ),
     ],
 )
