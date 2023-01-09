@@ -11,9 +11,9 @@ on:
 jobs:
   codeql:
     name: CodeQL analyze
-    runs-on: ubuntu-latest
     permissions:
       security-events: write
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
