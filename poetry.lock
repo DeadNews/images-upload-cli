@@ -393,19 +393,19 @@ flake8-plugin-utils = ">=1.3.2,<2.0.0"
 
 [[package]]
 name = "flake8-requirements"
-version = "1.7.5"
+version = "1.7.6"
 description = "Package requirements checker, plugin for flake8"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "flake8_requirements-1.7.5-py2.py3-none-any.whl", hash = "sha256:c85fd1287295f6db86c6b5c23a2b51973a1102cb6490c7b5d9fa0187678c1227"},
+    {file = "flake8_requirements-1.7.6-py2.py3-none-any.whl", hash = "sha256:ecb41a9cee8b044935095279b1597eaedfe28a6c408600cddc74dd7ba3487e08"},
 ]
 
 [package.dependencies]
 flake8 = ">=2.0.0"
 setuptools = ">=10.0.0"
-toml = ">=0.7.0"
+tomli = {version = ">=1.2.1", markers = "python_version < \"3.11\""}
 
 [[package]]
 name = "flake8-simplify"
