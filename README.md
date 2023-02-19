@@ -28,6 +28,7 @@ yay -S python-images-upload-cli
 
 | host                                           | key required | return example                                       |
 | :--------------------------------------------- | :----------: | :--------------------------------------------------- |
+| [beeimg](https://beeimg.com/)                  |      -       | `https://beeimg.com/images/{id}.png`                 |
 | [catbox](https://catbox.moe/)                  |      -       | `https://files.catbox.moe/{id}`                      |
 | [fastpic](https://fastpic.org/)                |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
 | [filecoffee](https://file.coffee/)             |      -       | `https://file.coffee/u/{id}.png`                     |

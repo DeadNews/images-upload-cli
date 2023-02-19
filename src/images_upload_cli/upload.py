@@ -15,6 +15,19 @@ class UploadError(Exception):
     pass
 
 
+def beeimg_upload(img: bytes) -> str:
+    ext = f"img.{get_img_ext(img)}"
+
+    response = post(
+        url="https://beeimg.com/api/upload/file/json/",
+        files={"file": (f"img.{ext}", img, f"image/{ext}")},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return f"https:{response.json()['files']['url']}"
+
+
 def catbox_upload(img: bytes) -> str:
     response = post(
         url="https://catbox.moe/user/api.php",
@@ -345,6 +358,7 @@ def vgy_upload(img: bytes) -> str:
 
 
 UPLOAD: dict[str, Callable[[bytes], str]] = {
+    "beeimg": beeimg_upload,
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
     "filecoffee": filecoffee_upload,

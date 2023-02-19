@@ -1,6 +1,6 @@
 pkgbase="python-images-upload-cli"
 pkgname=("python-images-upload-cli")
-_module="images-upload-cli"
+_module="images_upload_cli"
 pkgver=""
 pkgrel=1
 pkgdesc="Upload images via APIs"
@@ -16,7 +16,7 @@ depends=(
 makedepends=("python-setuptools")
 license=("MIT")
 arch=("any")
-source=("https://files.pythonhosted.org/packages/source/${_module::1}/$_module/$_module-$pkgver.tar.gz")
+source=("https://files.pythonhosted.org/packages/source/${_module::1}/${_module}/${_module}-${pkgver}.tar.gz")
 sha256sums=("")
 
 build() {
