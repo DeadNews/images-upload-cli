@@ -26,32 +26,31 @@ yay -S python-images-upload-cli
 
 ## Hostings
 
-| host                                           | key required | return example                                       |
-| :--------------------------------------------- | :----------: | :--------------------------------------------------- |
-| [beeimg](https://beeimg.com/)                  |      -       | `https://beeimg.com/images/{id}.png`                 |
-| [catbox](https://catbox.moe/)                  |      -       | `https://files.catbox.moe/{id}`                      |
-| [fastpic](https://fastpic.org/)                |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
-| [filecoffee](https://file.coffee/)             |      -       | `https://file.coffee/u/{id}.png`                     |
-| [freeimage](https://freeimage.host/)           |      -       | `https://iili.io/{id}.png`                           |
-| [gyazo](https://gyazo.com/)                    |      +       | `https://i.gyazo.com/{id}.png`                       |
-| [imageban](https://imageban.ru/)               |      +       | `https://i2.imageban.ru/out/2022/07/30/{id}.png`     |
-| [imagebin](https://imagebin.ca/)               |      -       | `https://ibin.co/{id}.png`                           |
-| [imgbb](https://imgbb.com/)                    |      +       | `https://i.ibb.co/{id}/image.png`                    |
-| [imgchest](https://imgchest.com/)              |      +       | `https://cdn.imgchest.com/files/{id}.png`            |
-| [imgur](https://imgur.com/)                    |      -       | `https://i.imgur.com/{id}.png`                       |
-| [pictshare](https://pictshare.net/)            |      -       | `https://pictshare.net/{id}.png`                     |
-| [pixeldrain](https://pixeldrain.com/)          |      -       | `https://pixeldrain.com/api/file/{id}`               |
-| [pixhost](https://pixhost.to/)                 |      -       | `https://img75.pixhost.to/images/69/{id}_img.png`    |
-| [ptpimg](https://ptpimg.me/)                   |      +       | `https://ptpimg.me/{id}.png`                         |
-| [screenshotting](https://screenshotting.site/) |      -       | `https://screenshotting.site/i/{id}.png`             |
-| [smms](https://sm.ms/)                         |      +       | `https://s2.loli.net/2022/07/30/{id}.png`            |
-| [sxcu](https://sxcu.net/)                      |      -       | `https://sxcu.net/{id}.png`                          |
-| [telegraph](https://telegra.ph/)               |      -       | `https://telegra.ph/file/{id}.png`                   |
-| [thumbsnap](https://thumbsnap.com/)            |      +       | `https://thumbsnap.com/i/{id}.png`                   |
-| [up2sha](https://up2sha.re/)                   |      +       | `https://up2sha.re/media/raw/{id}.png`               |
-| [uplio](https://upl.io/)                       |      +       | `https://upl.io/i/{id}.png`                          |
-| [uploadcare](https://uploadcare.com/)          |      +       | `https://ucarecdn.com/{id}/img.png`                  |
-| [vgy](https://vgy.me/)                         |      +       | `https://i.vgy.me/{id}.png`                          |
+| host                                  | key required | return example                                       |
+| :------------------------------------ | :----------: | :--------------------------------------------------- |
+| [beeimg](https://beeimg.com/)         |      -       | `https://beeimg.com/images/{id}.png`                 |
+| [catbox](https://catbox.moe/)         |      -       | `https://files.catbox.moe/{id}`                      |
+| [fastpic](https://fastpic.org/)       |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
+| [filecoffee](https://file.coffee/)    |      -       | `https://file.coffee/u/{id}.png`                     |
+| [freeimage](https://freeimage.host/)  |      -       | `https://iili.io/{id}.png`                           |
+| [gyazo](https://gyazo.com/)           |      +       | `https://i.gyazo.com/{id}.png`                       |
+| [imageban](https://imageban.ru/)      |      +       | `https://i2.imageban.ru/out/2022/07/30/{id}.png`     |
+| [imagebin](https://imagebin.ca/)      |      -       | `https://ibin.co/{id}.png`                           |
+| [imgbb](https://imgbb.com/)           |      +       | `https://i.ibb.co/{id}/image.png`                    |
+| [imgchest](https://imgchest.com/)     |      +       | `https://cdn.imgchest.com/files/{id}.png`            |
+| [imgur](https://imgur.com/)           |      -       | `https://i.imgur.com/{id}.png`                       |
+| [pictshare](https://pictshare.net/)   |      -       | `https://pictshare.net/{id}.png`                     |
+| [pixeldrain](https://pixeldrain.com/) |      -       | `https://pixeldrain.com/api/file/{id}`               |
+| [pixhost](https://pixhost.to/)        |      -       | `https://img75.pixhost.to/images/69/{id}_img.png`    |
+| [ptpimg](https://ptpimg.me/)          |      +       | `https://ptpimg.me/{id}.png`                         |
+| [smms](https://sm.ms/)                |      +       | `https://s2.loli.net/2022/07/30/{id}.png`            |
+| [sxcu](https://sxcu.net/)             |      -       | `https://sxcu.net/{id}.png`                          |
+| [telegraph](https://telegra.ph/)      |      -       | `https://telegra.ph/file/{id}.png`                   |
+| [thumbsnap](https://thumbsnap.com/)   |      +       | `https://thumbsnap.com/i/{id}.png`                   |
+| [up2sha](https://up2sha.re/)          |      +       | `https://up2sha.re/media/raw/{id}.png`               |
+| [uplio](https://upl.io/)              |      +       | `https://upl.io/i/{id}.png`                          |
+| [uploadcare](https://uploadcare.com/) |      +       | `https://ucarecdn.com/{id}/img.png`                  |
+| [vgy](https://vgy.me/)                |      +       | `https://i.vgy.me/{id}.png`                          |
 
 ## Usage
 
@@ -61,7 +60,7 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|screenshotting|smms|sxcu|telegraph|thumbsnap|up2sha|uplio|uploadcare|vgy]
+  -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|pictshare|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add caption thumbnail and bbcode tags.
