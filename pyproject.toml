@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "images-upload-cli"
-version = "1.0.9"
+version = "1.1.0"
 description = "Upload images via APIs"
 authors = ["DeadNews <uhjnnn@gmail.com>"]
 license = "MIT"
