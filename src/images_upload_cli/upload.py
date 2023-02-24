@@ -226,19 +226,6 @@ def ptpimg_upload(img: bytes) -> str:
     return f"https://ptpimg.me/{response.json()[0]['code']}.{response.json()[0]['ext']}"
 
 
-def screenshotting_upload(img: bytes) -> str:
-    name = f"img.{get_img_ext(img)}"
-
-    response = post(
-        url="https://screenshotting.site/upload",
-        files={"img": (name, img)},
-    )
-    if not response.ok:
-        raise UploadError(response.text)
-
-    return response.json()["url"].replace("http://", "https://")
-
-
 def smms_upload(img: bytes) -> str:
     key = get_env_val("SMMS_KEY")
 
@@ -373,7 +360,6 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "pixeldrain": pixeldrain_upload,
     "pixhost": pixhost_upload,
     "ptpimg": ptpimg_upload,
-    "screenshotting": screenshotting_upload,
     "smms": smms_upload,
     "sxcu": sxcu_upload,
     "telegraph": telegraph_upload,
