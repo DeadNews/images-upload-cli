@@ -168,6 +168,22 @@ def imgur_upload(img: bytes) -> str:
     return response.json()["data"]["link"]
 
 
+def lensdump_upload(img: bytes) -> str:
+    key = get_env_val("LENSDUMP_KEY")
+
+    response = post(
+        url="https://lensdump.com/api/1/upload",
+        data={"key": key},
+        files={"source": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    print(response.json())
+
+    return response.json()["image"]["url"]
+
+
 def pictshare_upload(img: bytes) -> str:
     response = post(
         url="https://pictshare.net/api/upload.php",
@@ -356,6 +372,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "imgbb": imgbb_upload,
     "imgchest": imgchest_upload,
     "imgur": imgur_upload,
+    "lensdump": lensdump_upload,
     "pictshare": pictshare_upload,
     "pixeldrain": pixeldrain_upload,
     "pixhost": pixhost_upload,
