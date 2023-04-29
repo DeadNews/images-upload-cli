@@ -141,12 +141,12 @@ def imgbb_upload(img: bytes) -> str:
 
 def imgchest_upload(img: bytes) -> str:
     key = get_env_val("IMGCHEST_KEY")
-    name = f"img.{get_img_ext(img)}"
+    ext = get_img_ext(img)
 
     response = post(
         url="https://api.imgchest.com/v1/post",
         headers={"Authorization": f"Bearer {key}"},
-        files={"images[]": (name, img)},
+        files={"images[]": (f"img.{ext}", img)},
     )
     if not response.ok:
         raise UploadError(response.json())
@@ -296,6 +296,22 @@ def thumbsnap_upload(img: bytes) -> str:
     return response.json()["data"]["media"]
 
 
+def tixte_upload(img: bytes) -> str:
+    key = get_env_val("TIXTE_KEY")
+    ext = get_img_ext(img)
+
+    response = post(
+        url="https://api.tixte.com/v1/upload",
+        headers={"Authorization": key},
+        data={"payload_json": '{"random":true}'},
+        files={"file": (f"img.{ext}", img)},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return response.json()["data"]["direct_url"]
+
+
 def up2sha_upload(img: bytes) -> str:
     key = get_env_val("UP2SHA_KEY")
     ext = get_img_ext(img)
@@ -381,6 +397,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "sxcu": sxcu_upload,
     "telegraph": telegraph_upload,
     "thumbsnap": thumbsnap_upload,
+    "tixte": tixte_upload,
     "up2sha": up2sha_upload,
     "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,

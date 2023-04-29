@@ -48,6 +48,7 @@ yay -S python-images-upload-cli
 | [sxcu](https://sxcu.net/)             |      -       | `https://sxcu.net/{id}.png`                          |
 | [telegraph](https://telegra.ph/)      |      -       | `https://telegra.ph/file/{id}.png`                   |
 | [thumbsnap](https://thumbsnap.com/)   |      +       | `https://thumbsnap.com/i/{id}.png`                   |
+| [tixte](https://tixte.com/)           |      +       | `https://{domain}.tixte.co/r/{id}.png`               |
 | [up2sha](https://up2sha.re/)          |      +       | `https://up2sha.re/media/raw/{id}.png`               |
 | [uplio](https://upl.io/)              |      +       | `https://upl.io/i/{id}.png`                          |
 | [uploadcare](https://uploadcare.com/) |      +       | `https://ucarecdn.com/{id}/img.png`                  |
@@ -61,7 +62,7 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pictshare|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|up2sha|uplio|uploadcare|vgy]
+  -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pictshare|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|tixte|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add caption thumbnail and bbcode tags.
@@ -82,9 +83,11 @@ IMAGEBAN_TOKEN=
 IMGBB_KEY=
 IMGCHEST_KEY=
 IMGUR_CLIENT_ID=
+LENSDUMP_KEY=
 PTPIMG_KEY=
 SMMS_KEY=
 THUMBSNAP_KEY=
+TIXTE_KEY=
 UP2SHA_KEY=
 UPLIO_KEY=
 UPLOADCARE_KEY=
