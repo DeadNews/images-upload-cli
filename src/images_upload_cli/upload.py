@@ -141,12 +141,12 @@ def imgbb_upload(img: bytes) -> str:
 
 def imgchest_upload(img: bytes) -> str:
     key = get_env_val("IMGCHEST_KEY")
-    name = f"img.{get_img_ext(img)}"
+    ext = get_img_ext(img)
 
     response = post(
         url="https://api.imgchest.com/v1/post",
         headers={"Authorization": f"Bearer {key}"},
-        files={"images[]": (name, img)},
+        files={"images[]": (f"img.{ext}", img)},
     )
     if not response.ok:
         raise UploadError(response.json())
@@ -166,6 +166,20 @@ def imgur_upload(img: bytes) -> str:
         raise UploadError(response.json())
 
     return response.json()["data"]["link"]
+
+
+def lensdump_upload(img: bytes) -> str:
+    key = get_env_val("LENSDUMP_KEY")
+
+    response = post(
+        url="https://lensdump.com/api/1/upload",
+        data={"key": key},
+        files={"source": img},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return response.json()["image"]["url"]
 
 
 def pictshare_upload(img: bytes) -> str:
@@ -280,6 +294,22 @@ def thumbsnap_upload(img: bytes) -> str:
     return response.json()["data"]["media"]
 
 
+def tixte_upload(img: bytes) -> str:
+    key = get_env_val("TIXTE_KEY")
+    ext = get_img_ext(img)
+
+    response = post(
+        url="https://api.tixte.com/v1/upload",
+        headers={"Authorization": key},
+        data={"payload_json": '{"random":true}'},
+        files={"file": (f"img.{ext}", img)},
+    )
+    if not response.ok:
+        raise UploadError(response.json())
+
+    return response.json()["data"]["direct_url"]
+
+
 def up2sha_upload(img: bytes) -> str:
     key = get_env_val("UP2SHA_KEY")
     ext = get_img_ext(img)
@@ -331,12 +361,12 @@ def uploadcare_upload(img: bytes) -> str:
 
 def vgy_upload(img: bytes) -> str:
     key = get_env_val("VGY_KEY")
-    name = f"img.{get_img_ext(img)}"
+    ext = get_img_ext(img)
 
     response = post(
         url="https://vgy.me/upload",
         data={"userkey": key},
-        files={"file[]": (name, img)},
+        files={"file[]": (f"img.{ext}", img)},
     )
     if not response.ok:
         raise UploadError(response.json())
@@ -356,6 +386,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "imgbb": imgbb_upload,
     "imgchest": imgchest_upload,
     "imgur": imgur_upload,
+    "lensdump": lensdump_upload,
     "pictshare": pictshare_upload,
     "pixeldrain": pixeldrain_upload,
     "pixhost": pixhost_upload,
@@ -364,6 +395,7 @@ UPLOAD: dict[str, Callable[[bytes], str]] = {
     "sxcu": sxcu_upload,
     "telegraph": telegraph_upload,
     "thumbsnap": thumbsnap_upload,
+    "tixte": tixte_upload,
     "up2sha": up2sha_upload,
     "uplio": uplio_upload,
     "uploadcare": uploadcare_upload,

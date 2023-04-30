@@ -1,6 +1,8 @@
 {
-    // List of extensions which should be recommended for users of this workspace.
-    "recommendations": [
-        "ms-python.python",
-    ]
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.isort"
+  ]
 }

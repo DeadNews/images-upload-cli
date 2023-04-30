@@ -70,7 +70,6 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
         uses: codecov/codecov-action@v3
 
-
   publish_pypi:
     name: Build and release to PyPI
     if: github.event_name == 'release' && github.event.action == 'created'

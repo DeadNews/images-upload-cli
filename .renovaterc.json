@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": true,
+  "automergeStrategy": "squash",
+  "commitMessageAction": "update",
+  "dependencyDashboard": true,
+  "extends": ["config:base"],
+  "labels": ["deps"],
+  "packageRules": [
+    {
+      "addLabels": ["main", "major"],
+      "automerge": false,
+      "description": "Disable automerge for major updates in Poetry main dependency group",
+      "matchDepTypes": ["dependencies"],
+      "matchManagers": ["poetry"],
+      "matchUpdateTypes": ["major"]
+    }
+  ],
+  "platformAutomerge": true,
+  "pre-commit": {
+    "enabled": true
+  },
+  "semanticCommits": "enabled"
+}
