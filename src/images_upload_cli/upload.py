@@ -179,8 +179,6 @@ def lensdump_upload(img: bytes) -> str:
     if not response.ok:
         raise UploadError(response.json())
 
-    print(response.json())
-
     return response.json()["image"]["url"]
 
 
@@ -363,12 +361,12 @@ def uploadcare_upload(img: bytes) -> str:
 
 def vgy_upload(img: bytes) -> str:
     key = get_env_val("VGY_KEY")
-    name = f"img.{get_img_ext(img)}"
+    ext = get_img_ext(img)
 
     response = post(
         url="https://vgy.me/upload",
         data={"userkey": key},
-        files={"file[]": (name, img)},
+        files={"file[]": (f"img.{ext}", img)},
     )
     if not response.ok:
         raise UploadError(response.json())
