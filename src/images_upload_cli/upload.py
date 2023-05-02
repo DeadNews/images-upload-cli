@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable  # noqa: TCH003
 from os import getenv
 from re import DOTALL, search, sub
 from urllib.parse import urlparse
@@ -12,10 +12,11 @@ from images_upload_cli.util import get_env_val, get_img_ext
 
 
 class UploadError(Exception):
-    pass
+    """Exception raised for upload errors."""
 
 
 def beeimg_upload(img: bytes) -> str:
+    """Upload to beeimg.com."""
     ext = f"img.{get_img_ext(img)}"
 
     response = post(
@@ -29,6 +30,7 @@ def beeimg_upload(img: bytes) -> str:
 
 
 def catbox_upload(img: bytes) -> str:
+    """Upload to catbox.moe."""
     response = post(
         url="https://catbox.moe/user/api.php",
         data={"reqtype": "fileupload"},
@@ -41,6 +43,7 @@ def catbox_upload(img: bytes) -> str:
 
 
 def fastpic_upload(img: bytes) -> str:
+    """Upload to fastpic.org."""
     response = post(
         url="https://fastpic.org/upload?api=1",
         data={
@@ -63,6 +66,7 @@ def fastpic_upload(img: bytes) -> str:
 
 
 def filecoffee_upload(img: bytes) -> str:
+    """Upload to file.coffee."""
     response = post(
         url="https://file.coffee/api/file/upload",
         files={"file": img},
@@ -74,6 +78,7 @@ def filecoffee_upload(img: bytes) -> str:
 
 
 def freeimage_upload(img: bytes) -> str:
+    """Upload to freeimage.host."""
     key = get_env_val("FREEIMAGE_KEY")
 
     response = post(
@@ -88,6 +93,7 @@ def freeimage_upload(img: bytes) -> str:
 
 
 def gyazo_upload(img: bytes) -> str:
+    """Upload to gyazo.com."""
     key = get_env_val("GYAZO_TOKEN")
 
     response = post(
@@ -101,6 +107,7 @@ def gyazo_upload(img: bytes) -> str:
 
 
 def imageban_upload(img: bytes) -> str:
+    """Upload to imageban.ru."""
     token = get_env_val("IMAGEBAN_TOKEN")
 
     response = post(
@@ -115,6 +122,7 @@ def imageban_upload(img: bytes) -> str:
 
 
 def imagebin_upload(img: bytes) -> str:
+    """Upload to imagebin.ca."""
     response = post(
         url="https://imagebin.ca/upload.php",
         files={"file": img},
@@ -126,6 +134,7 @@ def imagebin_upload(img: bytes) -> str:
 
 
 def imgbb_upload(img: bytes) -> str:
+    """Upload to imgbb.com."""
     key = get_env_val("IMGBB_KEY")
 
     response = post(
@@ -140,6 +149,7 @@ def imgbb_upload(img: bytes) -> str:
 
 
 def imgchest_upload(img: bytes) -> str:
+    """Upload to imgchest.com."""
     key = get_env_val("IMGCHEST_KEY")
     ext = get_img_ext(img)
 
@@ -155,6 +165,7 @@ def imgchest_upload(img: bytes) -> str:
 
 
 def imgur_upload(img: bytes) -> str:
+    """Upload to imgur.com."""
     client_id = getenv("IMGUR_CLIENT_ID", "dd32dd3c6aaa9a0")
 
     response = post(
@@ -169,6 +180,7 @@ def imgur_upload(img: bytes) -> str:
 
 
 def lensdump_upload(img: bytes) -> str:
+    """Upload to lensdump.com."""
     key = get_env_val("LENSDUMP_KEY")
 
     response = post(
@@ -183,6 +195,7 @@ def lensdump_upload(img: bytes) -> str:
 
 
 def pictshare_upload(img: bytes) -> str:
+    """Upload to pictshare.net."""
     response = post(
         url="https://pictshare.net/api/upload.php",
         files={"file": img},
@@ -194,6 +207,7 @@ def pictshare_upload(img: bytes) -> str:
 
 
 def pixeldrain_upload(img: bytes) -> str:
+    """Upload to pixeldrain.com."""
     response = post(
         url="https://pixeldrain.com/api/file",
         files={"file": img},
@@ -205,6 +219,7 @@ def pixeldrain_upload(img: bytes) -> str:
 
 
 def pixhost_upload(img: bytes) -> str:
+    """Upload to pixhost.to."""
     response = post(
         url="https://api.pixhost.to/images",
         data={"content_type": 0},
@@ -227,6 +242,7 @@ def pixhost_upload(img: bytes) -> str:
 
 
 def ptpimg_upload(img: bytes) -> str:
+    """Upload to ptpimg.me."""
     key = get_env_val("PTPIMG_KEY")
 
     response = post(
@@ -241,6 +257,7 @@ def ptpimg_upload(img: bytes) -> str:
 
 
 def smms_upload(img: bytes) -> str:
+    """Upload to sm.ms."""
     key = get_env_val("SMMS_KEY")
 
     response = post(
@@ -259,6 +276,7 @@ def smms_upload(img: bytes) -> str:
 
 
 def sxcu_upload(img: bytes) -> str:
+    """Upload to sxcu.net."""
     response = post(
         url="https://sxcu.net/api/files/create",
         files={"file": img},
@@ -281,6 +299,7 @@ def telegraph_upload(img: bytes) -> str:
 
 
 def thumbsnap_upload(img: bytes) -> str:
+    """Upload to thumbsnap.com."""
     key = get_env_val("THUMBSNAP_KEY")
 
     response = post(
@@ -295,6 +314,7 @@ def thumbsnap_upload(img: bytes) -> str:
 
 
 def tixte_upload(img: bytes) -> str:
+    """Upload to tixte.com."""
     key = get_env_val("TIXTE_KEY")
     ext = get_img_ext(img)
 
@@ -311,6 +331,7 @@ def tixte_upload(img: bytes) -> str:
 
 
 def up2sha_upload(img: bytes) -> str:
+    """Upload to up2sha.re."""
     key = get_env_val("UP2SHA_KEY")
     ext = get_img_ext(img)
 
@@ -326,6 +347,7 @@ def up2sha_upload(img: bytes) -> str:
 
 
 def uplio_upload(img: bytes) -> str:
+    """Upload to upl.io."""
     key = get_env_val("UPLIO_KEY")
     ext = get_img_ext(img)
 
@@ -342,6 +364,7 @@ def uplio_upload(img: bytes) -> str:
 
 
 def uploadcare_upload(img: bytes) -> str:
+    """Upload to uploadcare.com."""
     key = get_env_val("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
 
@@ -360,6 +383,7 @@ def uploadcare_upload(img: bytes) -> str:
 
 
 def vgy_upload(img: bytes) -> str:
+    """Upload to vgy.me."""
     key = get_env_val("VGY_KEY")
     ext = get_img_ext(img)
 

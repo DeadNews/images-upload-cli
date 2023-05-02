@@ -36,9 +36,7 @@ def cli(
     thumbnail: bool,
     clipboard: bool,
 ) -> None:
-    """
-    Upload images via APIs.
-    """
+    """Upload images via APIs."""
     # loading .env variables
     load_dotenv(dotenv_path=get_config_path())
 
