@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Entrypoint for cli."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -62,7 +63,3 @@ def cli(
     if clipboard:
         copy(links_str)
     kdialog(links_str)
-
-
-if __name__ == "__main__":
-    cli()

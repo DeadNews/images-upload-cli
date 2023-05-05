@@ -22,7 +22,7 @@ repos:
       - id: prettier
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.22.0
+    rev: 0.23.0
     hooks:
       - id: check-github-workflows
       - id: check-renovate
@@ -31,7 +31,7 @@ repos:
     rev: v0.0.264
     hooks:
       - id: ruff
-        args: ["--fix"]
+        args: [--fix]
 
   - repo: https://github.com/psf/black
     rev: 23.3.0
@@ -50,14 +50,4 @@ repos:
     hooks:
       - id: poetry-check
       - id: poetry-lock
-        args: [--check]
-
-  - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.4.0
-    hooks:
-      - id: detect-secrets
-
-  # - repo: https://github.com/koyeung/ko-poetry-audit-plugin
-  #   rev: 0.7.0
-  #   hooks:
-  #     - id: poetry-audit
+        args: [--no-update]

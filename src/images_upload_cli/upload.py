@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Upload callables."""
 from __future__ import annotations
 
 from collections.abc import Callable  # noqa: TCH003
@@ -288,6 +289,7 @@ def sxcu_upload(img: bytes) -> str:
 
 
 def telegraph_upload(img: bytes) -> str:
+    """Upload to telegra.ph."""
     response = post(
         url="https://telegra.ph/upload",
         files={"file": img},

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Utils."""
 from __future__ import annotations
 
 from io import BytesIO
@@ -31,10 +32,11 @@ def get_env_val(key: str) -> str:
 
 def human_size(num: float, suffix: str = "B") -> str:
     """Convert bytes to human readable units."""
+    round_num = 1024.0
     for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
-        if abs(num) < 1024.0:
+        if abs(num) < round_num:
             return f"{num:3.1f} {unit}{suffix}"
-        num /= 1024.0
+        num /= round_num
     return f"{num:.1f} Yi{suffix}"
 
 
