@@ -1,8 +1,12 @@
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
+
 [tool.poetry]
 name = "images-upload-cli"
-version = "1.1.0"
+version = "0.0.0"
 description = "Upload images via APIs"
-authors = ["DeadNews <uhjnnn@gmail.com>"]
+authors = ["DeadNews <aurczpbgr@mozmail.com>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/DeadNews/images-upload-cli"
@@ -19,56 +23,32 @@ click = "^8.1.3"
 pillow = "^9.5.0"
 pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
-requests = "^2.29.0"
+requests = "^2.30.0"
 
 [tool.poetry.group.ci.dependencies]
-bandit = "^1.7.5"
 black = "^23.3.0"
-flake8 = "^6.0.0"
-flake8-bugbear = "^23.3.23"
-flake8-builtins = "^2.1.0"
-flake8-comprehensions = "^3.12.0"
-flake8-implicit-str-concat = "^0.4.0"
-flake8-pie = "^0.16.0"
-flake8-pyproject = "^1.2.3"
-flake8-pytest-style = "^1.7.2"
-flake8-requirements = "^1.7.7"
-flake8-simplify = "^0.20.0"
-flake8-unused-arguments = "^0.0.13"
-flake8-use-pathlib = "^0.3.0"
-isort = "^5.12.0"
 mypy = "^1.2.0"
-pep8-naming = "^0.13.3"
 poethepoet = "^0.20.0"
-safety = "^2.3.5"
+ruff = "^0.0.264"
 types-requests = "^2.29.0.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.3.1"
 pytest-cov = "^4.0.0"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poe.tasks]
+ruff = "ruff check ."
+black = "black --check ."
+mypy = "mypy ."
+ci.sequence = ["ruff", "black", "mypy"]
+
+[tool.poetry-dynamic-versioning]
+enable = false
+vcs = "git"
+style = "semver"
 
 [tool.black]
 line-length = 99
-
-[tool.isort]
-line_length = 99
-profile = "black"
-
-[tool.flake8]
-max-line-length = 99
-max-complexity = 18
-show-source = true
-ignore = [
-  "E501", # Line too long.
-  "W503", # Line break occurred before a binary operator.
-]
-per-file-ignores = [
-  "tests/*: I900", # Package is not listed as a requirement.
-]
 
 [tool.mypy]
 disallow_untyped_defs = true
@@ -82,28 +62,36 @@ warn_unused_ignores = true
 module = ["tests.*"]
 allow_untyped_defs = true
 
-[tool.bandit]
-exclude_dirs = ["tests"]
-skips = [
-  "B113", # Missing requests timeout.
-  "B404", # Importing subprocess.
-  "B603", # Calling subprocess.Popen without shell=True.
-]
-
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src"
 testpaths = ["tests"]
-markers = ["docker", "slow"]
+markers = ["docker", "key_required"]
 
 [tool.coverage.report]
-exclude_lines = ["if __name__ == .__main__.:"]
+exclude_lines = ["if TYPE_CHECKING:", "if __name__ == .__main__.:"]
 
-[tool.poe.tasks]
-isort = "isort . --check-only --diff"
-black = "black . --check --diff"
-mypy = "mypy ."
-flake8 = "flake8 ."
-bandit = "bandit -r . -c pyproject.toml"
-safety = "safety check -r pyproject.toml -o bare"
-ci.sequence = ["isort", "black", "mypy", "flake8", "bandit", "safety"]
-pc = "pre-commit run -a"
+[tool.ruff]
+line-length = 99
+select = ["ALL"]
+ignore = [
+  "COM812", # Trailing comma missing
+  "D203",   # 1 blank line required before class docstring
+  "D212",   # Multi-line docstring summary should start at the first line
+  "E501",   # Line too long
+  "EXE001", # Shebang is present but file is not executable
+  "FBT001", # Boolean positional arg in function definition
+  "FBT002", # Boolean default value in function definition
+  #
+  "S113", # Missing requests timeout
+  "S603", # Calling subprocess.Popen with shell=False
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["ANN", "D", "PLC1901", "PLR2004", "S"]
+
+[tool.ruff.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = false
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"

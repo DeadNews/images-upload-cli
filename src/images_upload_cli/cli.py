@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Entrypoint for cli."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -36,9 +37,7 @@ def cli(
     thumbnail: bool,
     clipboard: bool,
 ) -> None:
-    """
-    Upload images via APIs.
-    """
+    """Upload images via APIs."""
     # loading .env variables
     load_dotenv(dotenv_path=get_config_path())
 
@@ -64,7 +63,3 @@ def cli(
     if clipboard:
         copy(links_str)
     kdialog(links_str)
-
-
-if __name__ == "__main__":
-    cli()

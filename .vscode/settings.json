@@ -4,16 +4,12 @@
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
+      "source.fixAll": true,
       "source.organizeImports": true
     }
   },
   // mypy
   "python.linting.mypyEnabled": true,
-  // flake8
-  "python.linting.flake8Enabled": true,
-  // bandit
-  "python.linting.banditEnabled": true,
-  "python.linting.banditArgs": ["-c", "pyproject.toml"],
   // pytest
   "python.testing.pytestEnabled": true
 }

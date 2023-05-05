@@ -62,7 +62,7 @@ jobs:
           poetry install --only main,test
 
       - name: Run tests
-        run: poetry run pytest --cov-report=xml -m "not slow"
+        run: poetry run pytest --cov-report=xml -m "not key_required"
         env:
           UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
@@ -70,16 +70,20 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
         uses: codecov/codecov-action@v3
 
-  publish_pypi:
+  publish-pypi:
     name: Build and release to PyPI
     if: github.event_name == 'release' && github.event.action == 'created'
     needs: [code-quality, run-tests]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v3
 
       - name: Install poetry
-        run: pipx install poetry
+        run: |
+          pipx install poetry
+          pipx inject poetry poetry-dynamic-versioning[plugin]
 
       - uses: actions/setup-python@v4
         with:
@@ -89,14 +93,12 @@ jobs:
         run: poetry build
 
       - name: Publish package to PyPI
-        run: poetry publish --no-interaction
-        env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@release/v1
 
-  publish_aur:
+  publish-aur:
     name: Release to AUR
     if: "!github.event.release.prerelease"
-    needs: [publish_pypi]
+    needs: [publish-pypi]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
