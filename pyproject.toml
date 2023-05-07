@@ -43,7 +43,7 @@ mypy = "mypy ."
 ci.sequence = ["ruff", "black", "mypy"]
 
 [tool.poetry-dynamic-versioning]
-enable = false
+enable = true
 vcs = "git"
 style = "semver"
 
