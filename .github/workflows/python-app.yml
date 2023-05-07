@@ -105,7 +105,7 @@ jobs:
 
       - name: Update version
         run: |
-          VERSION="${GITHUB_REF#refs/tags/}"
+          VERSION="${GITHUB_REF#refs/tags/v}"
           sed -i "s|\(^pkgver=\).*$|\1\"${VERSION}\"|" ./PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
