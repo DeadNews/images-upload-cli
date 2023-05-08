@@ -13,7 +13,12 @@ depends=(
     "python-pyperclip"
     "python-requests"
 )
-makedepends=("python-setuptools")
+makedepends=(
+    "python-build"
+    "python-installer"
+    "python-poetry-core"
+    "python-poetry-dynamic-versioning"
+)
 license=("MIT")
 arch=("any")
 source=("https://files.pythonhosted.org/packages/source/${_module::1}/${_module}/${_module}-${pkgver}.tar.gz")
@@ -21,11 +26,10 @@ sha256sums=("")
 
 build() {
     cd "${srcdir}/${_module}-${pkgver}"
-    python setup.py build
+    python -m build --wheel --no-isolation
 }
 
 package() {
-    depends+=()
     cd "${srcdir}/${_module}-${pkgver}"
-    python setup.py install --root="${pkgdir}" --optimize=1 --skip-build
+    python -m installer --destdir="$pkgdir" dist/*.whl
 }
