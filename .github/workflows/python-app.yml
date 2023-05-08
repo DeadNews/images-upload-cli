@@ -97,7 +97,7 @@ jobs:
 
   publish-aur:
     name: Release to AUR
-    # if: "!github.event.release.prerelease"
+    if: "!github.event.release.prerelease"
     needs: [publish-pypi]
     runs-on: ubuntu-latest
     steps:

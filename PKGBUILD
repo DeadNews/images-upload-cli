@@ -31,5 +31,5 @@ build() {
 
 package() {
     cd "${srcdir}/${_module}-${pkgver}"
-    python -m installer --destdir="$pkgdir" dist/*.whl
+    python -m installer --destdir="${pkgdir}" dist/*.whl
 }
