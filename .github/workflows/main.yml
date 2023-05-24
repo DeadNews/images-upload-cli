@@ -11,12 +11,9 @@ on:
 permissions:
   contents: read
 
-env:
-  PYTHON_VERSION: "3.11"
-
 jobs:
-  code-quality:
-    name: Check code quality
+  lint:
+    name: Lint code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,11 +28,11 @@ jobs:
       - name: Install deps
         run: poetry install
 
-      - name: Check code quality
+      - name: Lint code
         run: poetry run poe ci
 
-  run-tests:
-    name: Run tests
+  tests:
+    name: Tests
     strategy:
       fail-fast: false
       matrix:
@@ -62,13 +59,13 @@ jobs:
           UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
       - name: Upload coverage to Codecov
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == env.PYTHON_VERSION
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
         uses: codecov/codecov-action@v3
 
   publish-pypi:
-    name: Build and release to PyPI
+    name: Release to PyPI
     if: github.event_name == 'release' && github.event.action == 'created'
-    needs: [code-quality, run-tests]
+    needs: [lint, tests]
     permissions:
       id-token: write
     runs-on: ubuntu-latest
@@ -86,7 +83,7 @@ jobs:
         run: poetry build
 
       - name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1.8
+        uses: pypa/gh-action-pypi-publish@v1.8.6
 
   publish-aur:
     name: Release to AUR
@@ -109,5 +106,5 @@ jobs:
           commit_username: DeadNews
           commit_email: uhjnnn@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Upstream release ${{github.ref}}
+          commit_message: Upstream release ${{ github.ref }}
           updpkgsums: true
