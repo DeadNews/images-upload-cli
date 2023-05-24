@@ -26,13 +26,10 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
           cache: poetry
 
       - name: Install dependencies
-        run: |
-          poetry env use ${{ env.PYTHON_VERSION }}
-          poetry install --only main,ci
+        run: poetry install
 
       - name: Check code quality
         run: poetry run poe ci
@@ -57,9 +54,7 @@ jobs:
           cache: poetry
 
       - name: Install dependencies
-        run: |
-          poetry env use ${{ matrix.python-version }}
-          poetry install --only main,test
+        run: poetry install
 
       - name: Run tests
         run: poetry run pytest --cov-report=xml -m "not key_required"
@@ -74,9 +69,9 @@ jobs:
     name: Build and release to PyPI
     if: github.event_name == 'release' && github.event.action == 'created'
     needs: [code-quality, run-tests]
-    runs-on: ubuntu-latest
     permissions:
       id-token: write
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -86,8 +81,6 @@ jobs:
           pipx inject poetry poetry-dynamic-versioning[plugin]
 
       - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Build package
         run: poetry build
@@ -97,7 +90,7 @@ jobs:
 
   publish-aur:
     name: Release to AUR
-    if: "!github.event.release.prerelease"
+    if: github.event.release.prerelease != true
     needs: [publish-pypi]
     runs-on: ubuntu-latest
     steps:
