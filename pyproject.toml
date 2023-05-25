@@ -40,7 +40,7 @@ pytest-cov = "^4.0.0"
 ruff = "ruff check ."
 black = "black --check ."
 mypy = "mypy ."
-ci.sequence = ["ruff", "black", "mypy"]
+lint.sequence = ["ruff", "black", "mypy"]
 
 [tool.poetry-dynamic-versioning]
 enable = true
