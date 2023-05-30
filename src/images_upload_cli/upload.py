@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 
 from requests import get, post
 
-from images_upload_cli.util import get_env_val, get_img_ext
+from images_upload_cli.util import get_env, get_img_ext
 
 
 class UploadError(Exception):
@@ -80,7 +80,7 @@ def filecoffee_upload(img: bytes) -> str:
 
 def freeimage_upload(img: bytes) -> str:
     """Upload to freeimage.host."""
-    key = get_env_val("FREEIMAGE_KEY")
+    key = get_env("FREEIMAGE_KEY")
 
     response = post(
         url="https://freeimage.host/api/1/upload",
@@ -95,7 +95,7 @@ def freeimage_upload(img: bytes) -> str:
 
 def gyazo_upload(img: bytes) -> str:
     """Upload to gyazo.com."""
-    key = get_env_val("GYAZO_TOKEN")
+    key = get_env("GYAZO_TOKEN")
 
     response = post(
         url=f"https://upload.gyazo.com/api/upload?access_token={key}",
@@ -109,7 +109,7 @@ def gyazo_upload(img: bytes) -> str:
 
 def imageban_upload(img: bytes) -> str:
     """Upload to imageban.ru."""
-    token = get_env_val("IMAGEBAN_TOKEN")
+    token = get_env("IMAGEBAN_TOKEN")
 
     response = post(
         url="https://api.imageban.ru/v1",
@@ -136,7 +136,7 @@ def imagebin_upload(img: bytes) -> str:
 
 def imgbb_upload(img: bytes) -> str:
     """Upload to imgbb.com."""
-    key = get_env_val("IMGBB_KEY")
+    key = get_env("IMGBB_KEY")
 
     response = post(
         url="https://api.imgbb.com/1/upload",
@@ -151,7 +151,7 @@ def imgbb_upload(img: bytes) -> str:
 
 def imgchest_upload(img: bytes) -> str:
     """Upload to imgchest.com."""
-    key = get_env_val("IMGCHEST_KEY")
+    key = get_env("IMGCHEST_KEY")
     ext = get_img_ext(img)
 
     response = post(
@@ -182,7 +182,7 @@ def imgur_upload(img: bytes) -> str:
 
 def lensdump_upload(img: bytes) -> str:
     """Upload to lensdump.com."""
-    key = get_env_val("LENSDUMP_KEY")
+    key = get_env("LENSDUMP_KEY")
 
     response = post(
         url="https://lensdump.com/api/1/upload",
@@ -244,7 +244,7 @@ def pixhost_upload(img: bytes) -> str:
 
 def ptpimg_upload(img: bytes) -> str:
     """Upload to ptpimg.me."""
-    key = get_env_val("PTPIMG_KEY")
+    key = get_env("PTPIMG_KEY")
 
     response = post(
         url="https://ptpimg.me/upload.php",
@@ -259,7 +259,7 @@ def ptpimg_upload(img: bytes) -> str:
 
 def smms_upload(img: bytes) -> str:
     """Upload to sm.ms."""
-    key = get_env_val("SMMS_KEY")
+    key = get_env("SMMS_KEY")
 
     response = post(
         url="https://sm.ms/api/v2/upload",
@@ -302,7 +302,7 @@ def telegraph_upload(img: bytes) -> str:
 
 def thumbsnap_upload(img: bytes) -> str:
     """Upload to thumbsnap.com."""
-    key = get_env_val("THUMBSNAP_KEY")
+    key = get_env("THUMBSNAP_KEY")
 
     response = post(
         url="https://thumbsnap.com/api/upload",
@@ -317,7 +317,7 @@ def thumbsnap_upload(img: bytes) -> str:
 
 def tixte_upload(img: bytes) -> str:
     """Upload to tixte.com."""
-    key = get_env_val("TIXTE_KEY")
+    key = get_env("TIXTE_KEY")
     ext = get_img_ext(img)
 
     response = post(
@@ -334,7 +334,7 @@ def tixte_upload(img: bytes) -> str:
 
 def up2sha_upload(img: bytes) -> str:
     """Upload to up2sha.re."""
-    key = get_env_val("UP2SHA_KEY")
+    key = get_env("UP2SHA_KEY")
     ext = get_img_ext(img)
 
     response = post(
@@ -350,7 +350,7 @@ def up2sha_upload(img: bytes) -> str:
 
 def uplio_upload(img: bytes) -> str:
     """Upload to upl.io."""
-    key = get_env_val("UPLIO_KEY")
+    key = get_env("UPLIO_KEY")
     ext = get_img_ext(img)
 
     response = post(
@@ -367,7 +367,7 @@ def uplio_upload(img: bytes) -> str:
 
 def uploadcare_upload(img: bytes) -> str:
     """Upload to uploadcare.com."""
-    key = get_env_val("UPLOADCARE_KEY")
+    key = get_env("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
 
     response = post(
@@ -386,7 +386,7 @@ def uploadcare_upload(img: bytes) -> str:
 
 def vgy_upload(img: bytes) -> str:
     """Upload to vgy.me."""
-    key = get_env_val("VGY_KEY")
+    key = get_env("VGY_KEY")
     ext = get_img_ext(img)
 
     response = post(

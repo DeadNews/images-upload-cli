@@ -5,7 +5,7 @@ from os import environ
 from pathlib import Path
 
 import pytest
-from images_upload_cli.util import GetEnvError, get_env_val, get_img_ext, human_size
+from images_upload_cli.util import GetEnvError, get_env, get_img_ext, human_size
 
 
 @pytest.fixture()
@@ -35,11 +35,11 @@ def test_get_img_ext(img):
     assert get_img_ext(img) == "png"
 
 
-def test_get_env_val():
+def test_get_env():
     environ["TEST_KEY_1"] = "test"
-    assert get_env_val("TEST_KEY_1") == "test"
+    assert get_env("TEST_KEY_1") == "test"
 
 
-def test_get_env_val_error():
+def test_get_env_error():
     with pytest.raises(GetEnvError):
-        get_env_val("TEST_KEY_2")
+        get_env("TEST_KEY_2")

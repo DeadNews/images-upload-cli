@@ -21,8 +21,8 @@ def get_config_path() -> Path:
     return Path(f"{click.get_app_dir('images-upload-cli')}/.env")
 
 
-def get_env_val(key: str) -> str:
-    """Get value from env."""
+def get_env(key: str) -> str:
+    """Get environment variable or raise an error."""
     if value := getenv(key):
         return value
 
