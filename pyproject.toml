@@ -25,7 +25,7 @@ pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
 requests = "^2.30.0"
 
-[tool.poetry.group.ci.dependencies]
+[tool.poetry.group.lint.dependencies]
 black = "^23.3.0"
 mypy = "^1.2.0"
 poethepoet = "^0.20.0"
