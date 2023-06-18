@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import asyncio
-from collections.abc import Callable  # noqa: TCH003
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import click
 from dotenv import load_dotenv
@@ -13,6 +13,9 @@ from pyperclip import copy
 
 from images_upload_cli.upload import HOSTINGS, UPLOAD
 from images_upload_cli.util import get_config_path, kdialog, make_thumbnail
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 
 @click.command(context_settings={"show_default": True})
@@ -44,12 +47,14 @@ def cli(
     # loading .env variables
     load_dotenv(dotenv_path=get_config_path())
 
-    # get upload func
-    upload_func = UPLOAD[hosting]
-
-    # image upload
+    # images upload
     links = asyncio.run(
-        upload_image(upload_func, images=images, bbcode=bbcode, thumbnail=thumbnail)
+        upload_images(
+            upload_func=UPLOAD[hosting],
+            images=images,
+            bbcode=bbcode,
+            thumbnail=thumbnail,
+        )
     )
 
     # out
@@ -60,7 +65,7 @@ def cli(
     kdialog(links_str)
 
 
-async def upload_image(
+async def upload_images(
     upload_func: Callable,
     images: tuple[Path],
     bbcode: bool,
@@ -68,16 +73,18 @@ async def upload_image(
 ) -> list[str]:
     """Upload images."""
     links = []
-    async with AsyncClient() as session:
+
+    async with AsyncClient() as client:
         for img_path in images:
             img = img_path.read_bytes()
 
             if not thumbnail:
-                img_link = await upload_func(session, img)
+                img_link = await upload_func(client, img)
                 link = f"[img]{img_link}[/img]" if bbcode else img_link
             else:
-                thumb = make_thumbnail(img)
-                link = f"[url={upload_func(session, img)}][img]{upload_func(session, thumb)}[/img][/url]"
+                img_link = await upload_func(client, img)
+                thumb_link = await upload_func(client, make_thumbnail(img))
+                link = f"[url={img_link}][img]{thumb_link}[/img][/url]"
 
             links.append(link)
 

@@ -20,18 +20,16 @@ images-upload-cli = "images_upload_cli.cli:cli"
 [tool.poetry.dependencies]
 python = "^3.8.1"
 click = "^8.1.3"
+httpx = "^0.24.1"
 pillow = "^9.5.0"
 pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
-requests = "^2.30.0"
-httpx = "^0.24.1"
 
 [tool.poetry.group.lint.dependencies]
 black = "^23.3.0"
 mypy = "^1.3.0"
 poethepoet = "^0.20.0"
 ruff = "^0.0.272"
-types-requests = "^2.29.0.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.3.2"
@@ -83,7 +81,6 @@ ignore = [
   "FBT001", # Boolean positional arg in function definition
   "FBT002", # Boolean default value in function definition
   #
-  "S113", # Missing requests timeout
   "S603", # Calling subprocess.Popen with shell=False
 ]
 
