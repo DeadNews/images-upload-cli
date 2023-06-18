@@ -2,9 +2,13 @@
 """Entrypoint for cli."""
 from __future__ import annotations
 
+import asyncio
+from collections.abc import Callable  # noqa: TCH003
 from pathlib import Path
 
 import click
+from aiofiles import open as aopen
+from aiohttp import ClientSession
 from dotenv import load_dotenv
 from pyperclip import copy
 
@@ -45,17 +49,9 @@ def cli(
     upload_func = UPLOAD[hosting]
 
     # image upload
-    links = []
-    for img_path in images:
-        img = img_path.read_bytes()
-
-        if not thumbnail:
-            link = f"[img]{upload_func(img)}[/img]" if bbcode else upload_func(img)
-        else:
-            thumb = make_thumbnail(img)
-            link = f"[url={upload_func(img)}][img]{upload_func(thumb)}[/img][/url]"
-
-        links.append(link)
+    links = asyncio.run(
+        upload_image(upload_func, images=images, bbcode=bbcode, thumbnail=thumbnail)
+    )
 
     # out
     links_str = " ".join(links)
@@ -63,3 +59,28 @@ def cli(
     if clipboard:
         copy(links_str)
     kdialog(links_str)
+
+
+async def upload_image(
+    upload_func: Callable,
+    images: tuple[Path],
+    bbcode: bool,
+    thumbnail: bool,
+) -> list[str]:
+    """Upload images."""
+    links = []
+    async with ClientSession() as session:
+        for img_path in images:
+            async with aopen(img_path, mode="rb") as f:
+                img = await f.read()
+
+                if not thumbnail:
+                    img_link = await upload_func(session, img)
+                    link = f"[img]{img_link}[/img]" if bbcode else img_link
+                else:
+                    thumb = make_thumbnail(img)
+                    link = f"[url={upload_func(session, img)}][img]{upload_func(session, thumb)}[/img][/url]"
+
+                links.append(link)
+
+    return links

@@ -7,6 +7,7 @@ from os import getenv
 from re import DOTALL, search, sub
 from urllib.parse import urlparse
 
+from aiohttp import ClientSession, FormData
 from requests import get, post
 
 from images_upload_cli.util import get_env, get_img_ext
@@ -16,7 +17,7 @@ class UploadError(Exception):
     """Exception raised for upload errors."""
 
 
-def beeimg_upload(img: bytes) -> str:
+def beeimg_upload(session: ClientSession, img: bytes) -> str:
     """Upload to beeimg.com."""
     ext = f"img.{get_img_ext(img)}"
 
@@ -30,7 +31,7 @@ def beeimg_upload(img: bytes) -> str:
     return f"https:{response.json()['files']['url']}"
 
 
-def catbox_upload(img: bytes) -> str:
+def catbox_upload(session: ClientSession, img: bytes) -> str:
     """Upload to catbox.moe."""
     response = post(
         url="https://catbox.moe/user/api.php",
@@ -43,7 +44,7 @@ def catbox_upload(img: bytes) -> str:
     return f"{response.text}"
 
 
-def fastpic_upload(img: bytes) -> str:
+def fastpic_upload(session: ClientSession, img: bytes) -> str:
     """Upload to fastpic.org."""
     response = post(
         url="https://fastpic.org/upload?api=1",
@@ -66,7 +67,7 @@ def fastpic_upload(img: bytes) -> str:
     return image_link
 
 
-def filecoffee_upload(img: bytes) -> str:
+def filecoffee_upload(session: ClientSession, img: bytes) -> str:
     """Upload to file.coffee."""
     response = post(
         url="https://file.coffee/api/file/upload",
@@ -78,7 +79,7 @@ def filecoffee_upload(img: bytes) -> str:
     return response.json()["url"]
 
 
-def freeimage_upload(img: bytes) -> str:
+def freeimage_upload(session: ClientSession, img: bytes) -> str:
     """Upload to freeimage.host."""
     key = get_env("FREEIMAGE_KEY")
 
@@ -93,7 +94,7 @@ def freeimage_upload(img: bytes) -> str:
     return response.json()["image"]["url"]
 
 
-def gyazo_upload(img: bytes) -> str:
+def gyazo_upload(session: ClientSession, img: bytes) -> str:
     """Upload to gyazo.com."""
     key = get_env("GYAZO_TOKEN")
 
@@ -107,7 +108,7 @@ def gyazo_upload(img: bytes) -> str:
     return response.json()["url"]
 
 
-def imageban_upload(img: bytes) -> str:
+def imageban_upload(session: ClientSession, img: bytes) -> str:
     """Upload to imageban.ru."""
     token = get_env("IMAGEBAN_TOKEN")
 
@@ -122,7 +123,7 @@ def imageban_upload(img: bytes) -> str:
     return response.json()["data"]["link"]
 
 
-def imagebin_upload(img: bytes) -> str:
+def imagebin_upload(session: ClientSession, img: bytes) -> str:
     """Upload to imagebin.ca."""
     response = post(
         url="https://imagebin.ca/upload.php",
@@ -134,7 +135,7 @@ def imagebin_upload(img: bytes) -> str:
     return sub(r".*url:", "", response.text, flags=DOTALL)
 
 
-def imgbb_upload(img: bytes) -> str:
+def imgbb_upload(session: ClientSession, img: bytes) -> str:
     """Upload to imgbb.com."""
     key = get_env("IMGBB_KEY")
 
@@ -149,7 +150,7 @@ def imgbb_upload(img: bytes) -> str:
     return response.json()["data"]["url"]
 
 
-def imgchest_upload(img: bytes) -> str:
+def imgchest_upload(session: ClientSession, img: bytes) -> str:
     """Upload to imgchest.com."""
     key = get_env("IMGCHEST_KEY")
     ext = get_img_ext(img)
@@ -165,7 +166,7 @@ def imgchest_upload(img: bytes) -> str:
     return response.json()["data"]["images"][0]["link"].replace("comfiles", "com/files")
 
 
-def imgur_upload(img: bytes) -> str:
+def imgur_upload(session: ClientSession, img: bytes) -> str:
     """Upload to imgur.com."""
     client_id = getenv("IMGUR_CLIENT_ID", "dd32dd3c6aaa9a0")
 
@@ -180,7 +181,7 @@ def imgur_upload(img: bytes) -> str:
     return response.json()["data"]["link"]
 
 
-def lensdump_upload(img: bytes) -> str:
+def lensdump_upload(session: ClientSession, img: bytes) -> str:
     """Upload to lensdump.com."""
     key = get_env("LENSDUMP_KEY")
 
@@ -195,7 +196,7 @@ def lensdump_upload(img: bytes) -> str:
     return response.json()["image"]["url"]
 
 
-def pictshare_upload(img: bytes) -> str:
+def pictshare_upload(session: ClientSession, img: bytes) -> str:
     """Upload to pictshare.net."""
     response = post(
         url="https://pictshare.net/api/upload.php",
@@ -207,7 +208,7 @@ def pictshare_upload(img: bytes) -> str:
     return response.json()["url"]
 
 
-def pixeldrain_upload(img: bytes) -> str:
+def pixeldrain_upload(session: ClientSession, img: bytes) -> str:
     """Upload to pixeldrain.com."""
     response = post(
         url="https://pixeldrain.com/api/file",
@@ -219,7 +220,7 @@ def pixeldrain_upload(img: bytes) -> str:
     return f"https://pixeldrain.com/api/file/{response.json()['id']}"
 
 
-def pixhost_upload(img: bytes) -> str:
+def pixhost_upload(session: ClientSession, img: bytes) -> str:
     """Upload to pixhost.to."""
     response = post(
         url="https://api.pixhost.to/images",
@@ -242,7 +243,7 @@ def pixhost_upload(img: bytes) -> str:
     return show_url if image_link is None else image_link
 
 
-def ptpimg_upload(img: bytes) -> str:
+def ptpimg_upload(session: ClientSession, img: bytes) -> str:
     """Upload to ptpimg.me."""
     key = get_env("PTPIMG_KEY")
 
@@ -257,7 +258,7 @@ def ptpimg_upload(img: bytes) -> str:
     return f"https://ptpimg.me/{response.json()[0]['code']}.{response.json()[0]['ext']}"
 
 
-def smms_upload(img: bytes) -> str:
+def smms_upload(session: ClientSession, img: bytes) -> str:
     """Upload to sm.ms."""
     key = get_env("SMMS_KEY")
 
@@ -276,7 +277,7 @@ def smms_upload(img: bytes) -> str:
     )
 
 
-def sxcu_upload(img: bytes) -> str:
+def sxcu_upload(session: ClientSession, img: bytes) -> str:
     """Upload to sxcu.net."""
     response = post(
         url="https://sxcu.net/api/files/create",
@@ -288,7 +289,7 @@ def sxcu_upload(img: bytes) -> str:
     return f"{response.json()['url']}.{get_img_ext(img)}"
 
 
-def telegraph_upload(img: bytes) -> str:
+def telegraph_upload(session: ClientSession, img: bytes) -> str:
     """Upload to telegra.ph."""
     response = post(
         url="https://telegra.ph/upload",
@@ -300,7 +301,7 @@ def telegraph_upload(img: bytes) -> str:
     return f"https://telegra.ph{response.json()[0]['src']}"
 
 
-def thumbsnap_upload(img: bytes) -> str:
+def thumbsnap_upload(session: ClientSession, img: bytes) -> str:
     """Upload to thumbsnap.com."""
     key = get_env("THUMBSNAP_KEY")
 
@@ -315,7 +316,7 @@ def thumbsnap_upload(img: bytes) -> str:
     return response.json()["data"]["media"]
 
 
-def tixte_upload(img: bytes) -> str:
+def tixte_upload(session: ClientSession, img: bytes) -> str:
     """Upload to tixte.com."""
     key = get_env("TIXTE_KEY")
     ext = get_img_ext(img)
@@ -332,7 +333,7 @@ def tixte_upload(img: bytes) -> str:
     return response.json()["data"]["direct_url"]
 
 
-def up2sha_upload(img: bytes) -> str:
+def up2sha_upload(session: ClientSession, img: bytes) -> str:
     """Upload to up2sha.re."""
     key = get_env("UP2SHA_KEY")
     ext = get_img_ext(img)
@@ -348,7 +349,7 @@ def up2sha_upload(img: bytes) -> str:
     return f"{response.json()['public_url'].replace('file?f=', 'media/raw/')}.{ext}"
 
 
-def uplio_upload(img: bytes) -> str:
+def uplio_upload(session: ClientSession, img: bytes) -> str:
     """Upload to upl.io."""
     key = get_env("UPLIO_KEY")
     ext = get_img_ext(img)
@@ -365,26 +366,27 @@ def uplio_upload(img: bytes) -> str:
     return f"{host}/i/{uid}.{ext}"
 
 
-def uploadcare_upload(img: bytes) -> str:
+async def uploadcare_upload(session: ClientSession, img: bytes) -> str:
     """Upload to uploadcare.com."""
     key = get_env("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
 
-    response = post(
+    data = FormData()
+    data.add_field("filename", img, filename=name)
+    data.add_field("UPLOADCARE_PUB_KEY", key)
+    data.add_field("UPLOADCARE_STORE", "1")
+
+    async with session.post(
         url="https://upload.uploadcare.com/base/",
-        data={
-            "UPLOADCARE_PUB_KEY": key,
-            "UPLOADCARE_STORE": "1",
-        },
-        files={"filename": (name, img)},
-    )
-    if not response.ok:
-        raise UploadError(response.json())
+        raise_for_status=True,
+        data=data,
+    ) as resp:
+        json = await resp.json()
 
-    return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
+    return f"https://ucarecdn.com/{json['filename']}/{name}"
 
 
-def vgy_upload(img: bytes) -> str:
+def vgy_upload(session: ClientSession, img: bytes) -> str:
     """Upload to vgy.me."""
     key = get_env("VGY_KEY")
     ext = get_img_ext(img)
@@ -400,7 +402,7 @@ def vgy_upload(img: bytes) -> str:
     return response.json()["image"]
 
 
-UPLOAD: dict[str, Callable[[bytes], str]] = {
+UPLOAD: dict[str, Callable[[ClientSession, bytes], str]] = {
     "beeimg": beeimg_upload,
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
