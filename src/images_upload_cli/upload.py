@@ -250,12 +250,9 @@ async def smms_upload(client: AsyncClient, img: bytes) -> str:
         files={"smfile": img},
     )
     response.raise_for_status()
+    json = response.json()
 
-    return (
-        response.json()["images"]
-        if response.json()["code"] == "image_repeated"
-        else response.json()["data"]["url"]
-    )
+    return json["images"] if json["code"] == "image_repeated" else json["data"]["url"]
 
 
 async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
