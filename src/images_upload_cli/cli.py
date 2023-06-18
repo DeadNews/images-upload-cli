@@ -7,8 +7,8 @@ from collections.abc import Callable  # noqa: TCH003
 from pathlib import Path
 
 import click
+from aiohttp import ClientSession
 from dotenv import load_dotenv
-from httpx import AsyncClient
 from pyperclip import copy
 
 from images_upload_cli.upload import HOSTINGS, UPLOAD
@@ -68,7 +68,7 @@ async def upload_image(
 ) -> list[str]:
     """Upload images."""
     links = []
-    async with AsyncClient() as session:
+    async with ClientSession() as session:
         for img_path in images:
             img = img_path.read_bytes()
 
