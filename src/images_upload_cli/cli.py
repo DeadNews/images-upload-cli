@@ -7,7 +7,6 @@ from collections.abc import Callable  # noqa: TCH003
 from pathlib import Path
 
 import click
-from aiofiles import open as aopen
 from aiohttp import ClientSession
 from dotenv import load_dotenv
 from pyperclip import copy
@@ -71,16 +70,15 @@ async def upload_image(
     links = []
     async with ClientSession() as session:
         for img_path in images:
-            async with aopen(img_path, mode="rb") as f:
-                img = await f.read()
+            img = img_path.read_bytes()
 
-                if not thumbnail:
-                    img_link = await upload_func(session, img)
-                    link = f"[img]{img_link}[/img]" if bbcode else img_link
-                else:
-                    thumb = make_thumbnail(img)
-                    link = f"[url={upload_func(session, img)}][img]{upload_func(session, thumb)}[/img][/url]"
+            if not thumbnail:
+                img_link = await upload_func(session, img)
+                link = f"[img]{img_link}[/img]" if bbcode else img_link
+            else:
+                thumb = make_thumbnail(img)
+                link = f"[url={upload_func(session, img)}][img]{upload_func(session, thumb)}[/img][/url]"
 
-                links.append(link)
+            links.append(link)
 
     return links

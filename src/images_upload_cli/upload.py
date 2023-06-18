@@ -402,7 +402,7 @@ def vgy_upload(session: ClientSession, img: bytes) -> str:
     return response.json()["image"]
 
 
-UPLOAD: dict[str, Callable[[ClientSession, bytes], str]] = {
+UPLOAD: dict[str, Callable] = {
     "beeimg": beeimg_upload,
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,
