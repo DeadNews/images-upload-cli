@@ -66,6 +66,8 @@ Options:
                                   [default: imgur]
   -b, --bbcode                    Add bbcode tags.
   -t, --thumbnail                 Add caption thumbnail and bbcode tags.
+  -n, --notify / -N, --no-notify  Send desktop notifications via libnotify.
+                                  [default: N]
   -c, --clipboard / -C, --no-clipboard
                                   Copy result to clipboard.  [default: c]
   --version                       Show the version and exit.

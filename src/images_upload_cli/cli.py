@@ -12,7 +12,7 @@ from httpx import AsyncClient
 from pyperclip import copy
 
 from images_upload_cli.upload import HOSTINGS, UPLOAD
-from images_upload_cli.util import get_config_path, kdialog, make_thumbnail
+from images_upload_cli.util import get_config_path, make_thumbnail, notify_send
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -29,6 +29,13 @@ if TYPE_CHECKING:
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")
 @click.option("-t", "--thumbnail", is_flag=True, help="Add caption thumbnail and bbcode tags.")
 @click.option(
+    "-n/-N",
+    "--notify/--no-notify",
+    is_flag=True,
+    default=False,
+    help="Send desktop notifications via libnotify.",
+)
+@click.option(
     "-c/-C",
     "--clipboard/--no-clipboard",
     is_flag=True,
@@ -41,6 +48,7 @@ def cli(
     hosting: str,
     bbcode: bool,
     thumbnail: bool,
+    notify: bool,
     clipboard: bool,
 ) -> None:
     """Upload images via APIs."""
@@ -62,7 +70,8 @@ def cli(
     click.echo(links_str)
     if clipboard:
         copy(links_str)
-    kdialog(links_str)
+    if notify:
+        notify_send(links_str)
 
 
 async def upload_images(
