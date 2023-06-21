@@ -118,4 +118,4 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
 def notify_send(text_to_print: str) -> None:
     """Send desktop notifications via libnotify."""
     if notify_send := which("notify-send"):
-        Popen([notify_send, "-a", "mages-upload-cli", text_to_print])
+        Popen([notify_send, "-a", "images-upload-cli", text_to_print])
