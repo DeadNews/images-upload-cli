@@ -1,18 +1,14 @@
 #!/usr/bin/env python
 """Upload callables."""
-from __future__ import annotations
 
+from collections.abc import Callable
 from os import getenv
 from re import search
-from typing import TYPE_CHECKING
 from urllib.parse import urlparse
 
 from httpx import AsyncClient, HTTPError
 
 from images_upload_cli.util import get_env, get_img_ext
-
-if TYPE_CHECKING:
-    from collections.abc import Callable
 
 
 async def beeimg_upload(client: AsyncClient, img: bytes) -> str:

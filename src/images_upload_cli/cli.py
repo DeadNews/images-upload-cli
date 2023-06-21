@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 """Entrypoint for cli."""
-from __future__ import annotations
 
 import asyncio
+from collections.abc import Callable
 from pathlib import Path
-from typing import TYPE_CHECKING
 
 import click
 from dotenv import load_dotenv
@@ -13,9 +12,6 @@ from pyperclip import copy
 
 from images_upload_cli.upload import HOSTINGS, UPLOAD
 from images_upload_cli.util import get_config_path, make_thumbnail, notify_send
-
-if TYPE_CHECKING:
-    from collections.abc import Callable
 
 
 @click.command(context_settings={"show_default": True})

@@ -1,17 +1,13 @@
 #!/usr/bin/env python
-from __future__ import annotations
 
-from typing import TYPE_CHECKING
 
 import httpx
 import pytest
 from dotenv import load_dotenv
 from images_upload_cli.upload import HOSTINGS, UPLOAD
+from pytest_httpx import HTTPXMock
 
 from tests.fixture import RESPONSE, img  # noqa: F401
-
-if TYPE_CHECKING:
-    from pytest_httpx import HTTPXMock
 
 
 @pytest.mark.parametrize(
