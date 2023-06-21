@@ -7,7 +7,6 @@ import httpx
 import pytest
 from dotenv import load_dotenv
 from images_upload_cli.upload import HOSTINGS, UPLOAD
-from images_upload_cli.util import get_config_path
 
 from tests.fixture import RESPONSE, img  # noqa: F401
 
@@ -33,7 +32,7 @@ async def test_upload(
     httpx_mock.add_response(text=mock_text)
 
     # loading .env variables
-    load_dotenv(dotenv_path=get_config_path())
+    load_dotenv(dotenv_path="tests/resources/test.env")
 
     # images upload
     async with httpx.AsyncClient() as client:
