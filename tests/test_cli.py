@@ -8,8 +8,8 @@ from images_upload_cli.upload import HOSTINGS
 
 
 @pytest.mark.parametrize(
-    argnames="args",
-    argvalues=[
+    "args",
+    [
         pytest.param(["--help"], id="help"),
         pytest.param(
             ["tests/resources/pic.png", "-C", "-h", "uploadcare", "--notify"],
@@ -28,8 +28,8 @@ def test_cli(args: list[str]):
 
 @pytest.mark.key_required()
 @pytest.mark.parametrize(
-    argnames="args",
-    argvalues=[
+    "args",
+    [
         pytest.param(["tests/resources/pic.png", "-C", "-h", hosting], id=hosting)
         for hosting in HOSTINGS
     ],

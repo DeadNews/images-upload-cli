@@ -31,7 +31,7 @@ def test_human_size(test_arg: int, expected: str):
     assert human_size(args_with_negative) == f"-{expected}"
 
 
-def test_get_img_ext(img):
+def test_get_img_ext(img: bytes):
     assert get_img_ext(img) == "png"
 
 
