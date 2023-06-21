@@ -186,17 +186,6 @@ async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["image"]["url"]
 
 
-async def pictshare_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to pictshare.net."""
-    response = await client.post(
-        url="https://pictshare.net/api/upload.php",
-        files={"file": img},
-    )
-    response.raise_for_status()
-
-    return response.json()["url"]
-
-
 async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
     """Upload to pixeldrain.com."""
     response = await client.post(
@@ -390,7 +379,6 @@ UPLOAD: dict[str, Callable] = {
     "imgchest": imgchest_upload,
     "imgur": imgur_upload,
     "lensdump": lensdump_upload,
-    "pictshare": pictshare_upload,
     "pixeldrain": pixeldrain_upload,
     "pixhost": pixhost_upload,
     "ptpimg": ptpimg_upload,
