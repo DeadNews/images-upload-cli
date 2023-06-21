@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from os import getenv
-from re import DOTALL, search, sub
+from re import search
 from typing import TYPE_CHECKING
 from urllib.parse import urlparse
 
@@ -55,7 +55,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
 
     match = search(r"<imagepath>(.+?)</imagepath>", response.text)
     if match is None:
-        msg = "Link not found in response."
+        msg = "Image link not found in response."
         raise HTTPError(msg)
 
     return match.group(1).strip()
@@ -121,7 +121,12 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
     )
     response.raise_for_status()
 
-    return sub(r".*url:", "", response.text, flags=DOTALL)
+    match = search(r"url:(.+?)$", response.text)
+    if match is None:
+        msg = "Image link not found in response."
+        raise HTTPError(msg)
+
+    return match.group(1).strip()
 
 
 async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
