@@ -150,7 +150,7 @@ async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
     )
     response.raise_for_status()
 
-    return response.json()["data"]["images"][0]["link"].replace("comfiles", "com/files")
+    return response.json()["data"]["images"][0]["link"]
 
 
 async def imgur_upload(client: AsyncClient, img: bytes) -> str:
@@ -259,6 +259,7 @@ async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
     """Upload to sxcu.net."""
     response = await client.post(
         url="https://sxcu.net/api/files/create",
+        headers={"user-agent": "python-https/1.0.0"},
         files={"file": img},
     )
     response.raise_for_status()
