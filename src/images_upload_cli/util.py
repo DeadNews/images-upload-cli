@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Utils."""
-from __future__ import annotations
 
+from functools import lru_cache
 from io import BytesIO
 from os import getenv
 from pathlib import Path
@@ -45,6 +45,7 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
+@lru_cache
 def get_font() -> ImageFont.FreeTypeFont:
     """Attempt to retrieve a reasonably-looking TTF font from the system."""
     font_names = [
@@ -115,7 +116,7 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
     return buffer.getvalue()
 
 
-def kdialog(text_to_print: str) -> None:
-    """Kde notifications."""
-    if kdialog := which("kdialog"):
-        Popen([kdialog, "--passivepopup", text_to_print])
+def notify_send(text_to_print: str) -> None:
+    """Send desktop notifications via libnotify."""
+    if notify_send := which("notify-send"):
+        Popen([notify_send, "-a", "images-upload-cli", text_to_print])

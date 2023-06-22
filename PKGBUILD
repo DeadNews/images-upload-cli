@@ -9,9 +9,9 @@ depends=(
     "python"
     "python-click"
     "python-dotenv"
+    "python-httpx"
     "python-pillow"
     "python-pyperclip"
-    "python-requests"
 )
 makedepends=(
     "python-build"

@@ -1,8 +1,36 @@
 #!/usr/bin/env python
-from __future__ import annotations
+import pytest
+from dotenv import load_dotenv
+from httpx import AsyncClient
+from images_upload_cli.upload import UPLOAD
+from pytest_httpx import HTTPXMock
 
-from images_upload_cli.upload import UPLOAD, imgur_upload
+from tests.mock import HOSTINGS, RESPONSE
 
 
-def test_get_upload_func():
-    assert UPLOAD["imgur"] == imgur_upload
+@pytest.mark.asyncio()
+@pytest.mark.parametrize(
+    ("hosting", "mock_text", "mock_link"),
+    [
+        pytest.param(hosting, RESPONSE[hosting][0], RESPONSE[hosting][1], id=hosting)
+        for hosting in HOSTINGS
+    ],
+)
+async def test_upload_funcs(
+    httpx_mock: HTTPXMock,
+    hosting: str,
+    mock_text: str,
+    mock_link: str,
+    img: bytes,
+) -> None:
+    # mock response
+    httpx_mock.add_response(text=mock_text)
+
+    # loading .env variables
+    load_dotenv(dotenv_path="tests/resources/mock.env")
+
+    # images upload
+    async with AsyncClient() as client:
+        upload_func = UPLOAD[hosting]
+        link = await upload_func(client, img)
+        assert link == mock_link
