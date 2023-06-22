@@ -51,7 +51,7 @@ def cli(
     # loading .env variables
     load_dotenv(dotenv_path=get_config_path())
 
-    # images upload
+    # async images upload
     links = arun(
         upload_images(
             upload_func=UPLOAD[hosting],
