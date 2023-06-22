@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Entrypoint for cli."""
 
-from asyncio import run as arun
+import asyncio
 from collections.abc import Callable
 from pathlib import Path
 
@@ -52,7 +52,7 @@ def cli(
     load_dotenv(dotenv_path=get_config_path())
 
     # async images upload
-    links = arun(
+    links = asyncio.run(
         upload_images(
             upload_func=UPLOAD[hosting],
             images=images,
