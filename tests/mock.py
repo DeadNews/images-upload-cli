@@ -1,14 +1,5 @@
 #!/usr/bin/env python
-"""Test fixtures."""
-
-from pathlib import Path
-
-import pytest
-
-
-@pytest.fixture()
-def img() -> bytes:
-    return Path("tests/resources/pic.png").read_bytes()
+"""Mock data."""
 
 
 beeimg = """{"files":{"name":"x8078479702","size":"","url":"\\/\\/beeimg.com\\/images\\/x80784797021.png","thumbnail_url":"\\/\\/i.beeimg.com\\/images\\/thumb\\/x80784797021-xs.png","view_url":"\\/\\/beeimg.com\\/view\\/x8078479702\\/","delete_url":"N\\/A","delete_type":"DELETE","status":"Duplicate","code":"200"}}"""
@@ -94,3 +85,5 @@ RESPONSE: dict[str, tuple[str, str]] = {
     ),
     "vgy": (vgy, "https://i.vgy.me/3Kyfvf.png"),
 }
+
+HOSTINGS = tuple(RESPONSE.keys())

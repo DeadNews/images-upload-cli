@@ -1,20 +1,13 @@
 #!/usr/bin/env python
-
 from os import environ
-from pathlib import Path
 
 import pytest
 from images_upload_cli.util import GetEnvError, get_env, get_img_ext, human_size
 
 
-@pytest.fixture()
-def img() -> bytes:
-    return Path("tests/resources/pic.png").read_bytes()
-
-
 @pytest.mark.parametrize(
-    argnames=("test_arg", "expected"),
-    argvalues=[
+    ("test_arg", "expected"),
+    [
         (1, "1.0 B"),
         (300, "300.0 B"),
         (3000, "2.9 KiB"),

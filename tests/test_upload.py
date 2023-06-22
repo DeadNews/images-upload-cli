@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-
-
-import httpx
 import pytest
 from dotenv import load_dotenv
-from images_upload_cli.upload import HOSTINGS, UPLOAD
+from httpx import AsyncClient
+from images_upload_cli.upload import UPLOAD
 from pytest_httpx import HTTPXMock
 
-from tests.fixture import RESPONSE, img  # noqa: F401
+from tests.mock import HOSTINGS, RESPONSE
 
 
+@pytest.mark.asyncio()
 @pytest.mark.parametrize(
     ("hosting", "mock_text", "mock_link"),
     [
@@ -17,21 +16,21 @@ from tests.fixture import RESPONSE, img  # noqa: F401
         for hosting in HOSTINGS
     ],
 )
-@pytest.mark.asyncio()
-async def test_upload(
+async def test_upload_funcs(
     httpx_mock: HTTPXMock,
     hosting: str,
     mock_text: str,
     mock_link: str,
-    img: bytes,  # noqa: F811
-):
+    img: bytes,
+) -> None:
+    # mock response
     httpx_mock.add_response(text=mock_text)
 
     # loading .env variables
     load_dotenv(dotenv_path="tests/resources/test.env")
 
     # images upload
-    async with httpx.AsyncClient() as client:
+    async with AsyncClient() as client:
         upload_func = UPLOAD[hosting]
         link = await upload_func(client, img)
         assert link == mock_link
