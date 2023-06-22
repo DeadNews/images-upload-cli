@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Utils."""
 
+from functools import lru_cache
 from io import BytesIO
 from os import getenv
 from pathlib import Path
@@ -44,6 +45,7 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
+@lru_cache
 def get_font() -> ImageFont.FreeTypeFont:
     """Attempt to retrieve a reasonably-looking TTF font from the system."""
     font_names = [
