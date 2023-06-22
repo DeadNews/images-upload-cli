@@ -27,7 +27,7 @@ async def test_upload_funcs(
     httpx_mock.add_response(text=mock_text)
 
     # loading .env variables
-    load_dotenv(dotenv_path="tests/resources/test.env")
+    load_dotenv(dotenv_path="tests/resources/mock.env")
 
     # images upload
     async with AsyncClient() as client:
