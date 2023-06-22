@@ -54,7 +54,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
         msg = "Image link not found in response."
         raise HTTPError(msg)
 
-    return match.group(1).strip()
+    return match[1].strip()
 
 
 async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
@@ -122,7 +122,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
         msg = "Image link not found in response."
         raise HTTPError(msg)
 
-    return match.group(1).strip()
+    return match[1].strip()
 
 
 async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
@@ -211,7 +211,7 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
         rf"({u.scheme}://(.+?){u.netloc}/images/{u.path.removeprefix('/show/')})",
         get_resp.text,
     )
-    image_link = None if match is None else match.group(0).strip()
+    image_link = None if match is None else match[0].strip()
 
     return show_url if image_link is None else image_link
 

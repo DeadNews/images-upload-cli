@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Entrypoint for cli."""
 
-import asyncio
+from asyncio import run as arun
 from collections.abc import Callable
 from pathlib import Path
 
@@ -52,7 +52,7 @@ def cli(
     load_dotenv(dotenv_path=get_config_path())
 
     # images upload
-    links = asyncio.run(
+    links = arun(
         upload_images(
             upload_func=UPLOAD[hosting],
             images=images,
@@ -76,18 +76,17 @@ async def upload_images(
     bbcode: bool,
     thumbnail: bool,
 ) -> list[str]:
-    """Upload images."""
+    """Upload images coroutine."""
     links = []
 
     async with AsyncClient() as client:
         for img_path in images:
             img = img_path.read_bytes()
 
+            img_link = await upload_func(client, img)
             if not thumbnail:
-                img_link = await upload_func(client, img)
                 link = f"[img]{img_link}[/img]" if bbcode else img_link
             else:
-                img_link = await upload_func(client, img)
                 thumb_link = await upload_func(client, make_thumbnail(img))
                 link = f"[url={img_link}][img]{thumb_link}[/img][/url]"
 
