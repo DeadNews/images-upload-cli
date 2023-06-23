@@ -60,6 +60,9 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
 
   Upload images via APIs.
 
+Arguments:
+  IMAGES...  [required]
+
 Options:
   -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|tixte|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
@@ -68,7 +71,11 @@ Options:
   -n, --notify                    Send desktop notification via libnotify.
   -c, --clipboard / -C, --no-clipboard
                                   Copy result to clipboard.  [default: c]
-  --version                       Show the version and exit.
+  --install-completion [bash|zsh|fish|powershell|pwsh]
+                                  Install completion for the specified shell.
+  --show-completion [bash|zsh|fish|powershell|pwsh]
+                                  Show completion for the specified shell, to
+                                  copy it or customize the installation.
   --help                          Show this message and exit.
 ```
 

@@ -29,7 +29,7 @@ def cli(
         bool, typer.Option("-t", "--thumbnail", help="Add caption thumbnail and bbcode tags.")
     ] = False,
     notify: Annotated[
-        bool, typer.Option("-n", "--notify", help="Send desktop notifications via libnotify.")
+        bool, typer.Option("-n", "--notify", help="Send desktop notification via libnotify.")
     ] = False,
     clipboard: Annotated[
         bool, typer.Option("-c/-C", "--clipboard/--no-clipboard", help="Copy result to clipboard.")
