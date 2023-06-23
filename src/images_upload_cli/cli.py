@@ -4,8 +4,10 @@
 import asyncio
 from collections.abc import Callable
 from pathlib import Path
+from typing import Annotated
 
 import click
+import typer
 from dotenv import load_dotenv
 from httpx import AsyncClient
 from pyperclip import copy
@@ -13,39 +15,25 @@ from pyperclip import copy
 from images_upload_cli.upload import HOSTINGS, UPLOAD
 from images_upload_cli.util import get_config_path, make_thumbnail, notify_send
 
+app = typer.Typer()
 
-@click.command(context_settings={"show_default": True})
-@click.argument(
-    "images",
-    nargs=-1,
-    required=True,
-    type=click.Path(exists=True, dir_okay=False, path_type=Path),
-)
-@click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="imgur")
-@click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")
-@click.option("-t", "--thumbnail", is_flag=True, help="Add caption thumbnail and bbcode tags.")
-@click.option(
-    "-n/-N",
-    "--notify/--no-notify",
-    is_flag=True,
-    default=False,
-    help="Send desktop notifications via libnotify.",
-)
-@click.option(
-    "-c/-C",
-    "--clipboard/--no-clipboard",
-    is_flag=True,
-    default=True,
-    help="Copy result to clipboard.",
-)
-@click.version_option()
+
+@app.command()
 def cli(
-    images: tuple[Path],
-    hosting: str,
-    bbcode: bool,
-    thumbnail: bool,
-    notify: bool,
-    clipboard: bool,
+    images: Annotated[list[Path], typer.Argument(exists=True, dir_okay=False)],
+    hosting: Annotated[
+        str, typer.Option("-h", "--hosting", click_type=click.Choice(HOSTINGS))
+    ] = "imgur",
+    bbcode: Annotated[bool, typer.Option("-b", "--bbcode", help="Add bbcode tags.")] = False,
+    thumbnail: Annotated[
+        bool, typer.Option("-t", "--thumbnail", help="Add caption thumbnail and bbcode tags.")
+    ] = False,
+    notify: Annotated[
+        bool, typer.Option("-n", "--notify", help="Send desktop notifications via libnotify.")
+    ] = False,
+    clipboard: Annotated[
+        bool, typer.Option("-c/-C", "--clipboard/--no-clipboard", help="Copy result to clipboard.")
+    ] = True,
 ) -> None:
     """Upload images via APIs."""
     # loading .env variables
@@ -72,7 +60,7 @@ def cli(
 
 async def upload_images(
     upload_func: Callable,
-    images: tuple[Path],
+    images: list[Path],
     bbcode: bool,
     thumbnail: bool,
 ) -> list[str]:

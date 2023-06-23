@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import pytest
-from click.testing import CliRunner
-from images_upload_cli.__main__ import cli
+from images_upload_cli.__main__ import app
 from images_upload_cli.upload import HOSTINGS
+from typer.testing import CliRunner
 
 
 @pytest.fixture()
@@ -21,7 +21,7 @@ def runner():
     ],
 )
 def test_cli(runner: CliRunner, args: list[str]):
-    assert runner.invoke(cli=cli, args=args).exit_code == 0
+    assert runner.invoke(app=app, args=args).exit_code == 0
 
 
 @pytest.mark.key_required()
@@ -33,4 +33,4 @@ def test_cli(runner: CliRunner, args: list[str]):
     ],
 )
 def test_cli_all(runner: CliRunner, args: list[str]):
-    assert runner.invoke(cli=cli, args=args).exit_code == 0
+    assert runner.invoke(app=app, args=args).exit_code == 0
