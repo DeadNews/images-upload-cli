@@ -24,13 +24,7 @@ from images_upload_cli.util import get_config_path, make_thumbnail, notify_send
 @click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="imgur")
 @click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")
 @click.option("-t", "--thumbnail", is_flag=True, help="Add caption thumbnail and bbcode tags.")
-@click.option(
-    "-n/-N",
-    "--notify/--no-notify",
-    is_flag=True,
-    default=False,
-    help="Send desktop notifications via libnotify.",
-)
+@click.option("-n", "--notify", is_flag=True, help="Send desktop notification via libnotify.")
 @click.option(
     "-c/-C",
     "--clipboard/--no-clipboard",
