@@ -42,6 +42,7 @@ ruff = "ruff check ."
 black = "black --check ."
 mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
+pytest = "pytest --cov-report=xml -m 'not key_required'"
 
 [tool.poetry-dynamic-versioning]
 enable = true
@@ -69,7 +70,11 @@ testpaths = ["tests"]
 markers = ["docker", "key_required"]
 
 [tool.coverage.report]
-exclude_lines = ["if TYPE_CHECKING:", "if __name__ == .__main__.:"]
+exclude_lines = [
+  "# pragma: no cover",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
 
 [tool.ruff]
 line-length = 99
