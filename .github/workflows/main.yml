@@ -104,7 +104,7 @@ jobs:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
           commit_username: DeadNews
-          commit_email: uhjnnn@gmail.com
+          commit_email: aurczpbgr@mozmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{ github.ref }}
           updpkgsums: true
