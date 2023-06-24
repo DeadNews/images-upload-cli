@@ -42,7 +42,7 @@ ruff = "ruff check ."
 black = "black --check ."
 mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
-pytest = 'pytest --cov-report=xml -m "not key_required"'
+pytest = "pytest --cov-report=xml -m \"not key_required\""
 
 [tool.poetry-dynamic-versioning]
 enable = true
