@@ -27,12 +27,12 @@ python-dotenv = "^1.0.0"
 
 [tool.poetry.group.lint.dependencies]
 black = "^23.3.0"
-mypy = "^1.4.0"
+mypy = "^1.4.1"
 poethepoet = "^0.20.0"
 ruff = "^0.0.275"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^7.3.2"
+pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
 pytest-asyncio = "^0.21.0"
 pytest-httpx = "^0.22.0"
