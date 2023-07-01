@@ -21,7 +21,7 @@ images-upload-cli = "images_upload_cli.cli:cli"
 python = "^3.9"
 click = "^8.1.3"
 httpx = "^0.24.1"
-pillow = "^9.5.0"
+pillow = "^10.0.0"
 pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
 
