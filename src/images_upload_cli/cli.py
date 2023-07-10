@@ -11,7 +11,7 @@ from httpx import AsyncClient
 from pyperclip import copy
 
 from images_upload_cli.upload import HOSTINGS, UPLOAD
-from images_upload_cli.util import get_config_path, make_thumbnail, notify_send
+from images_upload_cli.util import get_config_path, get_font, make_thumbnail, notify_send
 
 
 @click.command(context_settings={"show_default": True})
@@ -73,6 +73,9 @@ async def upload_images(
     """Upload images coroutine."""
     links = []
 
+    if thumbnail:
+        font = get_font()
+
     async with AsyncClient() as client:
         for img_path in images:
             img = img_path.read_bytes()
@@ -81,7 +84,7 @@ async def upload_images(
             if not thumbnail:
                 link = f"[img]{img_link}[/img]" if bbcode else img_link
             else:
-                thumb_link = await upload_func(client, make_thumbnail(img))
+                thumb_link = await upload_func(client, make_thumbnail(img, font))
                 link = f"[url={img_link}][img]{thumb_link}[/img][/url]"
 
             links.append(link)

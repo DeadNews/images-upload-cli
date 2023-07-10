@@ -2,7 +2,8 @@
 from os import environ
 
 import pytest
-from images_upload_cli.util import GetEnvError, get_env, get_img_ext, human_size
+from images_upload_cli.util import GetEnvError, get_env, get_font, get_img_ext, human_size
+from PIL import ImageFont
 
 
 @pytest.mark.parametrize(
@@ -25,6 +26,10 @@ def test_human_size(test_arg: int, expected: str):
 
 def test_get_img_ext(img: bytes):
     assert get_img_ext(img) == "png"
+
+
+def test_get_font():
+    assert isinstance(get_font(), ImageFont.FreeTypeFont)
 
 
 def test_get_env():
