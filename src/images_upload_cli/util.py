@@ -59,7 +59,7 @@ def get_font() -> ImageFont.FreeTypeFont:
     for font_name in font_names:
         try:
             return ImageFont.truetype(font_name, size=14)
-        except OSError:
+        except OSError:  # noqa: PERF203
             continue
 
     msg = (
