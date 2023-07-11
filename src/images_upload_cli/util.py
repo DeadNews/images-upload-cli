@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 """Utils."""
 
-from functools import lru_cache
 from io import BytesIO
 from os import getenv
 from pathlib import Path
@@ -45,8 +44,16 @@ def get_img_ext(img: bytes) -> str:
     return Image.open(BytesIO(img)).format.lower()
 
 
-@lru_cache
-def get_font() -> ImageFont.FreeTypeFont:
+def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
+    """Get caption font."""
+    return (
+        ImageFont.truetype(font_name, size=size)
+        if (font_name := getenv("CAPTION_FONT"))
+        else get_default_font()
+    )
+
+
+def get_default_font(size: int = 14) -> ImageFont.FreeTypeFont:
     """Attempt to retrieve a reasonably-looking TTF font from the system."""
     font_names = [
         "Helvetica",
@@ -58,8 +65,8 @@ def get_font() -> ImageFont.FreeTypeFont:
 
     for font_name in font_names:
         try:
-            return ImageFont.truetype(font_name, size=14)
-        except OSError:
+            return ImageFont.truetype(font_name, size=size)
+        except OSError:  # noqa: PERF203
             continue
 
     msg = (
@@ -69,7 +76,11 @@ def get_font() -> ImageFont.FreeTypeFont:
     raise GetEnvError(msg)  # pragma: no cover
 
 
-def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
+def make_thumbnail(
+    img: bytes,
+    font: ImageFont.FreeTypeFont,
+    size: tuple[int, int] = (300, 300),
+) -> bytes:
     """Make this image into a captioned thumbnail."""
     # get a pw
     im = Image.open(BytesIO(img))
@@ -86,13 +97,6 @@ def make_thumbnail(img: bytes, size: tuple[int, int] = (300, 300)) -> bytes:
 
     # get a file size info
     fsize = human_size(len(img))
-
-    # get font
-    font = (
-        ImageFont.truetype(font_name, size=14)
-        if (font_name := getenv("CAPTION_FONT"))
-        else get_font()
-    )
 
     # draw text
     d = ImageDraw.Draw(pw_with_line)
