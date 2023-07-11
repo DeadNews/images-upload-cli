@@ -22,7 +22,7 @@ repos:
       - id: prettier
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.15.9
+    rev: v1.16.0
     hooks:
       - id: typos
 
@@ -39,7 +39,7 @@ repos:
         args: [--fix]
 
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.7.0
     hooks:
       - id: black
 
