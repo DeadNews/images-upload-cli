@@ -54,7 +54,7 @@ jobs:
         run: poetry install
 
       - name: Run tests
-        run: poetry run poe pytest
+        run: poetry run poe test
         env:
           UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 

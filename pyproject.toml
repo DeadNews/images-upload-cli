@@ -43,8 +43,9 @@ ruff = "ruff check ."
 black = "black --check ."
 mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
-#
-pytest = "pytest --cov-report=xml -m \"not online and not benchmark\""
+
+[tool.poe.tasks.test]
+cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
 
 [tool.poetry-dynamic-versioning]
 enable = true
