@@ -54,7 +54,7 @@ jobs:
         run: poetry install
 
       - name: Run tests
-        run: poetry run pytest --cov-report=xml -m "not online and not benchmark"
+        run: poetry run poe pytest
         env:
           UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
