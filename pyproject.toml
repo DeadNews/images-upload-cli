@@ -33,8 +33,9 @@ ruff = "^0.0.278"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
-pytest-cov = "^4.1.0"
 pytest-asyncio = "^0.21.1"
+pytest-benchmark = "^4.0.0"
+pytest-cov = "^4.1.0"
 pytest-httpx = "^0.22.0"
 
 [tool.poe.tasks]
@@ -66,7 +67,7 @@ allow_untyped_defs = true
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src"
 testpaths = ["tests"]
-markers = ["docker", "key_required"]
+markers = ["benchmark", "docker", "online"]
 
 [tool.coverage.report]
 exclude_lines = [
