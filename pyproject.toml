@@ -50,7 +50,7 @@ mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
 
 [tool.poe.tasks.test]
-test = "pytest --cov-report=xml --cov-report=term -m 'not online and not benchmark'"
+cmd = "pytest --cov-report=xml --cov-report=term -m 'not online and not benchmark'"
 
 [tool.black]
 line-length = 99
