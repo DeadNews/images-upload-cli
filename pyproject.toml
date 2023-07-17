@@ -50,7 +50,7 @@ mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
 
 [tool.poe.tasks.test]
-cmd = "pytest --cov-report=xml --cov-report=term -m 'not online and not benchmark'"
+cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
 
 [tool.black]
 line-length = 99
@@ -68,7 +68,7 @@ module = ["tests.*"]
 allow_untyped_defs = true
 
 [tool.pytest.ini_options]
-addopts = "--verbose --cov=./src"
+addopts = "--verbose --cov=./src --cov-report=term"
 testpaths = ["tests"]
 markers = ["benchmark", "docker", "online"]
 
