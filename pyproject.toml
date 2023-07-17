@@ -38,6 +38,11 @@ pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
 pytest-httpx = "^0.22.0"
 
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
+
 [tool.poe.tasks]
 ruff = "ruff check ."
 black = "black --check ."
@@ -45,12 +50,7 @@ mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
 
 [tool.poe.tasks.test]
-cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
-
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-style = "semver"
+test = "pytest --cov-report=xml --cov-report=term -m 'not online and not benchmark'"
 
 [tool.black]
 line-length = 99
