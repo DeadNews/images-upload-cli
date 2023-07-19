@@ -34,6 +34,7 @@ ruff = "^0.0.278"
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
 pytest-asyncio = "^0.21.1"
+pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
 pytest-httpx = "^0.22.0"
 
@@ -50,6 +51,9 @@ lint.sequence = ["ruff", "black", "mypy"]
 
 [tool.poe.tasks.test]
 cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
+
+[tool.poe.tasks.benchmark]
+cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-compare"
 
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src --cov-report=term"
