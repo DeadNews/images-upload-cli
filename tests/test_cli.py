@@ -15,7 +15,7 @@ def runner():
     [
         pytest.param(["--help"], id="help"),
         pytest.param(
-            ["tests/resources/pic.png", "-C", "-h", "uploadcare", "--thumbnail", "--notify"],
+            ["tests/data/pic.png", "-C", "-h", "uploadcare", "--thumbnail", "--notify"],
             id="uploadcare,thumbnail",
         ),
     ],
@@ -24,11 +24,11 @@ def test_cli(runner: CliRunner, args: list[str]):
     assert runner.invoke(cli=cli, args=args).exit_code == 0
 
 
-@pytest.mark.key_required()
+@pytest.mark.online()
 @pytest.mark.parametrize(
     "args",
     [
-        pytest.param(["tests/resources/pic.png", "-C", "-h", hosting], id=hosting)
+        pytest.param(["tests/data/pic.png", "-C", "-h", hosting], id=hosting)
         for hosting in HOSTINGS
     ],
 )

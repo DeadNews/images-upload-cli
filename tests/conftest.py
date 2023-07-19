@@ -8,4 +8,4 @@ import pytest
 
 @pytest.fixture()
 def img() -> bytes:
-    return Path("tests/resources/pic.png").read_bytes()
+    return Path("tests/data/pic.png").read_bytes()

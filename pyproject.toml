@@ -33,9 +33,15 @@ ruff = "^0.0.278"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
-pytest-cov = "^4.1.0"
 pytest-asyncio = "^0.21.1"
+pytest-benchmark = "^4.0.0"
+pytest-cov = "^4.1.0"
 pytest-httpx = "^0.22.0"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
 
 [tool.poe.tasks]
 ruff = "ruff check ."
@@ -43,10 +49,23 @@ black = "black --check ."
 mypy = "mypy ."
 lint.sequence = ["ruff", "black", "mypy"]
 
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-style = "semver"
+[tool.poe.tasks.test]
+cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
+
+[tool.poe.tasks.benchmark]
+cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-compare"
+
+[tool.pytest.ini_options]
+addopts = "--verbose --cov=./src --cov-report=term"
+testpaths = ["tests"]
+markers = ["benchmark", "online"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "# pragma: no cover",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
 
 [tool.black]
 line-length = 99
@@ -62,18 +81,6 @@ warn_unused_ignores = true
 [[tool.mypy.overrides]]
 module = ["tests.*"]
 allow_untyped_defs = true
-
-[tool.pytest.ini_options]
-addopts = "--verbose --cov=./src"
-testpaths = ["tests"]
-markers = ["docker", "key_required"]
-
-[tool.coverage.report]
-exclude_lines = [
-  "# pragma: no cover",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
 
 [tool.ruff]
 line-length = 99
