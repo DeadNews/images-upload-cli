@@ -84,6 +84,7 @@ allow_untyped_defs = true
 
 [tool.ruff]
 line-length = 99
+target-version = "py39" # until poetry v2
 select = ["ALL"]
 ignore = [
   "COM812",  # Trailing comma missing
