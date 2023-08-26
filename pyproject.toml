@@ -27,16 +27,16 @@ python-dotenv = "^1.0.0"
 
 [tool.poetry.group.lint.dependencies]
 black = "^23.7.0"
-mypy = "^1.4.1"
-poethepoet = "^0.21.1"
-ruff = "^0.0.280"
+mypy = "^1.5.1"
+poethepoet = "^0.22.0"
+ruff = "^0.0.286"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
 pytest-asyncio = "^0.21.1"
 pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
-pytest-httpx = "^0.22.0"
+pytest-httpx = "^0.23.1"
 
 [tool.poetry-dynamic-versioning]
 enable = true
