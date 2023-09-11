@@ -20,7 +20,17 @@ def runner():
         ),
     ],
 )
-def test_cli(runner: CliRunner, args: list[str]):
+def test_cli(runner: CliRunner, args: list[str]) -> None:
+    """
+    Test the cli function with the provided arguments.
+
+    Args:
+        runner (CliRunner): An instance of CliRunner used to invoke the cli function.
+        args (list[str]): A list of command-line arguments to be passed to the cli function.
+
+    Raises:
+        AssertionError: If the exit code of the cli function invocation is not 0.
+    """
     assert runner.invoke(cli=cli, args=args).exit_code == 0
 
 
@@ -32,5 +42,15 @@ def test_cli(runner: CliRunner, args: list[str]):
         for hosting in HOSTINGS
     ],
 )
-def test_cli_all(runner: CliRunner, args: list[str]):
+def test_cli_all(runner: CliRunner, args: list[str]) -> None:
+    """
+    Test the cli function with the provided arguments.
+
+    Args:
+        runner (CliRunner): An instance of CliRunner used to invoke the cli function.
+        args (list[str]): A list of command-line arguments to be passed to the cli function.
+
+    Raises:
+        AssertionError: If the exit code of the cli function invocation is not 0.
+    """
     assert runner.invoke(cli=cli, args=args).exit_code == 0
