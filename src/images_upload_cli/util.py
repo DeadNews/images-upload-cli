@@ -93,7 +93,7 @@ def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
         An instance of the `ImageFont.FreeTypeFont` class representing the font for captions.
     """
     if font_name := getenv("CAPTION_FONT"):
-        return ImageFont.truetype(font_name, size=size)
+        return ImageFont.truetype(font_name, size=size)  # pragma: no cover
 
     return get_default_font(size)
 
