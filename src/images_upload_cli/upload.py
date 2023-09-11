@@ -12,12 +12,26 @@ from images_upload_cli.util import get_env, get_img_ext
 
 
 async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to beeimg.com."""
-    ext = f"img.{get_img_ext(img)}"
+    """
+    Uploads an image to the `beeimg.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
+    ext = get_img_ext(img)
+    name = f"img.{ext}"
+    content_type = f"image/{ext}"
 
     response = await client.post(
         url="https://beeimg.com/api/upload/file/json/",
-        files={"file": (f"img.{ext}", img, f"image/{ext}")},
+        files={"file": (name, img, content_type)},
     )
     response.raise_for_status()
 
@@ -25,7 +39,19 @@ async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def catbox_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to catbox.moe."""
+    """
+    Uploads an image to the `catbox.moe`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     response = await client.post(
         url="https://catbox.moe/user/api.php",
         data={"reqtype": "fileupload"},
@@ -33,11 +59,24 @@ async def catbox_upload(client: AsyncClient, img: bytes) -> str:
     )
     response.raise_for_status()
 
-    return f"{response.text}"
+    return response.text
 
 
 async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to fastpic.org."""
+    """
+    Uploads an image to the `fastpic.org`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+        httpx.HTTPError: If the image link is not found in the response.
+    """
     response = await client.post(
         url="https://fastpic.org/upload?api=1",
         data={
@@ -58,7 +97,19 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to file.coffee."""
+    """
+    Uploads an image to the `file.coffee`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     response = await client.post(
         url="https://file.coffee/api/file/upload",
         files={"file": img},
@@ -69,7 +120,19 @@ async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to freeimage.host."""
+    """
+    Uploads an image to the `freeimage.host`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("FREEIMAGE_KEY")
 
     response = await client.post(
@@ -83,7 +146,19 @@ async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to gyazo.com."""
+    """
+    Uploads an image to the `gyazo.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("GYAZO_TOKEN")
 
     response = await client.post(
@@ -96,7 +171,19 @@ async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def imageban_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to imageban.ru."""
+    """
+    Uploads an image to the `imageban.ru`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     token = get_env("IMAGEBAN_TOKEN")
 
     response = await client.post(
@@ -110,7 +197,20 @@ async def imageban_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to imagebin.ca."""
+    """
+    Uploads an image to the `imagebin.ca`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+        httpx.HTTPError: If the image link is not found in the response.
+    """
     response = await client.post(
         url="https://imagebin.ca/upload.php",
         files={"file": img},
@@ -126,7 +226,19 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to imgbb.com."""
+    """
+    Uploads an image to the `imgbb.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("IMGBB_KEY")
 
     response = await client.post(
@@ -140,14 +252,26 @@ async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to imgchest.com."""
+    """
+    Uploads an image to the `imgchest.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("IMGCHEST_KEY")
-    ext = get_img_ext(img)
+    name = f"img.{get_img_ext(img)}"
 
     response = await client.post(
         url="https://api.imgchest.com/v1/post",
         headers={"Authorization": f"Bearer {key}"},
-        files={"images[]": (f"img.{ext}", img)},
+        files={"images[]": (name, img)},
     )
     response.raise_for_status()
 
@@ -155,7 +279,19 @@ async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def imgur_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to imgur.com."""
+    """
+    Uploads an image to the `imgur.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     client_id = getenv("IMGUR_CLIENT_ID", "dd32dd3c6aaa9a0")
 
     response = await client.post(
@@ -169,7 +305,19 @@ async def imgur_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to lensdump.com."""
+    """
+    Uploads an image to the `lensdump.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("LENSDUMP_KEY")
 
     response = await client.post(
@@ -183,7 +331,19 @@ async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to pixeldrain.com."""
+    """
+    Uploads an image to the `pixeldrain.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     response = await client.post(
         url="https://pixeldrain.com/api/file",
         files={"file": img},
@@ -194,7 +354,19 @@ async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to pixhost.to."""
+    """
+    Uploads an image to the `pixhost.to`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     response = await client.post(
         url="https://api.pixhost.to/images",
         data={"content_type": 0},
@@ -204,7 +376,7 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
 
     show_url = response.json()["show_url"]
 
-    # get direct link
+    # Get direct link.
     get_resp = await client.get(show_url)
     u = urlparse(show_url)
     match = search(
@@ -217,7 +389,19 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to ptpimg.me."""
+    """
+    Uploads an image to the `ptpimg.me`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("PTPIMG_KEY")
 
     response = await client.post(
@@ -231,7 +415,19 @@ async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def smms_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to sm.ms."""
+    """
+    Uploads an image to the `sm.ms`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("SMMS_KEY")
 
     response = await client.post(
@@ -246,7 +442,19 @@ async def smms_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to sxcu.net."""
+    """
+    Uploads an image to the `sxcu.net`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     response = await client.post(
         url="https://sxcu.net/api/files/create",
         headers={"user-agent": "python-https/1.0.0"},
@@ -258,7 +466,19 @@ async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to telegra.ph."""
+    """
+    Uploads an image to the `telegra.ph`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     response = await client.post(
         url="https://telegra.ph/upload",
         files={"file": img},
@@ -269,7 +489,19 @@ async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to thumbsnap.com."""
+    """
+    Uploads an image to the `thumbsnap.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("THUMBSNAP_KEY")
 
     response = await client.post(
@@ -284,14 +516,27 @@ async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
 
 async def tixte_upload(client: AsyncClient, img: bytes) -> str:
     """Upload to tixte.com."""
+    """
+    Uploads an image to the `freeimage.host`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("TIXTE_KEY")
-    ext = get_img_ext(img)
+    name = f"img.{get_img_ext(img)}"
 
     response = await client.post(
         url="https://api.tixte.com/v1/upload",
         headers={"Authorization": key},
         data={"payload_json": '{"random":true}'},
-        files={"file": (f"img.{ext}", img)},
+        files={"file": (name, img)},
     )
     response.raise_for_status()
 
@@ -299,14 +544,27 @@ async def tixte_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to up2sha.re."""
+    """
+    Uploads an image to the `up2sha.re`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("UP2SHA_KEY")
     ext = get_img_ext(img)
+    name = f"img.{ext}"
 
     response = await client.post(
         url="https://api.up2sha.re/files",
         headers={"X-Api-Key": key},
-        files={"file": (f"img.{ext}", img)},
+        files={"file": (name, img)},
     )
     response.raise_for_status()
 
@@ -314,14 +572,27 @@ async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def uplio_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to upl.io."""
+    """
+    Uploads an image to the `upl.io`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("UPLIO_KEY")
     ext = get_img_ext(img)
+    name = f"img.{ext}"
 
     response = await client.post(
         url="https://upl.io",
         data={"key": key},
-        files={"file": (f"img.{ext}", img)},
+        files={"file": (name, img)},
     )
     response.raise_for_status()
 
@@ -330,7 +601,19 @@ async def uplio_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to uploadcare.com."""
+    """
+    Uploads an image to the `uploadcare.com`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
 
@@ -348,14 +631,26 @@ async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
 
 
 async def vgy_upload(client: AsyncClient, img: bytes) -> str:
-    """Upload to vgy.me."""
+    """
+    Uploads an image to the `vgy.me`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
     key = get_env("VGY_KEY")
-    ext = get_img_ext(img)
+    name = f"img.{get_img_ext(img)}"
 
     response = await client.post(
         url="https://vgy.me/upload",
         data={"userkey": key},
-        files={"file[]": (f"img.{ext}", img)},
+        files={"file[]": (name, img)},
     )
     response.raise_for_status()
 

@@ -41,11 +41,23 @@ def cli(
     notify: bool,
     clipboard: bool,
 ) -> None:
-    """Upload images via APIs."""
-    # loading .env variables
+    """
+    Upload images via APIs.
+
+    Args:
+        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to be uploaded.
+        hosting (str): The hosting service to use for image upload.
+        bbcode (bool): A boolean flag indicating whether to generate BBCode links for the uploaded images.
+        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
+        notify (bool): A boolean flag indicating whether to send desktop notifications.
+        clipboard (bool): A boolean flag indicating whether to copy the image links to the clipboard.
+
+    Returns:
+        None.
+        Prints the links to the uploaded images and optionally copies them to the clipboard and sends desktop notifications.
+    """
     load_dotenv(dotenv_path=get_config_path())
 
-    # async images upload
     links = asyncio.run(
         upload_images(
             upload_func=UPLOAD[hosting],
@@ -55,7 +67,6 @@ def cli(
         )
     )
 
-    # out
     links_str = " ".join(links)
     click.echo(links_str)
     if clipboard:
@@ -70,7 +81,20 @@ async def upload_images(
     bbcode: bool,
     thumbnail: bool,
 ) -> list[str]:
-    """Upload images coroutine."""
+    """
+    Upload images coroutine.
+
+    Args:
+        upload_func (Callable): A callable function that handles the actual image upload.
+            It takes an `httpx.AsyncClient` instance and the image data as input and returns a link to the uploaded image.
+        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to be uploaded.
+        bbcode (bool): A boolean flag indicating whether to generate BBCode links for the uploaded images.
+        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
+
+    Returns:
+        list[str]: A list of links to the uploaded images. If the `thumbnail` flag is set to True,
+            the list includes links to the thumbnail images.
+    """
     links = []
 
     if thumbnail:
