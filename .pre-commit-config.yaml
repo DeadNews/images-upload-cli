@@ -32,6 +32,11 @@ repos:
       - id: check-github-workflows
       - id: check-renovate
 
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.25
+    hooks:
+      - id: actionlint
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.288
     hooks:
