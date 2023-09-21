@@ -29,6 +29,7 @@ python-dotenv = "^1.0.0"
 black = "^23.9.1"
 mypy = "^1.5.1"
 poethepoet = "^0.22.1"
+pyright = "^1.1.327"
 ruff = "^0.0.288"
 
 [tool.poetry.group.test.dependencies]
@@ -44,9 +45,10 @@ vcs = "git"
 style = "semver"
 
 [tool.poe.tasks]
-ruff = "ruff check ."
 black = "black --check ."
 mypy = "mypy ."
+pyright = "pyright ."
+ruff = "ruff check ."
 lint.sequence = ["ruff", "black", "mypy"]
 
 [tool.poe.tasks.test]
