@@ -30,14 +30,14 @@ black = "^23.9.1"
 mypy = "^1.5.1"
 poethepoet = "^0.22.1"
 pyright = "^1.1.327"
-ruff = "^0.0.288"
+ruff = "^0.0.291"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
 pytest-asyncio = "^0.21.1"
 pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
-pytest-httpx = "^0.25.0"
+pytest-httpx = "^0.26.0"
 
 [tool.poetry-dynamic-versioning]
 enable = true
