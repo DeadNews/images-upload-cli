@@ -22,7 +22,7 @@ repos:
       - id: prettier
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.16.11
+    rev: v1.16.13
     hooks:
       - id: typos
 
@@ -33,12 +33,12 @@ repos:
       - id: check-renovate
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.6.25
+    rev: v1.6.26
     hooks:
       - id: actionlint
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.288
+    rev: v0.0.291
     hooks:
       - id: ruff
         args: [--fix]
