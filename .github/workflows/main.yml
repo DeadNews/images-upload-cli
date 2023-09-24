@@ -89,6 +89,7 @@ jobs:
     name: Release to AUR
     if: github.event.release.prerelease != true
     needs: [publish-pypi]
+    environment: aur
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
