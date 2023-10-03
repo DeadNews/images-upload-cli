@@ -6,11 +6,12 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  security-events: write
+
 jobs:
   codeql:
     name: CodeQL analyze
-    permissions:
-      security-events: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
