@@ -26,10 +26,10 @@ pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.lint.dependencies]
-black = "^23.9.1"
-mypy = "^1.5.1"
-poethepoet = "^0.23.0"
-ruff = "^0.0.291"
+black = "^23.10.0"
+mypy = "^1.6.1"
+poethepoet = "^0.24.1"
+ruff = "^0.1.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
