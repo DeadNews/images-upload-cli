@@ -26,10 +26,9 @@ pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.lint.dependencies]
-black = "^23.10.0"
 mypy = "^1.6.1"
 poethepoet = "^0.24.1"
-ruff = "^0.1.1"
+ruff = "^0.1.3"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
@@ -44,10 +43,10 @@ vcs = "git"
 style = "semver"
 
 [tool.poe.tasks]
-black = "black --check ."
 mypy = "mypy ."
 ruff = "ruff check ."
-lint.sequence = ["ruff", "black", "mypy"]
+fmt = "ruff format ."
+lint.sequence = ["ruff", "fmt", "mypy"]
 
 [tool.poe.tasks.test]
 cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
@@ -67,9 +66,6 @@ exclude_lines = [
   "if TYPE_CHECKING:",
 ]
 
-[tool.black]
-line-length = 99
-
 [tool.mypy]
 disallow_untyped_defs = true
 follow_imports = "silent"
@@ -85,6 +81,11 @@ allow_untyped_defs = true
 [tool.ruff]
 line-length = 99
 target-version = "py39" # until poetry v2
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.ruff.lint]
 select = ["ALL"]
 ignore = [
   "COM812",  # Trailing comma missing
@@ -94,6 +95,7 @@ ignore = [
   "EXE001",  # Shebang is present but file is not executable
   "FBT001",  # Boolean positional arg in function definition
   "FBT002",  # Boolean default value in function definition
+  "ISC001",  # Checks for implicitly concatenated strings on a single line.
   "PLR0913", # Too many arguments to function call
   #
   "S603", # Calling subprocess.Popen with shell=False
