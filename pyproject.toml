@@ -20,7 +20,7 @@ images-upload-cli = "images_upload_cli.cli:cli"
 [tool.poetry.dependencies]
 python = "^3.9"
 click = "^8.1.7"
-httpx = "^0.25.0"
+httpx = "^0.26.0"
 pillow = "^10.0.0"
 pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
