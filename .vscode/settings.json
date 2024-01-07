@@ -4,12 +4,9 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
     }
   },
-  // mypy
-  "python.linting.mypyEnabled": true,
-  // pytest
   "python.testing.pytestEnabled": true
 }
