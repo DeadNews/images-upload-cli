@@ -54,7 +54,7 @@ def cli(
 
     Returns:
         None.
-        Prints the links to the uploaded images and optionally copies them to the clipboard and sends desktop notifications.
+        Prints the links to the uploaded images, optionally copies them to the clipboard and sends desktop notifications.
     """
     load_dotenv(dotenv_path=get_config_path())
 

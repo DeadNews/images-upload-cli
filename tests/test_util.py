@@ -26,8 +26,7 @@ def test_human_size(test_arg: int, expected: str) -> None:
         expected (str): The expected human-readable size with the appropriate unit and suffix.
 
     Raises:
-        AssertionError: If the output of calling human_size with test_arg is not equal to expected.
-                        If the output of calling human_size with the negation of test_arg is not equal to the negation of expected.
+        AssertionError: If the output of calling human_size with (negation of) test_arg is not equal to (negation of) expected.
     """
     assert human_size(test_arg) == expected
 
