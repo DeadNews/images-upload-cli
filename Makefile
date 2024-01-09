@@ -1,4 +1,4 @@
-.PHONY: test
+.PHONY: all clean test checks
 
 install-all: install pc-install
 
