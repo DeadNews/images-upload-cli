@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Entrypoint for cli."""
 
 import asyncio

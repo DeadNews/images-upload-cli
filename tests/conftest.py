@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Shared fixtures."""
 
 from pathlib import Path
