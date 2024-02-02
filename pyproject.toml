@@ -45,7 +45,7 @@ style = "semver"
 
 [tool.poe.tasks]
 mypy = "mypy ."
-pyright = "pyright ."
+pyright = "pyright src"
 ruff = "ruff check ."
 ruff-fmt = "ruff format ."
 lint.sequence = ["ruff", "ruff-fmt", "mypy"]

@@ -1,5 +1,5 @@
 import pytest
-from click.testing import CliRunner
+from click.testing import CliRunner, Result
 from dotenv import load_dotenv
 from images_upload_cli.__main__ import cli
 from pytest_benchmark.fixture import BenchmarkFixture
@@ -27,7 +27,7 @@ def test_bm_cli_online(benchmark: BenchmarkFixture, runner: CliRunner):
     """
 
     @benchmark
-    def result():
+    def result() -> Result:
         """Measure the execution time of the cli function."""
         args = [
             "-h",
@@ -63,7 +63,7 @@ def test_bm_cli(benchmark: BenchmarkFixture, runner: CliRunner, httpx_mock: HTTP
     load_dotenv(dotenv_path="tests/data/.env.sample")
 
     @benchmark
-    def result():
+    def result() -> Result:
         """Measure the execution time of the cli function."""
         args = [
             "-h",

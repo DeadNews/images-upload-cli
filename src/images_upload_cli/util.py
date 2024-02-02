@@ -78,7 +78,8 @@ def get_img_ext(img: bytes) -> str:
         str: The extension of the image file.
     """
     with BytesIO(img) as f:
-        return Image.open(f).format.lower()
+        ext = Image.open(f).format
+        return "" if ext is None else ext.lower()
 
 
 def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
