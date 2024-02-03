@@ -41,6 +41,11 @@ def test_get_font() -> None:
     assert isinstance(get_font(), ImageFont.FreeTypeFont)
 
 
+def test_get_font_env() -> None:
+    environ["CAPTION_FONT"] = "DejaVuSerif"
+    assert isinstance(get_font(), ImageFont.FreeTypeFont)
+
+
 def test_get_env() -> None:
     environ["TEST_KEY_1"] = "test"
     assert get_env("TEST_KEY_1") == "test"
