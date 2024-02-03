@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Entrypoint for cli."""
 
 import asyncio
@@ -41,9 +40,8 @@ def cli(
     notify: bool,
     clipboard: bool,
 ) -> None:
+    """Upload images via APIs."""
     """
-    Upload images via APIs.
-
     Args:
         images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to be uploaded.
         hosting (str): The hosting service to use for image upload.

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pytest
 from dotenv import load_dotenv
 from httpx import AsyncClient

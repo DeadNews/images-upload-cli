@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import pytest
 from click.testing import CliRunner
 from images_upload_cli.__main__ import cli

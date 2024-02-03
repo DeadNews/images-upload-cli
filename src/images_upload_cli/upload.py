@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Upload callables."""
 
 from collections.abc import Callable

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Utils."""
 
 from io import BytesIO
@@ -79,7 +78,8 @@ def get_img_ext(img: bytes) -> str:
         str: The extension of the image file.
     """
     with BytesIO(img) as f:
-        return Image.open(f).format.lower()
+        ext = Image.open(f).format
+        return "" if ext is None else ext.lower()
 
 
 def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
@@ -93,7 +93,7 @@ def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
         An instance of the `ImageFont.FreeTypeFont` class representing the font for captions.
     """
     if font_name := getenv("CAPTION_FONT"):
-        return ImageFont.truetype(font_name, size=size)  # pragma: no cover
+        return ImageFont.truetype(font_name, size=size)
 
     return get_default_font(size)
 

@@ -1,5 +1,5 @@
-#!/usr/bin/env python
 from os import environ
+from platform import system
 
 import pytest
 from images_upload_cli.util import GetEnvError, get_env, get_font, get_img_ext, human_size
@@ -39,6 +39,17 @@ def test_get_img_ext(img: bytes) -> None:
 
 
 def test_get_font() -> None:
+    assert isinstance(get_font(), ImageFont.FreeTypeFont)
+
+
+def test_get_font_env() -> None:
+    if system() == "Linux":
+        environ["CAPTION_FONT"] = "DejaVuSerif"
+    elif system() == "Darwin":
+        environ["CAPTION_FONT"] = "Helvetica"
+    elif system() == "Windows":
+        environ["CAPTION_FONT"] = "arial"
+
     assert isinstance(get_font(), ImageFont.FreeTypeFont)
 
 
