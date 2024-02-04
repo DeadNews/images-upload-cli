@@ -124,7 +124,8 @@ jobs:
           - os: windows-latest
             python-version: "3.11"
             artifact_name: images-upload-cli.exe
-            asset_name: images-upload-cli_${{ github.ref }}_windows_amd64.exe
+            archive_type: zip
+            asset_name: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -151,13 +152,14 @@ jobs:
       - name: Archive binaries
         uses: thedoctor0/zip-release@b57d897cb5d60cb78b51a507f63fa184cfe35554 # 0.7.6
         with:
-          type: zip
-          path: build/${{ matrix.artifact_name }} README.md
-          filename: ${{ matrix.asset_name }}.zip
+          type: ${{ matrix.archive_type }}
+          directory: build
+          path: ${{ matrix.artifact_name }}
+          filename: ${{ matrix.asset_name }}
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@1beeb572c19a9242f4361f4cee78f8e0d9aec5df # v2.7.0
         with:
-          file: ${{ matrix.asset_name }}.zip
+          file: build/${{ matrix.asset_name }}
           asset_name: ${{ matrix.asset_name }}
           make_latest: false
