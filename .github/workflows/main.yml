@@ -110,3 +110,41 @@ jobs:
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{ github.ref }}
           updpkgsums: true
+
+  build:
+    name: Build
+    needs: [lint, tests]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: poetry
+
+      - name: Install deps
+        run: poetry install
+
+      - name: Build Executable
+        uses: nuitka/nuitka-action@main
+        with:
+          nuitka-version: main
+          script-name: src/images_upload_cli/__main__.py
+          onefile: true
+
+      # - name: Upload Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{ runner.os }} Build
+      #     path: |
+      #       build/*.exe
+      #       build/*.bin

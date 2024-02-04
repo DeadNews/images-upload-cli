@@ -38,6 +38,9 @@ pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
 pytest-httpx = "^0.29.0"
 
+[tool.poetry.group.build.dependencies]
+nuitka = "^2.0.1"
+
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
@@ -55,6 +58,13 @@ cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
 
 [tool.poe.tasks.benchmark]
 cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-compare"
+
+[tool.poe.tasks.nuitka]
+cmd = """
+python -m nuitka
+  --onefile src/images_upload_cli/__main__.py
+  --assume-yes-for-downloads
+"""
 
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src --cov-report=term"

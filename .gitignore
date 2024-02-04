@@ -163,3 +163,10 @@ cython_debug/
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+
+# nuitka
+*.build/
+*.dist/
+*.onefile-build/
+*.exe
+*.bin
