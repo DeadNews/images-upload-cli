@@ -135,16 +135,16 @@ jobs:
         run: poetry install
 
       - name: Build Executable
-        uses: nuitka/nuitka-action@main
+        uses: nuitka/nuitka-action@12e193a947ea7cb9c807a4e4161092f2c16ac501 # v1.1
         with:
           nuitka-version: main
           script-name: src/images_upload_cli/__main__.py
           onefile: true
 
-      # - name: Upload Artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ${{ runner.os }} Build
-      #     path: |
-      #       build/*.exe
-      #       build/*.bin
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }} Build
+          path: |
+            build/*.exe
+            build/*.bin
