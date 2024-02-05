@@ -63,7 +63,7 @@ cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-com
 cmd = """
 python -m nuitka src/images_upload_cli/__main__.py
   --onefile
-  --output-dir=build
+  --output-dir=dist
   --assume-yes-for-downloads
 """
 
