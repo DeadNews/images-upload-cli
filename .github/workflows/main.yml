@@ -151,14 +151,3 @@ jobs:
         run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }} --repo ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
-
-  test:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Choco help
-        uses: crazy-max/ghaction-chocolatey@v3
-        with:
-          args: -h
