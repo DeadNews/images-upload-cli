@@ -111,21 +111,16 @@ jobs:
           commit_message: Upstream release ${{ github.ref }}
           updpkgsums: true
 
-  build:
-    name: Build
+  build-win:
+    name: Windows Build
     if: github.event_name == 'release' && github.event.action == 'created'
     needs: [lint, tests]
     permissions:
       contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: windows-latest
-            python-version: "3.11"
-            binary-name: images-upload-cli.exe
-            asset-name: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
-    runs-on: ${{ matrix.os }}
+    env:
+      BINARY: images-upload-cli.exe
+      ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -134,7 +129,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.11"
           cache: poetry
 
       - name: Install deps
@@ -146,14 +141,13 @@ jobs:
           nuitka-version: main
           script-name: src/images_upload_cli/__main__.py
           output-dir: dist
-          output-file: ${{ matrix.binary-name }}
+          output-file: ${{ env.BINARY }}
           onefile: true
 
       - name: Archive binaries
-        run: poetry run python -m zipfile -c ${{ matrix.asset-name }} dist/${{ matrix.binary-name }} README.md
+        run: poetry run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
 
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@1beeb572c19a9242f4361f4cee78f8e0d9aec5df # v2.7.0
-        with:
-          file: ${{ matrix.asset-name }}
-          make_latest: false
+      - name: Upload binaries to Release
+        run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }} --repo ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
