@@ -28,8 +28,8 @@ python-dotenv = "^1.0.0"
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
 poethepoet = "^0.24.4"
-pyright = "^1.1.349"
-ruff = "^0.2.0"
+pyright = "^1.1.350"
+ruff = "^0.2.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.4"
