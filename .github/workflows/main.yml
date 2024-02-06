@@ -59,8 +59,8 @@ jobs:
           UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
       - name: Upload coverage to Codecov
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
-        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3.1.6
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        uses: codecov/codecov-action@4fe8c5f003fae66aa5ebb77cfd3e7bfbbda0b6b0 # v3.1.5
 
   publish-pypi:
     name: Release to PyPI
@@ -110,3 +110,44 @@ jobs:
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{ github.ref }}
           updpkgsums: true
+
+  build-win:
+    name: Windows Build
+    if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [lint, tests]
+    permissions:
+      contents: write
+    env:
+      BINARY: images-upload-cli.exe
+      ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: poetry
+
+      - name: Install deps
+        run: poetry install
+
+      - name: Build binaries
+        uses: nuitka/nuitka-action@12e193a947ea7cb9c807a4e4161092f2c16ac501 # v1.1
+        with:
+          nuitka-version: main
+          script-name: src/images_upload_cli/__main__.py
+          output-dir: dist
+          output-file: ${{ env.BINARY }}
+          onefile: true
+
+      - name: Archive binaries
+        run: poetry run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
+
+      - name: Upload binaries to Release
+        run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }} --repo ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
