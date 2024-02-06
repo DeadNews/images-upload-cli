@@ -120,7 +120,6 @@ jobs:
     env:
       BINARY: images-upload-cli.exe
       ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
-      SUMS: images-upload-cli_${{ github.ref_name }}.txt
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -148,12 +147,7 @@ jobs:
       - name: Archive binaries
         run: poetry run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
 
-      - name: Generate checksums
-        run: |
-          checksum=$(python -c "import hashlib; print(hashlib.sha256(open('${{ env.ASSET }}', 'rb').read()).hexdigest())")
-          echo "${{ env.ASSET }}  ${checksum}" > ${{ env.SUMS }}
-
       - name: Upload binaries to Release
-        run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }} ${{ env.SUMS }} --repo ${{ github.repository }}
+        run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }} --repo ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
