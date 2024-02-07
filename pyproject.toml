@@ -62,13 +62,16 @@ python -m nuitka src/images_upload_cli/__main__.py
 """
 
 [tool.poe.tasks.test]
-cmd = "pytest -m 'not online and not benchmark'"
+cmd = "pytest -m 'not (online or benchmark or uploadcare)'"
 
-[tool.poe.tasks.test-fast]
-cmd = "pytest -m 'not online and not benchmark and not uploadcare'"
+[tool.poe.tasks.test-uploadcare]
+cmd = "pytest -m 'not (online or benchmark)'"
 
 [tool.poe.tasks.benchmark]
 cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-compare"
+
+[tool.poe.tasks.benchmark-online]
+cmd = "pytest -m 'benchmark and online' --benchmark-autosave --benchmark-compare"
 
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=./src --cov-report=term --cov-report=xml"

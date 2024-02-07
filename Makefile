@@ -20,7 +20,7 @@ lint:
 	poetry run poe lint
 
 test:
-	poetry run poe test-fast
+	poetry run poe test
 
 pyright:
 	poetry run poe pyright

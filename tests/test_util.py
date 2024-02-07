@@ -45,7 +45,7 @@ def test_human_size(test_arg: int, expected: str) -> None:
 
 def test_make_thumbnail():
     # Create a sample image
-    image = Image.new("RGBA", (500, 500))
+    image = Image.new("RGBA", (600, 600))
     image_bytes = BytesIO()
     image.save(image_bytes, format="PNG")
     image_bytes.seek(0)
