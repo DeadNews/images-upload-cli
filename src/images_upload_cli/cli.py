@@ -106,7 +106,8 @@ async def upload_images(
             if not thumbnail:
                 link = f"[img]{img_link}[/img]" if bbcode else img_link
             else:
-                thumb_link = await upload_func(client, make_thumbnail(img, font))
+                thumb = make_thumbnail(img, font)  # pyright: ignore[reportPossiblyUnboundVariable]
+                thumb_link = await upload_func(client, thumb)
                 link = f"[url={img_link}][img]{thumb_link}[/img][/url]"
 
             links.append(link)

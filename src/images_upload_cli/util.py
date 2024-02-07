@@ -95,15 +95,23 @@ def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
     if font_name := getenv("CAPTION_FONT"):
         return ImageFont.truetype(font_name, size=size)
 
-    return get_default_font(size)
+    default_fonts = [
+        "Helvetica",
+        "NotoSerif-Regular",
+        "Menlo",
+        "DejaVuSerif",
+        "arial",
+    ]
+    return search_font(fonts=default_fonts, size=size)
 
 
-def get_default_font(size: int = 14) -> ImageFont.FreeTypeFont:
+def search_font(fonts: list[str], size: int = 14) -> ImageFont.FreeTypeFont:
     """
-    Attempt to retrieve a reasonably-looking TTF font from the system.
+    Attempt to retrieve a TTF font from the system.
 
     Args:
-        size: An integer representing the size of the font. Defaults to 14 if not provided.
+        fonts (list[str]): A list of font names to search for.
+        size (int, optional): An integer representing the size of the font. Defaults to 14 if not provided.
 
     Returns:
         An instance of the `ImageFont.FreeTypeFont` class representing the default font, if found.
@@ -111,25 +119,17 @@ def get_default_font(size: int = 14) -> ImageFont.FreeTypeFont:
     Raises:
         GetEnvError: If none of the default fonts are found.
     """
-    font_names = [
-        "Helvetica",
-        "NotoSerif-Regular",
-        "Menlo",
-        "DejaVuSerif",
-        "arial",
-    ]
-
-    for font_name in font_names:
+    for font_name in fonts:
         try:
             return ImageFont.truetype(font_name, size=size)
         except OSError:  # noqa: PERF203
             continue
 
     msg = (
-        f"None of the default fonts were found: {font_names}.\n"
+        f"None of the fonts were found: {fonts}.\n"
         f"Please setup CAPTION_FONT in environment variables or in '{get_config_path()}'.",
-    )  # pragma: no cover
-    raise GetEnvError(msg)  # pragma: no cover
+    )
+    raise GetEnvError(msg)
 
 
 def make_thumbnail(
@@ -149,7 +149,9 @@ def make_thumbnail(
         bytes: The modified image in bytes format.
     """
     # Open the input image and create a copy in RGB format.
-    im = Image.open(BytesIO(img)).convert("RGB")
+    im = Image.open(BytesIO(img))
+    if im.mode != "RGB":
+        im = im.convert("RGB")
 
     # Resize the image to the desired size using Lanczos resampling.
     pw = im.copy()
