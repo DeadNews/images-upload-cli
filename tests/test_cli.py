@@ -16,6 +16,7 @@ def runner():
         pytest.param(
             ["tests/data/pic.png", "-C", "-h", "uploadcare", "--thumbnail", "--notify"],
             id="uploadcare,thumbnail",
+            marks=pytest.mark.uploadcare(),
         ),
     ],
 )
