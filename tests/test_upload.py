@@ -52,16 +52,17 @@ async def test_upload_funcs(
 
 
 @pytest.mark.asyncio()
-@pytest.mark.parametrize("thumbnail", [False, True])
-async def test_upload_images_thumbnail(httpx_mock: HTTPXMock, thumbnail: bool) -> None:
+@pytest.mark.parametrize(
+    "thumbnail",
+    [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],
+)
+async def test_upload_images_coroutine(httpx_mock: HTTPXMock, thumbnail: bool) -> None:
     """
-    Test the image upload functionality of different hosting services.
+    Test the upload_images coroutine.
 
     Args:
         httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
-        hosting (str): A string representing the hosting service to test.
-        mock_text (str): A string representing the mock response text.
-        mock_link (str): A string representing the expected link after image upload.
+        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
 
     Raises:
         AssertionError: If the returned link is not equal to the expected mock_link.
