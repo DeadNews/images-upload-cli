@@ -64,11 +64,11 @@ Options:
   -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|tixte|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
   -b, --bbcode                    Generate BBCode tags.
-  -t, --thumbnail                 Create thumbnail images with captions and generate BBCode tags.
-  -n, --notify                    Send desktop notifications via libnotify.
+  -t, --thumbnail                 Create captioned thumbnails. Generate BBCode tags.
+  -n, --notify                    Send desktop notification using libnotify.
   -c, --clipboard / -C, --no-clipboard
                                   Copy the result to the clipboard. Copies by default.
-  --env-file FILE                 The path to the environment file. Get precedence over the default config file.
+  --env-file FILE                 The path to the environment file. Take precedence over the default config file.
   --version                       Show the version and exit.
   --help                          Show this message and exit.
 ```

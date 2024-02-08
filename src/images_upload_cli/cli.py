@@ -26,9 +26,9 @@ from images_upload_cli.util import get_config_path, get_font, make_thumbnail, no
     "-t",
     "--thumbnail",
     is_flag=True,
-    help="Create thumbnail images with captions and generate BBCode tags.",
+    help="Create captioned thumbnails. Generate BBCode tags.",
 )
-@click.option("-n", "--notify", is_flag=True, help="Send desktop notifications via libnotify.")
+@click.option("-n", "--notify", is_flag=True, help="Send desktop notification using libnotify.")
 @click.option(
     "-c/-C",
     "--clipboard/--no-clipboard",
@@ -40,7 +40,7 @@ from images_upload_cli.util import get_config_path, get_font, make_thumbnail, no
 @click.option(
     "--env-file",
     type=click.Path(exists=True, dir_okay=False, path_type=Path),
-    help="The path to the environment file. Get precedence over the default config file.",
+    help="The path to the environment file. Take precedence over the default config file.",
 )
 @click.version_option()
 def cli(
@@ -55,17 +55,17 @@ def cli(
     """Upload images via APIs."""
     """
     Args:
-        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to be uploaded.
-        hosting (str): The hosting service to use for image upload.
-        bbcode (bool): A boolean flag indicating whether to generate BBCode tags for the uploaded images.
-        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
-        notify (bool): A boolean flag indicating whether to send desktop notifications.
+        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to upload.
+        hosting (str): The hosting service to use for uploading the images.
+        bbcode (bool): A boolean flag indicating whether BBCode tags should be generated for the uploaded images.
+        thumbnail (bool): A boolean flag indicating whether thumbnail images should be generated for the uploaded images.
+        notify (bool): A boolean flag indicating whether to send desktop notification.
         clipboard (bool): A boolean flag indicating whether to copy the image links to the clipboard.
         env_file (Path): The path to the environment file.
 
     Returns:
         None.
-        Prints the links to the uploaded images, optionally copies them to the clipboard and sends desktop notifications.
+        Prints the links to the uploaded images, optionally copies them to the clipboard, and sends desktop notification.
     """
     load_dotenv(dotenv_path=env_file or get_config_path())
 
