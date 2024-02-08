@@ -55,8 +55,6 @@ jobs:
 
       - name: Run tests
         run: poetry run poe test
-        env:
-          UPLOADCARE_KEY: ${{ secrets.UPLOADCARE_KEY }}
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'

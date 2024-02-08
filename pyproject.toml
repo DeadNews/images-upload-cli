@@ -53,12 +53,6 @@ ruff = "ruff check ."
 ruff-fmt = "ruff format ."
 lint.sequence = ["ruff", "ruff-fmt", "mypy"]
 
-[tool.poe.tasks.test]
-cmd = "pytest --cov-report=xml -m 'not online and not benchmark'"
-
-[tool.poe.tasks.benchmark]
-cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-compare"
-
 [tool.poe.tasks.nuitka]
 cmd = """
 python -m nuitka src/images_upload_cli/__main__.py
@@ -67,8 +61,17 @@ python -m nuitka src/images_upload_cli/__main__.py
   --assume-yes-for-downloads
 """
 
+[tool.poe.tasks.test]
+cmd = "pytest -m 'not (online or benchmark)'"
+
+[tool.poe.tasks.benchmark]
+cmd = "pytest -m 'benchmark and not online' --benchmark-autosave --benchmark-compare"
+
+[tool.poe.tasks.benchmark-online]
+cmd = "pytest -m 'benchmark and online' --benchmark-autosave --benchmark-compare"
+
 [tool.pytest.ini_options]
-addopts = "--verbose --cov=./src --cov-report=term"
+addopts = "--verbose --cov=./src --cov-report=term --cov-report=xml"
 testpaths = ["tests"]
 markers = ["benchmark", "online"]
 

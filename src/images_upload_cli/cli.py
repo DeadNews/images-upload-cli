@@ -13,7 +13,7 @@ from images_upload_cli.upload import HOSTINGS, UPLOAD
 from images_upload_cli.util import get_config_path, get_font, make_thumbnail, notify_send
 
 
-@click.command(context_settings={"show_default": True})
+@click.command(context_settings={"max_content_width": 120, "show_default": True})
 @click.argument(
     "images",
     nargs=-1,
@@ -21,15 +21,26 @@ from images_upload_cli.util import get_config_path, get_font, make_thumbnail, no
     type=click.Path(exists=True, dir_okay=False, path_type=Path),
 )
 @click.option("-h", "--hosting", type=click.Choice(HOSTINGS), default="imgur")
-@click.option("-b", "--bbcode", is_flag=True, help="Add bbcode tags.")
-@click.option("-t", "--thumbnail", is_flag=True, help="Add caption thumbnail and bbcode tags.")
-@click.option("-n", "--notify", is_flag=True, help="Send desktop notification via libnotify.")
+@click.option("-b", "--bbcode", is_flag=True, help="Generate BBCode tags.")
+@click.option(
+    "-t",
+    "--thumbnail",
+    is_flag=True,
+    help="Create captioned thumbnails. Generate BBCode tags.",
+)
+@click.option("-n", "--notify", is_flag=True, help="Send desktop notification using libnotify.")
 @click.option(
     "-c/-C",
     "--clipboard/--no-clipboard",
     is_flag=True,
     default=True,
-    help="Copy result to clipboard.",
+    show_default=False,
+    help="Copy the result to the clipboard. Copies by default.",
+)
+@click.option(
+    "--env-file",
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    help="The path to the environment file. Take precedence over the default config file.",
 )
 @click.version_option()
 def cli(
@@ -39,22 +50,24 @@ def cli(
     thumbnail: bool,
     notify: bool,
     clipboard: bool,
+    env_file: Path,
 ) -> None:
     """Upload images via APIs."""
     """
     Args:
-        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to be uploaded.
-        hosting (str): The hosting service to use for image upload.
-        bbcode (bool): A boolean flag indicating whether to generate BBCode links for the uploaded images.
-        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
-        notify (bool): A boolean flag indicating whether to send desktop notifications.
+        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to upload.
+        hosting (str): The hosting service to use for uploading the images.
+        bbcode (bool): A boolean flag indicating whether BBCode tags should be generated for the uploaded images.
+        thumbnail (bool): A boolean flag indicating whether thumbnail images should be generated for the uploaded images.
+        notify (bool): A boolean flag indicating whether to send desktop notification.
         clipboard (bool): A boolean flag indicating whether to copy the image links to the clipboard.
+        env_file (Path): The path to the environment file.
 
     Returns:
         None.
-        Prints the links to the uploaded images, optionally copies them to the clipboard and sends desktop notifications.
+        Prints the links to the uploaded images, optionally copies them to the clipboard, and sends desktop notification.
     """
-    load_dotenv(dotenv_path=get_config_path())
+    load_dotenv(dotenv_path=env_file or get_config_path())
 
     links = asyncio.run(
         upload_images(
@@ -106,7 +119,8 @@ async def upload_images(
             if not thumbnail:
                 link = f"[img]{img_link}[/img]" if bbcode else img_link
             else:
-                thumb_link = await upload_func(client, make_thumbnail(img, font))
+                thumb = make_thumbnail(img, font)  # pyright: ignore[reportPossiblyUnboundVariable]
+                thumb_link = await upload_func(client, thumb)
                 link = f"[url={img_link}][img]{thumb_link}[/img][/url]"
 
             links.append(link)

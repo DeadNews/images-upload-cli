@@ -85,4 +85,4 @@ RESPONSE: dict[str, tuple[str, str]] = {
     "vgy": (vgy, "https://i.vgy.me/3Kyfvf.png"),
 }
 
-HOSTINGS = tuple(RESPONSE.keys())
+MOCK_HOSTINGS = tuple(RESPONSE.keys())
