@@ -63,11 +63,12 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
 Options:
   -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|tixte|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
-  -b, --bbcode                    Add bbcode tags.
-  -t, --thumbnail                 Add caption thumbnail and bbcode tags.
-  -n, --notify                    Send desktop notification via libnotify.
+  -b, --bbcode                    Generate BBCode tags.
+  -t, --thumbnail                 Create thumbnail images with captions and generate BBCode tags.
+  -n, --notify                    Send desktop notifications via libnotify.
   -c, --clipboard / -C, --no-clipboard
-                                  Copy result to clipboard.  [default: c]
+                                  Copy the result to the clipboard. Copies by default.
+  --env-file FILE                 The path to the environment file. Get precedence over the default config file.
   --version                       Show the version and exit.
   --help                          Show this message and exit.
 ```
