@@ -191,7 +191,8 @@ def make_thumbnail(
 
 
 def notify_send(text_to_print: str) -> None:
-    """Send desktop notifications via libnotify.
+    """
+    Send desktop notifications via libnotify.
 
     Args:
         text_to_print: The text to be displayed in the desktop notification.
