@@ -66,7 +66,7 @@ Options:
                                   [default: imgur]
   -b, --bbcode                    Generate BBCode tags.
   -t, --thumbnail                 Create captioned thumbnails. Generate BBCode tags.
-  -n, --notify                    Send desktop notification using libnotify.
+  -n, --notify                    Send desktop notification on completion. Requared libnotify.
   -c, --clipboard / -C, --no-clipboard
                                   Copy the result to the clipboard. Copies by default.
   --env-file FILE                 The path to the environment file. Take precedence over the default config file.
