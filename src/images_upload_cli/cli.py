@@ -32,7 +32,7 @@ from images_upload_cli.util import get_config_path, get_font, make_thumbnail, no
     "-n",
     "--notify",
     is_flag=True,
-    help="Send desktop notification on completion. Requared libnotify.",
+    help="Send desktop notification on completion. Required libnotify.",
 )
 @click.option(
     "-c/-C",
