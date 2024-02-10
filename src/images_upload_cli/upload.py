@@ -115,7 +115,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
 
     match = search(r"<imagepath>(.+?)</imagepath>", response.text)
     if match is None:
-        msg = f"Image link not found in response:\n\n{response.text}"
+        msg = f"Image link not found in '{response.url}' response:\n\n{response.text}"
         raise HTTPError(msg)
 
     return match[1].strip()
@@ -244,7 +244,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
 
     match = search(r"url:(.+?)$", response.text)
     if match is None:
-        msg = f"Image link not found in response:\n\n{response.text}"
+        msg = f"Image link not found in '{response.url}' response:\n\n{response.text}"
         raise HTTPError(msg)
 
     return match[1].strip()
