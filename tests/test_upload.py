@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 from dotenv import load_dotenv
-from httpx import AsyncClient
+from httpx import AsyncClient, HTTPError
 from images_upload_cli.cli import upload_images
 from images_upload_cli.upload import UPLOAD
 from pytest_httpx import HTTPXMock
@@ -49,6 +49,31 @@ async def test_upload_funcs(
         upload_func = UPLOAD[hosting]
         link = await upload_func(client, img)
         assert link == mock_link
+
+
+@pytest.mark.asyncio()
+@pytest.mark.parametrize("hosting", ["fastpic", "imagebin"])
+async def test_upload_funcs_error(httpx_mock: HTTPXMock, hosting: str, img: bytes) -> None:
+    """
+    Test the error handling of image upload functionality for specific hosting services.
+
+    Args:
+        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
+        hosting (str): A string representing the hosting service to test.
+        img (bytes): Bytes of the image to be uploaded.
+
+    Raises:
+        HTTPError: If an HTTP error occurs during the image upload process.
+    """
+    # Mock the response.
+    httpx_mock.add_response(text="Random non relevant text.")
+
+    # Upload the image.
+    async with AsyncClient() as client:
+        upload_func = UPLOAD[hosting]
+        # Error handling.
+        with pytest.raises(HTTPError):
+            await upload_func(client, img)
 
 
 @pytest.mark.asyncio()
