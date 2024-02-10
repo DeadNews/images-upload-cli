@@ -18,6 +18,9 @@ depends=(
 makedepends=(
     "python-installer"
 )
+optdepends=(
+    "libnotify: sending desktop notifications"
+)
 license=("MIT")
 arch=("any")
 source=("https://files.pythonhosted.org/packages/py3/${_name::1}/${_name}/${_name}-$pkgver-py3-none-any.whl")

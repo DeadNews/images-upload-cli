@@ -28,6 +28,7 @@ yay -S python-images-upload-cli
 
 | host                                  | key required | return example                                       |
 | :------------------------------------ | :----------: | :--------------------------------------------------- |
+| [anhmoe](https://anh.moe/)            |      -       | `https://cdn.anh.moe/c/{id}.png`                     |
 | [beeimg](https://beeimg.com/)         |      -       | `https://beeimg.com/images/{id}.png`                 |
 | [catbox](https://catbox.moe/)         |      -       | `https://files.catbox.moe/{id}`                      |
 | [fastpic](https://fastpic.org/)       |      -       | `https://i120.fastpic.org/big/2022/0730/d9/{id}.png` |
@@ -61,11 +62,11 @@ Usage: images-upload-cli [OPTIONS] IMAGES...
   Upload images via APIs.
 
 Options:
-  -h, --hosting [beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|tixte|up2sha|uplio|uploadcare|vgy]
+  -h, --hosting [anhmoe|beeimg|catbox|fastpic|filecoffee|freeimage|gyazo|imageban|imagebin|imgbb|imgchest|imgur|lensdump|pixeldrain|pixhost|ptpimg|smms|sxcu|telegraph|thumbsnap|tixte|up2sha|uplio|uploadcare|vgy]
                                   [default: imgur]
   -b, --bbcode                    Generate BBCode tags.
   -t, --thumbnail                 Create captioned thumbnails. Generate BBCode tags.
-  -n, --notify                    Send desktop notification using libnotify.
+  -n, --notify                    Send desktop notification on completion. Required libnotify.
   -c, --clipboard / -C, --no-clipboard
                                   Copy the result to the clipboard. Copies by default.
   --env-file FILE                 The path to the environment file. Take precedence over the default config file.

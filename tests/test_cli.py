@@ -30,7 +30,7 @@ def test_cli_error(runner: CliRunner) -> None:
     Args:
         runner (CliRunner): An instance of CliRunner used to invoke the cli function.
     """
-    args = ["tests/data/nonexistent.png", "-C", "-h", "uploadcare"]
+    args = ["tests/data/nonexistent", "-C", "-h", "nonexistent"]
     assert runner.invoke(cli=cli, args=args).exit_code == 2
 
 

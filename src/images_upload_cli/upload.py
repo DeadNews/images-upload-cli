@@ -10,6 +10,32 @@ from httpx import AsyncClient, HTTPError
 from images_upload_cli.util import get_env, get_img_ext
 
 
+async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
+    """
+    Uploads an image to the `anh.moe`.
+
+    Args:
+        client (httpx.AsyncClient): An instance of AsyncClient.
+        img (bytes): A byte string representing an image.
+
+    Returns:
+        str: The URL of the uploaded image.
+
+    Raises:
+        httpx.HTTPStatusError: If the response status code is not successful.
+    """
+    key = "anh.moe_public_api"
+
+    response = await client.post(
+        url="https://anh.moe/api/1/upload",
+        data={"key": key},
+        files={"source": img},
+    )
+    response.raise_for_status()
+
+    return response.json()["image"]["url"]
+
+
 async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `beeimg.com`.
@@ -89,7 +115,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
 
     match = search(r"<imagepath>(.+?)</imagepath>", response.text)
     if match is None:
-        msg = f"Image link not found in response:\n\n{response.text}"
+        msg = f"Image link not found in '{response.url}' response:\n\n{response.text}"
         raise HTTPError(msg)
 
     return match[1].strip()
@@ -218,7 +244,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
 
     match = search(r"url:(.+?)$", response.text)
     if match is None:
-        msg = f"Image link not found in response:\n\n{response.text}"
+        msg = f"Image link not found in '{response.url}' response:\n\n{response.text}"
         raise HTTPError(msg)
 
     return match[1].strip()
@@ -657,6 +683,7 @@ async def vgy_upload(client: AsyncClient, img: bytes) -> str:
 
 
 UPLOAD: dict[str, Callable] = {
+    "anhmoe": anhmoe_upload,
     "beeimg": beeimg_upload,
     "catbox": catbox_upload,
     "fastpic": fastpic_upload,

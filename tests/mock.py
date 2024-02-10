@@ -1,6 +1,6 @@
 """Mock data."""
 
-
+anhmoe = """{"status_code":200,"success":{"message":"image uploaded","code":200},"image":{"name":"Lyw3o","extension":"png","size":91,"width":100,"height":100,"date":"2024-01-01 00:00:00","date_gmt":"2024-01-01 00:00:00","title":null,"description":null,"nsfw":0,"storage_mode":"direct","md5":"45927ce6c3a6ba2e48a260328dc57d3d","source_md5":null,"original_filename":"upload","original_exifdata":null,"views":0,"category_id":null,"chain":5,"thumb_size":301,"medium_size":0,"expiration_date_gmt":null,"likes":0,"is_animated":0,"is_approved":1,"is_360":0,"file":{"resource":{"type":"url"}},"id_encoded":"Lyw3o","filename":"Lyw3o.png","mime":"image\\/png","url":"https:\\/\\/cdn.anh.moe\\/c\\/Lyw3o.png","ratio":1,"size_formatted":"91 B","url_viewer":"https:\\/\\/anh.moe\\/view\\/Lyw3o","path_viewer":"\\/view\\/Lyw3o","url_short":"https:\\/\\/anh.moe\\/view\\/Lyw3o","image":{"filename":"Lyw3o.png","name":"Lyw3o","mime":"image\\/png","extension":"png","url":"https:\\/\\/cdn.anh.moe\\/c\\/Lyw3o.png","size":91},"thumb":{"filename":"Lyw3o.th.png","name":"Lyw3o.th","mime":"image\\/png","extension":"png","url":"https:\\/\\/cdn.anh.moe\\/c\\/Lyw3o.th.png","size":301},"display_url":"https:\\/\\/cdn.anh.moe\\/c\\/Lyw3o.png","display_width":100,"display_height":100,"views_label":"l\u01b0\u1ee3t xem","likes_label":"th\u00edch","how_long_ago":"m\u1edbi \u0111\u00e2y","date_fixed_peer":"2024-01-01 00:00:00","title_truncated":"","title_truncated_html":"","is_use_loader":false,"delete_url":"https:\\/\\/anh.moe\\/view\\/Lyw3o\\/delete\\/e2ace748e2e1f9ca82ad47ee194dc6fdd0b6c440a55e9419"},"status_txt":"OK"}"""
 beeimg = """{"files":{"name":"x8078479702","size":"","url":"\\/\\/beeimg.com\\/images\\/x80784797021.png","thumbnail_url":"\\/\\/i.beeimg.com\\/images\\/thumb\\/x80784797021-xs.png","view_url":"\\/\\/beeimg.com\\/view\\/x8078479702\\/","delete_url":"N\\/A","delete_type":"DELETE","status":"Duplicate","code":"200"}}"""
 catbox = """https://files.catbox.moe/4yt1tj"""
 fastpic = """<?xml version="1.0" encoding="UTF-8"?>
@@ -50,6 +50,7 @@ vgy = """{"error":false,"size":91,"filename":"3Kyfvf","ext":"png","url":"https:/
 
 
 RESPONSE: dict[str, tuple[str, str]] = {
+    "anhmoe": (anhmoe, "https://cdn.anh.moe/c/Lyw3o.png"),
     "beeimg": (beeimg, "https://beeimg.com/images/x80784797021.png"),
     "catbox": (catbox, "https://files.catbox.moe/4yt1tj"),
     "fastpic": (
