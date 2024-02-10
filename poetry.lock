@@ -355,12 +355,12 @@ setuptools = "*"
 
 [[package]]
 name = "nuitka"
-version = "2.0.1"
+version = "2.0.2"
 description = "Python compiler with full language support and CPython compatibility"
 optional = false
 python-versions = "*"
 files = [
-    {file = "Nuitka-2.0.1.tar.gz", hash = "sha256:f7c47d80beb39e99f7de0be9aaacf95615a08be2734e80e301411b546df28658"},
+    {file = "Nuitka-2.0.2.tar.gz", hash = "sha256:d4d033a088fff01ce7e3cf75f0a36b5aecb8fb9f005ae37dd3c0d09aae677095"},
 ]
 
 [package.dependencies]
@@ -595,13 +595,13 @@ testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "no
 
 [[package]]
 name = "pytest-asyncio"
-version = "0.23.5a0"
+version = "0.23.5"
 description = "Pytest support for asyncio"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pytest-asyncio-0.23.5a0.tar.gz", hash = "sha256:ea37983dbf4391f569183e97fb1c4c2899a3349818f1b338ca91aaa149983cc7"},
-    {file = "pytest_asyncio-0.23.5a0-py3-none-any.whl", hash = "sha256:987c3eb0a847268a884a0d26ad0e57e885647e647792f2accc80e01842ed1b68"},
+    {file = "pytest-asyncio-0.23.5.tar.gz", hash = "sha256:3a048872a9c4ba14c3e90cc1aa20cbc2def7d01c7c8db3777ec281ba9c057675"},
+    {file = "pytest_asyncio-0.23.5-py3-none-any.whl", hash = "sha256:4e7093259ba018d58ede7d5315131d21923a60f8a6e9ee266ce1589685c89eac"},
 ]
 
 [package.dependencies]
@@ -820,4 +820,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "003ca3e77a5c4996f2cefaac1bfde6b8405054d64815ee27df5b747bbea32409"
+content-hash = "749c880eb06d3a0d64fe21fd4c0f9130c63a6ede24b51b1425aec41c59ad12b4"
