@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 from httpx import AsyncClient, HTTPError
 
+from images_upload_cli.error import raise_on_error
 from images_upload_cli.util import get_env, get_img_ext
 
 
@@ -31,7 +32,7 @@ async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
         data={"key": key},
         files={"source": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["image"]["url"]
 
@@ -58,7 +59,7 @@ async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
         url="https://beeimg.com/api/upload/file/json/",
         files={"file": (name, img, content_type)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"https:{response.json()['files']['url']}"
 
@@ -82,7 +83,7 @@ async def catbox_upload(client: AsyncClient, img: bytes) -> str:
         data={"reqtype": "fileupload"},
         files={"fileToUpload": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.text
 
@@ -111,7 +112,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
         },
         files={"file1": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     match = search(r"<imagepath>(.+?)</imagepath>", response.text)
     if match is None:
@@ -139,7 +140,7 @@ async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
         url="https://file.coffee/api/file/upload",
         files={"file": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["url"]
 
@@ -165,7 +166,7 @@ async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
         data={"key": key},
         files={"source": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["image"]["url"]
 
@@ -190,7 +191,7 @@ async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
         url=f"https://upload.gyazo.com/api/upload?access_token={key}",
         files={"imagedata": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["url"]
 
@@ -216,7 +217,7 @@ async def imageban_upload(client: AsyncClient, img: bytes) -> str:
         headers={"Authorization": f"TOKEN {token}"},
         files={"image": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["data"]["link"]
 
@@ -240,7 +241,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
         url="https://imagebin.ca/upload.php",
         files={"file": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     match = search(r"url:(.+?)$", response.text)
     if match is None:
@@ -271,7 +272,7 @@ async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
         data={"key": key},
         files={"image": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["data"]["url"]
 
@@ -298,7 +299,7 @@ async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
         headers={"Authorization": f"Bearer {key}"},
         files={"images[]": (name, img)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["data"]["images"][0]["link"]
 
@@ -324,7 +325,7 @@ async def imgur_upload(client: AsyncClient, img: bytes) -> str:
         headers={"Authorization": f"Client-ID {client_id}"},
         files={"image": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["data"]["link"]
 
@@ -350,7 +351,7 @@ async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
         data={"key": key},
         files={"source": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["image"]["url"]
 
@@ -373,7 +374,7 @@ async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
         url="https://pixeldrain.com/api/file",
         files={"file": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"https://pixeldrain.com/api/file/{response.json()['id']}"
 
@@ -397,7 +398,7 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
         data={"content_type": 0},
         files={"img": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     show_url = response.json()["show_url"]
 
@@ -434,7 +435,7 @@ async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
         data={"api_key": key},
         files={"file-upload[0]": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"https://ptpimg.me/{response.json()[0]['code']}.{response.json()[0]['ext']}"
 
@@ -460,7 +461,7 @@ async def smms_upload(client: AsyncClient, img: bytes) -> str:
         headers={"Authorization": key},
         files={"smfile": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
     json = response.json()
 
     return json["images"] if json["code"] == "image_repeated" else json["data"]["url"]
@@ -485,7 +486,7 @@ async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
         headers={"user-agent": "python-https/1.0.0"},
         files={"file": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"{response.json()['url']}.{get_img_ext(img)}"
 
@@ -508,7 +509,7 @@ async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
         url="https://telegra.ph/upload",
         files={"file": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"https://telegra.ph{response.json()[0]['src']}"
 
@@ -534,7 +535,7 @@ async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
         data={"key": key},
         files={"media": img},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["data"]["media"]
 
@@ -563,7 +564,7 @@ async def tixte_upload(client: AsyncClient, img: bytes) -> str:
         data={"payload_json": '{"random":true}'},
         files={"file": (name, img)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["data"]["direct_url"]
 
@@ -591,7 +592,7 @@ async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
         headers={"X-Api-Key": key},
         files={"file": (name, img)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"{response.json()['public_url'].replace('file?f=', 'media/raw/')}.{ext}"
 
@@ -619,7 +620,7 @@ async def uplio_upload(client: AsyncClient, img: bytes) -> str:
         data={"key": key},
         files={"file": (name, img)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     host, uid = response.text.rsplit("/", 1)
     return f"{host}/i/{uid}.{ext}"
@@ -650,7 +651,7 @@ async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
         },
         files={"filename": (name, img)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
 
@@ -677,7 +678,7 @@ async def vgy_upload(client: AsyncClient, img: bytes) -> str:
         data={"userkey": key},
         files={"file[]": (name, img)},
     )
-    response.raise_for_status()
+    raise_on_error(response)
 
     return response.json()["image"]
 

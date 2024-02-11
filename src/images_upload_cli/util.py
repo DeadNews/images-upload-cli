@@ -9,9 +9,7 @@ from subprocess import Popen
 import click
 from PIL import Image, ImageDraw, ImageFont
 
-
-class GetEnvError(Exception):
-    """Exception raised when an environment variable is not found."""
+from images_upload_cli.error import GetEnvError
 
 
 def get_config_path() -> Path:
