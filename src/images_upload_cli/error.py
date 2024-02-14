@@ -1,4 +1,4 @@
-"""Errors."""
+"""Error handling and exception classes."""
 from httpx import HTTPError, Response
 
 

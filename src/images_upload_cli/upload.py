@@ -1,4 +1,4 @@
-"""Upload callables."""
+"""Upload images to various hosting services."""
 
 from collections.abc import Callable
 from os import getenv
@@ -8,7 +8,8 @@ from urllib.parse import urlparse
 from httpx import AsyncClient, HTTPError
 
 from images_upload_cli.error import raise_on_error
-from images_upload_cli.util import get_env, get_img_ext
+from images_upload_cli.image import get_img_ext
+from images_upload_cli.util import get_env
 
 
 async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:

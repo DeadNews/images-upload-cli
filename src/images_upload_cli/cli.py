@@ -9,8 +9,9 @@ from dotenv import load_dotenv
 from httpx import AsyncClient
 from pyperclip import copy
 
+from images_upload_cli.image import get_font, make_thumbnail
 from images_upload_cli.upload import HOSTINGS, UPLOAD
-from images_upload_cli.util import get_config_path, get_font, make_thumbnail, notify_send
+from images_upload_cli.util import get_config_path, notify_send
 
 
 @click.command(context_settings={"max_content_width": 120, "show_default": True})
