@@ -9,10 +9,29 @@ def test_raise_on_error_success():
     raise_on_error(response)
 
 
-def test_raise_on_error_error(httpx_mock: HTTPXMock):
+def test_raise_on_error_client_error(httpx_mock: HTTPXMock):
     # Mock the response.
-    httpx_mock.add_response(status_code=codes.BAD_REQUEST)
-    response = post(url="https://nonexistent.test")
+    httpx_mock.add_response(status_code=codes.NOT_FOUND)
+    response = post(url="https://example.com")
 
-    with pytest.raises(HTTPError):
+    with pytest.raises(HTTPError) as exc_info:
         raise_on_error(response)
+
+    assert (
+        str(exc_info.value)
+        == "Client error '404 Not Found' for url 'https://example.com'. Response text below:\n\n"
+    )
+
+
+def test_raise_on_error_invalid_status_code(httpx_mock: HTTPXMock):
+    # Mock the response.
+    httpx_mock.add_response(status_code=999)
+    response = post(url="https://example.com")
+
+    with pytest.raises(HTTPError) as exc_info:
+        raise_on_error(response)
+
+    assert (
+        str(exc_info.value)
+        == "Invalid status code '999 ' for url 'https://example.com'. Response text below:\n\n"
+    )

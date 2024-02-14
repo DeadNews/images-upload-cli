@@ -1,13 +1,14 @@
-from os import environ
-from unittest.mock import MagicMock, patch
+from pathlib import Path
 
 import pytest
 from images_upload_cli.util import (
     GetEnvError,
+    get_config_path,
     get_env,
     human_size,
     notify_send,
 )
+from pytest_mock import MockerFixture
 
 
 @pytest.mark.parametrize(
@@ -38,17 +39,48 @@ def test_human_size(test_arg: int, expected: str) -> None:
     assert human_size(args_with_negative) == f"-{expected}"
 
 
-def test_get_env() -> None:
-    environ["TEST_KEY_1"] = "test"
-    assert get_env("TEST_KEY_1") == "test"
+def test_get_config_path(mocker: MockerFixture):
+    """
+    Test the get_config_path function.
+    """
+    # Mock the click.get_app_dir function to return a custom app directory
+    custom_app_dir = "/custom/app/dir"
+    click_get_app_dir_mock = mocker.patch("click.get_app_dir", return_value=custom_app_dir)
+
+    # Call the get_config_path function
+    result = get_config_path()
+
+    # Check if the click.get_app_dir function was called with the correct argument
+    click_get_app_dir_mock.assert_called_once_with("images-upload-cli")
+
+    # Check if the result is the expected path
+    expected_path = Path(custom_app_dir) / ".env"
+    assert result == expected_path
 
 
-def test_get_env_error() -> None:
+def test_get_env_existing_variable(mocker: MockerFixture):
+    """
+    Test the get_env function with an existing environment variable.
+    """
+    variable = "TEST_VARIABLE"
+    value = "test_value"
+    mocker.patch.dict("os.environ", {variable: value})
+
+    assert get_env(variable) == value
+
+
+def test_get_env_non_existing_variable(mocker: MockerFixture):
+    """
+    Test the get_env function with a non-existing environment variable.
+    """
+    variable = "NON_EXISTING_VARIABLE"
+    mocker.patch.dict("os.environ", clear=True)
+
     with pytest.raises(GetEnvError):
-        get_env("TEST_KEY_2")
+        get_env(variable)
 
 
-def test_notify_send_with_notify_send_installed_(mocker):
+def test_notify_send_with_notify_send_installed(mocker: MockerFixture):
     """
     Test the notify_send function when notify-send is installed.
     """
@@ -66,45 +98,13 @@ def test_notify_send_with_notify_send_installed_(mocker):
     )
 
 
-def test_notify_send_with_notify_send_not_installed_(mocker):
+def test_notify_send_with_notify_send_not_installed(mocker: MockerFixture):
     """
     Test the notify_send function when notify-send is not installed.
     """
     which_mock = mocker.patch("images_upload_cli.util.which", return_value=None)
     popen_mock = mocker.patch("images_upload_cli.util.Popen")
 
-    notify_send("Test notification")
-
-    # Check if the which function was called with the correct argument
-    which_mock.assert_called_once_with("notify-send")
-
-    # Check if the Popen function was not called
-    popen_mock.assert_not_called()
-
-
-@patch("images_upload_cli.util.which", return_value="notify-send")
-@patch("images_upload_cli.util.Popen")
-def test_notify_send_with_notify_send_installed(popen_mock: MagicMock, which_mock: MagicMock):
-    """
-    Test the notify_send function when notify-send is installed.
-    """
-    notify_send("Test notification")
-
-    # Check if the which function was called with the correct argument
-    which_mock.assert_called_once_with("notify-send")
-
-    # Check if the Popen function was called with the correct arguments
-    popen_mock.assert_called_once_with(
-        ["notify-send", "-a", "images-upload-cli", "Test notification"]
-    )
-
-
-@patch("images_upload_cli.util.which", return_value=None)
-@patch("images_upload_cli.util.Popen")
-def test_notify_send_with_notify_send_not_installed(popen_mock: MagicMock, which_mock: MagicMock):
-    """
-    Test the notify_send function when notify-send is not installed.
-    """
     notify_send("Test notification")
 
     # Check if the which function was called with the correct argument
