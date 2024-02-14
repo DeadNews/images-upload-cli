@@ -23,7 +23,7 @@ click = "^8.1.7"
 httpx = "^0.26.0"
 pillow = "^10.2.0"
 pyperclip = "^1.8.2"
-python-dotenv = "^1.0.1"
+python-dotenv = "^1.0.0"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
