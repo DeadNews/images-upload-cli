@@ -199,4 +199,4 @@ def notify_send(text_to_print: str) -> None:
         None
     """
     if notify_send := which("notify-send"):
-        Popen([notify_send, "-a", "images-upload-cli", text_to_print])  # pragma: no cover
+        Popen([notify_send, "-a", "images-upload-cli", text_to_print])

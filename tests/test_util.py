@@ -1,6 +1,7 @@
 from io import BytesIO
 from os import environ
 from platform import system
+from unittest.mock import MagicMock, patch
 
 import pytest
 from images_upload_cli.util import (
@@ -10,6 +11,7 @@ from images_upload_cli.util import (
     get_img_ext,
     human_size,
     make_thumbnail,
+    notify_send,
     search_font,
 )
 from PIL import Image, ImageFont
@@ -95,3 +97,69 @@ def test_get_env() -> None:
 def test_get_env_error() -> None:
     with pytest.raises(GetEnvError):
         get_env("TEST_KEY_2")
+
+
+def test_notify_send_with_notify_send_installed_(mocker):
+    """
+    Test the notify_send function when notify-send is installed.
+    """
+    which_mock = mocker.patch("images_upload_cli.util.which", return_value="notify-send")
+    popen_mock = mocker.patch("images_upload_cli.util.Popen")
+
+    notify_send("Test notification")
+
+    # Check if the which function was called with the correct argument
+    which_mock.assert_called_once_with("notify-send")
+
+    # Check if the Popen function was called with the correct arguments
+    popen_mock.assert_called_once_with(
+        ["notify-send", "-a", "images-upload-cli", "Test notification"]
+    )
+
+
+def test_notify_send_with_notify_send_not_installed_(mocker):
+    """
+    Test the notify_send function when notify-send is not installed.
+    """
+    which_mock = mocker.patch("images_upload_cli.util.which", return_value=None)
+    popen_mock = mocker.patch("images_upload_cli.util.Popen")
+
+    notify_send("Test notification")
+
+    # Check if the which function was called with the correct argument
+    which_mock.assert_called_once_with("notify-send")
+
+    # Check if the Popen function was not called
+    popen_mock.assert_not_called()
+
+
+@patch("images_upload_cli.util.which", return_value="notify-send")
+@patch("images_upload_cli.util.Popen")
+def test_notify_send_with_notify_send_installed(popen_mock: MagicMock, which_mock: MagicMock):
+    """
+    Test the notify_send function when notify-send is installed.
+    """
+    notify_send("Test notification")
+
+    # Check if the which function was called with the correct argument
+    which_mock.assert_called_once_with("notify-send")
+
+    # Check if the Popen function was called with the correct arguments
+    popen_mock.assert_called_once_with(
+        ["notify-send", "-a", "images-upload-cli", "Test notification"]
+    )
+
+
+@patch("images_upload_cli.util.which", return_value=None)
+@patch("images_upload_cli.util.Popen")
+def test_notify_send_with_notify_send_not_installed(popen_mock: MagicMock, which_mock: MagicMock):
+    """
+    Test the notify_send function when notify-send is not installed.
+    """
+    notify_send("Test notification")
+
+    # Check if the which function was called with the correct argument
+    which_mock.assert_called_once_with("notify-send")
+
+    # Check if the Popen function was not called
+    popen_mock.assert_not_called()
