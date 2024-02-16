@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 from dotenv import load_dotenv
-from httpx import AsyncClient, HTTPError
+from httpx import AsyncClient
 from images_upload_cli.cli import upload_images
 from images_upload_cli.upload import UPLOAD
 from pytest_httpx import HTTPXMock
@@ -52,8 +52,37 @@ async def test_upload_funcs(
 
 
 @pytest.mark.asyncio()
-@pytest.mark.parametrize("hosting", ["fastpic", "imagebin"])
+@pytest.mark.parametrize("hosting", MOCK_HOSTINGS)
 async def test_upload_funcs_error(httpx_mock: HTTPXMock, hosting: str, img: bytes) -> None:
+    """
+    Test the image upload functionality of different hosting services when an error occurs.
+
+    Args:
+        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
+        hosting (str): A string representing the hosting service to test.
+        img (bytes): Bytes of the image to be uploaded.
+
+    Raises:
+        AssertionError: If the returned result is not empty.
+    """
+    # Mock the response.
+    httpx_mock.add_response(json={"error": "Upload failed"}, status_code=500)
+
+    # Load environment variables.
+    load_dotenv(dotenv_path="tests/data/.env.sample")
+
+    # Upload the image.
+    async with AsyncClient() as client:
+        upload_func = UPLOAD[hosting]
+        result = await upload_func(client, img)
+
+    # Assert the result is empty.
+    assert result == ""
+
+
+@pytest.mark.asyncio()
+@pytest.mark.parametrize("hosting", ["fastpic", "imagebin"])
+async def test_upload_funcs_not_found(httpx_mock: HTTPXMock, hosting: str, img: bytes) -> None:
     """
     Test the error handling of image upload functionality for specific hosting services.
 
@@ -63,7 +92,7 @@ async def test_upload_funcs_error(httpx_mock: HTTPXMock, hosting: str, img: byte
         img (bytes): Bytes of the image to be uploaded.
 
     Raises:
-        HTTPError: If an HTTP error occurs during the image upload process.
+        AssertionError: If the result is not empty.
     """
     # Mock the response.
     httpx_mock.add_response(text="Random non relevant text.")
@@ -71,9 +100,10 @@ async def test_upload_funcs_error(httpx_mock: HTTPXMock, hosting: str, img: byte
     # Upload the image.
     async with AsyncClient() as client:
         upload_func = UPLOAD[hosting]
-        # Error handling.
-        with pytest.raises(HTTPError):
-            await upload_func(client, img)
+        result = await upload_func(client, img)
+
+    # Assert the result is empty.
+    assert result == ""
 
 
 @pytest.mark.asyncio()

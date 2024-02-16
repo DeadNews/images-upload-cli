@@ -12,6 +12,7 @@ depends=(
     "python-click"
     "python-dotenv"
     "python-httpx"
+    "python-loguru"
     "python-pillow"
     "python-pyperclip"
 )

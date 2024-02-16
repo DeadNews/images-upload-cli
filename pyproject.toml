@@ -21,9 +21,11 @@ images-upload-cli = "images_upload_cli.cli:cli"
 python = "^3.9"
 click = "^8.1.7"
 httpx = "^0.26.0"
+loguru = "^0.7.2"
 pillow = "^10.2.0"
 pyperclip = "^1.8.2"
 python-dotenv = "^1.0.0"
+rich = "^13.7.0"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
