@@ -1,13 +1,17 @@
 from pathlib import Path
 
 import pytest
+from httpx import codes, post
 from images_upload_cli.util import (
     GetEnvError,
     get_config_path,
     get_env,
     human_size,
+    log_on_error,
     notify_send,
 )
+from logot import Logot, logged
+from pytest_httpx import HTTPXMock
 from pytest_mock import MockerFixture
 
 
@@ -112,3 +116,24 @@ def test_notify_send_with_notify_send_not_installed(mocker: MockerFixture):
 
     # Check if the Popen function was not called
     popen_mock.assert_not_called()
+
+
+def test_log_on_error(httpx_mock: HTTPXMock, logot: Logot):
+    """
+    Test the log_on_error function when a client error occurs.
+
+    Args:
+        httpx_mock (HTTPXMock): The HTTPXMock object for mocking HTTP requests.
+        logot (Logot): The Logot object for logging.
+    """
+    # Mock the response
+    httpx_mock.add_response(status_code=codes.NOT_FOUND, text="Page not found")
+
+    response = post(url="https://example.com")
+    log_on_error(response)
+
+    # Assert the log messages
+    logot.assert_logged(
+        logged.error("Client error '404 Not Found' for url 'https://example.com'.")
+    )
+    logot.assert_logged(logged.debug("Response text:\nPage not found"))

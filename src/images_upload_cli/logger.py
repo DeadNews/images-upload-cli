@@ -38,11 +38,7 @@ def setup_logger(log_level: str) -> ErrorHandler:
     logger.remove()
     # Console handler
     logger.add(
-        sink=RichHandler(
-            log_time_format="[%X]",
-            rich_tracebacks=True,
-            tracebacks_show_locals=True,
-        ),
+        sink=RichHandler(log_time_format="[%X]", rich_tracebacks=True),
         level=log_level,
         format="{message}",
     )

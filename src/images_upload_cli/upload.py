@@ -8,9 +8,8 @@ from urllib.parse import urlparse
 from httpx import AsyncClient
 from loguru import logger
 
-from images_upload_cli.error import log_on_error
 from images_upload_cli.image import get_img_ext
-from images_upload_cli.util import get_env
+from images_upload_cli.util import get_env, log_on_error
 
 
 async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:

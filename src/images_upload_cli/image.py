@@ -5,8 +5,7 @@ from os import getenv
 
 from PIL import Image, ImageDraw, ImageFont
 
-from images_upload_cli.error import GetEnvError
-from images_upload_cli.util import get_config_path, human_size
+from images_upload_cli.util import GetEnvError, get_config_path, human_size
 
 
 def get_img_ext(img: bytes) -> str:
