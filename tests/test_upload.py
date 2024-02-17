@@ -38,13 +38,13 @@ async def test_upload_funcs(
     Raises:
         AssertionError: If the returned link is not equal to the expected mock_link.
     """
-    # Mock the response.
+    # Mock the response
     httpx_mock.add_response(text=mock_text)
 
-    # Load environment variables.
+    # Load environment variables
     load_dotenv(dotenv_path="tests/data/.env.sample")
 
-    # Upload the image.
+    # Upload the image
     async with AsyncClient() as client:
         upload_func = UPLOAD[hosting]
         link = await upload_func(client, img)
@@ -53,7 +53,11 @@ async def test_upload_funcs(
 
 @pytest.mark.asyncio()
 @pytest.mark.parametrize("hosting", MOCK_HOSTINGS)
-async def test_upload_funcs_error(httpx_mock: HTTPXMock, hosting: str, img: bytes) -> None:
+async def test_upload_funcs_error(
+    httpx_mock: HTTPXMock,
+    hosting: str,
+    img: bytes,
+) -> None:
     """
     Test the image upload functionality of different hosting services when an error occurs.
 
@@ -65,24 +69,28 @@ async def test_upload_funcs_error(httpx_mock: HTTPXMock, hosting: str, img: byte
     Raises:
         AssertionError: If the returned result is not empty.
     """
-    # Mock the response.
+    # Mock the response
     httpx_mock.add_response(json={"error": "Upload failed"}, status_code=500)
 
-    # Load environment variables.
+    # Load environment variables
     load_dotenv(dotenv_path="tests/data/.env.sample")
 
-    # Upload the image.
+    # Upload the image
     async with AsyncClient() as client:
         upload_func = UPLOAD[hosting]
         result = await upload_func(client, img)
 
-    # Assert the result is empty.
+    # Assert the result is empty
     assert result == ""
 
 
 @pytest.mark.asyncio()
 @pytest.mark.parametrize("hosting", ["fastpic", "imagebin"])
-async def test_upload_funcs_not_found(httpx_mock: HTTPXMock, hosting: str, img: bytes) -> None:
+async def test_upload_funcs_not_found(
+    httpx_mock: HTTPXMock,
+    hosting: str,
+    img: bytes,
+) -> None:
     """
     Test the error handling of image upload functionality for specific hosting services.
 
@@ -94,15 +102,15 @@ async def test_upload_funcs_not_found(httpx_mock: HTTPXMock, hosting: str, img: 
     Raises:
         AssertionError: If the result is not empty.
     """
-    # Mock the response.
-    httpx_mock.add_response(text="Random non relevant text.")
+    # Mock the response
+    httpx_mock.add_response(text="Response without the url.")
 
-    # Upload the image.
+    # Upload the image
     async with AsyncClient() as client:
         upload_func = UPLOAD[hosting]
         result = await upload_func(client, img)
 
-    # Assert the result is empty.
+    # Assert the result is empty
     assert result == ""
 
 
@@ -127,10 +135,10 @@ async def test_upload_images_coroutine(httpx_mock: HTTPXMock, thumbnail: bool) -
     mock_text = RESPONSE[hosting][0]
     mock_link = RESPONSE[hosting][1]
 
-    # Mock the response.
+    # Mock the response
     httpx_mock.add_response(text=mock_text)
 
-    # Upload the image.
+    # Upload the image
     result = await upload_images(
         upload_func=UPLOAD[hosting],
         images=images,

@@ -15,6 +15,7 @@ depends=(
     "python-loguru"
     "python-pillow"
     "python-pyperclip"
+    "python-rich"
 )
 makedepends=(
     "python-installer"

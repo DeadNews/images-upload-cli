@@ -30,4 +30,4 @@ def log_on_error(response: Response) -> None:
     logger.error(
         f"{error_type} '{response.status_code} {response.reason_phrase}' for url '{response.url}'."
     )
-    logger.debug(f"Response text:\n\n{response.text}")
+    logger.debug(f"Response text:\n{response.text}")

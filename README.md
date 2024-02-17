@@ -70,6 +70,8 @@ Options:
   -c, --clipboard / -C, --no-clipboard
                                   Copy the result to the clipboard. Copies by default.
   --env-file FILE                 The path to the environment file. Take precedence over the default config file.
+  --log-level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
+                                  Use DEBUG to show debug logs. Use CRITICAL to suppress all logs.  [default: INFO]
   --version                       Show the version and exit.
   --help                          Show this message and exit.
 ```
