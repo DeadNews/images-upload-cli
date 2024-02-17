@@ -1,6 +1,7 @@
 import logging
 
 from images_upload_cli.logger import ErrorHandler, setup_logger
+from loguru import logger
 
 
 def test_errorhandler_emit():
@@ -25,5 +26,5 @@ def test_setup_logger():
     log_level = "DEBUG"
     error_handler = setup_logger(log_level)
 
-    # Add your assertions here to verify the logging behavior
     assert isinstance(error_handler, ErrorHandler)
+    assert logger.level(log_level).name == log_level

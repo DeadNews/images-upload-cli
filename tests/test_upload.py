@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from httpx import AsyncClient
 from images_upload_cli.cli import upload_images
 from images_upload_cli.upload import UPLOAD
+from logot import Logot, logged
 from pytest_httpx import HTTPXMock
 
 from tests.mock import MOCK_HOSTINGS, RESPONSE
@@ -55,6 +56,7 @@ async def test_upload_funcs(
 @pytest.mark.parametrize("hosting", MOCK_HOSTINGS)
 async def test_upload_funcs_error(
     httpx_mock: HTTPXMock,
+    logot: Logot,
     hosting: str,
     img: bytes,
 ) -> None:
@@ -63,6 +65,7 @@ async def test_upload_funcs_error(
 
     Args:
         httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
+        logot (Logot): An instance of the Logot class used for logging.
         hosting (str): A string representing the hosting service to test.
         img (bytes): Bytes of the image to be uploaded.
 
@@ -70,7 +73,7 @@ async def test_upload_funcs_error(
         AssertionError: If the returned result is not empty.
     """
     # Mock the response
-    httpx_mock.add_response(json={"error": "Upload failed"}, status_code=500)
+    httpx_mock.add_response(text="Upload failed.", status_code=500)
 
     # Load environment variables
     load_dotenv(dotenv_path="tests/data/.env.sample")
@@ -83,11 +86,16 @@ async def test_upload_funcs_error(
     # Assert the result is empty
     assert result == ""
 
+    # Assert the log messages
+    await logot.await_for(logged.error("Server error '500 Internal Server Error' for url '%s'."))
+    await logot.await_for(logged.debug("Response text:\nUpload failed."))
+
 
 @pytest.mark.asyncio()
 @pytest.mark.parametrize("hosting", ["fastpic", "imagebin"])
 async def test_upload_funcs_not_found(
     httpx_mock: HTTPXMock,
+    logot: Logot,
     hosting: str,
     img: bytes,
 ) -> None:
@@ -96,6 +104,7 @@ async def test_upload_funcs_not_found(
 
     Args:
         httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
+        logot (Logot): An instance of the Logot class used for logging.
         hosting (str): A string representing the hosting service to test.
         img (bytes): Bytes of the image to be uploaded.
 
@@ -112,6 +121,10 @@ async def test_upload_funcs_not_found(
 
     # Assert the result is empty
     assert result == ""
+
+    # Assert the log messages
+    await logot.await_for(logged.error("Image link not found in '%s' response."))
+    await logot.await_for(logged.debug("Response text:\nResponse without the url."))
 
 
 @pytest.mark.asyncio()
