@@ -25,7 +25,7 @@ from images_upload_cli.util import get_config_path, notify_send
 @click.option(
     "-f",
     "--format",
-    "link_fmt",
+    "fmt",
     type=click.Choice(("plain", "bbcode", "html", "markdown")),
     default="plain",
     help="The format of the links to be generated.",
@@ -65,7 +65,7 @@ from images_upload_cli.util import get_config_path, notify_send
 def cli(
     images: tuple[Path],
     hosting: str,
-    link_fmt: str,
+    fmt: str,
     thumbnail: bool,
     notify: bool,
     clipboard: bool,
@@ -77,7 +77,7 @@ def cli(
     Args:
         images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to upload.
         hosting (str): The hosting service to use for uploading the images.
-        link_fmt (str): The format to use for generating the links to the uploaded images.
+        fmt (str): The format to use for generating the links to the uploaded images.
         thumbnail (bool): A boolean flag indicating whether thumbnail images should be generated for the uploaded images.
         notify (bool): A boolean flag indicating whether to send desktop notification on completion.
         clipboard (bool): A boolean flag indicating whether to copy the image links to the clipboard.
@@ -97,12 +97,11 @@ def cli(
         upload_images(upload_func=UPLOAD[hosting], images=images, thumbnail=thumbnail)
     )
     # If links are available, format and print them.
+    # If thumbnail is enabled and fmt is plain, change fmt to bbcode.
     if links:
-        # If thumbnail is enabled and link_fmt is plain, change link_fmt to bbcode.
-        if thumbnail and link_fmt == "plain":
-            link_fmt = "bbcode"
-        # Format the links based on the specified format.
-        formatted_links = format_link(links, link_fmt)
+        if thumbnail and fmt == "plain":
+            fmt = "bbcode"
+        formatted_links = format_link(links, fmt)
 
         click.echo(formatted_links)
         if clipboard:

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from images_upload_cli.main import upload_images
+from images_upload_cli.main import format_link, upload_images
 from images_upload_cli.upload import UPLOAD
 from pytest_httpx import HTTPXMock
 
@@ -71,3 +71,48 @@ async def test_upload_images_upload_failure(httpx_mock: HTTPXMock, thumbnail: bo
     )
 
     assert result == []
+
+
+def test_format_link_plain():
+    links = [("https://example.com/image1.jpg", None), ("https://example.com/image2.jpg", None)]
+    fmt = "plain"
+    expected_output = "https://example.com/image1.jpg https://example.com/image2.jpg"
+    assert format_link(links, fmt) == expected_output
+
+
+def test_format_link_bbcode():
+    links = [
+        ("https://example.com/image1.jpg", "https://example.com/thumb1.jpg"),
+        ("https://example.com/image2.jpg", None),
+    ]
+    fmt = "bbcode"
+    expected_output = "[url=https://example.com/image1.jpg][img]https://example.com/thumb1.jpg[/img][/url] [img]https://example.com/image2.jpg[/img]"
+
+    assert format_link(links, fmt) == expected_output
+
+
+def test_format_link_html():
+    links = [
+        ("https://example.com/image1.jpg", None),
+        ("https://example.com/image2.jpg", "https://example.com/thumb1.jpg"),
+    ]
+    fmt = "html"
+    expected_output = '<img src="https://example.com/image1.jpg" alt="image"> <a href="https://example.com/image2.jpg"><img src="https://example.com/thumb1.jpg" alt="thumb"></a>'
+    assert format_link(links, fmt) == expected_output
+
+
+def test_format_link_markdown():
+    links = [
+        ("https://example.com/image1.jpg", None),
+        ("https://example.com/image2.jpg", "https://example.com/thumb1.jpg"),
+    ]
+    fmt = "markdown"
+    expected_output = "![image](https://example.com/image1.jpg) [![thumb](https://example.com/thumb1.jpg)](https://example.com/image2.jpg)"
+    assert format_link(links, fmt) == expected_output
+
+
+def test_format_link_invalid_format():
+    links = [("https://example.com/image1.jpg", None), ("https://example.com/image2.jpg", None)]
+    fmt = "invalid_format"
+    expected_output = ""
+    assert format_link(links, fmt) == expected_output

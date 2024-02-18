@@ -54,29 +54,29 @@ async def upload_images(
     return links
 
 
-def format_link(links: list[tuple[str, str | None]], link_fmt: str) -> str:
+def format_link(links: list[tuple[str, str | None]], fmt: str) -> str:
     """
     Format the image links based on the specified format.
 
     Args:
         links (list[tuple[str, str | None]]): A list of tuples containing image links and optional thumbnail links.
-        link_fmt (str): The desired format for the image links. Valid options are "plain", "bbcode", "html", and "markdown".
+        fmt (str): The desired format for the image links. Valid options are "plain", "bbcode", "html", and "markdown".
 
     Returns:
         str: The formatted image links.
     """
-    if link_fmt == "plain":
+    if fmt == "plain":
         return " ".join([img_link for img_link, _ in links])
 
-    if link_fmt == "bbcode":
+    if fmt == "bbcode":
         return " ".join(
-            f"[url]{img_link}[/url]"
+            f"[img]{img_link}[/img]"
             if thumb_link is None
             else f"[url={img_link}][img]{thumb_link}[/img][/url]"
             for img_link, thumb_link in links
         )
 
-    if link_fmt == "html":
+    if fmt == "html":
         return " ".join(
             f'<img src="{img_link}" alt="image">'
             if thumb_link is None
@@ -84,7 +84,7 @@ def format_link(links: list[tuple[str, str | None]], link_fmt: str) -> str:
             for img_link, thumb_link in links
         )
 
-    if link_fmt == "markdown":
+    if fmt == "markdown":
         return " ".join(
             f"![image]({img_link})"
             if thumb_link is None
