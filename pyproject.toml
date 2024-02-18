@@ -18,7 +18,7 @@ classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 images-upload-cli = "images_upload_cli.cli:cli"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 click = "^8.1.7"
 httpx = "^0.26.0"
 loguru = "^0.7.2"
@@ -31,7 +31,7 @@ rich = "^13.7.0"
 mypy = "^1.8.0"
 poethepoet = "^0.24.4"
 pyright = "^1.1.350"
-ruff = "^0.2.1"
+ruff = "^0.2.2"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0.1"
@@ -100,7 +100,7 @@ disallow_untyped_defs = false
 
 [tool.ruff]
 line-length = 99
-target-version = "py39" # Until Poetry v2
+target-version = "py310" # Until Poetry v2
 
 [tool.ruff.format]
 line-ending = "lf"

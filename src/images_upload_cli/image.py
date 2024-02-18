@@ -84,7 +84,7 @@ def make_thumbnail(
     Args:
         img (bytes): The input image in bytes format.
         font (ImageFont.FreeTypeFont): The font to be used for the text caption.
-        size (tuple[int, int], optional): The desired size of the thumbnail image. Defaults to (300, 300) pixels.
+        size (tuple[int, int], optional): The desired size of the thumbnail image.
 
     Returns:
         bytes: The modified image in bytes format.

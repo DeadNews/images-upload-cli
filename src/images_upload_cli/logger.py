@@ -4,8 +4,6 @@ import logging
 from loguru import logger
 from rich.logging import RichHandler
 
-LOG_LEVELS = ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL")
-
 
 class ErrorHandler(logging.StreamHandler):
     """Custom error handler for logging."""

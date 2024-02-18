@@ -21,7 +21,7 @@ async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = "anh.moe_public_api"
 
@@ -46,7 +46,7 @@ async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     ext = get_img_ext(img)
     name = f"img.{ext}"
@@ -72,7 +72,7 @@ async def catbox_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://catbox.moe/user/api.php",
@@ -95,7 +95,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://fastpic.org/upload?api=1",
@@ -128,7 +128,7 @@ async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://file.coffee/api/file/upload",
@@ -150,7 +150,7 @@ async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("FREEIMAGE_KEY")
 
@@ -175,7 +175,7 @@ async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("GYAZO_TOKEN")
 
@@ -199,7 +199,7 @@ async def imageban_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     token = get_env("IMAGEBAN_TOKEN")
 
@@ -224,7 +224,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://imagebin.ca/upload.php",
@@ -252,7 +252,7 @@ async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("IMGBB_KEY")
 
@@ -277,7 +277,7 @@ async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("IMGCHEST_KEY")
     name = f"img.{get_img_ext(img)}"
@@ -303,7 +303,7 @@ async def imgur_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     client_id = getenv("IMGUR_CLIENT_ID", "dd32dd3c6aaa9a0")
 
@@ -328,7 +328,7 @@ async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("LENSDUMP_KEY")
 
@@ -353,7 +353,7 @@ async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://pixeldrain.com/api/file",
@@ -375,7 +375,7 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://api.pixhost.to/images",
@@ -409,7 +409,7 @@ async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("PTPIMG_KEY")
 
@@ -434,7 +434,7 @@ async def smms_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("SMMS_KEY")
 
@@ -461,7 +461,7 @@ async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://sxcu.net/api/files/create",
@@ -484,7 +484,7 @@ async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     response = await client.post(
         url="https://telegra.ph/upload",
@@ -506,7 +506,7 @@ async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("THUMBSNAP_KEY")
 
@@ -532,7 +532,7 @@ async def tixte_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("TIXTE_KEY")
     name = f"img.{get_img_ext(img)}"
@@ -559,7 +559,7 @@ async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("UP2SHA_KEY")
     ext = get_img_ext(img)
@@ -586,7 +586,7 @@ async def uplio_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("UPLIO_KEY")
     ext = get_img_ext(img)
@@ -614,7 +614,7 @@ async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("UPLOADCARE_KEY")
     name = f"img.{get_img_ext(img)}"
@@ -643,7 +643,7 @@ async def vgy_upload(client: AsyncClient, img: bytes) -> str:
         img (bytes): The image data to be uploaded.
 
     Returns:
-        str: The URL of the uploaded image. If the upload fails, an empty string is returned.
+        str: The URL of the uploaded image, or an empty string if the upload failed.
     """
     key = get_env("VGY_KEY")
     name = f"img.{get_img_ext(img)}"

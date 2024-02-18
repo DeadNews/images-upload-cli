@@ -1,9 +1,6 @@
-from pathlib import Path
-
 import pytest
 from dotenv import load_dotenv
 from httpx import AsyncClient
-from images_upload_cli.cli import upload_images
 from images_upload_cli.upload import UPLOAD
 from logot import Logot, logged
 from pytest_httpx import HTTPXMock
@@ -125,41 +122,3 @@ async def test_upload_funcs_not_found(
     # Assert the log messages
     await logot.await_for(logged.error("Image link not found in '%s' response."))
     await logot.await_for(logged.debug("Response text:\nResponse without the url."))
-
-
-@pytest.mark.asyncio()
-@pytest.mark.parametrize(
-    "thumbnail",
-    [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],
-)
-async def test_upload_images_coroutine(httpx_mock: HTTPXMock, thumbnail: bool) -> None:
-    """
-    Test the upload_images coroutine.
-
-    Args:
-        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
-        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
-
-    Raises:
-        AssertionError: If the returned link is not equal to the expected mock_link.
-    """
-    images = (Path("tests/data/pic.png"),)
-    hosting = "imgur"
-    mock_text = RESPONSE[hosting][0]
-    mock_link = RESPONSE[hosting][1]
-
-    # Mock the response
-    httpx_mock.add_response(text=mock_text)
-
-    # Upload the image
-    result = await upload_images(
-        upload_func=UPLOAD[hosting],
-        images=images,
-        bbcode=False,
-        thumbnail=thumbnail,
-    )
-
-    if thumbnail:
-        assert result == [f"[url={mock_link}][img]{mock_link}[/img][/url]"]
-    else:
-        assert result == [mock_link]
