@@ -101,6 +101,7 @@ disallow_untyped_defs = false
 [tool.pyright]
 include = ["src"]
 ignore = ["tests"]
+typeCheckingMode = "standard"
 
 [tool.ruff]
 line-length = 99
