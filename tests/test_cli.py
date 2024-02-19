@@ -3,6 +3,7 @@ from click.testing import CliRunner
 from images_upload_cli.__main__ import cli
 from images_upload_cli.upload import HOSTINGS
 from pytest_httpx import HTTPXMock
+from pytest_mock import MockerFixture
 
 from tests.mock import MOCK_HOSTINGS, RESPONSE
 
@@ -41,12 +42,18 @@ def test_cli_error(runner: CliRunner) -> None:
         for hosting in MOCK_HOSTINGS
     ],
 )
+@pytest.mark.parametrize(
+    "thumbnail",
+    [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],
+)
 def test_cli(
     runner: CliRunner,
     httpx_mock: HTTPXMock,
+    mocker: MockerFixture,
     hosting: str,
     mock_text: str,
     mock_link: str,
+    thumbnail: bool,
 ) -> None:
     """
     Test the cli function with different hosting services.
@@ -54,19 +61,48 @@ def test_cli(
     Args:
         runner (CliRunner): An instance of CliRunner used to invoke the cli function.
         httpx_mock (HTTPXMock): An instance of HTTPXMock used to mock the HTTP responses.
+        mocker (MockerFixture): An instance of MockerFixture used for mocking.
         hosting (str): The hosting service to use for image upload.
         mock_text (str): The mock response text to be returned by the HTTPXMock.
         mock_link (str): The expected link to be returned by the cli function.
+        thumbnail (bool): Flag indicating whether to generate a thumbnail link.
     """
-    # Mock the response.
+    # Mock response.
     httpx_mock.add_response(text=mock_text)
+    # Mock functions.
+    mock_copy = mocker.patch("images_upload_cli.cli.copy", return_value=None)
+    mock_notify_send = mocker.patch("images_upload_cli.cli.notify_send", return_value=None)
+    # Mock image extension to be matched with mock_link.
+    mocker.patch("images_upload_cli.upload.get_img_ext", return_value="png")
+
+    # Thumbnail link.
+    mock_link_thumb = f"[url={mock_link}][img]{mock_link}[/img][/url]"
 
     # Invoke the cli function.
-    args = ["tests/data/pic.png", "--env-file", "tests/data/.env.sample", "-C", "-h", hosting]
+    args = [
+        "tests/data/pic.png",
+        "--env-file",
+        "tests/data/.env.sample",
+        "--notify",
+        "-h",
+        hosting,
+    ]
+    if thumbnail:
+        args.append("--thumbnail")
+
     result = runner.invoke(cli=cli, args=args)
 
+    # Assert the result.
     assert result.exit_code == 0
-    assert result.output.strip() == mock_link
+
+    if thumbnail:
+        assert result.output.strip() == mock_link_thumb
+        mock_copy.assert_called_once_with(mock_link_thumb)
+        mock_notify_send.assert_called_once_with(mock_link_thumb)
+    else:
+        assert result.output.strip() == mock_link
+        mock_copy.assert_called_once_with(mock_link)
+        mock_notify_send.assert_called_once_with(mock_link)
 
 
 @pytest.mark.online()

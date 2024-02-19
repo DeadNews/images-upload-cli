@@ -1,18 +1,18 @@
-from io import BytesIO
-from os import environ
-from platform import system
+from pathlib import Path
 
 import pytest
+from httpx import codes, post
 from images_upload_cli.util import (
     GetEnvError,
+    get_config_path,
     get_env,
-    get_font,
-    get_img_ext,
     human_size,
-    make_thumbnail,
-    search_font,
+    log_on_error,
+    notify_send,
 )
-from PIL import Image, ImageFont
+from logot import Logot, logged
+from pytest_httpx import HTTPXMock
+from pytest_mock import MockerFixture
 
 
 @pytest.mark.parametrize(
@@ -43,55 +43,97 @@ def test_human_size(test_arg: int, expected: str) -> None:
     assert human_size(args_with_negative) == f"-{expected}"
 
 
-def test_make_thumbnail():
-    # Create a sample image
-    image = Image.new("RGBA", (600, 600))
-    image_bytes = BytesIO()
-    image.save(image_bytes, format="PNG")
-    image_bytes.seek(0)
+def test_get_config_path(mocker: MockerFixture):
+    """
+    Test the get_config_path function.
+    """
+    # Mock the click.get_app_dir function to return a custom app directory
+    custom_app_dir = "/custom/app/dir"
+    click_get_app_dir_mock = mocker.patch("click.get_app_dir", return_value=custom_app_dir)
 
-    # Create a sample font
-    font = ImageFont.load_default(size=12)
+    # Call the get_config_path function
+    result = get_config_path()
 
-    # Call the make_thumbnail function
-    thumbnail = make_thumbnail(image_bytes.read(), font, size=(300, 300))
+    # Check if the click.get_app_dir function was called with the correct argument
+    click_get_app_dir_mock.assert_called_once_with("images-upload-cli")
 
-    # Check if the thumbnail has the desired size and format
-    thumbnail_image = Image.open(BytesIO(thumbnail))
-    assert thumbnail_image.size == (300, 300 + 16)
-    assert thumbnail_image.format == "JPEG"
-
-
-def test_get_img_ext(img: bytes) -> None:
-    assert get_img_ext(img) == "png"
+    # Check if the result is the expected path
+    expected_path = Path(custom_app_dir) / ".env"
+    assert result == expected_path
 
 
-def test_get_font() -> None:
-    assert isinstance(get_font(), ImageFont.FreeTypeFont)
+def test_get_env_existing_variable(mocker: MockerFixture):
+    """
+    Test the get_env function with an existing environment variable.
+    """
+    variable = "TEST_VARIABLE"
+    value = "test_value"
+    mocker.patch.dict("os.environ", {variable: value})
+
+    assert get_env(variable) == value
 
 
-def test_search_font_error():
-    fonts = ["Font1", "Font2"]
+def test_get_env_non_existing_variable(mocker: MockerFixture):
+    """
+    Test the get_env function with a non-existing environment variable.
+    """
+    variable = "NON_EXISTING_VARIABLE"
+    mocker.patch.dict("os.environ", clear=True)
+
     with pytest.raises(GetEnvError):
-        search_font(fonts)
+        get_env(variable)
 
 
-def test_get_font_env() -> None:
-    if system() == "Linux":
-        environ["CAPTION_FONT"] = "DejaVuSerif"
-    elif system() == "Darwin":
-        environ["CAPTION_FONT"] = "Helvetica"
-    elif system() == "Windows":
-        environ["CAPTION_FONT"] = "arial"
+def test_notify_send_with_notify_send_installed(mocker: MockerFixture):
+    """
+    Test the notify_send function when notify-send is installed.
+    """
+    which_mock = mocker.patch("images_upload_cli.util.which", return_value="notify-send")
+    popen_mock = mocker.patch("images_upload_cli.util.Popen")
 
-    assert isinstance(get_font(), ImageFont.FreeTypeFont)
+    notify_send("Test notification")
+
+    # Check if the which function was called with the correct argument
+    which_mock.assert_called_once_with("notify-send")
+
+    # Check if the Popen function was called with the correct arguments
+    popen_mock.assert_called_once_with(
+        ["notify-send", "-a", "images-upload-cli", "Test notification"]
+    )
 
 
-def test_get_env() -> None:
-    environ["TEST_KEY_1"] = "test"
-    assert get_env("TEST_KEY_1") == "test"
+def test_notify_send_with_notify_send_not_installed(mocker: MockerFixture):
+    """
+    Test the notify_send function when notify-send is not installed.
+    """
+    which_mock = mocker.patch("images_upload_cli.util.which", return_value=None)
+    popen_mock = mocker.patch("images_upload_cli.util.Popen")
+
+    notify_send("Test notification")
+
+    # Check if the which function was called with the correct argument
+    which_mock.assert_called_once_with("notify-send")
+
+    # Check if the Popen function was not called
+    popen_mock.assert_not_called()
 
 
-def test_get_env_error() -> None:
-    with pytest.raises(GetEnvError):
-        get_env("TEST_KEY_2")
+def test_log_on_error(httpx_mock: HTTPXMock, logot: Logot):
+    """
+    Test the log_on_error function when a client error occurs.
+
+    Args:
+        httpx_mock (HTTPXMock): The HTTPXMock object for mocking HTTP requests.
+        logot (Logot): The Logot object for logging.
+    """
+    # Mock the response
+    httpx_mock.add_response(status_code=codes.NOT_FOUND, text="Page not found")
+
+    response = post(url="https://example.com")
+    log_on_error(response)
+
+    # Assert the log messages
+    logot.assert_logged(
+        logged.error("Client error '404 Not Found' for url 'https://example.com'.")
+    )
+    logot.assert_logged(logged.debug("Response text:\nPage not found"))

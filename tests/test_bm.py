@@ -56,10 +56,10 @@ def test_bm_cli(benchmark: BenchmarkFixture, runner: CliRunner, httpx_mock: HTTP
         runner (CliRunner): An instance of the `CliRunner` class from the `click.testing` module.
         httpx_mock (HTTPXMock): A fixture provided by the `pytest_httpx` library for mocking HTTP responses.
     """
-    # Mock the response.
+    # Mock the response
     httpx_mock.add_response(text=uploadcare)
 
-    # Load environment variables.
+    # Load environment variables
     load_dotenv(dotenv_path="tests/data/.env.sample")
 
     @benchmark

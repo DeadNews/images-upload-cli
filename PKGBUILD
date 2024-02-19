@@ -12,8 +12,10 @@ depends=(
     "python-click"
     "python-dotenv"
     "python-httpx"
+    "python-loguru"
     "python-pillow"
     "python-pyperclip"
+    "python-rich"
 )
 makedepends=(
     "python-installer"
