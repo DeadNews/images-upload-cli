@@ -75,8 +75,8 @@ def cli(
     """Upload images via APIs.
 
     \f
-    Upload images to the specified hosting service, format and print them.
-    Optionally copies them to the clipboard, and sends desktop notification.
+    Upload images to the specified hosting service, format links, and print.
+    Optionally copy links to clipboard and send desktop notification.
 
     Args:
         images: The paths to the images to upload.
