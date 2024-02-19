@@ -72,21 +72,22 @@ def cli(
     env_file: Path,
     log_level: str,
 ) -> None:
-    """Upload images via APIs."""
-    """
-    Args:
-        images (tuple[Path]): A tuple of `Path` objects representing the paths to the images to upload.
-        hosting (str): The hosting service to use for uploading the images.
-        fmt (str): The format to use for generating the links to the uploaded images.
-        thumbnail (bool): A boolean flag indicating whether thumbnail images should be generated for the uploaded images.
-        notify (bool): A boolean flag indicating whether to send desktop notification on completion.
-        clipboard (bool): A boolean flag indicating whether to copy the image links to the clipboard.
-        env_file (Path): The path to the environment file.
-        log_level (str): The log level to use for the logger.
+    """Upload images via APIs.
 
-    Returns:
-        None. Prints the links to the uploaded images, optionally copies them to the clipboard, and sends desktop notification.
-    """
+    \f
+    Upload images to the specified hosting service, format and print them.
+    Optionally copies them to the clipboard, and sends desktop notification.
+
+    Args:
+        images: The paths to the images to upload.
+        hosting: The hosting service to use for uploading the images.
+        fmt: The format to use for generating the links to the uploaded images.
+        thumbnail: Whether thumbnail images should be generated for the uploaded images.
+        notify: Whether to send desktop notification on completion.
+        clipboard: Whether to copy the image links to the clipboard.
+        env_file: The path to the environment file.
+        log_level: The log level to use for the logger.
+    """  # noqa: D301
     # Set up logger.
     error_handler = setup_logger(log_level=log_level)
     # Load environment variables.

@@ -16,14 +16,13 @@ async def upload_images(
     """Upload images using the specified upload function and optionally generate thumbnails.
 
     Args:
-        upload_func (Callable): The function used to upload the images.
-        images (tuple[Path]): The paths of the images to be uploaded.
-        thumbnail (bool): Indicates whether to generate thumbnails for the images.
+        upload_func: The function used to upload the images.
+        images: The paths of the images to be uploaded.
+        thumbnail: Indicates whether to generate thumbnails for the images.
 
     Returns:
-        list[tuple[str, str | None]]:
-        A list of tuples containing the links to the uploaded images and their corresponding thumbnails.
-        The thumbnail link will be None if generation is disabled.
+        The links to the uploaded images and their corresponding thumbnails.
+        The thumbnail link will be `None` if generation is disabled.
     """
     links = []
 
@@ -57,11 +56,11 @@ def format_link(links: list[tuple[str, str | None]], fmt: str) -> str:
     """Format the image links based on the specified format.
 
     Args:
-        links (list[tuple[str, str | None]]): A list of tuples containing the image links and optional thumbnail links.
-        fmt (str): The format to use for formatting the links. Valid options are "plain", "bbcode", "html", and "markdown".
+        links: The image links and optional thumbnail links.
+        fmt: The format to use for formatting the links. Valid options are "plain", "bbcode", "html", and "markdown".
 
     Returns:
-        str: The formatted image links as a string.
+        The formatted image links as a string.
     """
     if fmt == "plain":
         return " ".join([img_link for img_link, _ in links])

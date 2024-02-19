@@ -40,7 +40,7 @@ pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
 pytest-httpx = "^0.29.0"
 pytest-mock = "^3.12.0"
-logot = "^1.1.0"
+logot = "^1.1.1"
 
 [tool.poetry.group.build.dependencies]
 nuitka = "^2.0.3"
