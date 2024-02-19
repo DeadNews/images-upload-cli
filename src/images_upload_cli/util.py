@@ -15,8 +15,7 @@ class GetEnvError(Exception):
 
 
 def get_config_path() -> Path:
-    """
-    Get the path to the app config file.
+    """Get the path to the app config file.
 
     Returns:
         Path: The path to the app config file as a Path object.
@@ -26,8 +25,7 @@ def get_config_path() -> Path:
 
 
 def get_env(variable: str) -> str:
-    """
-    Get the value of an environment variable.
+    """Get the value of an environment variable.
 
     Args:
         variable (str): The name of the environment variable to retrieve.
@@ -46,8 +44,7 @@ def get_env(variable: str) -> str:
 
 
 def human_size(num: float, suffix: str = "B") -> str:
-    """
-    Convert bytes to human-readable format.
+    """Convert bytes to human-readable format.
 
     Args:
         num (float): The number of bytes to be converted.
@@ -68,22 +65,20 @@ def human_size(num: float, suffix: str = "B") -> str:
 
 
 def notify_send(text_to_print: str) -> None:
-    """
-    Send desktop notifications via libnotify.
+    """Send desktop notifications via libnotify.
 
     Args:
-        text_to_print: The text to be displayed in the desktop notification.
+        text_to_print (str): The text to be displayed in the desktop notification.
 
     Returns:
         None
     """
     if notify_send := which("notify-send"):
-        Popen([notify_send, "-a", "images-upload-cli", text_to_print])
+        Popen([notify_send, "-a", "images-upload-cli", text_to_print])  # noqa: S603
 
 
 def log_on_error(response: Response) -> None:
-    """
-    Logs an error message based on the HTTP response.
+    """Logs an error message based on the HTTP response.
 
     Args:
         response (Response): The HTTP response object.

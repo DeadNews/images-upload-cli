@@ -23,8 +23,7 @@ async def test_upload_funcs(
     mock_link: str,
     img: bytes,
 ) -> None:
-    """
-    Test the image upload functionality of different hosting services.
+    """Test the image upload functionality of different hosting services.
 
     Args:
         httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
@@ -57,8 +56,7 @@ async def test_upload_funcs_error(
     hosting: str,
     img: bytes,
 ) -> None:
-    """
-    Test the image upload functionality of different hosting services when an error occurs.
+    """Test the image upload functionality of different hosting services when an error occurs.
 
     Args:
         httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
@@ -96,8 +94,7 @@ async def test_upload_funcs_not_found(
     hosting: str,
     img: bytes,
 ) -> None:
-    """
-    Test the error handling of image upload functionality for specific hosting services.
+    """Test the error handling of image upload functionality for specific hosting services.
 
     Args:
         httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.

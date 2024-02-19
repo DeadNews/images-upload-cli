@@ -14,8 +14,7 @@ from images_upload_cli.util import get_env, log_on_error
 
 @logger.catch(default="")
 async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `anh.mo`.
+    """Uploads an image to the `anh.mo`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -40,8 +39,7 @@ async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `beeimg.com`.
+    """Uploads an image to the `beeimg.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -67,8 +65,7 @@ async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def catbox_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `catbox.moe`.
+    """Uploads an image to the `catbox.moe`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -91,8 +88,7 @@ async def catbox_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `fastpic.org`.
+    """Uploads an image to the `fastpic.org`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -125,8 +121,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `file.coffee`.
+    """Uploads an image to the `file.coffee`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -148,8 +143,7 @@ async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `freeimage.host`.
+    """Uploads an image to the `freeimage.host`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -174,8 +168,7 @@ async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `gyazo.com`.
+    """Uploads an image to the `gyazo.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -199,8 +192,7 @@ async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def imageban_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `imageban.ru`.
+    """Uploads an image to the `imageban.ru`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -225,8 +217,7 @@ async def imageban_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `imagebin.ca`.
+    """Uploads an image to the `imagebin.ca`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -254,8 +245,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `imgbb.com`.
+    """Uploads an image to the `imgbb.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -280,8 +270,7 @@ async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `imgchest.com`.
+    """Uploads an image to the `imgchest.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -307,8 +296,7 @@ async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def imgur_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `imgur.com`.
+    """Uploads an image to the `imgur.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -333,8 +321,7 @@ async def imgur_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `lensdump.com`.
+    """Uploads an image to the `lensdump.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -359,8 +346,7 @@ async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `pixeldrain.com`.
+    """Uploads an image to the `pixeldrain.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -382,8 +368,7 @@ async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `pixhost.to`.
+    """Uploads an image to the `pixhost.to`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -417,8 +402,7 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `ptpimg.me`.
+    """Uploads an image to the `ptpimg.me`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -443,8 +427,7 @@ async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def smms_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `sm.ms`.
+    """Uploads an image to the `sm.ms`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -471,8 +454,7 @@ async def smms_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `sxcu.net`.
+    """Uploads an image to the `sxcu.net`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -495,8 +477,7 @@ async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `telegra.ph`.
+    """Uploads an image to the `telegra.ph`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -518,8 +499,7 @@ async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `thumbsnap.com`.
+    """Uploads an image to the `thumbsnap.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -573,8 +553,7 @@ async def tixte_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `up2sha.re`.
+    """Uploads an image to the `up2sha.re`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -601,8 +580,7 @@ async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def uplio_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `upl.io`.
+    """Uploads an image to the `upl.io`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -630,8 +608,7 @@ async def uplio_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `uploadcare.com`.
+    """Uploads an image to the `uploadcare.com`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.
@@ -660,8 +637,7 @@ async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
 
 @logger.catch(default="")
 async def vgy_upload(client: AsyncClient, img: bytes) -> str:
-    """
-    Uploads an image to the `vgy.me`.
+    """Uploads an image to the `vgy.me`.
 
     Args:
         client (httpx.AsyncClient): The async HTTP client used to make the API request.

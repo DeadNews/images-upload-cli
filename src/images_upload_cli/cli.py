@@ -53,7 +53,7 @@ from images_upload_cli.util import get_config_path, notify_send
 @click.option(
     "--env-file",
     type=click.Path(exists=True, dir_okay=False, path_type=Path),
-    help="The path to the environment file. Take precedence over the default config file.",
+    help="The path to the environment file. Takes precedence over the default config file.",
 )
 @click.option(
     "--log-level",

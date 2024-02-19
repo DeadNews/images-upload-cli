@@ -16,8 +16,7 @@ def runner():
 @pytest.mark.online()
 @pytest.mark.benchmark(max_time=2)
 def test_bm_cli_online(benchmark: BenchmarkFixture, runner: CliRunner):
-    """
-    Benchmark test for the cli function.
+    """Benchmark test for the cli function.
 
     Measures the execution time of the `cli` function using the `pytest_benchmark` library.
 
@@ -46,8 +45,7 @@ def test_bm_cli_online(benchmark: BenchmarkFixture, runner: CliRunner):
 
 @pytest.mark.benchmark(max_time=2)
 def test_bm_cli(benchmark: BenchmarkFixture, runner: CliRunner, httpx_mock: HTTPXMock):
-    """
-    Benchmark test for the cli function.
+    """Benchmark test for the cli function.
 
     Measures the execution time of the `cli` function using the `pytest_benchmark` library and a mock HTTP response.
 

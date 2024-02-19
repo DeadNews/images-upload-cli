@@ -27,8 +27,7 @@ from pytest_mock import MockerFixture
     ],
 )
 def test_human_size(test_arg: int, expected: str) -> None:
-    """
-    Test the human_size function.
+    """Test the human_size function.
 
     Args:
         test_arg (int): The number of bytes to be converted.
@@ -44,9 +43,7 @@ def test_human_size(test_arg: int, expected: str) -> None:
 
 
 def test_get_config_path(mocker: MockerFixture):
-    """
-    Test the get_config_path function.
-    """
+    """Test the get_config_path function."""
     # Mock the click.get_app_dir function to return a custom app directory
     custom_app_dir = "/custom/app/dir"
     click_get_app_dir_mock = mocker.patch("click.get_app_dir", return_value=custom_app_dir)
@@ -63,9 +60,7 @@ def test_get_config_path(mocker: MockerFixture):
 
 
 def test_get_env_existing_variable(mocker: MockerFixture):
-    """
-    Test the get_env function with an existing environment variable.
-    """
+    """Test the get_env function with an existing environment variable."""
     variable = "TEST_VARIABLE"
     value = "test_value"
     mocker.patch.dict("os.environ", {variable: value})
@@ -74,9 +69,7 @@ def test_get_env_existing_variable(mocker: MockerFixture):
 
 
 def test_get_env_non_existing_variable(mocker: MockerFixture):
-    """
-    Test the get_env function with a non-existing environment variable.
-    """
+    """Test the get_env function with a non-existing environment variable."""
     variable = "NON_EXISTING_VARIABLE"
     mocker.patch.dict("os.environ", clear=True)
 
@@ -85,9 +78,7 @@ def test_get_env_non_existing_variable(mocker: MockerFixture):
 
 
 def test_notify_send_with_notify_send_installed(mocker: MockerFixture):
-    """
-    Test the notify_send function when notify-send is installed.
-    """
+    """Test the notify_send function when notify-send is installed."""
     which_mock = mocker.patch("images_upload_cli.util.which", return_value="notify-send")
     popen_mock = mocker.patch("images_upload_cli.util.Popen")
 
@@ -103,9 +94,7 @@ def test_notify_send_with_notify_send_installed(mocker: MockerFixture):
 
 
 def test_notify_send_with_notify_send_not_installed(mocker: MockerFixture):
-    """
-    Test the notify_send function when notify-send is not installed.
-    """
+    """Test the notify_send function when notify-send is not installed."""
     which_mock = mocker.patch("images_upload_cli.util.which", return_value=None)
     popen_mock = mocker.patch("images_upload_cli.util.Popen")
 
@@ -119,8 +108,7 @@ def test_notify_send_with_notify_send_not_installed(mocker: MockerFixture):
 
 
 def test_log_on_error(httpx_mock: HTTPXMock, logot: Logot):
-    """
-    Test the log_on_error function when a client error occurs.
+    """Test the log_on_error function when a client error occurs.
 
     Args:
         httpx_mock (HTTPXMock): The HTTPXMock object for mocking HTTP requests.

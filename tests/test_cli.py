@@ -14,8 +14,7 @@ def runner():
 
 
 def test_cli_help(runner: CliRunner) -> None:
-    """
-    Test the cli function with the provided arguments.
+    """Test the cli function with the provided arguments.
 
     Args:
         runner (CliRunner): An instance of CliRunner used to invoke the cli function.
@@ -25,8 +24,7 @@ def test_cli_help(runner: CliRunner) -> None:
 
 
 def test_cli_error(runner: CliRunner) -> None:
-    """
-    Test the cli function with the provided arguments.
+    """Test the cli function with the provided arguments.
 
     Args:
         runner (CliRunner): An instance of CliRunner used to invoke the cli function.
@@ -55,8 +53,7 @@ def test_cli(
     mock_link: str,
     thumbnail: bool,
 ) -> None:
-    """
-    Test the cli function with different hosting services.
+    """Test the cli function with different hosting services.
 
     Args:
         runner (CliRunner): An instance of CliRunner used to invoke the cli function.
@@ -108,8 +105,7 @@ def test_cli(
 @pytest.mark.online()
 @pytest.mark.parametrize("hosting", HOSTINGS)
 def test_cli_online(runner: CliRunner, hosting: str) -> None:
-    """
-    Test the cli function with different hosting services. Online.
+    """Test the cli function with different hosting services. Online.
 
     Args:
         runner (CliRunner): An instance of CliRunner used to invoke the cli function.

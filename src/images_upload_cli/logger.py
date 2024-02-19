@@ -24,8 +24,7 @@ class ErrorHandler(logging.StreamHandler):
 
 
 def setup_logger(log_level: str) -> ErrorHandler:
-    """
-    Configure logger.
+    """Configure logger.
 
     Args:
         log_level (str): The log level to set for the logger.
