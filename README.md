@@ -70,7 +70,7 @@ Options:
   -n, --notify                    Send desktop notification on completion. Required libnotify.
   -c, --clipboard / -C, --no-clipboard
                                   Copy the result to the clipboard. Enabled by default.
-  --env-file FILE                 The path to the environment file. Take precedence over the default config file.
+  --env-file FILE                 The path to the environment file. Takes precedence over the default config file.
   --log-level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
                                   Use DEBUG to show debug logs. Use CRITICAL to suppress all logs.  [default: INFO]
   --version                       Show the version and exit.
