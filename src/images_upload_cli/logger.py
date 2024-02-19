@@ -38,7 +38,7 @@ def setup_logger(log_level: str) -> ErrorHandler:
     logger.add(
         sink=RichHandler(log_time_format="[%X]", rich_tracebacks=True),
         level=log_level,
-        format="{message}",
+        format=lambda _: "{message}",
     )
     # Error handler
     error_handler = ErrorHandler()

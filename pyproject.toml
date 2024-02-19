@@ -43,7 +43,7 @@ pytest-mock = "^3.12.0"
 logot = "^1.1.0"
 
 [tool.poetry.group.build.dependencies]
-nuitka = "^2.0.2"
+nuitka = "^2.0.3"
 
 [tool.poetry-dynamic-versioning]
 enable = true

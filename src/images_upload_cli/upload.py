@@ -12,6 +12,7 @@ from images_upload_cli.image import get_img_ext
 from images_upload_cli.util import get_env, log_on_error
 
 
+@logger.catch(default="")
 async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `anh.mo`.
@@ -37,6 +38,7 @@ async def anhmoe_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["image"]["url"]
 
 
+@logger.catch(default="")
 async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `beeimg.com`.
@@ -63,6 +65,7 @@ async def beeimg_upload(client: AsyncClient, img: bytes) -> str:
     return f"https:{response.json()['files']['url']}"
 
 
+@logger.catch(default="")
 async def catbox_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `catbox.moe`.
@@ -86,6 +89,7 @@ async def catbox_upload(client: AsyncClient, img: bytes) -> str:
     return response.text
 
 
+@logger.catch(default="")
 async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `fastpic.org`.
@@ -119,6 +123,7 @@ async def fastpic_upload(client: AsyncClient, img: bytes) -> str:
     return match[1].strip()
 
 
+@logger.catch(default="")
 async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `file.coffee`.
@@ -141,6 +146,7 @@ async def filecoffee_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["url"]
 
 
+@logger.catch(default="")
 async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `freeimage.host`.
@@ -166,6 +172,7 @@ async def freeimage_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["image"]["url"]
 
 
+@logger.catch(default="")
 async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `gyazo.com`.
@@ -190,6 +197,7 @@ async def gyazo_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["url"]
 
 
+@logger.catch(default="")
 async def imageban_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `imageban.ru`.
@@ -215,6 +223,7 @@ async def imageban_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["data"]["link"]
 
 
+@logger.catch(default="")
 async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `imagebin.ca`.
@@ -243,6 +252,7 @@ async def imagebin_upload(client: AsyncClient, img: bytes) -> str:
     return match[1].strip()
 
 
+@logger.catch(default="")
 async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `imgbb.com`.
@@ -268,6 +278,7 @@ async def imgbb_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["data"]["url"]
 
 
+@logger.catch(default="")
 async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `imgchest.com`.
@@ -294,6 +305,7 @@ async def imgchest_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["data"]["images"][0]["link"]
 
 
+@logger.catch(default="")
 async def imgur_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `imgur.com`.
@@ -319,6 +331,7 @@ async def imgur_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["data"]["link"]
 
 
+@logger.catch(default="")
 async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `lensdump.com`.
@@ -344,6 +357,7 @@ async def lensdump_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["image"]["url"]
 
 
+@logger.catch(default="")
 async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `pixeldrain.com`.
@@ -366,6 +380,7 @@ async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
     return f"https://pixeldrain.com/api/file/{response.json()['id']}"
 
 
+@logger.catch(default="")
 async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `pixhost.to`.
@@ -400,6 +415,7 @@ async def pixhost_upload(client: AsyncClient, img: bytes) -> str:
     return show_url if image_link is None else image_link
 
 
+@logger.catch(default="")
 async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `ptpimg.me`.
@@ -425,6 +441,7 @@ async def ptpimg_upload(client: AsyncClient, img: bytes) -> str:
     return f"https://ptpimg.me/{response.json()[0]['code']}.{response.json()[0]['ext']}"
 
 
+@logger.catch(default="")
 async def smms_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `sm.ms`.
@@ -452,6 +469,7 @@ async def smms_upload(client: AsyncClient, img: bytes) -> str:
     return json["images"] if json["code"] == "image_repeated" else json["data"]["url"]
 
 
+@logger.catch(default="")
 async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `sxcu.net`.
@@ -475,6 +493,7 @@ async def sxcu_upload(client: AsyncClient, img: bytes) -> str:
     return f"{response.json()['url']}.{get_img_ext(img)}"
 
 
+@logger.catch(default="")
 async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `telegra.ph`.
@@ -497,6 +516,7 @@ async def telegraph_upload(client: AsyncClient, img: bytes) -> str:
     return f"https://telegra.ph{response.json()[0]['src']}"
 
 
+@logger.catch(default="")
 async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `thumbsnap.com`.
@@ -522,6 +542,7 @@ async def thumbsnap_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["data"]["media"]
 
 
+@logger.catch(default="")
 async def tixte_upload(client: AsyncClient, img: bytes) -> str:
     """Upload to tixte.com."""
     """
@@ -550,6 +571,7 @@ async def tixte_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["data"]["direct_url"]
 
 
+@logger.catch(default="")
 async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `up2sha.re`.
@@ -577,6 +599,7 @@ async def up2sha_upload(client: AsyncClient, img: bytes) -> str:
     return f"{response.json()['public_url'].replace('file?f=', 'media/raw/')}.{ext}"
 
 
+@logger.catch(default="")
 async def uplio_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `upl.io`.
@@ -605,6 +628,7 @@ async def uplio_upload(client: AsyncClient, img: bytes) -> str:
     return f"{host}/i/{uid}.{ext}"
 
 
+@logger.catch(default="")
 async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `uploadcare.com`.
@@ -634,6 +658,7 @@ async def uploadcare_upload(client: AsyncClient, img: bytes) -> str:
     return f"https://ucarecdn.com/{response.json()['filename']}/{name}"
 
 
+@logger.catch(default="")
 async def vgy_upload(client: AsyncClient, img: bytes) -> str:
     """
     Uploads an image to the `vgy.me`.
