@@ -2,13 +2,13 @@
 
 [[package]]
 name = "anyio"
-version = "4.2.0"
+version = "4.3.0"
 description = "High level compatibility layer for multiple asynchronous event loop implementations"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "anyio-4.2.0-py3-none-any.whl", hash = "sha256:745843b39e829e108e518c489b31dc757de7d2131d53fac32bd8df268227bfee"},
-    {file = "anyio-4.2.0.tar.gz", hash = "sha256:e1875bb4b4e2de1669f4bc7869b6d3f54231cdced71605e6e64c9be77e3be50f"},
+    {file = "anyio-4.3.0-py3-none-any.whl", hash = "sha256:048e05d0f6caeed70d731f3db756d35dcc1f35747c8c403364a8332c630441b8"},
+    {file = "anyio-4.3.0.tar.gz", hash = "sha256:f75253795a87df48568485fd18cdd2a3fa5c4f7c5be8e5e36637733fce06fed6"},
 ]
 
 [package.dependencies]
@@ -283,13 +283,13 @@ files = [
 
 [[package]]
 name = "logot"
-version = "1.1.0"
+version = "1.1.1"
 description = "Test whether your code is logging correctly 🪵"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "logot-1.1.0-py3-none-any.whl", hash = "sha256:33a7b3ba99a0f854eb92224fea2e2bb0416002e5e2de52dd17d2013376646ae6"},
-    {file = "logot-1.1.0.tar.gz", hash = "sha256:d2037ee87906704fd708ee3db13b440d5e419b127a49936ad8a744a976f5f9da"},
+    {file = "logot-1.1.1-py3-none-any.whl", hash = "sha256:468381d477d08a5c479e6431391a7ca21718d728abd25c58e1c573eb2e13cbff"},
+    {file = "logot-1.1.1.tar.gz", hash = "sha256:6520224c3d0adfeecee93d5c039bb595443a4076799c9b2bdf8a2e005ba522ce"},
 ]
 
 [package.extras]
@@ -640,13 +640,13 @@ files = [
 
 [[package]]
 name = "pyright"
-version = "1.1.350"
+version = "1.1.351"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.350-py3-none-any.whl", hash = "sha256:f1dde6bcefd3c90aedbe9dd1c573e4c1ddbca8c74bf4fa664dd3b1a599ac9a66"},
-    {file = "pyright-1.1.350.tar.gz", hash = "sha256:a8ba676de3a3737ea4d8590604da548d4498cc5ee9ee00b1a403c6db987916c6"},
+    {file = "pyright-1.1.351-py3-none-any.whl", hash = "sha256:83b44b25396ae20661fc5f133c3fce30928ff1296d4f2e5ff0bca5fcf03eb89d"},
+    {file = "pyright-1.1.351.tar.gz", hash = "sha256:01124099714eebd7f6525d8cbfa350626b56dfaf771cfcd55c03e69f0f1efbbd"},
 ]
 
 [package.dependencies]
@@ -954,4 +954,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "f203dbe4f3bcc1dec3192191fa3f1ac18250318d0b7e65f25d6d415c576c1c6c"
+content-hash = "05e654a16f8f0edeab67881c0e0212976c347c0e41644af0305c3dfd12bcaa5e"

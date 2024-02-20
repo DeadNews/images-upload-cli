@@ -9,14 +9,13 @@ from images_upload_cli.util import GetEnvError, get_config_path, human_size
 
 
 def get_img_ext(img: bytes) -> str:
-    """
-    Get the extension of an image from a byte string.
+    """Get the extension of an image from a byte string.
 
     Args:
-        img (bytes): A byte string representing an image.
+        img: A byte string representing an image.
 
     Returns:
-        str: The extension of the image file.
+        The extension of the image file.
     """
     with BytesIO(img) as f:
         ext = Image.open(f).format
@@ -24,14 +23,13 @@ def get_img_ext(img: bytes) -> str:
 
 
 def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
-    """
-    Get font for thumbnail captions.
+    """Get font for thumbnail captions.
 
     Args:
-        size: An integer representing the size of the font. Defaults to 14 if not provided.
+        size: The size of the font. Defaults to 14.
 
     Returns:
-        An instance of the `ImageFont.FreeTypeFont` class representing the font for captions.
+        ImageFont.FreeTypeFont: Represents the font.
     """
     if font_name := getenv("CAPTION_FONT"):
         return ImageFont.truetype(font_name, size=size)
@@ -47,15 +45,14 @@ def get_font(size: int = 14) -> ImageFont.FreeTypeFont:
 
 
 def search_font(fonts: list[str], size: int = 14) -> ImageFont.FreeTypeFont:
-    """
-    Attempt to retrieve a TTF font from the system.
+    """Attempt to retrieve a TTF font from the system.
 
     Args:
-        fonts (list[str]): A list of font names to search for.
-        size (int, optional): An integer representing the size of the font. Defaults to 14 if not provided.
+        fonts: A list of font names to search for.
+        size: The font size. Defaults to 14.
 
     Returns:
-        An instance of the `ImageFont.FreeTypeFont` class representing the default font, if found.
+        ImageFont.FreeTypeFont: Represents the font.
 
     Raises:
         GetEnvError: If none of the default fonts are found.
@@ -78,16 +75,15 @@ def make_thumbnail(
     font: ImageFont.FreeTypeFont,
     size: tuple[int, int] = (300, 300),
 ) -> bytes:
-    """
-    Generate thumbnail for the image.
+    """Generate thumbnail for the image.
 
     Args:
-        img (bytes): The input image in bytes format.
-        font (ImageFont.FreeTypeFont): The font to be used for the text caption.
-        size (tuple[int, int], optional): The desired size of the thumbnail image.
+        img: The input image in bytes format.
+        font: The font to be used for the text caption.
+        size: The desired size of the thumbnail image. Defaults to (300, 300).
 
     Returns:
-        bytes: The modified image in bytes format.
+        The modified image in bytes format.
     """
     # Open the input image and create a copy in RGB format.
     im = Image.open(BytesIO(img))

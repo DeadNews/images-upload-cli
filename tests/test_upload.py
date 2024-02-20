@@ -23,15 +23,14 @@ async def test_upload_funcs(
     mock_link: str,
     img: bytes,
 ) -> None:
-    """
-    Test the image upload functionality of different hosting services.
+    """Test the image upload functionality of different hosting services.
 
     Args:
-        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
-        hosting (str): A string representing the hosting service to test.
-        mock_text (str): A string representing the mock response text.
-        mock_link (str): A string representing the expected link after image upload.
-        img (bytes): Bytes of the image to be uploaded.
+        httpx_mock: An instance of the HTTPXMock class used for mocking HTTP responses.
+        hosting: A string representing the hosting service to test.
+        mock_text: A string representing the mock response text.
+        mock_link: A string representing the expected link after image upload.
+        img: Bytes of the image to be uploaded.
 
     Raises:
         AssertionError: If the returned link is not equal to the expected mock_link.
@@ -57,14 +56,13 @@ async def test_upload_funcs_error(
     hosting: str,
     img: bytes,
 ) -> None:
-    """
-    Test the image upload functionality of different hosting services when an error occurs.
+    """Test the image upload functionality of different hosting services when an error occurs.
 
     Args:
-        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
-        logot (Logot): An instance of the Logot class used for logging.
-        hosting (str): A string representing the hosting service to test.
-        img (bytes): Bytes of the image to be uploaded.
+        httpx_mock: An instance of the HTTPXMock class used for mocking HTTP responses.
+        logot: An instance of the Logot class used for logging.
+        hosting: A string representing the hosting service to test.
+        img: Bytes of the image to be uploaded.
 
     Raises:
         AssertionError: If the returned result is not empty.
@@ -96,14 +94,13 @@ async def test_upload_funcs_not_found(
     hosting: str,
     img: bytes,
 ) -> None:
-    """
-    Test the error handling of image upload functionality for specific hosting services.
+    """Test the error handling of image upload functionality for specific hosting services.
 
     Args:
-        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
-        logot (Logot): An instance of the Logot class used for logging.
-        hosting (str): A string representing the hosting service to test.
-        img (bytes): Bytes of the image to be uploaded.
+        httpx_mock: An instance of the HTTPXMock class used for mocking HTTP responses.
+        logot: An instance of the Logot class used for logging.
+        hosting: A string representing the hosting service to test.
+        img: Bytes of the image to be uploaded.
 
     Raises:
         AssertionError: If the result is not empty.

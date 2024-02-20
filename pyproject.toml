@@ -30,7 +30,7 @@ rich = "^13.7.0"
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
 poethepoet = "^0.24.4"
-pyright = "^1.1.350"
+pyright = "^1.1.351"
 ruff = "^0.2.2"
 
 [tool.poetry.group.test.dependencies]
@@ -40,7 +40,7 @@ pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
 pytest-httpx = "^0.29.0"
 pytest-mock = "^3.12.0"
-logot = "^1.1.0"
+logot = "^1.1.1"
 
 [tool.poetry.group.build.dependencies]
 nuitka = "^2.0.3"
@@ -52,7 +52,7 @@ style = "semver"
 
 [tool.poe.tasks]
 mypy = "mypy ."
-pyright = "pyright src"
+pyright = "pyright ."
 ruff = "ruff check ."
 ruff-fmt = "ruff format ."
 lint.sequence = ["ruff", "ruff-fmt", "mypy"]
@@ -98,6 +98,11 @@ warn_unused_ignores = true
 module = ["tests.*"]
 disallow_untyped_defs = false
 
+[tool.pyright]
+include = ["src"]
+ignore = ["tests"]
+typeCheckingMode = "standard"
+
 [tool.ruff]
 line-length = 99
 target-version = "py310" # Until Poetry v2
@@ -109,14 +114,10 @@ line-ending = "lf"
 select = ["ALL"]
 ignore = [
   "COM812",  # Trailing comma missing
-  "D203",    # 1 blank line required before class docstring
-  "D212",    # Multi-line docstring summary should start at the first line
   "FBT001",  # Boolean positional arg in function definition
   "FBT002",  # Boolean default value in function definition
   "ISC001",  # Checks for implicitly concatenated strings on a single line
   "PLR0913", # Too many arguments to function call
-  #
-  "S603", # Calling subprocess.Popen with shell=False
 ]
 
 [tool.ruff.lint.per-file-ignores]
