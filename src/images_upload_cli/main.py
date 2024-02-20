@@ -1,6 +1,6 @@
 """Main logic for the images-upload-cli package."""
 
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable, Sequence
 from pathlib import Path
 
 from httpx import AsyncClient
@@ -9,10 +9,10 @@ from images_upload_cli.image import get_font, make_thumbnail
 
 
 async def upload_images(
-    upload_func: Callable,
+    upload_func: Callable[[AsyncClient, bytes], Awaitable[str]],
     images: tuple[Path],
     thumbnail: bool,
-) -> list[tuple[str, str | None]]:
+) -> Sequence[tuple[str, str] | tuple[str, None]]:
     """Upload images using the specified upload function and optionally generate thumbnails.
 
     Args:
@@ -25,22 +25,20 @@ async def upload_images(
         The thumbnail link will be `None` if generation is disabled.
     """
     links = []
-
-    if thumbnail:
-        font = get_font()
+    font = get_font() if thumbnail else None
 
     async with AsyncClient() as client:
         for img_path in images:
             img = img_path.read_bytes()
 
-            img_link = await upload_func(client, img=img)
+            img_link = await upload_func(client, img)
             # If the upload fails, skip the current image and proceed with the next one.
             if not img_link:
                 continue
 
             if thumbnail:
-                thumb = make_thumbnail(img, font)  # pyright: ignore[reportPossiblyUnboundVariable]
-                thumb_link = await upload_func(client, img=thumb)
+                thumb = make_thumbnail(img, font=get_font() if font is None else font)
+                thumb_link = await upload_func(client, thumb)
                 # If the upload fails, skip the current image and proceed with the next one.
                 if not thumb_link:
                     continue
@@ -52,7 +50,7 @@ async def upload_images(
     return links
 
 
-def format_link(links: list[tuple[str, str | None]], fmt: str) -> str:
+def format_link(links: Sequence[tuple[str, str] | tuple[str, None]], fmt: str) -> str:
     """Format the image links based on the specified format.
 
     Args:

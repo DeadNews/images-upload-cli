@@ -1,6 +1,6 @@
 """Upload images to various hosting services."""
 
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable
 from os import getenv
 from re import search
 from urllib.parse import urlparse
@@ -659,7 +659,7 @@ async def vgy_upload(client: AsyncClient, img: bytes) -> str:
     return response.json()["image"]
 
 
-UPLOAD: dict[str, Callable] = {
+UPLOAD: dict[str, Callable[[AsyncClient, bytes], Awaitable[str]]] = {
     "anhmoe": anhmoe_upload,
     "beeimg": beeimg_upload,
     "catbox": catbox_upload,

@@ -30,7 +30,7 @@ rich = "^13.7.0"
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.8.0"
 poethepoet = "^0.24.4"
-pyright = "^1.1.350"
+pyright = "^1.1.351"
 ruff = "^0.2.2"
 
 [tool.poetry.group.test.dependencies]

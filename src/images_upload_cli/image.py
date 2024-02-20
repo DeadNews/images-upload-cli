@@ -49,7 +49,7 @@ def search_font(fonts: list[str], size: int = 14) -> ImageFont.FreeTypeFont:
 
     Args:
         fonts: A list of font names to search for.
-        size (optional): The font size. Defaults to 14.
+        size: The font size. Defaults to 14.
 
     Returns:
         ImageFont.FreeTypeFont: Represents the font.
@@ -80,7 +80,7 @@ def make_thumbnail(
     Args:
         img: The input image in bytes format.
         font: The font to be used for the text caption.
-        size (optional): The desired size of the thumbnail image.
+        size: The desired size of the thumbnail image. Defaults to (300, 300).
 
     Returns:
         The modified image in bytes format.
