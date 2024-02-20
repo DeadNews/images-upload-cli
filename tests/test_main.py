@@ -17,8 +17,8 @@ async def test_upload_images_coroutine(httpx_mock: HTTPXMock, thumbnail: bool) -
     """Test the upload_images coroutine.
 
     Args:
-        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
-        thumbnail (bool): A boolean flag indicating whether to generate thumbnail images for the uploaded images.
+        httpx_mock: An instance of the HTTPXMock class used for mocking HTTP responses.
+        thumbnail: A boolean flag indicating whether to generate thumbnail images for the uploaded images.
 
     Raises:
         AssertionError: If the returned link is not equal to the expected mock_link.
@@ -53,7 +53,7 @@ async def test_upload_images_upload_failure(httpx_mock: HTTPXMock, thumbnail: bo
     """Test the upload_images coroutine when the upload fails for an image.
 
     Args:
-        httpx_mock (HTTPXMock): An instance of the HTTPXMock class used for mocking HTTP responses.
+        httpx_mock: An instance of the HTTPXMock class used for mocking HTTP responses.
     """
     images = (Path("tests/data/pic.png"),)
     hosting = "imgur"

@@ -14,21 +14,13 @@ def runner():
 
 
 def test_cli_help(runner: CliRunner) -> None:
-    """Test the cli function with the provided arguments.
-
-    Args:
-        runner (CliRunner): An instance of CliRunner used to invoke the cli function.
-    """
+    """Test the cli function with the provided arguments."""
     args = ["--help"]
     assert runner.invoke(cli=cli, args=args).exit_code == 0
 
 
 def test_cli_error(runner: CliRunner) -> None:
-    """Test the cli function with the provided arguments.
-
-    Args:
-        runner (CliRunner): An instance of CliRunner used to invoke the cli function.
-    """
+    """Test the cli function with the provided arguments."""
     args = ["tests/data/nonexistent", "-C", "-h", "nonexistent"]
     assert runner.invoke(cli=cli, args=args).exit_code == 2
 
@@ -56,13 +48,13 @@ def test_cli(
     """Test the cli function with different hosting services.
 
     Args:
-        runner (CliRunner): An instance of CliRunner used to invoke the cli function.
-        httpx_mock (HTTPXMock): An instance of HTTPXMock used to mock the HTTP responses.
-        mocker (MockerFixture): An instance of MockerFixture used for mocking.
-        hosting (str): The hosting service to use for image upload.
-        mock_text (str): The mock response text to be returned by the HTTPXMock.
-        mock_link (str): The expected link to be returned by the cli function.
-        thumbnail (bool): Flag indicating whether to generate a thumbnail link.
+        runner: An instance of CliRunner used to invoke the cli function.
+        httpx_mock: An instance of HTTPXMock used to mock the HTTP responses.
+        mocker: An instance of MockerFixture used for mocking.
+        hosting: The hosting service to use for image upload.
+        mock_text: The mock response text to be returned by the HTTPXMock.
+        mock_link: The expected link to be returned by the cli function.
+        thumbnail: Flag indicating whether to generate a thumbnail link.
     """
     # Mock response.
     httpx_mock.add_response(text=mock_text)
@@ -105,11 +97,12 @@ def test_cli(
 @pytest.mark.online()
 @pytest.mark.parametrize("hosting", HOSTINGS)
 def test_cli_online(runner: CliRunner, hosting: str) -> None:
-    """Test the cli function with different hosting services. Online.
+    """
+    Test the cli function with different hosting services. Online.
 
     Args:
-        runner (CliRunner): An instance of CliRunner used to invoke the cli function.
-        args (list[str]): A list of command-line arguments to be passed to the cli function.
+        runner: An instance of CliRunner used to invoke the cli function.
+        hosting: The hosting service to be tested.
     """
     args = ["tests/data/pic.png", "-C", "-h", hosting]
     assert runner.invoke(cli=cli, args=args).exit_code == 0

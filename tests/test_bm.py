@@ -21,8 +21,8 @@ def test_bm_cli_online(benchmark: BenchmarkFixture, runner: CliRunner):
     Measures the execution time of the `cli` function using the `pytest_benchmark` library.
 
     Args:
-        benchmark (BenchmarkFixture): A fixture provided by the `pytest_benchmark` library for benchmarking tests.
-        runner (CliRunner): An instance of the `CliRunner` class from the `click.testing` module.
+        benchmark: A fixture provided by the `pytest_benchmark` library for benchmarking tests.
+        runner: An instance of the `CliRunner` class from the `click.testing` module.
     """
 
     @benchmark
@@ -50,9 +50,9 @@ def test_bm_cli(benchmark: BenchmarkFixture, runner: CliRunner, httpx_mock: HTTP
     Measures the execution time of the `cli` function using the `pytest_benchmark` library and a mock HTTP response.
 
     Args:
-        benchmark (BenchmarkFixture): A fixture provided by the `pytest_benchmark` library for benchmarking tests.
-        runner (CliRunner): An instance of the `CliRunner` class from the `click.testing` module.
-        httpx_mock (HTTPXMock): A fixture provided by the `pytest_httpx` library for mocking HTTP responses.
+        benchmark: A fixture provided by the `pytest_benchmark` library for benchmarking tests.
+        runner: An instance of the `CliRunner` class from the `click.testing` module.
+        httpx_mock: A fixture provided by the `pytest_httpx` library for mocking HTTP responses.
     """
     # Mock the response
     httpx_mock.add_response(text=uploadcare)
