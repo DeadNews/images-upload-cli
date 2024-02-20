@@ -56,7 +56,7 @@ def format_link(links: Sequence[tuple[str, str] | tuple[str, None]], fmt: str) -
     """Format the image links based on the specified format.
 
     Args:
-        links: The image links and optional thumbnail links.
+        links: The image links and their corresponding thumbnails.
         fmt: The format to use for formatting the links. Valid options are "plain", "bbcode", "html", and "markdown".
 
     Returns:
