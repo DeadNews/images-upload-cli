@@ -25,7 +25,9 @@ async def upload_images(
         The thumbnail link will be `None` if generation is disabled.
     """
     links = []
-    font = get_font() if thumbnail else None
+
+    if thumbnail:
+        font = get_font()
 
     async with AsyncClient() as client:
         for img_path in images:
@@ -37,7 +39,7 @@ async def upload_images(
                 continue
 
             if thumbnail:
-                thumb = make_thumbnail(img, font=get_font() if font is None else font)
+                thumb = make_thumbnail(img, font)  # pyright: ignore[reportPossiblyUnboundVariable]
                 thumb_link = await upload_func(client, thumb)
                 # If the upload fails, skip the current image and proceed with the next one.
                 if not thumb_link:
