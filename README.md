@@ -68,8 +68,7 @@ Options:
                                   The format of the links to be generated.  [default: plain]
   -t, --thumbnail                 Create captioned thumbnails. By default, in bbcode format.
   -n, --notify                    Send desktop notification on completion. Required libnotify.
-  -c, --clipboard / -C, --no-clipboard
-                                  Copy the result to the clipboard. Enabled by default.
+  --clipboard / --no-clipboard    Copy the result to the clipboard.  [default: clipboard]
   --env-file FILE                 The path to the environment file. Takes precedence over the default config file.
   --log-level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
                                   Use DEBUG to show debug logs. Use CRITICAL to suppress all logs.  [default: INFO]
