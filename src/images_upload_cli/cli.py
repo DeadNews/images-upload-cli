@@ -43,12 +43,10 @@ from images_upload_cli.util import get_config_path, notify_send
     help="Send desktop notification on completion. Required libnotify.",
 )
 @click.option(
-    "-c/-C",
     "--clipboard/--no-clipboard",
     is_flag=True,
     default=True,
-    show_default=False,
-    help="Copy the result to the clipboard. Enabled by default.",
+    help="Copy the result to the clipboard.",
 )
 @click.option(
     "--env-file",
