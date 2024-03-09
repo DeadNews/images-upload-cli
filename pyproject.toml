@@ -28,19 +28,19 @@ python-dotenv = "^1.0.1"
 rich = "^13.7.0"
 
 [tool.poetry.group.lint.dependencies]
-mypy = "^1.8.0"
-poethepoet = "^0.24.4"
-pyright = "^1.1.351"
-ruff = "^0.2.2"
+mypy = "^1.9.0"
+poethepoet = "^0.25.0"
+pyright = "^1.1.353"
+ruff = "^0.3.2"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.0.1"
+pytest = "^8.0.2"
 pytest-asyncio = "^0.23.5"
 pytest-benchmark = "^4.0.0"
 pytest-cov = "^4.1.0"
 pytest-httpx = "^0.30.0"
 pytest-mock = "^3.12.0"
-logot = "^1.1.1"
+logot = "^1.2.0"
 
 [tool.poetry.group.build.dependencies]
 nuitka = "^2.0.3"
