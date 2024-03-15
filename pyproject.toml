@@ -15,7 +15,7 @@ keywords = ["cli", "imgur", "image-upload", "upload-images", "upload-pictures"]
 classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 
 [tool.poetry.scripts]
-images-upload-cli = "images_upload_cli.cli:cli"
+images-upload-cli = "images_upload_cli.cli:_cli"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -41,6 +41,15 @@ pytest-cov = "^4.1.0"
 pytest-httpx = "^0.30.0"
 pytest-mock = "^3.12.0"
 logot = "^1.2.0"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-click = "^0.8.1"
+mkdocs-gen-files = "^0.5.0"
+mkdocs-literate-nav = "^0.6.1"
+mkdocs-material = "^9.5.13"
+mkdocstrings = "^0.24.1"
+mkdocstrings-python = "^1.9.0"
 
 [tool.poetry.group.build.dependencies]
 nuitka = "^2.0.3"

@@ -21,3 +21,6 @@ lint:
 
 test:
 	poetry run poe test
+
+docs-serve:
+	poetry run mkdocs serve
