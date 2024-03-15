@@ -15,7 +15,7 @@ keywords = ["cli", "imgur", "image-upload", "upload-images", "upload-pictures"]
 classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
 
 [tool.poetry.scripts]
-images-upload-cli = "images_upload_cli.cli:_cli"
+images-upload-cli = "images_upload_cli._cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.10"
