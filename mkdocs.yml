@@ -4,9 +4,8 @@ edit_uri: blob/main/docs/
 
 nav:
   - Overview: index.md
+  - API reference: reference/ # defer to gen-files + literate-nav
   - CLI Reference: cli.md
-  # defer to gen-files + literate-nav
-  - API reference: reference/
 
 watch:
   - src
