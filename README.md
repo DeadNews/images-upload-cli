@@ -9,7 +9,7 @@
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/images-upload-cli/main)
 [![codecov](https://codecov.io/gh/DeadNews/images-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/images-upload-cli)
 
-**[Installation](#installation)** - **[Hostings](#hostings)** - **[Usage](#usage)** - **[Env Variables](#env-variables)**
+**[Installation](#installation)** — **[Hostings](#hostings)** — **[Usage](#usage)** — **[Env Variables](#env-variables)**
 
 ## Installation
 
