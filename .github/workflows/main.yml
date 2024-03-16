@@ -152,7 +152,6 @@ jobs:
 
   docs-build:
     name: Build docs
-    if: github.event_name == 'release' && github.event.action == 'created'
     needs: [lint, tests]
     runs-on: ubuntu-latest
     steps:
@@ -181,7 +180,6 @@ jobs:
 
   docs-deploy:
     name: Deploy docs
-    if: github.event.release.prerelease != true
     needs: [docs-build]
     environment:
       name: github-pages
