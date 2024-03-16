@@ -9,6 +9,13 @@
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/images-upload-cli/main)
 [![codecov](https://codecov.io/gh/DeadNews/images-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/images-upload-cli)
 
+## Table of contents
+
+- [Installation](#installation)
+- [Hostings](#hostings)
+- [Usage](#usage)
+- [Env Variables](#env-variables)
+
 ## Installation
 
 PyPI
@@ -24,6 +31,8 @@ AUR
 ```sh
 yay -S python-images-upload-cli
 ```
+
+Windows executable attached to the github release.
 
 ## Hostings
 
@@ -56,6 +65,8 @@ yay -S python-images-upload-cli
 | [vgy](https://vgy.me/)                |      +       | `https://i.vgy.me/{id}.png`                          |
 
 ## Usage
+
+[CLI Reference](https://deadnews.github.io/images-upload-cli/cli/)
 
 ```sh
 Usage: images-upload-cli [OPTIONS] IMAGES...
