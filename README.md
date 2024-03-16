@@ -4,6 +4,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/images-upload-cli)](https://pypi.org/project/images-upload-cli)
 [![AUR version](https://img.shields.io/aur/version/python-images-upload-cli)](https://aur.archlinux.org/packages/python-images-upload-cli)
+[![Documentation](https://img.shields.io/badge/docs-github-blue.svg)](https://deadnews.github.io/images-upload-cli)
 [![Main](https://github.com/DeadNews/images-upload-cli/actions/workflows/main.yml/badge.svg)](https://github.com/DeadNews/images-upload-cli/actions/workflows/main.yml)
 [![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/images-upload-cli/main)
 [![codecov](https://codecov.io/gh/DeadNews/images-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/images-upload-cli)
