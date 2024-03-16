@@ -111,7 +111,7 @@ jobs:
 
   build-win:
     name: Windows Build
-    # if: github.event_name == 'release' && github.event.action == 'created'
+    if: github.event_name == 'release' && github.event.action == 'created'
     needs: [lint, tests]
     permissions:
       contents: write
@@ -152,7 +152,7 @@ jobs:
 
   docs-build:
     name: Build docs
-    # if: github.event_name == 'release' && github.event.action == 'created'
+    if: github.event_name == 'release' && github.event.action == 'created'
     needs: [lint, tests]
     runs-on: ubuntu-latest
     steps:
