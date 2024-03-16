@@ -48,7 +48,7 @@ def human_size(num: float, suffix: str = "B") -> str:
 
     Args:
         num: The number of bytes to be converted.
-        suffix: The suffix to be appended to the converted size. Defaults to "B".
+        suffix: The suffix to be appended to the converted size.
 
     Returns:
         The human-readable size with the appropriate unit and suffix.

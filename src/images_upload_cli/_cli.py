@@ -70,9 +70,8 @@ def cli(
     env_file: Path,
     log_level: str,
 ) -> None:
-    """Upload images via APIs.
-
-    \f
+    """Upload images via APIs."""
+    """
     Upload images to the specified hosting service, format links, and print.
     Optionally copy links to clipboard and send desktop notification.
 
@@ -85,7 +84,7 @@ def cli(
         clipboard: Whether to copy the image links to the clipboard.
         env_file: The path to the environment file.
         log_level: The log level to use for the logger.
-    """  # noqa: D301
+    """
     # Set up logger.
     error_handler = setup_logger(log_level=log_level)
     # Load environment variables.
