@@ -3,10 +3,10 @@ name: Main
 on:
   push:
     branches: [main]
+    tags:
+      - "v*"
   pull_request:
     branches: [main]
-  release:
-    types: [created]
 
 permissions:
   contents: read
@@ -60,9 +60,9 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         uses: codecov/codecov-action@4fe8c5f003fae66aa5ebb77cfd3e7bfbbda0b6b0 # v3.1.5
 
-  publish-pypi:
+  pypi-deploy:
     name: Release to PyPI
-    if: github.event_name == 'release' && github.event.action == 'created'
+    if: github.ref_type == 'tag'
     needs: [lint, tests]
     permissions:
       id-token: write
@@ -84,11 +84,13 @@ jobs:
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450 # v1.8.14
 
-  publish-aur:
+  aur-deploy:
     name: Release to AUR
-    if: github.event.release.prerelease != true
-    needs: [publish-pypi]
-    environment: aur
+    if: true && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc')
+    needs: [pypi-deploy]
+    environment:
+      name: aur
+      url: https://aur.archlinux.org/packages/python-images-upload-cli
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -99,20 +101,46 @@ jobs:
           sed -i "s|\(^pkgver=\).*$|\1\"${VERSION}\"|" ./PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
-        uses: KSXGitHub/github-actions-deploy-aur@063daf78a56662642bb00049ce78425ff6d0fad7 # v2.7.0
+        uses: ksxgithub/github-actions-deploy-aur@063daf78a56662642bb00049ce78425ff6d0fad7 # v2.7.0
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
           commit_username: DeadNews
-          commit_email: aurczpbgr@mozmail.com
+          commit_email: deadnewsgit@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: Upstream release ${{ github.ref }}
+          commit_message: Upstream release ${{ github.ref_name }}
           updpkgsums: true
+
+  github-deploy:
+    name: Release to GitHub
+    if: github.ref_type == 'tag'
+    needs: [lint, tests]
+    environment: github-releases
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        run: |
+          set -x
+          PRERELEASE=$([[ ${{ github.ref }} =~ (alpha|beta|rc) ]] && echo true || echo false)
+          CHANGELOG="https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md"
+
+          gh release create ${{ github.ref_name }} \
+            --title ${{ github.ref_name }} \
+            --notes="See [the CHANGELOG](${CHANGELOG}) for more details." \
+            --draft=${PRERELEASE} \
+            --prerelease=${PRERELEASE}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-win:
     name: Windows Build
-    if: github.event_name == 'release' && github.event.action == 'created'
-    needs: [lint, tests]
+    if: github.ref_type == 'tag'
+    needs: [github-deploy]
+    environment: github-releases
     permissions:
       contents: write
     env:
@@ -146,13 +174,13 @@ jobs:
         run: poetry run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
 
       - name: Upload binaries to Release
-        run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }} --repo ${{ github.repository }}
+        run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
   docs-build:
     name: Build docs
-    if: github.event_name == 'release' && github.event.action == 'created'
+    if: github.ref_type == 'tag'
     needs: [lint, tests]
     runs-on: ubuntu-latest
     steps:
@@ -181,7 +209,7 @@ jobs:
 
   docs-deploy:
     name: Deploy docs
-    if: github.event.release.prerelease != true
+    if: true && !contains(github.ref, 'alpha')
     needs: [docs-build]
     environment:
       name: github-pages
