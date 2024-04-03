@@ -1,4 +1,4 @@
-# Maintainer: DeadNews <aurczpbgr@mozmail.com>
+# Maintainer: DeadNews <deadnewsgit@gmail.com>
 
 pkgbase="python-images-upload-cli"
 pkgname=("python-images-upload-cli")
