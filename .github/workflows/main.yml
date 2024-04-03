@@ -145,7 +145,7 @@ jobs:
       ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
       BINARY: images-upload-cli.exe
       NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
-      PYTHON_VERSION: 3.11
+      PYTHON_VERSION: "3.11"
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
