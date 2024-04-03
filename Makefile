@@ -25,3 +25,18 @@ test:
 
 docs:
 	poetry run mkdocs serve
+
+bumped:
+	git cliff --bumped-version
+
+# make release-tag_name
+# make release-v1.0.0-alpha.0
+release-%: checks
+	git cliff -o CHANGELOG.md --tag $*
+	pre-commit run --files CHANGELOG.md
+	git add CHANGELOG.md
+	git commit -m "chore(release): prepare for $*"
+	git push
+	git tag -a $* -m "chore(release): $*"
+	git push --tags
+	git tag --verify $*

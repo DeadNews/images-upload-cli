@@ -56,8 +56,8 @@ conventional_commits = true # parse the commits based on https://www.conventiona
 filter_unconventional = true # filter out the commits that are not conventional
 split_commits = false # process each line of a commit as an individual commit
 commit_preprocessors = [
-  # Replace issue numbers
-  { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](<REPO>/issues/${2}))" },
+  { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](<REPO>/issues/${2}))" }, # Replace issue numbers
+  { pattern = "  +", replace = " " },                                               # Remove multiple whitespaces
 ]
 commit_parsers = [
   { message = "^(ci|build|chore)\\(deps.*\\)", skip = true },
