@@ -73,11 +73,11 @@ python -m nuitka
   --assume-yes-for-downloads
   --onefile
   --output-dir=dist
-  --output-file=${output-file}
+  --output-file=${outfile}
   --script-name=src/images_upload_cli/__main__.py
 """
 
-[tool.poe.tasks.nuitka.args.output-file]
+[tool.poe.tasks.nuitka.args.outfile]
 options = ["--output-file"]
 default = "images-upload-cli.bin"
 help = "Output file name"
