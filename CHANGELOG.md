@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.0.2-beta.0](https://github.com/DeadNews/images-upload-cli/compare/v3.0.1...v3.0.2-beta.0) - 2024-04-03
+## [3.0.2-beta.1](https://github.com/DeadNews/images-upload-cli/compare/v3.0.1...v3.0.2-beta.1) - 2024-04-03
 
 ### 🐛 Bug Fixes
 
@@ -23,6 +23,8 @@
 
 ### ⚙️ CI/CD
 
+- _(github)_ update github release job - ([0fd47ee](https://github.com/DeadNews/images-upload-cli/commit/0fd47ee49ab4fd55b51a03fff084de81bc79d131))
+- _(github)_ update github release job - ([36cb410](https://github.com/DeadNews/images-upload-cli/commit/36cb410e4419545c6e3d1afa7f2c469c0168cfca))
 - _(github)_ update workflows for tag-based releases - ([5c66ac1](https://github.com/DeadNews/images-upload-cli/commit/5c66ac142a94a3b3383c687815bdc95c631f953f))
 
 ### ⬆️ Dependencies
