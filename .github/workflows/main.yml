@@ -118,6 +118,9 @@ jobs:
     environment: github-releases
     permissions:
       contents: write
+    env:
+      CHANGELOG: "https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md"
+      PRERELEASE: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -125,14 +128,11 @@ jobs:
       - name: Create GitHub Release
         run: |
           set -x
-          PRERELEASE=$([[ ${{ github.ref }} =~ (alpha|beta|rc) ]] && echo true || echo false)
-          CHANGELOG="https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md"
-
           gh release create ${{ github.ref_name }} \
             --title ${{ github.ref_name }} \
-            --notes="See [the CHANGELOG](${CHANGELOG}) for more details." \
-            --draft=${PRERELEASE} \
-            --prerelease=${PRERELEASE}
+            --notes="See [the CHANGELOG](${{ env.CHANGELOG }}) for more details." \
+            --draft=${{ env.PRERELEASE }} \
+            --prerelease=${{ env.PRERELEASE }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
