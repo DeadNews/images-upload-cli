@@ -159,14 +159,9 @@ jobs:
       - name: Install deps
         run: poetry install
 
+        # TODO: use cache action
       - name: Build binaries
-        uses: nuitka/nuitka-action@12e193a947ea7cb9c807a4e4161092f2c16ac501 # v1.1
-        with:
-          nuitka-version: main
-          script-name: src/images_upload_cli/__main__.py
-          output-dir: dist
-          output-file: ${{ env.BINARY }}
-          onefile: true
+        run: poetry run poe nuitka --output-file ${{ env.BINARY }}
 
       - name: Archive binaries
         run: poetry run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
