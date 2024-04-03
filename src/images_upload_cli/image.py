@@ -92,7 +92,7 @@ def make_thumbnail(
 
     # Resize the image to the desired size using Lanczos resampling.
     pw = im.copy()
-    pw.thumbnail(size=size, resample=Image.LANCZOS)
+    pw.thumbnail(size=size, resample=Image.Resampling.LANCZOS)
 
     # Create a blank image for the text
     pw_with_line = Image.new(
