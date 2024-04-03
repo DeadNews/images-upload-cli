@@ -97,13 +97,10 @@ jobs:
 
       - name: Update version in PKGBUILD
         run: |
-          sed "s|^pkgver=.*$|pkgver=\"3.0.2\"|" -i PKGBUILD
-          echo ${GITHUB_REF_NAME#v}
-
-        # sed "s|^pkgver=.*$|pkgver=\"${{ github.ref_name#v }}\"|" -i PKGBUILD
+          sed "s|^pkgver=.*$|pkgver=\"${GITHUB_REF_NAME#v}\"|" -i PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
-        uses: ksxgithub/github-actions-deploy-aur@063daf78a56662642bb00049ce78425ff6d0fad7 # v2.7.0
+        uses: ksxgithub/github-actions-deploy-aur@f253a99125c1ca6bf2451d5a126fe04214d884bd # v2.7.1
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
@@ -210,7 +207,7 @@ jobs:
 
   docs-deploy:
     name: Deploy docs
-    if: true && !contains(github.ref, 'alpha') && !contains(github.ref, 'rc')
+    if: true && !contains(github.ref, 'alpha')
     needs: [docs-build]
     environment:
       name: github-pages
