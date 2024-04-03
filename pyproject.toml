@@ -69,18 +69,11 @@ lint.sequence = ["ruff", "ruff-fmt", "mypy", "pyright"]
 
 [tool.poe.tasks.nuitka]
 cmd = """
-python -m nuitka
-  --assume-yes-for-downloads
+python -m nuitka src/images_upload_cli/__main__.py
   --onefile
   --output-dir=dist
-  --output-file=${output-file}
-  --script-name=src/images_upload_cli/__main__.py
+  --assume-yes-for-downloads
 """
-
-[tool.poe.tasks.nuitka.args.output-file]
-options = ["--output-file"]
-default = "images-upload-cli.bin"
-help = "Output file name"
 
 [tool.poe.tasks.test]
 cmd = "pytest -m 'not (online or benchmark)'"
