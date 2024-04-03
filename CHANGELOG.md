@@ -1,9 +1,11 @@
 # Changelog
 
-## [3.0.3-rc.3](https://github.com/DeadNews/images-upload-cli/compare/v3.0.2...v3.0.3-rc.3) - 2024-04-03
+## [3.0.3-rc.4](https://github.com/DeadNews/images-upload-cli/compare/v3.0.2...v3.0.3-rc.4) - 2024-04-03
 
 ### ⚙️ CI/CD
 
+- _(github)_ update aur release job - ([a302d87](https://github.com/DeadNews/images-upload-cli/commit/a302d87e865776398f5320205a834de5d5481caf))
+- _(github)_ update aur release job - ([ae2d05a](https://github.com/DeadNews/images-upload-cli/commit/ae2d05aad42b1402d82fe3b15d90785f3158a1b1))
 - _(github)_ update aur release job - ([d23418f](https://github.com/DeadNews/images-upload-cli/commit/d23418f287796c4ef94ddda96a9a382a036b42ad))
 - _(github)_ update aur release job - ([70d9fcd](https://github.com/DeadNews/images-upload-cli/commit/70d9fcd828374bbc8631ce10adac420c81a957a0))
 - _(github)_ update aur release job - ([2879b51](https://github.com/DeadNews/images-upload-cli/commit/2879b51a8fe346e6cc56442773208e6ae5d378ad))
