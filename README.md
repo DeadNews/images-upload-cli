@@ -2,13 +2,13 @@
 
 > Upload images via APIs
 
-[![PyPI version](https://img.shields.io/pypi/v/images-upload-cli)](https://pypi.org/project/images-upload-cli)
-[![AUR version](https://img.shields.io/aur/version/python-images-upload-cli)](https://aur.archlinux.org/packages/python-images-upload-cli)
-[![GitHub Release](https://img.shields.io/github/v/release/deadnews/images-upload-cli)](https://github.com/DeadNews/images-upload-cli/releases/latest)
-[![Documentation](https://img.shields.io/badge/docs-github-blue.svg)](https://deadnews.github.io/images-upload-cli)
-[![Main](https://github.com/DeadNews/images-upload-cli/actions/workflows/main.yml/badge.svg)](https://github.com/DeadNews/images-upload-cli/actions/workflows/main.yml)
-[![pre-commit.ci](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/DeadNews/images-upload-cli/main)
-[![codecov](https://codecov.io/gh/DeadNews/images-upload-cli/branch/main/graph/badge.svg?token=OCZDZIYPMC)](https://codecov.io/gh/DeadNews/images-upload-cli)
+[![PyPI: Version](https://img.shields.io/pypi/v/images-upload-cli?logo=pypi&logoColor=white)](https://pypi.org/project/images-upload-cli)
+[![AUR: version](https://img.shields.io/aur/version/python-images-upload-cli?logo=archlinux&logoColor=white)](https://aur.archlinux.org/packages/python-images-upload-cli)
+[![GitHub: Release](https://img.shields.io/github/v/release/deadnews/images-upload-cli?logo=github&logoColor=white)](https://github.com/deadnews/images-upload-cli/releases/latest)
+[![Documentation](https://img.shields.io/badge/documentation-gray.svg?logo=materialformkdocs&logoColor=white)](https://deadnews.github.io/images-upload-cli)
+[![CI: pre-commit](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/deadnews/images-upload-cli/main)
+[![CI: main](https://img.shields.io/github/actions/workflow/status/deadnews/images-upload-cli/main.yml?branch=main&logo=github&logoColor=white&label=main)](https://github.com/deadnews/images-upload-cli/actions/workflows/main.yml)
+[![CI: coverage](https://img.shields.io/codecov/c/github/deadnews/images-upload-cli?token=OCZDZIYPMC&logo=codecov&logoColor=white)](https://app.codecov.io/gh/deadnews/images-upload-cli)
 
 **[Installation](#installation)** • **[Hostings](#hostings)** • **[Usage](#usage)** • **[Env Variables](#env-variables)**
 
@@ -62,7 +62,7 @@ Windows executable is attached to the GitHub release.
 
 ## Usage
 
-[CLI Reference](https://deadnews.github.io/images-upload-cli/cli/)
+[CLI Reference](https://deadnews.github.io/images-upload-cli/reference-cli/)
 
 ```sh
 Usage: images-upload-cli [OPTIONS] IMAGES...
