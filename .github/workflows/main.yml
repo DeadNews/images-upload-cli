@@ -97,7 +97,7 @@ jobs:
 
       - name: Update version in PKGBUILD
         run: |
-          sed "s|^pkgver=.*$|pkgver=\"v3.0.2\"|" -i PKGBUILD
+          sed "s|^pkgver=.*$|pkgver=\"3.0.2\"|" -i PKGBUILD
 
         # sed "s|^pkgver=.*$|pkgver=\"${{ github.ref_name }}\"|" -i PKGBUILD
 
