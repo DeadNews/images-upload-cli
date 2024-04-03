@@ -119,7 +119,7 @@ jobs:
     permissions:
       contents: write
     env:
-      CHANGELOG: "https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md"
+      CHANGELOG: https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md
       PRERELEASE: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
     runs-on: ubuntu-latest
     steps:
