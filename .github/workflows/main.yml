@@ -86,7 +86,7 @@ jobs:
 
   aur-deploy:
     name: Release to AUR
-    if: true && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc')
+    if: true && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta')
     needs: [pypi-deploy]
     environment:
       name: aur
@@ -95,10 +95,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update version
+      - name: Update version in PKGBUILD
         run: |
-          VERSION="${GITHUB_REF#refs/tags/v}"
-          sed -i "s|\(^pkgver=\).*$|\1\"${VERSION}\"|" ./PKGBUILD
+          sed "s|^pkgver=.*$|pkgver=\"${GITHUB_REF_NAME#v}\"|" -i PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
         uses: ksxgithub/github-actions-deploy-aur@f253a99125c1ca6bf2451d5a126fe04214d884bd # v2.7.1
