@@ -142,8 +142,10 @@ jobs:
     permissions:
       contents: write
     env:
-      BINARY: images-upload-cli.exe
       ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
+      BINARY: images-upload-cli.exe
+      NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
+      PYTHON_VERSION: 3.11
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -153,13 +155,18 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ env.PYTHON_VERSION }}
           cache: poetry
 
       - name: Install deps
         run: poetry install
 
-        # TODO: use cache action
+      - name: Cache nuitka
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }}-nuitka
+          path: ${{ env.NUITKA_CACHE_DIR }}
+
       - name: Build binaries
         run: poetry run poe nuitka --output-file ${{ env.BINARY }}
 
