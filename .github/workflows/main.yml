@@ -99,7 +99,7 @@ jobs:
         run: |
           sed "s|^pkgver=.*$|pkgver=\"3.0.2\"|" -i PKGBUILD
 
-        # sed "s|^pkgver=.*$|pkgver=\"${{ github.ref_name }}\"|" -i PKGBUILD
+        # sed "s|^pkgver=.*$|pkgver=\"${{ github.ref_name#v }}\"|" -i PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
         uses: ksxgithub/github-actions-deploy-aur@063daf78a56662642bb00049ce78425ff6d0fad7 # v2.7.0
@@ -107,7 +107,7 @@ jobs:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
           commit_username: DeadNews
-          commit_email: aurczpbgr@mozmail.com
+          commit_email: deadnewsgit@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{ github.ref_name }}
           updpkgsums: true
