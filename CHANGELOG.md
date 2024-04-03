@@ -1,34 +1,24 @@
 # Changelog
 
-## [3.0.2-beta.1](https://github.com/DeadNews/images-upload-cli/compare/v3.0.1...v3.0.2-beta.1) - 2024-04-03
+## [3.0.2](https://github.com/DeadNews/images-upload-cli/compare/v3.0.1...v3.0.2) - 2024-04-03
 
 ### 🐛 Bug Fixes
 
 - update deprecated name for `pillow 10.3.0` compatibility ([#189](https://github.com/DeadNews/images-upload-cli/issues/189)) - ([c0c5897](https://github.com/DeadNews/images-upload-cli/commit/c0c5897ad27c22c80ee7e2e7dbe7a6eaf6f3f4b5))
-- deprecated names - ([5dfcce1](https://github.com/DeadNews/images-upload-cli/commit/5dfcce10381d0da5e78aefc4e9a7d935d13f9aee))
 
 ### 📚 Documentation
 
-- _(changelog)_ add `git-cliff` - ([6577a2a](https://github.com/DeadNews/images-upload-cli/commit/6577a2ab5682fa437aeeda498b7e5a08204a5b2d))
-- _(changelog)_ add `git-cliff` - ([84c3e54](https://github.com/DeadNews/images-upload-cli/commit/84c3e5440104f025ced40b4093ef0f4e3ae19f07))
+- _(changelog)_ add `git-cliff` ([#186](https://github.com/DeadNews/images-upload-cli/issues/186)) - ([64b44d4](https://github.com/DeadNews/images-upload-cli/commit/64b44d4cb1baa36679c6708702dfc63810385e14))
 - _(mkdocs)_ add ([#184](https://github.com/DeadNews/images-upload-cli/issues/184)) - ([cd2fbf0](https://github.com/DeadNews/images-upload-cli/commit/cd2fbf0cd8de48db713c89dbd43c11d6a9400896))
-- _(readme)_ update badges - ([74efff9](https://github.com/DeadNews/images-upload-cli/commit/74efff90dbbfb29aeb63fdddaaedae6f5847a08c))
-- _(readme)_ update badges - ([2730672](https://github.com/DeadNews/images-upload-cli/commit/2730672ee605ef4a60961f1f6958f634ae38f9c2))
 - _(readme)_ add badges - ([8912d71](https://github.com/DeadNews/images-upload-cli/commit/8912d71b9a2a60090f072d666901e0b7abcd5144))
 
 ### 🧹 Chores
 
-- _(docs)_ update maintainer email - ([12874cb](https://github.com/DeadNews/images-upload-cli/commit/12874cb6cb6c59815d193961935c00f388d2df1d))
 - update linting tasks in `makefile` and `poe` - ([e01404a](https://github.com/DeadNews/images-upload-cli/commit/e01404aad59b559f7d148fa3fed520b2e4a78942))
-
-### ⚙️ CI/CD
-
-- _(github)_ update github release job - ([0fd47ee](https://github.com/DeadNews/images-upload-cli/commit/0fd47ee49ab4fd55b51a03fff084de81bc79d131))
-- _(github)_ update github release job - ([36cb410](https://github.com/DeadNews/images-upload-cli/commit/36cb410e4419545c6e3d1afa7f2c469c0168cfca))
-- _(github)_ update workflows for tag-based releases - ([5c66ac1](https://github.com/DeadNews/images-upload-cli/commit/5c66ac142a94a3b3383c687815bdc95c631f953f))
 
 ### ⬆️ Dependencies
 
+- _(deps)_ update dependency pillow to v10.3.0 ([#190](https://github.com/DeadNews/images-upload-cli/issues/190)) - ([df49044](https://github.com/DeadNews/images-upload-cli/commit/df490441833f37ac17777e984015f9af4245c6e8))
 - _(deps)_ update dependency rich to v13.7.1 ([#179](https://github.com/DeadNews/images-upload-cli/issues/179)) - ([9191acc](https://github.com/DeadNews/images-upload-cli/commit/9191acca8ff27f32e16afc4ae38360f73a9644ca))
 
 ## [3.0.1](https://github.com/DeadNews/images-upload-cli/compare/v2.0.1...v3.0.1) - 2024-02-22
