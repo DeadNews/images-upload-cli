@@ -134,7 +134,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  github-deploy-exe:
+  build-win:
     name: Windows Build
     if: github.ref_type == 'tag'
     needs: [github-deploy]
