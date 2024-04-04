@@ -144,7 +144,7 @@ jobs:
     env:
       ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
       BINARY: images-upload-cli.exe
-      NUITKA_CACHE_DIR: ${{ github.action_path }}/nuitka/cache
+      NUITKA_CACHE_DIR: /nuitka/cache
       PYTHON_VERSION: "3.11"
     runs-on: windows-latest
     steps:
@@ -159,7 +159,7 @@ jobs:
           cache: poetry
 
       - name: Install deps
-        run: poetry install
+        run: poetry install --only main,build
 
       - name: Cache nuitka
         uses: actions/cache@v4
