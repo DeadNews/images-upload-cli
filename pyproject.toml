@@ -54,6 +54,7 @@ mkdocstrings-python = "^1.9.2"
 
 [tool.poetry.group.build.dependencies]
 nuitka = "^2.1.4"
+poethepoet = "^0.25.0"
 
 [tool.poetry-dynamic-versioning]
 enable = true
