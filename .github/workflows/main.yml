@@ -142,9 +142,9 @@ jobs:
     permissions:
       contents: write
     env:
-      ASSET: images-upload-cli_${{ github.ref_name }}_windows_amd64.zip
-      BINARY: images-upload-cli.exe
-      NUITKA_CACHE_DIR: /nuitka/cache
+      ASSET: ${{ github.event.repository.name }}_${{ github.ref_name }}_windows_amd64.zip
+      BINARY: ${{ github.event.repository.name }}.exe
+      NUITKA_CACHE_DIR: /cache/nuitka
       PYTHON_VERSION: "3.11"
     runs-on: windows-latest
     steps:

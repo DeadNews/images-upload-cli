@@ -80,7 +80,7 @@ python -m nuitka
 [tool.poe.tasks.nuitka.args.outfile]
 options = ["--output-file"]
 default = "images-upload-cli.bin"
-help = "Output file name"
+help = "Output file name."
 
 [tool.poe.tasks.test]
 cmd = "pytest -m 'not (online or benchmark)'"
