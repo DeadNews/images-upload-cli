@@ -1,21 +1,5 @@
 # Changelog
 
-## [3.0.3-alpha.6](https://github.com/DeadNews/images-upload-cli/compare/v3.0.2...v3.0.3-alpha.6) - 2024-04-04
-
-### ⚙️ CI/CD
-
-- _(github)_ update build-win job - ([2eb0f2d](https://github.com/DeadNews/images-upload-cli/commit/2eb0f2dc6a5cc26183ce0b2e6597a4480ff54481))
-- _(github)_ update build-win job - ([8dacff9](https://github.com/DeadNews/images-upload-cli/commit/8dacff9727db2b15e1731a35e1fa8698cc853ac8))
-- _(github)_ update build-win job - ([1a664d6](https://github.com/DeadNews/images-upload-cli/commit/1a664d67bbcc58dc393e836c7f3968416766f5c9))
-- _(github)_ update build-win job - ([a2bf2d2](https://github.com/DeadNews/images-upload-cli/commit/a2bf2d237e55f9e6e8f9ba0fcf061b71293d9c23))
-- _(github)_ update build-win job - ([d64971e](https://github.com/DeadNews/images-upload-cli/commit/d64971eb492a50bc9f179e154810e0eb953c08e3))
-- _(github)_ update build-win job - ([1bc9c43](https://github.com/DeadNews/images-upload-cli/commit/1bc9c430e9dc1b8be25f8a8a8dd50a3fbc0ebe5d))
-- _(github)_ update build-win job - ([59464db](https://github.com/DeadNews/images-upload-cli/commit/59464db3b4fa3089203244b959f7d908a8027a95))
-- _(github)_ update build-win job - ([593efaf](https://github.com/DeadNews/images-upload-cli/commit/593efaf8c1bd27f69c1cbe90b891057aade79aa3))
-- _(github)_ update build-win job - ([2a4dd1c](https://github.com/DeadNews/images-upload-cli/commit/2a4dd1ccda10fb479a78f2410667cf44aa11d145))
-- _(github)_ update build-win job - ([55ce0a8](https://github.com/DeadNews/images-upload-cli/commit/55ce0a8d144986ad7e9c82a3a5c75c227a641052))
-- _(github)_ update aur release job ([#196](https://github.com/DeadNews/images-upload-cli/issues/196)) - ([4e2e87c](https://github.com/DeadNews/images-upload-cli/commit/4e2e87c8564dced1c3bd61da1c1274c7643edd1a))
-
 ## [3.0.2](https://github.com/DeadNews/images-upload-cli/compare/v3.0.1...v3.0.2) - 2024-04-03
 
 ### 🐛 Bug Fixes
