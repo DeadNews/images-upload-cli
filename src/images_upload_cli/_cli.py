@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 import click
-from copykitten import copy
+import copykitten
 from dotenv import load_dotenv
 
 from images_upload_cli.logger import setup_logger
@@ -103,7 +103,7 @@ def cli(
 
         click.echo(formatted_links)
         if clipboard:
-            copy(formatted_links)
+            copykitten.copy(formatted_links)
         if notify:
             notify_send(formatted_links)
 
