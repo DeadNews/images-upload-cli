@@ -5,8 +5,8 @@ import sys
 from pathlib import Path
 
 import click
+from copykitten import copy
 from dotenv import load_dotenv
-from pyperclip import copy
 
 from images_upload_cli.logger import setup_logger
 from images_upload_cli.main import format_link, upload_images

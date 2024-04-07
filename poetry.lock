@@ -236,6 +236,21 @@ files = [
 ]
 
 [[package]]
+name = "copykitten"
+version = "1.1.1"
+description = "A robust, dependency-free way to use the system clipboard in Python."
+optional = false
+python-versions = ">=3.8, <3.13"
+files = [
+    {file = "copykitten-1.1.1-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:68a1dfd6562594a43612178a3c255ba0e8a3e184cc376331e3d6d9bc061c1726"},
+    {file = "copykitten-1.1.1-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:d0d1ec65c263ad85e4d8ab856990260ebcb2bfa6dca111d3bd45fccae9abef03"},
+    {file = "copykitten-1.1.1-cp38-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a87b5fde13ae4d37d320801d9f944db0d3f97ff47ede5e4eddf89d721757c390"},
+    {file = "copykitten-1.1.1-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0af87a6469d68962598ff771046b04819b8de77f0852c0dde001d5066b4d4e1f"},
+    {file = "copykitten-1.1.1-cp38-abi3-win_amd64.whl", hash = "sha256:207b7dd53d004f89d54e386ea8eca62a9bb2da8b16b70f2af2ab7abb947af662"},
+    {file = "copykitten-1.1.1.tar.gz", hash = "sha256:3a912f1825f42d87994ffed093b192944705de349a9b048f89ec006ea30b2be8"},
+]
+
+[[package]]
 name = "coverage"
 version = "7.4.2"
 description = "Code coverage measurement for Python"
@@ -1110,16 +1125,6 @@ pyyaml = "*"
 extra = ["pygments (>=2.12)"]
 
 [[package]]
-name = "pyperclip"
-version = "1.8.2"
-description = "A cross-platform clipboard module for Python. (Only handles plain text for now.)"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pyperclip-1.8.2.tar.gz", hash = "sha256:105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57"},
-]
-
-[[package]]
 name = "pyright"
 version = "1.1.357"
 description = "Command line wrapper for pyright"
@@ -1714,5 +1719,5 @@ cffi = ["cffi (>=1.11)"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.10"
-content-hash = "e258eaebb582797ad284e805a65503234696fe9a9d52ea961f64270387d3020d"
+python-versions = ">=3.10,<3.13"
+content-hash = "194aa5dd44f0480efea64a06ba82c6ee2531673744e9f90831383381d8572814"
