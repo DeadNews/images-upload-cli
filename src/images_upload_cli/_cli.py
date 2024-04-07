@@ -5,8 +5,8 @@ import sys
 from pathlib import Path
 
 import click
-import copykitten
 from dotenv import load_dotenv
+from pyperclip import copy
 
 from images_upload_cli.logger import setup_logger
 from images_upload_cli.main import format_link, upload_images
@@ -103,7 +103,7 @@ def cli(
 
         click.echo(formatted_links)
         if clipboard:
-            copykitten.copy(formatted_links)
+            copy(formatted_links)
         if notify:
             notify_send(formatted_links)
 

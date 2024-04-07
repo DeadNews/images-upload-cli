@@ -59,7 +59,7 @@ def test_cli(
     # Mock response.
     httpx_mock.add_response(text=mock_text)
     # Mock functions.
-    mock_copy = mocker.patch("images_upload_cli._cli.copykitten.copy", return_value=None)
+    mock_copy = mocker.patch("images_upload_cli._cli.copy", return_value=None)
     mock_notify_send = mocker.patch("images_upload_cli._cli.notify_send", return_value=None)
     # Mock image extension to be matched with mock_link.
     mocker.patch("images_upload_cli.upload.get_img_ext", return_value="png")
