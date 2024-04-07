@@ -53,9 +53,6 @@ mkdocstrings = "^0.24.3"
 mkdocstrings-python = "^1.9.2"
 
 [tool.poetry.group.build.dependencies]
-# set nuitka to install only on Windows
-# specify nuitka version to avoid installing on non-Windows platforms
-# avoid `nuitka` installation on non-Windows platforms
 nuitka = { version = "^2.1.5", platform = "win32" }
 
 [tool.poetry-dynamic-versioning]
