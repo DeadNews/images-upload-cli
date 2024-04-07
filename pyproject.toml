@@ -53,7 +53,10 @@ mkdocstrings = "^0.24.3"
 mkdocstrings-python = "^1.9.2"
 
 [tool.poetry.group.build.dependencies]
-nuitka = "^2.1.5"
+# set nuitka to install only on Windows
+# specify nuitka version to avoid installing on non-Windows platforms
+# avoid `nuitka` installation on non-Windows platforms
+nuitka = { version = "^2.1.5", platform = "win32" }
 
 [tool.poetry-dynamic-versioning]
 enable = true
@@ -79,7 +82,7 @@ python -m nuitka
 
 [tool.poe.tasks.nuitka.args.outfile]
 options = ["--output-file"]
-default = "images-upload-cli.bin"
+default = "images-upload-cli.exe"
 help = "Output file name."
 
 [tool.poe.tasks.test]
