@@ -95,6 +95,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Wait for PyPI update
+        run: sleep 10
+
       - name: Update version in PKGBUILD
         run: |
           sed "s|^pkgver=.*$|pkgver=\"${GITHUB_REF_NAME#v}\"|" -i PKGBUILD
