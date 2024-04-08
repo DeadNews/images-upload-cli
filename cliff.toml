@@ -64,7 +64,7 @@ commit_parsers = [
   { message = "^chore\\(release\\)", skip = true },
   { message = "^fix\\(deps.*\\)", group = "<!-- 92 -->⬆️ Dependencies" },
   { message = "^feat", group = "<!-- 0 -->🚀 Features" },
-  { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+  { message = "^fix", group = "<!-- 1 -->🐛 Bug fixes" },
   { message = "^refactor", group = "<!-- 2 -->🚜 Refactor" },
   { message = "^doc", group = "<!-- 3 -->📚 Documentation" },
   { message = "^perf", group = "<!-- 4 -->⚡ Performance" },

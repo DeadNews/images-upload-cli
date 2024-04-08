@@ -64,9 +64,9 @@ jobs:
     name: Release to PyPI
     if: github.ref_type == 'tag'
     needs: [lint, tests]
+    environment: pypi
     permissions:
       id-token: write
-    environment: pypi
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
