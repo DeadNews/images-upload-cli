@@ -1,31 +1,15 @@
 # Changelog
 
-## [3.1.0-alpha.7](https://github.com/DeadNews/images-upload-cli/compare/v3.0.2...v3.1.0-alpha.7) - 2024-04-08
-
-### 🚀 Features
-
-- replace `pyperclip` with `copykitten` - ([d5b760b](https://github.com/DeadNews/images-upload-cli/commit/d5b760b2770a16f00d434db893bb241758397057))
-- replace `pyperclip` with `copykitten` - ([8429e12](https://github.com/DeadNews/images-upload-cli/commit/8429e12147d9b58b8bdb8febd164ad4beb256db9))
-
-### 📚 Documentation
-
-- _(changelog)_ update `git-cliff` config - ([1b7f60b](https://github.com/DeadNews/images-upload-cli/commit/1b7f60bbe0c171ee5f9468bdff82b3708bcd6c48))
-- _(mkdocs)_ add `navigation.instant` - ([445a4ca](https://github.com/DeadNews/images-upload-cli/commit/445a4ca6cac7473afb4cdc8629b4d447c67887a2))
-- _(readme)_ update badges - ([ed78a01](https://github.com/DeadNews/images-upload-cli/commit/ed78a01164aad3f1078b4043524d164a2743150c))
+## [3.0.3](https://github.com/DeadNews/images-upload-cli/compare/v3.0.2...v3.0.3) - 2024-04-08
 
 ### 🧹 Chores
 
-- _(makefile)_ update `release` command - ([c4ca3a0](https://github.com/DeadNews/images-upload-cli/commit/c4ca3a04eaef1607dc350bf2f0d1bc8ee9f66ad1))
+- _(makefile)_ update `release` command ([#198](https://github.com/DeadNews/images-upload-cli/issues/198)) - ([953207d](https://github.com/DeadNews/images-upload-cli/commit/953207dfa6f490f05e71e22a42068e9716b4d842))
 
 ### ⚙️ CI/CD
 
-- _(github)_ update `pypi-deploy` job - ([9d5ba92](https://github.com/DeadNews/images-upload-cli/commit/9d5ba9226bdb0d62fe12908f10067d49217d1334))
 - _(github)_ update `build-win` job ([#197](https://github.com/DeadNews/images-upload-cli/issues/197)) - ([d1eedc7](https://github.com/DeadNews/images-upload-cli/commit/d1eedc72f1d9d3701935568526b34134c2d381d8))
 - _(github)_ update aur release job ([#196](https://github.com/DeadNews/images-upload-cli/issues/196)) - ([4e2e87c](https://github.com/DeadNews/images-upload-cli/commit/4e2e87c8564dced1c3bd61da1c1274c7643edd1a))
-
-### ◀️ Revert
-
-- 'feat: replace `pyperclip` with `copykitten`' - ([1e0c66f](https://github.com/DeadNews/images-upload-cli/commit/1e0c66f636388b30eb4773913c4b855764ef5a38))
 
 ## [3.0.2](https://github.com/DeadNews/images-upload-cli/compare/v3.0.1...v3.0.2) - 2024-04-03
 
