@@ -1,2 +1,7 @@
 [files]
 extend-exclude = ["CHANGELOG.md"]
+
+[default]
+extend-ignore-re = [
+    "[a-z]{0,3}", # ignore short words
+]

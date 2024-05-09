@@ -1,4 +1,3 @@
-// Workspace settings override user settings.
 {
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
