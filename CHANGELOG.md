@@ -141,7 +141,7 @@
 
 - fix deploy to `aur` - ([571b763](https://github.com/DeadNews/images-upload-cli/commit/571b7639a01b227f82748ffb6468af88d2c9b89d))
 
-## [1.1.1] - 2023-05-07
+## [1.1.1](https://github.com/DeadNews/images-upload-cli/commits/v1.1.1) - 2023-05-07
 
 ### 🚀 Features
 
