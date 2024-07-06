@@ -87,11 +87,12 @@ def make_thumbnail(
     """
     # Open the input image and create a copy in RGB format.
     im = Image.open(BytesIO(img))
-    if im.mode != "RGB":
-        im = im.convert("RGB")
+    pw = im.copy()
+
+    if pw.mode != "RGB":
+        pw = pw.convert("RGB")
 
     # Resize the image to the desired size using Lanczos resampling.
-    pw = im.copy()
     pw.thumbnail(size=size, resample=Image.Resampling.LANCZOS)
 
     # Create a blank image for the text

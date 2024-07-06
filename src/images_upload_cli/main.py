@@ -29,7 +29,7 @@ async def upload_images(
     if thumbnail:
         font = get_font()
 
-    async with AsyncClient() as client:
+    async with AsyncClient(timeout=90) as client:
         for img_path in images:
             img = img_path.read_bytes()
 
