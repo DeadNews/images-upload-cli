@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.0.4-alpha.0](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4-alpha.0) - 2024-07-26
+
+### 📚 Documentation
+
+- _(changelog)_ update `git-cliff` config - ([f7f987d](https://github.com/DeadNews/images-upload-cli/commit/f7f987dffc23bb783fd842c3dc7ecba80f5cefa3))
+
+### 🧹 Chores
+
+- _(typos)_ ignore short words - ([7b84695](https://github.com/DeadNews/images-upload-cli/commit/7b846953521c9271a1d1121c30610fc9a19cd1d3))
+- remove `httpx` timeout - ([7a33752](https://github.com/DeadNews/images-upload-cli/commit/7a337526376c0aee683dc67b0b7baed4f54e268a))
+
+### ⚙️ CI/CD
+
+- _(github)_ update `build-win` to python `3.12` - ([ece6562](https://github.com/DeadNews/images-upload-cli/commit/ece65622dd5ff6d91cfbda4c9f8fae17dda4f1c4))
+- _(github)_ update `aur-deploy` job - ([0738a55](https://github.com/DeadNews/images-upload-cli/commit/0738a552717bead992ded73eb07d1b57a6ac5e68))
+
+### ⬆️ Dependencies
+
+- _(deps)_ update dependency pillow to v10.4.0 ([#218](https://github.com/DeadNews/images-upload-cli/issues/218)) - ([48a45f4](https://github.com/DeadNews/images-upload-cli/commit/48a45f4a2eaacf9b7cbfa7ec59dff9001af8ad05))
+- _(deps)_ update dependency pyperclip to v1.9.0 ([#211](https://github.com/DeadNews/images-upload-cli/issues/211)) - ([d39dc81](https://github.com/DeadNews/images-upload-cli/commit/d39dc810cfbdc5babba38487b69a675a2ddd905f))
+
 ## [3.0.3](https://github.com/DeadNews/images-upload-cli/compare/v3.0.2...v3.0.3) - 2024-04-08
 
 ### 🧹 Chores
