@@ -148,7 +148,7 @@ jobs:
       ASSET: ${{ github.event.repository.name }}_${{ github.ref_name }}_windows_amd64.zip
       BINARY: ${{ github.event.repository.name }}.exe
       NUITKA_CACHE_DIR: /cache/nuitka
-      PYTHON_VERSION: "3.11"
+      PYTHON_VERSION: "3.12"
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
