@@ -1,14 +1,14 @@
 import pytest
 from click.testing import CliRunner
-from images_upload_cli.__main__ import cli
-from images_upload_cli.upload import HOSTINGS
 from pytest_httpx import HTTPXMock
 from pytest_mock import MockerFixture
 
+from images_upload_cli.__main__ import cli
+from images_upload_cli.upload import HOSTINGS
 from tests.mock import MOCK_HOSTINGS, RESPONSE
 
 
-@pytest.fixture()
+@pytest.fixture
 def runner():
     return CliRunner()
 
@@ -94,7 +94,7 @@ def test_cli(
         mock_notify_send.assert_called_once_with(mock_link)
 
 
-@pytest.mark.online()
+@pytest.mark.online
 @pytest.mark.parametrize("hosting", HOSTINGS)
 def test_cli_online(runner: CliRunner, hosting: str) -> None:
     """

@@ -1,14 +1,14 @@
 from pathlib import Path
 
 import pytest
-from images_upload_cli.main import format_link, upload_images
-from images_upload_cli.upload import UPLOAD
 from pytest_httpx import HTTPXMock
 
+from images_upload_cli.main import format_link, upload_images
+from images_upload_cli.upload import UPLOAD
 from tests.mock import RESPONSE
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     "thumbnail",
     [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],
@@ -44,7 +44,7 @@ async def test_upload_images_coroutine(httpx_mock: HTTPXMock, thumbnail: bool) -
         assert result == [(mock_link, None)]
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     "thumbnail",
     [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],

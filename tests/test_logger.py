@@ -1,7 +1,8 @@
 import logging
 
-from images_upload_cli.logger import ErrorHandler, setup_logger
 from loguru import logger
+
+from images_upload_cli.logger import ErrorHandler, setup_logger
 
 
 def test_errorhandler_emit():

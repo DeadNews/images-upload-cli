@@ -2,6 +2,10 @@ from pathlib import Path
 
 import pytest
 from httpx import codes, post
+from logot import Logot, logged
+from pytest_httpx import HTTPXMock
+from pytest_mock import MockerFixture
+
 from images_upload_cli.util import (
     GetEnvError,
     get_config_path,
@@ -10,9 +14,6 @@ from images_upload_cli.util import (
     log_on_error,
     notify_send,
 )
-from logot import Logot, logged
-from pytest_httpx import HTTPXMock
-from pytest_mock import MockerFixture
 
 
 @pytest.mark.parametrize(

@@ -7,7 +7,7 @@ import pytest
 from logot.loguru import LoguruCapturer
 
 
-@pytest.fixture()
+@pytest.fixture
 def img() -> bytes:
     return Path("tests/data/pic.png").read_bytes()
 
