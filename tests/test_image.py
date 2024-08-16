@@ -1,13 +1,14 @@
 from io import BytesIO
 
 import pytest
-from images_upload_cli.image import get_font, get_img_ext, make_thumbnail, search_font
-from images_upload_cli.util import GetEnvError
 from PIL import Image, ImageFont
 from pytest_mock import MockerFixture
 
+from images_upload_cli.image import get_font, get_img_ext, make_thumbnail, search_font
+from images_upload_cli.util import GetEnvError
 
-@pytest.fixture()
+
+@pytest.fixture
 def font_name() -> str:
     return "tests/data/DejaVuSerif.ttf"
 

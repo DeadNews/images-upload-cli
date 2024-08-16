@@ -1,14 +1,14 @@
 import pytest
 from dotenv import load_dotenv
 from httpx import AsyncClient
-from images_upload_cli.upload import UPLOAD
 from logot import Logot, logged
 from pytest_httpx import HTTPXMock
 
+from images_upload_cli.upload import UPLOAD
 from tests.mock import MOCK_HOSTINGS, RESPONSE
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     ("hosting", "mock_text", "mock_link"),
     [
@@ -48,7 +48,7 @@ async def test_upload_funcs(
         assert link == mock_link
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 @pytest.mark.parametrize("hosting", MOCK_HOSTINGS)
 async def test_upload_funcs_error(
     httpx_mock: HTTPXMock,
@@ -86,7 +86,7 @@ async def test_upload_funcs_error(
     await logot.await_for(logged.debug("Response text:\nUpload failed."))
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 @pytest.mark.parametrize("hosting", ["fastpic", "imagebin"])
 async def test_upload_funcs_not_found(
     httpx_mock: HTTPXMock,

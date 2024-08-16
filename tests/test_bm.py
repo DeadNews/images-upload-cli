@@ -1,19 +1,19 @@
 import pytest
 from click.testing import CliRunner, Result
 from dotenv import load_dotenv
-from images_upload_cli.__main__ import cli
 from pytest_benchmark.fixture import BenchmarkFixture
 from pytest_httpx import HTTPXMock
 
+from images_upload_cli.__main__ import cli
 from tests.mock import uploadcare
 
 
-@pytest.fixture()
+@pytest.fixture
 def runner():
     return CliRunner()
 
 
-@pytest.mark.online()
+@pytest.mark.online
 @pytest.mark.benchmark(max_time=2)
 def test_bm_cli_online(benchmark: BenchmarkFixture, runner: CliRunner):
     """Benchmark test for the cli function.
