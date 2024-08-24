@@ -24,12 +24,12 @@ repos:
       - id: prettier
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.23.6
+    rev: v1.24.1
     hooks:
       - id: typos
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.29.1
+    rev: 0.29.2
     hooks:
       - id: check-github-workflows
       - id: check-renovate
@@ -45,7 +45,7 @@ repos:
       - id: checkmake
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.0
+    rev: v0.6.2
     hooks:
       - id: ruff-format
       - id: ruff
