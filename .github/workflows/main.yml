@@ -82,7 +82,7 @@ jobs:
         run: poetry build
 
       - name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@ec4db0b4ddc65acdf4bff5fa45ac92d78b56bdf0 # v1.9.0
+        uses: pypa/gh-action-pypi-publish@897895f1e160c830e369f9779632ebc134688e1b # v1.10.2
 
   aur-deploy:
     name: Release to AUR
@@ -103,7 +103,7 @@ jobs:
           sed "s|^pkgver=.*$|pkgver=\"${GITHUB_REF_NAME#v}\"|" -i PKGBUILD
 
       - name: Deploy PKGBUILD to the Arch User Repository
-        uses: ksxgithub/github-actions-deploy-aur@32e74b369e077d605a823d29574313d894dd0f31 # v3.0.0
+        uses: ksxgithub/github-actions-deploy-aur@a97f56a8425a7a7f3b8c58607f769c69b089cadb # v3.0.1
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
