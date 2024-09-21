@@ -32,7 +32,7 @@ rich = "^13.7.1"
 mypy = "^1.11.2"
 poethepoet = "^0.28.0"
 pyright = "^1.1.381"
-ruff = "^0.6.6"
+ruff = "^0.6.7"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.3"
