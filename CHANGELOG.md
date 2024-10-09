@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.0.4-alpha.0](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4-alpha.0) - 2024-07-26
+## [3.0.4-alpha.1](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4-alpha.1) - 2024-10-09
 
 ### 📚 Documentation
 
@@ -13,11 +13,16 @@
 
 ### ⚙️ CI/CD
 
-- _(github)_ update `build-win` to python `3.12` - ([ece6562](https://github.com/DeadNews/images-upload-cli/commit/ece65622dd5ff6d91cfbda4c9f8fae17dda4f1c4))
+- _(github)_ add `python:3.13` to tests matrix - ([41f9c40](https://github.com/DeadNews/images-upload-cli/commit/41f9c40cd5f3ddae4bf920fa58f68893cbe02c46))
+- _(github)_ update `build-win` to python `3.12` ([#223](https://github.com/DeadNews/images-upload-cli/issues/223)) - ([526910a](https://github.com/DeadNews/images-upload-cli/commit/526910ad8a7e3949e7fdc09ff179affe5a59d698))
 - _(github)_ update `aur-deploy` job - ([0738a55](https://github.com/DeadNews/images-upload-cli/commit/0738a552717bead992ded73eb07d1b57a6ac5e68))
 
 ### ⬆️ Dependencies
 
+- _(deps)_ update dependency rich to v13.9.2 ([#240](https://github.com/DeadNews/images-upload-cli/issues/240)) - ([cdd8537](https://github.com/DeadNews/images-upload-cli/commit/cdd853738a62abf87c72bccaceb0b9af883cfea2))
+- _(deps)_ update dependency rich to v13.8.1 ([#233](https://github.com/DeadNews/images-upload-cli/issues/233)) - ([81edda6](https://github.com/DeadNews/images-upload-cli/commit/81edda6d271f6fbb8e4b1e1b963c4d7a688e170c))
+- _(deps)_ update dependency rich to v13.8.0 ([#232](https://github.com/DeadNews/images-upload-cli/issues/232)) - ([97568df](https://github.com/DeadNews/images-upload-cli/commit/97568dfa6f075ec49ad492d5a93dc66f1a7904de))
+- _(deps)_ update dependency httpx to v0.27.2 ([#231](https://github.com/DeadNews/images-upload-cli/issues/231)) - ([1e75d47](https://github.com/DeadNews/images-upload-cli/commit/1e75d47af71aaa77b3ce0375bc857f3933d9d9cd))
 - _(deps)_ update dependency pillow to v10.4.0 ([#218](https://github.com/DeadNews/images-upload-cli/issues/218)) - ([48a45f4](https://github.com/DeadNews/images-upload-cli/commit/48a45f4a2eaacf9b7cbfa7ec59dff9001af8ad05))
 - _(deps)_ update dependency pyperclip to v1.9.0 ([#211](https://github.com/DeadNews/images-upload-cli/issues/211)) - ([d39dc81](https://github.com/DeadNews/images-upload-cli/commit/d39dc810cfbdc5babba38487b69a675a2ddd905f))
 
