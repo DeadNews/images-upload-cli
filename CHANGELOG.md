@@ -1,10 +1,18 @@
 # Changelog
 
-## [3.0.4-alpha.1](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4-alpha.1) - 2024-10-09
+## [3.0.4](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4) - 2024-10-11
+
+### 🐛 Bug fixes
+
+- now `pixeldrain` require an `api key` ([#249](https://github.com/DeadNews/images-upload-cli/issues/249)) - ([4ff3f6d](https://github.com/DeadNews/images-upload-cli/commit/4ff3f6d86e7f7e96c33d462bc24fa962e3712373))
 
 ### 📚 Documentation
 
 - _(changelog)_ update `git-cliff` config - ([f7f987d](https://github.com/DeadNews/images-upload-cli/commit/f7f987dffc23bb783fd842c3dc7ecba80f5cefa3))
+
+### 🧪 Testing
+
+- fix deprecations ([#248](https://github.com/DeadNews/images-upload-cli/issues/248)) - ([4958b5f](https://github.com/DeadNews/images-upload-cli/commit/4958b5f0bd44c325e2d8d0944919edc68eb9e3bf))
 
 ### 🧹 Chores
 
@@ -13,7 +21,7 @@
 
 ### ⚙️ CI/CD
 
-- _(github)_ add `python:3.13` to tests matrix - ([41f9c40](https://github.com/DeadNews/images-upload-cli/commit/41f9c40cd5f3ddae4bf920fa58f68893cbe02c46))
+- _(github)_ add `python:3.13` to tests matrix ([#247](https://github.com/DeadNews/images-upload-cli/issues/247)) - ([0fbbe48](https://github.com/DeadNews/images-upload-cli/commit/0fbbe48179740d962f1c301ca8eaa29ed27b8e8a))
 - _(github)_ update `build-win` to python `3.12` ([#223](https://github.com/DeadNews/images-upload-cli/issues/223)) - ([526910a](https://github.com/DeadNews/images-upload-cli/commit/526910ad8a7e3949e7fdc09ff179affe5a59d698))
 - _(github)_ update `aur-deploy` job - ([0738a55](https://github.com/DeadNews/images-upload-cli/commit/0738a552717bead992ded73eb07d1b57a6ac5e68))
 
