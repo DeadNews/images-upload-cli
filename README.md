@@ -47,7 +47,7 @@ Windows executable is attached to the GitHub release.
 | [imgchest](https://imgchest.com/)     |      +       | `https://cdn.imgchest.com/files/{id}.png`            |
 | [imgur](https://imgur.com/)           |      -       | `https://i.imgur.com/{id}.png`                       |
 | [lensdump](https://lensdump.com/)     |      +       | `https://i.lensdump.com/i/{id}.png`                  |
-| [pixeldrain](https://pixeldrain.com/) |      -       | `https://pixeldrain.com/api/file/{id}`               |
+| [pixeldrain](https://pixeldrain.com/) |      +       | `https://pixeldrain.com/api/file/{id}`               |
 | [pixhost](https://pixhost.to/)        |      -       | `https://img75.pixhost.to/images/69/{id}_img.png`    |
 | [ptpimg](https://ptpimg.me/)          |      +       | `https://ptpimg.me/{id}.png`                         |
 | [smms](https://sm.ms/)                |      +       | `https://s2.loli.net/2022/07/30/{id}.png`            |
@@ -96,6 +96,7 @@ IMGBB_KEY=
 IMGCHEST_KEY=
 IMGUR_CLIENT_ID=
 LENSDUMP_KEY=
+PIXELDRAIN_KEY=
 PTPIMG_KEY=
 SMMS_KEY=
 THUMBSNAP_KEY=

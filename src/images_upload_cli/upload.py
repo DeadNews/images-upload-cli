@@ -5,7 +5,7 @@ from os import getenv
 from re import search
 from urllib.parse import urlparse
 
-from httpx import AsyncClient
+from httpx import AsyncClient, BasicAuth
 from loguru import logger
 
 from images_upload_cli.image import get_img_ext
@@ -355,8 +355,11 @@ async def pixeldrain_upload(client: AsyncClient, img: bytes) -> str:
     Returns:
         The URL of the uploaded image, or an empty string if the upload failed.
     """
+    key = get_env("PIXELDRAIN_KEY")
+
     response = await client.post(
         url="https://pixeldrain.com/api/file",
+        auth=BasicAuth(username="", password=key),
         files={"file": img},
     )
     if response.is_error:
