@@ -105,5 +105,5 @@ def test_cli_online(runner: CliRunner, hosting: str) -> None:
         runner: An instance of CliRunner used to invoke the cli function.
         hosting: The hosting service to be tested.
     """
-    args = ["tests/data/pic.png", "-C", "-h", hosting]
+    args = ["tests/data/pic.png", "--no-clipboard", "-h", hosting]
     assert runner.invoke(cli=cli, args=args).exit_code == 0
