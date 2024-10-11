@@ -36,6 +36,7 @@ def test_cli_error(runner: CliRunner) -> None:
     "thumbnail",
     [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],
 )
+@pytest.mark.httpx_mock(can_send_already_matched_responses=True)
 def test_cli(
     runner: CliRunner,
     httpx_mock: HTTPXMock,

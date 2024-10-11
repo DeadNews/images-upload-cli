@@ -13,6 +13,7 @@ from tests.mock import RESPONSE
     "thumbnail",
     [pytest.param(False, id="default"), pytest.param(True, id="thumbnail")],
 )
+@pytest.mark.httpx_mock(can_send_already_matched_responses=True)
 async def test_upload_images_coroutine(httpx_mock: HTTPXMock, thumbnail: bool) -> None:
     """Test the upload_images coroutine.
 
