@@ -13,13 +13,10 @@ update:
 	poetry up --latest
 
 checks: pc install lint test
-
 pc:
 	pre-commit run -a
-
 lint:
 	poetry run poe lint
-
 test:
 	poetry run poe test
 

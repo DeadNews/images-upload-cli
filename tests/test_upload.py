@@ -16,6 +16,7 @@ from tests.mock import MOCK_HOSTINGS, RESPONSE
         for hosting in MOCK_HOSTINGS
     ],
 )
+@pytest.mark.httpx_mock(can_send_already_matched_responses=True)
 async def test_upload_funcs(
     httpx_mock: HTTPXMock,
     hosting: str,
