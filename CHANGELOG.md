@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.5-alpha.0](https://github.com/DeadNews/images-upload-cli/compare/v3.0.4...v3.0.5-alpha.0) - 2024-10-24
+
+### ⚙️ CI/CD
+
+- _(github)_ update `build-win` to `python:3.13` - ([dfa1399](https://github.com/DeadNews/images-upload-cli/commit/dfa13999ac20738df54dbcf52fb835e5992187cc))
+
+### ⬆️ Dependencies
+
+- _(deps)_ update dependency rich to v13.9.3 ([#254](https://github.com/DeadNews/images-upload-cli/issues/254)) - ([8cba2ed](https://github.com/DeadNews/images-upload-cli/commit/8cba2edd268605f155499e38506f53a46385b863))
+- _(deps)_ update dependency pillow to v11 ([#252](https://github.com/DeadNews/images-upload-cli/issues/252)) - ([2c7aeb0](https://github.com/DeadNews/images-upload-cli/commit/2c7aeb0b7c6a913c8f8efe87ad1e0070f27d30cb))
+
 ## [3.0.4](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4) - 2024-10-11
 
 ### 🐛 Bug fixes
