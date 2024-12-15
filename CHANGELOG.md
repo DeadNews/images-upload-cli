@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.0.5-alpha.1](https://github.com/DeadNews/images-upload-cli/compare/v3.0.4...v3.0.5-alpha.1) - 2024-12-15
+## [3.0.5](https://github.com/DeadNews/images-upload-cli/compare/v3.0.4...v3.0.5) - 2024-12-15
 
 ### 🧹 Chores
 
@@ -8,7 +8,7 @@
 
 ### ⚙️ CI/CD
 
-- _(github)_ update `build-win` to `python:3.13` - ([d0f9d8a](https://github.com/DeadNews/images-upload-cli/commit/d0f9d8af61cd0f0d593468efc5e80c613c3201ab))
+- _(github)_ update `build-win` to `python:3.13` ([#270](https://github.com/DeadNews/images-upload-cli/issues/270)) - ([9ad2853](https://github.com/DeadNews/images-upload-cli/commit/9ad285390263b1f55e4ebf62e4161e76a7131a25))
 - _(renovate)_ group `httpx` and `pytest-httpx` in one PR - ([b3fa5d5](https://github.com/DeadNews/images-upload-cli/commit/b3fa5d5459acd47c50e46d4cc08e25110b5c0fc0))
 
 ### ⬆️ Dependencies
