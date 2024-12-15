@@ -30,13 +30,13 @@ rich = "^13.9.2"
 
 [tool.poetry.group.lint.dependencies]
 mypy = "^1.13.0"
-poethepoet = "^0.30.0"
-pyright = "^1.1.389"
-ruff = "^0.7.4"
+poethepoet = "^0.31.1"
+pyright = "^1.1.390"
+ruff = "^0.8.3"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.3.3"
-pytest-asyncio = "^0.24.0"
+pytest = "^8.3.4"
+pytest-asyncio = "^0.25.0"
 pytest-benchmark = "^5.1.0"
 pytest-cov = "^6.0.0"
 pytest-httpx = "^0.33.0"
@@ -48,12 +48,12 @@ mkdocs = "^1.6.1"
 mkdocs-click = "^0.8.1"
 mkdocs-gen-files = "^0.5.0"
 mkdocs-literate-nav = "^0.6.1"
-mkdocs-material = "^9.5.44"
+mkdocs-material = "^9.5.48"
 mkdocstrings = "^0.27.0"
 mkdocstrings-python = "^1.12.2"
 
 [tool.poetry.group.build.dependencies]
-nuitka = { version = "^2.4.11", platform = "win32" }
+nuitka = { version = "^2.5.6", platform = "win32" }
 
 [tool.poetry-dynamic-versioning]
 enable = true
