@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.0.5-alpha.1](https://github.com/DeadNews/images-upload-cli/compare/v3.0.4...v3.0.5-alpha.1) - 2024-12-15
+
+### 🧹 Chores
+
+- _(config)_ migrate config .renovaterc.json ([#257](https://github.com/DeadNews/images-upload-cli/issues/257)) - ([c08f711](https://github.com/DeadNews/images-upload-cli/commit/c08f711911c91fff61bf65fd602961871b793db4))
+
+### ⚙️ CI/CD
+
+- _(github)_ update `build-win` to `python:3.13` - ([d0f9d8a](https://github.com/DeadNews/images-upload-cli/commit/d0f9d8af61cd0f0d593468efc5e80c613c3201ab))
+- _(renovate)_ group `httpx` and `pytest-httpx` in one PR - ([b3fa5d5](https://github.com/DeadNews/images-upload-cli/commit/b3fa5d5459acd47c50e46d4cc08e25110b5c0fc0))
+
+### ⬆️ Dependencies
+
+- _(deps)_ update httpx and pytest-httpx ([#269](https://github.com/DeadNews/images-upload-cli/issues/269)) - ([83324f7](https://github.com/DeadNews/images-upload-cli/commit/83324f7620ff7581a3f50453b4aef4ea723cb07a))
+- _(deps)_ update dependency loguru to v0.7.3 ([#264](https://github.com/DeadNews/images-upload-cli/issues/264)) - ([8713c43](https://github.com/DeadNews/images-upload-cli/commit/8713c430c4ef27ebadc412214a177416164c7050))
+- _(deps)_ update dependency rich to v13.9.4 ([#256](https://github.com/DeadNews/images-upload-cli/issues/256)) - ([c014852](https://github.com/DeadNews/images-upload-cli/commit/c014852bf9e01bfe2b26250f8b9885077d7e7451))
+- _(deps)_ update dependency rich to v13.9.3 ([#254](https://github.com/DeadNews/images-upload-cli/issues/254)) - ([8cba2ed](https://github.com/DeadNews/images-upload-cli/commit/8cba2edd268605f155499e38506f53a46385b863))
+- _(deps)_ update dependency pillow to v11 ([#252](https://github.com/DeadNews/images-upload-cli/issues/252)) - ([2c7aeb0](https://github.com/DeadNews/images-upload-cli/commit/2c7aeb0b7c6a913c8f8efe87ad1e0070f27d30cb))
+
 ## [3.0.4](https://github.com/DeadNews/images-upload-cli/compare/v3.0.3...v3.0.4) - 2024-10-11
 
 ### 🐛 Bug fixes
