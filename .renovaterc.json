@@ -7,7 +7,7 @@
       "description": "Group httpx and pytest-httpx in one PR",
       "groupName": "httpx and pytest-httpx",
       "matchManagers": ["poetry"],
-      "packageNames": ["httpx", "pytest-httpx"]
+      "matchPackageNames": ["httpx", "pytest-httpx"]
     }
   ]
 }
