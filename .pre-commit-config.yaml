@@ -24,7 +24,7 @@ repos:
       - id: prettier
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.31.1
+    rev: v1.32.0
     hooks:
       - id: typos
 
@@ -45,7 +45,7 @@ repos:
       - id: checkmake
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.7
+    rev: v0.11.8
     hooks:
       - id: ruff-format
       - id: ruff
