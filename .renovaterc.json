@@ -6,7 +6,7 @@
       "addLabels": ["main"],
       "description": "Group httpx and pytest-httpx in one PR",
       "groupName": "httpx and pytest-httpx",
-      "matchManagers": ["poetry"],
+      "matchManagers": ["pep621"],
       "matchPackageNames": ["httpx", "pytest-httpx"]
     }
   ]

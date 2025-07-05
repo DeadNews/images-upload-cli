@@ -1,2 +1,11 @@
 [formatting]
+align_entries       = true
 allowed_blank_lines = 1
+column_width        = 80
+
+[[rule]]
+include = ["**/pyproject.toml"]
+keys    = ["dependencies"]
+
+[rule.formatting]
+reorder_keys = true
