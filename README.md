@@ -65,7 +65,7 @@ Windows executable is attached to the GitHub release.
 [CLI Reference](https://deadnews.github.io/images-upload-cli/reference-cli/)
 
 ```sh
-Usage: images-upload-cli [OPTIONS] IMAGES...
+Usage: imgup [OPTIONS] IMAGES...
 
   Upload images via APIs.
 
