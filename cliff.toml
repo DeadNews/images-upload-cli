@@ -6,7 +6,7 @@ header = """
 # Changelog\n
 """
 postprocessors = [
-  { pattern = '<REPO>', replace = "https://github.com/DeadNews/images-upload-cli" },
+  { pattern = '<REPO>', replace = "https://github.com/deadnews/images-upload-cli" },
 ]
 body = """
 {%- macro remote_url() -%}

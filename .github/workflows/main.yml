@@ -3,8 +3,7 @@ name: Main
 on:
   push:
     branches: [main]
-    tags:
-      - "v*"
+    tags: [v*.*.*]
   pull_request:
     branches: [main]
 
@@ -18,57 +17,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: pipx install poetry
-
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
         with:
-          cache: poetry
+          enable-cache: true
 
-      - name: Install deps
-        run: poetry install
+      - name: Install project
+        run: uv sync --frozen
 
       - name: Lint code
-        run: poetry run poe lint
+        run: make lint
 
-  tests:
+  test:
     name: Tests
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
         python-version: ["3.10", "3.11", "3.12", "3.13"]
-        include:
-          - os: macos-latest
-            python-version: "3.13"
-          - os: windows-latest
-            python-version: "3.13"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: pipx install poetry
-
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
         with:
+          enable-cache: true
           python-version: ${{ matrix.python-version }}
-          cache: poetry
 
-      - name: Install deps
-        run: poetry install
+      - name: Install project
+        run: uv sync --frozen
 
       - name: Run tests
-        run: poetry run poe test
+        run: make test
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'
-        uses: codecov/codecov-action@4fe8c5f003fae66aa5ebb77cfd3e7bfbbda0b6b0 # v3.1.5
+        uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
 
   pypi-deploy:
     name: Release to PyPI
     if: github.ref_type == 'tag'
-    needs: [lint, tests]
+    needs: [lint, test]
     environment: pypi
     permissions:
       id-token: write
@@ -76,15 +66,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: |
-          pipx install poetry
-          pipx inject poetry poetry-dynamic-versioning[plugin]
-
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
+        with:
+          enable-cache: true
 
       - name: Build package
-        run: poetry build
+        run: uv build
 
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # v1.12.4
@@ -112,7 +100,7 @@ jobs:
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
-          commit_username: DeadNews
+          commit_username: deadnews
           commit_email: deadnewsgit@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{ github.ref_name }}
@@ -121,7 +109,7 @@ jobs:
   github-deploy:
     name: Release to GitHub
     if: github.ref_type == 'tag'
-    needs: [lint, tests]
+    needs: [lint, test]
     environment: github-releases
     permissions:
       contents: write
@@ -158,16 +146,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: pipx install poetry
-
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
         with:
+          enable-cache: true
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: poetry
 
-      - name: Install deps
-        run: poetry install
+      - name: Install project
+        run: uv sync --frozen
 
       - name: Cache nuitka
         uses: actions/cache@v4
@@ -176,10 +162,10 @@ jobs:
           path: ${{ env.NUITKA_CACHE_DIR }}
 
       - name: Build binaries
-        run: poetry run poe nuitka --output-file ${{ env.BINARY }}
+        run: make nuitka OUTPUT_FILE=${{ env.BINARY }}
 
       - name: Archive binaries
-        run: poetry run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
+        run: uv run python -m zipfile --create ${{ env.ASSET }} dist/${{ env.BINARY }}
 
       - name: Upload binaries to Release
         run: gh release upload ${{ github.ref_name }} ${{ env.ASSET }}
@@ -189,23 +175,18 @@ jobs:
   docs-build:
     name: Build docs
     if: github.ref_type == 'tag'
-    needs: [lint, tests]
+    needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: pipx install poetry
-
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
         with:
-          cache: poetry
-
-      - name: Install deps
-        run: poetry install
+          enable-cache: true
 
       - name: Build docs
-        run: poetry run mkdocs build
+        run: uv run --frozen mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

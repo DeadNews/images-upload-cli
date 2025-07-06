@@ -12,7 +12,7 @@ async def upload_images(
     upload_func: Callable[[AsyncClient, bytes], Awaitable[str]],
     images: tuple[Path],
     thumbnail: bool,
-) -> Sequence[tuple[str, str] | tuple[str, None]]:
+) -> Sequence[tuple[str, str | None]]:
     """Upload images using the specified upload function and optionally generate thumbnails.
 
     Args:
@@ -52,7 +52,7 @@ async def upload_images(
     return links
 
 
-def format_link(links: Sequence[tuple[str, str] | tuple[str, None]], fmt: str) -> str:
+def format_link(links: Sequence[tuple[str, str | None]], fmt: str) -> str:
     """Format the image links based on the specified format.
 
     Args:

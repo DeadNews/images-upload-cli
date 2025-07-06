@@ -6,7 +6,7 @@
 [![AUR: version](https://img.shields.io/aur/version/python-images-upload-cli?logo=archlinux&logoColor=white)](https://aur.archlinux.org/packages/python-images-upload-cli)
 [![GitHub: Release](https://img.shields.io/github/v/release/deadnews/images-upload-cli?logo=github&logoColor=white)](https://github.com/deadnews/images-upload-cli/releases/latest)
 [![Documentation](https://img.shields.io/badge/documentation-gray.svg?logo=materialformkdocs&logoColor=white)](https://deadnews.github.io/images-upload-cli)
-[![CI: pre-commit](https://results.pre-commit.ci/badge/github/DeadNews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/deadnews/images-upload-cli/main)
+[![CI: pre-commit](https://results.pre-commit.ci/badge/github/deadnews/images-upload-cli/main.svg)](https://results.pre-commit.ci/latest/github/deadnews/images-upload-cli/main)
 [![CI: Main](https://img.shields.io/github/actions/workflow/status/deadnews/images-upload-cli/main.yml?branch=main&logo=github&logoColor=white&label=main)](https://github.com/deadnews/images-upload-cli/actions/workflows/main.yml)
 [![CI: Coverage](https://img.shields.io/codecov/c/github/deadnews/images-upload-cli?token=OCZDZIYPMC&logo=codecov&logoColor=white)](https://app.codecov.io/gh/deadnews/images-upload-cli)
 
@@ -62,10 +62,12 @@ Windows executable is attached to the GitHub release.
 
 ## Usage
 
+> **Note:** The commands `images-upload-cli` and `imgup` can be used interchangeably.
+
 [CLI Reference](https://deadnews.github.io/images-upload-cli/reference-cli/)
 
 ```sh
-Usage: images-upload-cli [OPTIONS] IMAGES...
+Usage: imgup [OPTIONS] IMAGES...
 
   Upload images via APIs.
 

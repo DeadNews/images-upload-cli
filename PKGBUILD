@@ -1,4 +1,4 @@
-# Maintainer: DeadNews <deadnewsgit@gmail.com>
+# Maintainer: deadnews <deadnewsgit@gmail.com>
 
 pkgbase="python-images-upload-cli"
 pkgname=("python-images-upload-cli")
@@ -6,7 +6,7 @@ _name="images_upload_cli"
 pkgver="dynamically updated by ci/cd"
 pkgrel=1
 pkgdesc="Upload images via APIs"
-url="https://github.com/DeadNews/images-upload-cli"
+url="https://github.com/deadnews/images-upload-cli"
 depends=(
     "python"
     "python-click"
