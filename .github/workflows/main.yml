@@ -35,11 +35,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python-version: ["3.10", "3.11", "3.12", "3.13"]
-        include:
-          - os: macos-latest
-            python-version: "3.13"
-          - os: windows-latest
-            python-version: "3.13"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -105,7 +100,7 @@ jobs:
         with:
           pkgname: python-images-upload-cli
           pkgbuild: ./PKGBUILD
-          commit_username: DeadNews
+          commit_username: deadnews
           commit_email: deadnewsgit@gmail.com
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Upstream release ${{ github.ref_name }}

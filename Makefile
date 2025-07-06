@@ -1,18 +1,16 @@
-.PHONY: all clean default install lock update checks pc test docs run
+.PHONY: all clean default install lock update check pc test docs run
 
-default: checks
+default: check
 
 install:
 	pre-commit install
 	uv sync
-
 lock:
 	uv lock
-
 update:
 	uv sync --upgrade
 
-checks: pc install lint test
+check: pc install lint test
 pc:
 	pre-commit run -a
 lint:
@@ -39,7 +37,7 @@ bumped:
 	git cliff --bumped-version
 
 # make release TAG=$(git cliff --bumped-version)-alpha.0
-release: checks
+release: check
 	git cliff -o CHANGELOG.md --tag $(TAG)
 	pre-commit run --files CHANGELOG.md || pre-commit run --files CHANGELOG.md
 	git add CHANGELOG.md

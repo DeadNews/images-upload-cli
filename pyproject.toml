@@ -1,14 +1,14 @@
 [project]
-name        = "images-upload-cli"
-description = "Upload images via APIs"
-readme      = "README.md"
-license     = "MIT"
-authors     = [{ name = "DeadNews", email = "deadnewsgit@gmail.com" }]
-keywords    = ["cli", "imgur", "image-upload", "upload-images", "upload-pictures"]
-classifiers = ["Environment :: Console", "Operating System :: OS Independent"]
-dynamic     = ["version"]
-
+name            = "images-upload-cli"
+description     = "Upload images via APIs"
+readme          = "README.md"
+license         = "MIT"
+authors         = [{ name = "deadnews", email = "deadnewsgit@gmail.com" }]
+keywords        = ["cli", "imgur", "image-upload", "upload-images", "upload-pictures"]
+classifiers     = ["Environment :: Console", "Operating System :: OS Independent"]
+dynamic         = ["version"]
 requires-python = ">=3.10"
+
 dependencies = [
   "click>=8.1.7",
   "httpx>=0.28.0",
@@ -45,8 +45,8 @@ images-upload-cli = "images_upload_cli._cli:cli"
 imgup             = "images_upload_cli._cli:cli"
 
 [project.urls]
-Homepage      = "https://github.com/deadnews/images-upload-cli"
 Repository    = "https://github.com/deadnews/images-upload-cli"
+Changelog     = "https://github.com/deadnews/images-upload-cli/CHANGELOG.md"
 Documentation = "https://deadnews.github.io/images-upload-cli"
 
 [build-system]
