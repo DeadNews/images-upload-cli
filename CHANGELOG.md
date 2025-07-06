@@ -1,11 +1,10 @@
 # Changelog
 
-## [3.1.0-alpha.0](https://github.com/DeadNews/images-upload-cli/compare/v3.0.5...v3.1.0-alpha.0) - 2025-07-06
+## [3.0.6](https://github.com/DeadNews/images-upload-cli/compare/v3.0.5...v3.0.6) - 2025-07-06
 
 ### 🚀 Features
 
-- migrate from `poetry` to `uv` - ([92bad23](https://github.com/DeadNews/images-upload-cli/commit/92bad230b53a0fb75304015d31a5d2b316eafbb6))
-- migrate from `poetry` to `uv` - ([22f006d](https://github.com/DeadNews/images-upload-cli/commit/22f006d33c237b12b39786cc2fe59d13d692265d))
+- migrate from `poetry` to `uv` ([#301](https://github.com/deadnews/images-upload-cli/issues/301)) - ([caa2bcc](https://github.com/DeadNews/images-upload-cli/commit/caa2bcc438691a3603624cf58f0b1a96fca29ae3))
 
 ### 🧹 Chores
 
