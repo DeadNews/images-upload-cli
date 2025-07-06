@@ -62,6 +62,8 @@ Windows executable is attached to the GitHub release.
 
 ## Usage
 
+> **Note:** The commands `images-upload-cli` and `imgup` are both provided and can be used interchangeably.
+
 [CLI Reference](https://deadnews.github.io/images-upload-cli/reference-cli/)
 
 ```sh
